@@ -1,0 +1,47 @@
+@import '../../../styles/Fonts/FontScheme.scss';
+@import '../../../styles/Palette/Palette.scss';
+
+.CheckBox {
+	min-width: 120px;
+	height: 30px;
+	font-size: $font_16;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: flex-start;
+	align-items: center;
+	&-iconWrap {
+		color: $gray;
+		width: 22px;
+		height: 22px;
+		border-radius: 50%;
+		border: 0.1rem solid $gray;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: 0.5rem;
+		cursor: pointer;
+		transition: color ease-in 0.1s, border-color ease-in 0.1s;
+		&-icon {
+			z-index: 1;
+			opacity: 1;
+			transition: opacity 0.1s, z-index 0.1s;
+		}
+		&-hiddenIcon {
+			opacity: 0;
+			z-index: -1;
+		}
+		&-checked {
+			color: rgba($color: $primary, $alpha: 0.8) !important;
+			border-color: rgba($color: $primary, $alpha: 0.8) !important;
+		}
+	}
+	&-contents {
+		color: $gray;
+		user-select: none;
+		font-size: 15px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+}

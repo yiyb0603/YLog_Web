@@ -1,0 +1,23 @@
+@font-face {
+	font-family: 'NanumSquare';
+	src: url('/fonts/NanumSquareRoundOTFB.otf') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'NanumSquare';
+}
+
+html,
+body {
+	width: 100%;
+	height: 100vh;
+}
+
+td {
+	vertical-align: middle;
+}

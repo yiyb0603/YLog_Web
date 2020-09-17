@@ -1,0 +1,14 @@
+@import '../../../styles/Fonts/FontScheme.scss';
+@import '../../../styles/Palette/Palette.scss';
+
+.FormButton {
+	border: none;
+	outline: none;
+	background-color: $primary;
+	width: 100%;
+	padding: $font_1rem 0;
+	font-size: $font_20;
+	color: $white;
+	cursor: pointer;
+	margin-top: 1rem;
+}
