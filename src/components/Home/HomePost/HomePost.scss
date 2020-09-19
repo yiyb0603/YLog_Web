@@ -1,0 +1,15 @@
+@import '../../../styles/Palette/Palette.scss';
+
+.HomePost {
+	max-width: 1024px;
+	display: flex;
+	display: -webkit-flex;
+	flex-wrap: wrap;
+
+	& > div {
+		width: 300px;
+		height: 300px;
+		margin: 10px;
+		border: 2px solid black;
+	}
+}

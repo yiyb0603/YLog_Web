@@ -8,7 +8,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 const Footer = () => {
 	return (
 		<div className={cx('Footer')}>
-			<div>Footer</div>
+			<div>Copyright @yiyb0603 All right reserved.</div>
 		</div>
 	);
 };

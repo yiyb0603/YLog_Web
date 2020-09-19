@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import SignIn from '../SignIn';
 import SignUp from '../SignUp';
+import SignInContainer from 'containers/AuthContainer/SignIn';
+import SignUpContainer from 'containers/AuthContainer/SignUp';
 
 const style = require('./SignTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,8 +21,12 @@ const SignTemplate = ({}: SignTemplateProps) => {
 					<div className={cx('SignTemplate-FormBox-LeftPanel-Welcome')}>
 						YLog에 오신것을 환영합니다!
 					</div>
-					<SignIn />
-					{/* <SignUp /> */}
+
+					{pageType === 'login' ? (
+						<SignInContainer setPageType={setPageType} />
+					) : (
+						<SignUpContainer setPageType={setPageType} />
+					)}
 				</div>
 
 				<div className={cx('SignTemplate-FormBox-RightPanel')}>

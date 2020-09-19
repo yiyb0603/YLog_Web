@@ -7,7 +7,7 @@ export const simpleAlert = (
 	nextFunction?: any
 ) => {
 	return Swal.fire(title, subTitle, icon).then(() => {
-		if (nextFunction !== undefined) {
+		if (typeof nextFunction !== 'undefined') {
 			nextFunction();
 		}
 	});
