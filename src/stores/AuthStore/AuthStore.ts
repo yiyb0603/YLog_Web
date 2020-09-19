@@ -1,5 +1,5 @@
 import { autobind } from 'core-decorators';
-import { ISignInTypes } from 'interface/AuthTypes';
+import { ISignInTypes, ISignUpTypes } from 'interface/AuthTypes';
 import { postRequest } from 'lib/Axios';
 import { action } from 'mobx';
 
@@ -9,10 +9,19 @@ class AuthStore {
 	handleSignIn = async (request: ISignInTypes) => {
 		try {
 			const response = await postRequest('auth/signin', request);
-			console.log(response);
 			return response;
 		} catch (error) {
-			return error;
+			throw error;
+		}
+	};
+
+	@action
+	handleSignUp = async (request: ISignUpTypes) => {
+		try {
+			const response = await postRequest('auth/signup', request);
+			return response;
+		} catch (error) {
+			throw error;
 		}
 	};
 }

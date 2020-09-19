@@ -1,0 +1,30 @@
+@import '../../../styles/Fonts/FontScheme.scss';
+@import '../../../styles/Palette/Palette.scss';
+
+.Category {
+	width: 150px;
+
+	&-Title {
+		font-size: $font_22;
+		margin-bottom: 10px;
+		border-bottom: 2px solid $gray;
+		padding: 5px 0;
+	}
+
+	&-List {
+		height: 200px;
+		display: flex;
+		display: -webkit-flex;
+		flex-direction: column;
+		list-style: none;
+
+		& > li {
+			margin-bottom: $font_1rem;
+			cursor: pointer;
+
+			&:hover {
+				color: $purple;
+			}
+		}
+	}
+}

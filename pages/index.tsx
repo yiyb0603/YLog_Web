@@ -1,16 +1,12 @@
-import SignTemplate from 'components/Auth/SignTemplate';
 import React from 'react';
-// import SignInContainer from 'containers/AuthContainer/SignIn';
-import { Provider } from 'mobx-react';
-import stores from 'stores';
-import 'styles/Default.scss';
+import PageTemplate from 'components/Common/PageTemplate';
+import Home from 'components/Home';
 
 const IndexPage = () => {
 	return (
-		<Provider {...stores}>
-			<SignTemplate />
-			{/* <SignInContainer /> */}
-		</Provider>
+		<PageTemplate>
+			<Home />
+		</PageTemplate>
 	);
 };
 

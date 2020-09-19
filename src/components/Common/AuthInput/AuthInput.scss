@@ -1,0 +1,20 @@
+@import '../../../styles/Fonts/FontScheme.scss';
+@import '../../../styles/Palette/Palette.scss';
+
+.AuthInput {
+	border: none;
+	outline: none;
+	margin-bottom: $font_2rem;
+	border-bottom: 2px solid $primary;
+	padding: 10px 0;
+	font-size: $font_20;
+	color: $black;
+
+	&:focus {
+		border-bottom: 2px solid $skyBlue;
+	}
+
+	&:last-child {
+		margin-bottom: $font_1rem;
+	}
+}

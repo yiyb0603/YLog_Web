@@ -1,7 +1,75 @@
 @import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/Fonts/FontScheme.scss';
 
 .NavBar {
 	width: 100%;
 	height: 70px;
-	background-color: #2bcbba;
+	background-color: $primary;
+	box-shadow: $lighterGray 0 2px 5px 0;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+
+	&-Contents {
+		width: 1200px;
+		margin: auto;
+		padding: 0 1.5rem;
+		display: flex;
+		display: -webkit-flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+
+		&-Logo {
+			width: 150px;
+			height: 70px;
+		}
+
+		// &-SearchWrapper {
+		// 	width: 15%;
+		// 	display: flex;
+		// 	display: -webkit-flex;
+		// 	align-items: center;
+		// 	flex-wrap: wrap;
+		// 	border: none;
+		// 	outline: none;
+		// 	border-bottom: 2px solid $lighterGray;
+		// 	color: $white;
+
+		// 	&-Focused {
+		// 		border-bottom: 2px solid $skyBlue;
+		// 	}
+
+		// 	& > input {
+		// 		all: unset;
+		// 		padding: 10px 0;
+
+		// 		&::placeholder {
+		// 			color: $white;
+		// 		}
+		// 	}
+		// }
+
+		&-Right {
+			display: flex;
+			display: -webkit-flex;
+			align-items: center;
+
+			& > * {
+				cursor: pointer;
+			}
+
+			& > div {
+				font-size: $font_20;
+				color: $white;
+			}
+
+			& > img {
+				width: 50px;
+				height: 50px;
+				border-radius: 50%;
+				margin-left: 1rem;
+			}
+		}
+	}
 }

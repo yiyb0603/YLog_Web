@@ -1,4 +1,11 @@
-import React, { useState } from 'react';
+import React, {
+	ChangeEvent,
+	Dispatch,
+	KeyboardEvent,
+	SetStateAction,
+	useCallback,
+	useState,
+} from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CheckBox from 'components/Common/CheckBox';
@@ -9,10 +16,39 @@ import FormButton from 'components/Common/FormButton';
 const style = require('./SignIn.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface SignInProps {}
+interface SignInProps {
+	setPageType: Dispatch<SetStateAction<string>>;
+	requestSignIn: () => Promise<void>;
+	idObject: {
+		id: string;
+		setId: Dispatch<SetStateAction<string>>;
+	};
 
-const SignIn = ({}: SignInProps) => {
+	passwordObject: {
+		password: string;
+		setPassword: Dispatch<SetStateAction<string>>;
+	};
+}
+
+const SignIn = ({
+	setPageType,
+	requestSignIn,
+	idObject,
+	passwordObject,
+}: SignInProps) => {
+	const { id, setId } = idObject;
+	const { password, setPassword } = passwordObject;
+
 	const [checked, setChecked] = useState<boolean>(false);
+
+	const onKeyDown = useCallback(
+		(e: KeyboardEvent<HTMLInputElement>) => {
+			if (e.key === 'Enter') {
+				requestSignIn();
+			}
+		},
+		[requestSignIn]
+	);
 
 	return (
 		<div className={cx('SignIn')}>
@@ -28,12 +64,23 @@ const SignIn = ({}: SignInProps) => {
 					<input
 						type="text"
 						placeholder="아이디를 입력하세요"
+						value={id}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							setId(e.target.value)
+						}
 						autoComplete={'off'}
+						onKeyDown={onKeyDown}
 					/>
+
 					<input
 						type="password"
 						placeholder="비밀번호를 입력하세요"
+						value={password}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							setPassword(e.target.value)
+						}
 						autoComplete={'off'}
+						onKeyDown={onKeyDown}
 					/>
 				</div>
 
@@ -42,13 +89,16 @@ const SignIn = ({}: SignInProps) => {
 						로그인 유지
 					</CheckBox>
 
-					<div className={cx('SignIn-CheckZone-CreateAccount')}>
+					<div
+						className={cx('SignIn-CheckZone-CreateAccount')}
+						onClick={() => setPageType('register')}
+					>
 						<RiAccountCircleFill style={{ fontSize: 25, marginRight: 5 }} />
 						<div>아직 계정이 없으신가요?</div>
 					</div>
 				</div>
 
-				<FormButton buttonValue="로그인" />
+				<FormButton buttonValue="로그인" requestFunction={requestSignIn} />
 			</FadeIn>
 		</div>
 	);
