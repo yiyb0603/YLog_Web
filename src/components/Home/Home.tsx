@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import HomePost from './HomePost';
-import Category from './Category';
+import CategoryContainer from 'containers/CategoryContainer/Category';
 
 const style = require('./Home.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -18,7 +18,7 @@ const Home = ({}: HomeProps) => {
 				</div>
 
 				<div className={cx('Home-Contents-Category')}>
-					<Category />
+					<CategoryContainer />
 				</div>
 			</div>
 		</div>

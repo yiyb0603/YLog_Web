@@ -1,0 +1,47 @@
+@import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/Fonts/FontScheme.scss';
+
+.Modal {
+	width: 20%;
+	height: 30%;
+	background-color: $white;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	padding: $font_2rem;
+	overflow: auto;
+
+	&-Wrapper {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.4);
+	}
+
+	&-Top {
+		width: 100%;
+
+		&-Contents {
+			width: 100%;
+			display: flex;
+			display: -webkit-flex;
+			align-items: center;
+			justify-content: space-between;
+			border-bottom: 2px solid $lighterGray;
+			padding-bottom: 10px;
+
+			&-Title {
+				font-size: $font_22;
+				text-align: center;
+			}
+
+			&-Icon {
+				font-size: $font_25;
+				cursor: pointer;
+			}
+		}
+	}
+}

@@ -1,23 +1,95 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { BsPen, BsPencil, BsTrash } from 'react-icons/bs';
+import CreateCategoryContainer from 'containers/CategoryContainer/CreateCategory/CreateCategoryContainer';
+import {
+	ICategoryListTypes,
+	IPostCategoryTypes,
+} from 'interface/CategoryTypes';
+import { NextRouter, useRouter } from 'next/router';
+import ModifyCategoryContainer from 'containers/CategoryContainer/ModifyCategory/ModifyCategoryContainer';
 
 const style = require('./Category.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface CategoryProps {}
+interface CategoryProps {
+	categoryList: ICategoryListTypes[];
+	requestDeleteCategory: (idx: number) => Promise<void>;
+}
 
-const Category = ({}: CategoryProps) => {
+const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
+	const [isCreate, setIsCreate] = useState<boolean>(false);
+	const [isModify, setIsModify] = useState<boolean>(false);
+	const [categoryInfo, setCategoryInfo] = useState<IPostCategoryTypes>({});
+
+	const router: NextRouter = useRouter();
+	const {
+		query: { topic },
+	}: NextRouter = router;
+
 	return (
 		<div className={cx('Category')}>
-			<div className={cx('Category-Title')}>메뉴 목록</div>
+			<div className={cx('Category-Title')}>
+				<div>메뉴 목록</div>
+				<BsPencil
+					className={cx('Category-Title-Pen')}
+					onClick={() => setIsCreate(true)}
+				/>
+			</div>
 			<ul className={cx('Category-List')}>
-				<li>카테고리1</li>
-				<li>카테고리1</li>
-				<li>카테고리1</li>
-				<li>카테고리1</li>
-				<li>카테고리1</li>
+				<li className={cx('Category-List-Item')}>
+					<span
+						className={cx('Category-List-Item-Text', {
+							'Category-List-Item-Text-Current': topic === undefined,
+						})}
+						onClick={() => router.push('/')}
+					>
+						전체보기
+					</span>
+				</li>
+
+				{categoryList.map((category: ICategoryListTypes) => {
+					const { idx, category_name } = category;
+
+					return (
+						<li key={idx} className={cx('Category-List-Item')}>
+							<span
+								className={cx('Category-List-Item-Text', {
+									'Category-List-Item-Text-Current': Number(topic) === idx,
+								})}
+								onClick={() => router.push(`/?topic=${idx}`)}
+							>
+								{category_name.length > 14
+									? category_name.substring(0, 14).concat('...')
+									: category_name}
+							</span>
+
+							<div className={cx('Category-List-Item-Icon')}>
+								<BsPen
+									onClick={() => {
+										setCategoryInfo({ idx, categoryName: category_name });
+										setIsModify(true);
+									}}
+								/>
+
+								<BsTrash onClick={() => requestDeleteCategory(idx)} />
+							</div>
+						</li>
+					);
+				})}
 			</ul>
+
+			{isCreate && (
+				<CreateCategoryContainer handleCloseModal={() => setIsCreate(false)} />
+			)}
+
+			{isModify && (
+				<ModifyCategoryContainer
+					handleCloseModal={() => setIsModify(false)}
+					categoryInfo={categoryInfo}
+				/>
+			)}
 		</div>
 	);
 };
