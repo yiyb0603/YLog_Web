@@ -1,16 +1,36 @@
+@import '../../styles/Palette/Palette.scss';
+@import '../../styles/Fonts/FontScheme.scss';
+
 .Home {
 	width: 100%;
-	margin: auto;
+	max-width: 1400px;
 	display: flex;
 	display: -webkit-flex;
-	justify-content: center;
-	margin: 3rem 0;
+	justify-content: space-between;
+	margin: 3rem auto;
 	padding: 0 3rem;
 
 	&-Contents {
 		display: flex;
 		display: -webkit-flex;
-		width: 1500px;
-		justify-content: center;
+		justify-content: space-between;
+	}
+
+	&-Right {
+		display: flex;
+		display: -webkit-flex;
+		flex-direction: column;
+
+		&-WriteButton {
+			width: 200px;
+			border: none;
+			outline: none;
+			color: $white;
+			font-size: $font_20;
+			background-color: $primary;
+			padding: 10px 0;
+			cursor: pointer;
+			margin-bottom: 10px;
+		}
 	}
 }
