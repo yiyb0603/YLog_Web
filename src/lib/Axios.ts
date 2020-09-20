@@ -17,7 +17,7 @@ export const getResponse = async (url: string, token?: string) => {
 export const postRequest = async (
 	url: string,
 	request: any,
-	token?: string
+	token?: string | null
 ) => {
 	try {
 		const { data }: AxiosResponse = await axios.post(

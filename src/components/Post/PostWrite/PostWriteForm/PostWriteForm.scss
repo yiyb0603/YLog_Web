@@ -1,0 +1,53 @@
+@import '../../../../styles/Fonts/FontScheme.scss';
+@import '../../../../styles/Palette/Palette.scss';
+
+@mixin buttonStyle($background) {
+	margin-left: 10px;
+	border: none;
+	outline: none;
+	background-color: $background;
+	color: $white;
+	cursor: pointer;
+	padding: 10px 20px;
+	transition: all 0.2s ease-in;
+}
+
+.PostWriteForm {
+	max-width: 1200px;
+	margin: 1rem auto;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+
+	&-Top {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		&-Title {
+			width: 400px;
+			border: none;
+			border-bottom: 2px solid $lighterGray;
+			outline: none;
+			padding: 5px 0;
+			font-size: $font_22;
+			margin-right: 1rem;
+			margin-bottom: 10px;
+		}
+	}
+
+	&-Button {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		margin-top: 10px;
+
+		&-Save {
+			@include buttonStyle($lighterGreen);
+		}
+
+		&-Write {
+			@include buttonStyle($primary);
+		}
+	}
+}

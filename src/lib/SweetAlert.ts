@@ -1,6 +1,6 @@
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
-export const simpleAlert = (
+export const showAlert = (
 	title: string,
 	subTitle: string,
 	icon: SweetAlertIcon,

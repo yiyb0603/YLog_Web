@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { BiSearch } from 'react-icons/bi';
+import { NextRouter, useRouter } from 'next/router';
+import Profile from 'components/Home/Profile';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const NavBar = () => {
 	const [isFocus, setIsFocus] = useState<boolean>(false);
+	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
+	const router: NextRouter = useRouter();
 
 	return (
 		<div className={cx('NavBar')}>
@@ -30,10 +34,15 @@ const NavBar = () => {
 				</div> */}
 
 				<div className={cx('NavBar-Contents-Right')}>
-					<div>로그인</div>
-					<img src="/icon/profile_default.jpg" alt="profile" />
+					<div onClick={() => router.push('/sign')}>로그인</div>
+					<img
+						src="/icon/profile_default.jpg"
+						alt="profile"
+						onClick={() => setIsMyInfo(true)}
+					/>
 				</div>
 			</div>
+			{isMyInfo && <Profile handleCloseModal={() => setIsMyInfo(false)} />}
 		</div>
 	);
 };
