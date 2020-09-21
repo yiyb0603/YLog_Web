@@ -1,6 +1,18 @@
 @import '../../../styles/Palette/Palette.scss';
 @import '../../../styles/Fonts/FontScheme.scss';
 
+@mixin optionStyle($color) {
+	color: $color;
+	font-weight: 200;
+	margin-right: 5px;
+	cursor: pointer;
+	z-index: 3;
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
 .HomePost {
 	max-width: 1024px;
 	display: flex;
@@ -14,16 +26,21 @@
 		margin-right: 10px;
 		margin-bottom: 10px;
 		border: 1px solid $black;
-		cursor: pointer;
 
 		& > * {
 			word-break: break-all;
+			text-overflow: ellipsis;
+		}
+
+		&-Introduction {
+			margin-bottom: $font_1rem;
 		}
 
 		&-Thumbnail {
 			max-width: 300px;
 			min-height: 140px;
 			max-height: 140px;
+			cursor: pointer;
 		}
 
 		&-Contents {
@@ -33,6 +50,7 @@
 			justify-content: space-around;
 			padding: 0 5px 5px 5px;
 			height: calc(300px - 140px);
+			cursor: pointer;
 
 			&-Title {
 				border-bottom: 2px solid $lighterGray;
@@ -41,19 +59,49 @@
 				text-overflow: ellipsis;
 			}
 
+			&-Category {
+				color: $primary;
+			}
+
 			&-TimeWrapper {
 				display: flex;
 				display: -webkit-flex;
 				justify-content: space-between;
 				align-items: center;
-				border-bottom: 1px solid $skyBlue;
+				border-bottom: 1px solid $primary;
 				padding-bottom: 5px;
 
 				&-Time {
 					font-size: $font_14;
 					font-weight: 200;
-					color: $skyBlue;
+					color: $primary;
 				}
+			}
+		}
+
+		&-Bottom {
+			display: flex;
+			display: -webkit-flex;
+			justify-content: space-between;
+			align-items: center;
+
+			&-Option {
+				display: flex;
+				display: -webkit-flex;
+				align-items: center;
+				z-index: 3;
+
+				&-Modify {
+					@include optionStyle($gray);
+				}
+
+				&-Remove {
+					@include optionStyle($red);
+				}
+			}
+
+			&-Writer {
+				color: $primary;
 			}
 		}
 	}

@@ -2,6 +2,7 @@ import { autobind } from 'core-decorators';
 import {
 	IPostListTypes,
 	IPostRequestTypes,
+	IPostResponseListTypes,
 	IPostResponseTypes,
 } from 'interface/PostTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
@@ -16,8 +17,19 @@ export default class PostStore {
 	@action
 	handlePostList = async () => {
 		try {
-			const response: IPostResponseTypes = await getResponse('/post');
+			const response: IPostResponseListTypes = await getResponse('/post');
 			this.postList = response.data.posts;
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
+	handlePostView = async (idx: number) => {
+		try {
+			console.log(idx);
+			const response: IPostResponseTypes = await getResponse(`/post/${idx}`);
 			return response;
 		} catch (error) {
 			throw error;

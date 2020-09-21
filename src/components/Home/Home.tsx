@@ -22,7 +22,7 @@ const Home = () => {
 			<div className={cx('Home-Right')}>
 				<button
 					className={cx('Home-Right-WriteButton')}
-					onClick={() => router.push('/postwrite')}
+					onClick={() => router.push('/post/postwrite')}
 				>
 					글 작성
 				</button>

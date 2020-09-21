@@ -21,6 +21,11 @@ interface PostWriteFormProps {
 		setTitle: Dispatch<SetStateAction<string>>;
 	};
 
+	introductionObject: {
+		introduction: string;
+		setIntroduction: Dispatch<SetStateAction<string>>;
+	};
+
 	contentsObject: {
 		contents: string;
 		setContents: Dispatch<SetStateAction<string>>;
@@ -37,14 +42,16 @@ interface PostWriteFormProps {
 
 const PostWriteForm = ({
 	titleObject,
+	introductionObject,
 	contentsObject,
 	categoryIdxObject,
 	categoryList,
 	requestWritePost,
 }: PostWriteFormProps) => {
 	const { title, setTitle } = titleObject;
+	const { introduction, setIntroduction } = introductionObject;
 	const { contents, setContents } = contentsObject;
-	const { categoryIdx, setCategoryIdx } = categoryIdxObject;
+	const { setCategoryIdx } = categoryIdxObject;
 
 	const handleImageUpload = (file: File, callback: (url: string) => void) => {
 		const reader: FileReader = new FileReader();
@@ -97,6 +104,17 @@ const PostWriteForm = ({
 						return <option value={idx}>{category_name}</option>;
 					})}
 				</SelectBox>
+			</div>
+
+			<div className={cx('PostWriteForm-Introduction')}>
+				<input
+					type="text"
+					placeholder="소개를 입력하세요..."
+					value={introduction}
+					onChange={(e: ChangeEvent<HTMLInputElement>) =>
+						setIntroduction(e.target.value)
+					}
+				/>
 			</div>
 
 			<MdEditor
