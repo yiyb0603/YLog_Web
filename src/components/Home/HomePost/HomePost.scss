@@ -14,18 +14,18 @@
 }
 
 .HomePost {
-	max-width: 1024px;
+	max-width: 1200px;
 	display: flex;
 	display: -webkit-flex;
 	flex-wrap: wrap;
 
 	&-Item {
 		position: relative;
-		width: 300px;
+		min-width: 300px;
+		max-width: 300px;
 		min-height: 300px;
 		margin-right: 10px;
 		margin-bottom: 10px;
-		border: 1px solid $black;
 
 		& > * {
 			word-break: break-all;
@@ -37,9 +37,10 @@
 		}
 
 		&-Thumbnail {
+			min-width: 300px;
 			max-width: 300px;
-			min-height: 140px;
-			max-height: 140px;
+			min-height: 170px;
+			max-height: 170px;
 			cursor: pointer;
 		}
 
@@ -49,7 +50,7 @@
 			flex-direction: column;
 			justify-content: space-around;
 			padding: 0 5px 5px 5px;
-			height: calc(300px - 140px);
+			height: calc(340px - 170px);
 			cursor: pointer;
 
 			&-Title {

@@ -4,6 +4,8 @@ import { ClassNamesFn } from 'classnames/types';
 import { BiSearch } from 'react-icons/bi';
 import { NextRouter, useRouter } from 'next/router';
 import Profile from 'components/Home/Profile';
+import Link from 'next/link';
+import { getStorage } from 'lib/Storage';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -34,7 +36,7 @@ const NavBar = () => {
 				</div> */}
 
 				<div className={cx('NavBar-Contents-Right')}>
-					<div onClick={() => router.push('/sign')}>로그인</div>
+					<Link href="/sign">로그인</Link>
 					<img
 						src="/icon/profile_default.jpg"
 						alt="profile"

@@ -57,8 +57,8 @@ const HomePost = ({ postList, categoryList }: HomePostProps) => {
 										{title}
 									</div>
 									<div className={cx('HomePost-Item-Introduction')}>
-										{introduction.length > 50
-											? introduction.substring(0, 50).concat('...')
+										{introduction!.length > 50
+											? introduction!.substring(0, 50).concat('...')
 											: introduction}
 									</div>
 
@@ -66,7 +66,7 @@ const HomePost = ({ postList, categoryList }: HomePostProps) => {
 										<div
 											className={cx('HomePost-Item-Contents-TimeWrapper-Time')}
 										>
-											{timeCounting(created_at, { lang: 'ko' })}
+											{timeCounting(created_at!, { lang: 'ko' })}
 										</div>
 
 										<div className={cx('HomePost-Item-Contents-Category')}>

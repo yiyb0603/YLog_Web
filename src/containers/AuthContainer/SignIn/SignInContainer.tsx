@@ -40,7 +40,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 					toast.success('로그인에 성공하였습니다.');
 					Router.push('/');
 
-					if (sessionStorage) {
+					if (localStorage) {
 						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
 						sessionStorage.setItem('ylog-token', response.data.ylogToken);
 						ls.set('userInfo', response.data.userInfo);

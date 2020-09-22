@@ -4,16 +4,11 @@ import classNames from 'classnames';
 import 'react-markdown-editor-lite/lib/index.css';
 import MarkdownIt from 'markdown-it';
 import 'react-markdown-editor-lite/lib/index.css';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-light.css';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import { SelectBox } from 'components/Common/SelectBox';
-
-const style = require('./PostWriteForm.scss');
-const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
-	ssr: false,
-});
-const mdParser: MarkdownIt = new MarkdownIt(/* Markdown-it options */);
-const cx: ClassNamesFn = classNames.bind(style);
 
 interface PostWriteFormProps {
 	titleObject: {
@@ -39,6 +34,29 @@ interface PostWriteFormProps {
 	categoryList: ICategoryListTypes[];
 	requestWritePost: () => Promise<void>;
 }
+
+const style = require('./PostWriteForm.scss');
+const cx: ClassNamesFn = classNames.bind(style);
+
+const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
+	ssr: false,
+});
+
+const mdParser: MarkdownIt = new MarkdownIt({
+	html: true,
+	linkify: true,
+	typographer: true,
+	highlight: (str: string, lang: string) => {
+		if (lang && hljs.getLanguage(lang)) {
+			try {
+				return hljs.highlight(lang, str).value;
+			} catch (error) {
+				throw new Error(error);
+			}
+		}
+		return '';
+	},
+});
 
 const PostWriteForm = ({
 	titleObject,

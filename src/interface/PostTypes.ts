@@ -28,7 +28,7 @@ export interface IPostListTypes {
 	writer_id?: string;
 	contents?: string;
 	introduction?: string;
-	thumbnail?: string | null;
+	thumbnail?: string | null | undefined;
 	category_idx?: number;
 	created_at?: Date | string;
 	writer?: string;

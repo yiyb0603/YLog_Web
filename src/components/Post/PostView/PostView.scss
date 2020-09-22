@@ -1,1 +1,38 @@
-/* your css code */
+@import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/Fonts/FontScheme.scss';
+
+.PostView {
+	max-width: 1024px;
+	margin: 1rem auto;
+
+	&-Contents {
+		display: flex;
+		display: -webkit-flex;
+		flex-direction: column;
+		-ms-flex-direction: column;
+
+		& * {
+			white-space: pre-wrap;
+		}
+
+		&-Info {
+			display: flex;
+			display: -webkit-flex;
+			justify-content: flex-end;
+			margin-top: 10px;
+
+			& > * {
+				margin-right: 10px;
+			}
+		}
+
+		&-Thumbnail {
+			width: 60%;
+			margin: $font_2rem auto;
+		}
+
+		&-Title {
+			font-size: $font_2rem;
+		}
+	}
+}

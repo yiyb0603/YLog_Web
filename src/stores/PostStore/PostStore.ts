@@ -18,7 +18,14 @@ export default class PostStore {
 	handlePostList = async () => {
 		try {
 			const response: IPostResponseListTypes = await getResponse('/post');
-			this.postList = response.data.posts;
+			this.postList = response.data.posts.sort(
+				(a: IPostListTypes, b: IPostListTypes) => {
+					if (a.created_at! > b.created_at!) {
+						return -1;
+					}
+					return 0;
+				}
+			);
 			return response;
 		} catch (error) {
 			throw error;
