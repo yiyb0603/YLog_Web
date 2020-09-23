@@ -6,7 +6,7 @@ import {
 	IPostResponseTypes,
 } from 'interface/PostTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
-import { getResponse, postRequest } from 'lib/Axios';
+import { deleteRequest, getResponse, postRequest } from 'lib/Axios';
 import { getToken } from 'lib/Token';
 import { observable, action } from 'mobx';
 
@@ -51,6 +51,22 @@ export default class PostStore {
 				request,
 				getToken()
 			);
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
+	handleDeletePost = async (idx: number) => {
+		try {
+			const response: ISuccessTypes = await deleteRequest(`/post?idx=${idx}`);
+			if (response.status === 200) {
+				this.postList = this.postList.filter(
+					(post: IPostListTypes) => post.idx !== idx
+				);
+			}
+
 			return response;
 		} catch (error) {
 			throw error;

@@ -10,6 +10,8 @@
 		display: -webkit-flex;
 		flex-direction: column;
 		-ms-flex-direction: column;
+		border-bottom: 2px solid $lighterGray;
+		padding-bottom: 10px;
 
 		& * {
 			white-space: pre-wrap;
@@ -18,7 +20,7 @@
 		&-Info {
 			display: flex;
 			display: -webkit-flex;
-			justify-content: flex-end;
+			justify-content: flex-start;
 			margin-top: 10px;
 
 			& > * {

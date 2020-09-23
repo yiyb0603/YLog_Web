@@ -4,8 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import { IPostListTypes } from 'interface/PostTypes';
 import ReactMarkdown from 'react-markdown';
 import timeCounting from 'time-counting';
-import dynamic from 'next/dynamic';
-import MarkdownIt from 'markdown-it';
+import CodeBlock from './CodeBlock';
 
 const style = require('./PostView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -13,26 +12,6 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface IPostViewProps {
 	postInfo: IPostListTypes;
 }
-
-const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
-	ssr: false,
-});
-
-const mdParser: MarkdownIt = new MarkdownIt({
-	html: true,
-	linkify: true,
-	typographer: true,
-	highlight: (str: string, lang: string) => {
-		if (lang && hljs.getLanguage(lang)) {
-			try {
-				return hljs.highlight(lang, str).value;
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
-		return '';
-	},
-});
 
 const PostView = ({ postInfo }: IPostViewProps) => {
 	const {
@@ -64,7 +43,11 @@ const PostView = ({ postInfo }: IPostViewProps) => {
 				</div>
 
 				<div className={cx('PostView-Contents-Contents')}>
-					<ReactMarkdown source={contents} escapeHtml={false} />
+					<ReactMarkdown
+						source={contents}
+						escapeHtml={false}
+						renderers={{ code: CodeBlock }}
+					/>
 				</div>
 			</div>
 		</div>

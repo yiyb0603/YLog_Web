@@ -7,6 +7,7 @@ import { NextRouter, useRouter } from 'next/router';
 import timeCounting from 'time-counting';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import Link from 'next/link';
+import HomePostItem from './HomePostItem';
 
 const style = require('./HomePost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -14,9 +15,14 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface HomePostProps {
 	postList: IPostListTypes[];
 	categoryList: ICategoryListTypes[];
+	requestDeletePost: (idx: number) => Promise<void>;
 }
 
-const HomePost = ({ postList, categoryList }: HomePostProps) => {
+const HomePost = ({
+	postList,
+	categoryList,
+	requestDeletePost,
+}: HomePostProps) => {
 	const router: NextRouter = useRouter();
 	const {
 		query: { topic },
@@ -44,58 +50,17 @@ const HomePost = ({ postList, categoryList }: HomePostProps) => {
 					} = post;
 
 					return (
-						<Link href={`/post/${idx}`} key={idx}>
-							<div className={cx('HomePost-Item')}>
-								<img
-									className={cx('HomePost-Item-Thumbnail')}
-									src={thumbnail ? thumbnail : '/icon/Logo.PNG'}
-									alt="thumbnail"
-								/>
-
-								<div className={cx('HomePost-Item-Contents')}>
-									<div className={cx('HomePost-Item-Contents-Title')}>
-										{title}
-									</div>
-									<div className={cx('HomePost-Item-Introduction')}>
-										{introduction!.length > 50
-											? introduction!.substring(0, 50).concat('...')
-											: introduction}
-									</div>
-
-									<div className={cx('HomePost-Item-Contents-TimeWrapper')}>
-										<div
-											className={cx('HomePost-Item-Contents-TimeWrapper-Time')}
-										>
-											{timeCounting(created_at!, { lang: 'ko' })}
-										</div>
-
-										<div className={cx('HomePost-Item-Contents-Category')}>
-											{
-												categoryList.find(
-													(category: ICategoryListTypes) =>
-														category.idx === category_idx
-												)?.category_name
-											}
-										</div>
-									</div>
-
-									<div className={cx('HomePost-Item-Bottom')}>
-										<div className={cx('HomePost-Item-Bottom-Option')}>
-											<div className={cx('HomePost-Item-Bottom-Option-Modify')}>
-												수정
-											</div>
-											<div className={cx('HomePost-Item-Bottom-Option-Remove')}>
-												삭제
-											</div>
-										</div>
-
-										<div className={cx('HomePost-Item-Bottom-Writer')}>
-											{writer}
-										</div>
-									</div>
-								</div>
-							</div>
-						</Link>
+						<HomePostItem
+							idx={idx!}
+							title={title!}
+							introduction={introduction!}
+							category_idx={category_idx!}
+							created_at={created_at!}
+							writer={writer!}
+							thumbnail={thumbnail!}
+							categoryList={categoryList}
+							requestDeletePost={requestDeletePost}
+						/>
 					);
 				})}
 			</div>
