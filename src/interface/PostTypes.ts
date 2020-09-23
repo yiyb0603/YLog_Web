@@ -26,6 +26,7 @@ export interface IPostListTypes {
 	idx?: number;
 	title?: string;
 	writer_id?: string;
+	comment_length?: number;
 	contents?: string;
 	introduction?: string;
 	thumbnail?: string | null | undefined;

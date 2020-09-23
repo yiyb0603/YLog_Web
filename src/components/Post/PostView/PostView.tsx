@@ -5,6 +5,7 @@ import { IPostListTypes } from 'interface/PostTypes';
 import ReactMarkdown from 'react-markdown';
 import timeCounting from 'time-counting';
 import CodeBlock from './CodeBlock';
+import CommentContainer from 'containers/CommentContainer';
 
 const style = require('./PostView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -21,6 +22,7 @@ const PostView = ({ postInfo }: IPostViewProps) => {
 		created_at,
 		contents,
 		category_idx,
+		comment_length,
 		thumbnail,
 		writer_id,
 	} = postInfo;
@@ -49,6 +51,14 @@ const PostView = ({ postInfo }: IPostViewProps) => {
 						renderers={{ code: CodeBlock }}
 					/>
 				</div>
+			</div>
+
+			<div className={cx('PostView-Comments')}>
+				<div className={cx('PostView-Comments-Title')}>
+					댓글 {comment_length}개
+				</div>
+
+				<CommentContainer />
 			</div>
 		</div>
 	);

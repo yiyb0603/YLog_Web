@@ -37,4 +37,13 @@
 			font-size: $font_2rem;
 		}
 	}
+
+	&-Comments {
+		margin: 10px 0;
+
+		&-Title {
+			margin-bottom: 10px;
+			font-size: $font_22;
+		}
+	}
 }
