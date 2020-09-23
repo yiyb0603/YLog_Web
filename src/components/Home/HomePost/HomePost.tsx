@@ -6,6 +6,8 @@ import { IPostListTypes } from 'interface/PostTypes';
 import { NextRouter, useRouter } from 'next/router';
 import timeCounting from 'time-counting';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
+import Link from 'next/link';
+import HomePostItem from './HomePostItem';
 
 const style = require('./HomePost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -13,9 +15,14 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface HomePostProps {
 	postList: IPostListTypes[];
 	categoryList: ICategoryListTypes[];
+	requestDeletePost: (idx: number) => Promise<void>;
 }
 
-const HomePost = ({ postList, categoryList }: HomePostProps) => {
+const HomePost = ({
+	postList,
+	categoryList,
+	requestDeletePost,
+}: HomePostProps) => {
 	const router: NextRouter = useRouter();
 	const {
 		query: { topic },
@@ -35,7 +42,7 @@ const HomePost = ({ postList, categoryList }: HomePostProps) => {
 					const {
 						idx,
 						title,
-						contents,
+						introduction,
 						category_idx,
 						created_at,
 						writer,
@@ -43,43 +50,17 @@ const HomePost = ({ postList, categoryList }: HomePostProps) => {
 					} = post;
 
 					return (
-						<div key={idx} className={cx('HomePost-Item')}>
-							<img
-								className={cx('HomePost-Item-Thumbnail')}
-								src={thumbnail ? thumbnail : '/icon/Logo.PNG'}
-								alt="thumbnail"
-							/>
-
-							<div className={cx('HomePost-Item-Contents')}>
-								<div className={cx('HomePost-Item-Contents-Title')}>
-									{title}
-								</div>
-								<div>
-									{contents.length > 55
-										? contents.substring(0, 55).concat('...')
-										: contents}
-								</div>
-
-								<div className={cx('HomePost-Item-Contents-TimeWrapper')}>
-									<div
-										className={cx('HomePost-Item-Contents-TimeWrapper-Time')}
-									>
-										{timeCounting(created_at, { lang: 'ko' })}
-									</div>
-
-									<div>
-										{
-											categoryList.find(
-												(category: ICategoryListTypes) =>
-													category.idx === category_idx
-											)?.category_name
-										}
-									</div>
-								</div>
-
-								<div>{writer}</div>
-							</div>
-						</div>
+						<HomePostItem
+							idx={idx!}
+							title={title!}
+							introduction={introduction!}
+							category_idx={category_idx!}
+							created_at={created_at!}
+							writer={writer!}
+							thumbnail={thumbnail!}
+							categoryList={categoryList}
+							requestDeletePost={requestDeletePost}
+						/>
 					);
 				})}
 			</div>

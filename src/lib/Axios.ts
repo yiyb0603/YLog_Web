@@ -17,7 +17,7 @@ export const getResponse = async (url: string, token?: string) => {
 export const postRequest = async (
 	url: string,
 	request: any,
-	token?: string | null
+	token?: string | null | undefined
 ) => {
 	try {
 		const { data }: AxiosResponse = await axios.post(
@@ -38,7 +38,7 @@ export const postRequest = async (
 export const modifyRequest = async (
 	url: string,
 	request: any,
-	token?: string
+	token?: string | null
 ) => {
 	try {
 		const { data }: AxiosResponse = await axios.put(
@@ -56,7 +56,7 @@ export const modifyRequest = async (
 	}
 };
 
-export const deleteRequest = async (url: string, token?: string) => {
+export const deleteRequest = async (url: string, token?: string | null) => {
 	try {
 		const { data }: AxiosResponse = await axios.delete(`${SERVER}/${url}`, {
 			headers: token && {

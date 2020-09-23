@@ -4,21 +4,21 @@ import classNames from 'classnames';
 import 'react-markdown-editor-lite/lib/index.css';
 import MarkdownIt from 'markdown-it';
 import 'react-markdown-editor-lite/lib/index.css';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/atom-one-light.css';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import { SelectBox } from 'components/Common/SelectBox';
-
-const style = require('./PostWriteForm.scss');
-const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
-	ssr: false,
-});
-const mdParser: MarkdownIt = new MarkdownIt(/* Markdown-it options */);
-const cx: ClassNamesFn = classNames.bind(style);
 
 interface PostWriteFormProps {
 	titleObject: {
 		title: string;
 		setTitle: Dispatch<SetStateAction<string>>;
+	};
+
+	introductionObject: {
+		introduction: string;
+		setIntroduction: Dispatch<SetStateAction<string>>;
 	};
 
 	contentsObject: {
@@ -35,16 +35,41 @@ interface PostWriteFormProps {
 	requestWritePost: () => Promise<void>;
 }
 
+const style = require('./PostWriteForm.scss');
+const cx: ClassNamesFn = classNames.bind(style);
+
+const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
+	ssr: false,
+});
+
+const mdParser: MarkdownIt = new MarkdownIt({
+	html: true,
+	linkify: true,
+	typographer: true,
+	highlight: (str: string, lang: string) => {
+		if (lang && hljs.getLanguage(lang)) {
+			try {
+				return hljs.highlight(lang, str).value;
+			} catch (error) {
+				throw new Error(error);
+			}
+		}
+		return '';
+	},
+});
+
 const PostWriteForm = ({
 	titleObject,
+	introductionObject,
 	contentsObject,
 	categoryIdxObject,
 	categoryList,
 	requestWritePost,
 }: PostWriteFormProps) => {
 	const { title, setTitle } = titleObject;
+	const { introduction, setIntroduction } = introductionObject;
 	const { contents, setContents } = contentsObject;
-	const { categoryIdx, setCategoryIdx } = categoryIdxObject;
+	const { setCategoryIdx } = categoryIdxObject;
 
 	const handleImageUpload = (file: File, callback: (url: string) => void) => {
 		const reader: FileReader = new FileReader();
@@ -97,6 +122,17 @@ const PostWriteForm = ({
 						return <option value={idx}>{category_name}</option>;
 					})}
 				</SelectBox>
+			</div>
+
+			<div className={cx('PostWriteForm-Introduction')}>
+				<input
+					type="text"
+					placeholder="소개를 입력하세요..."
+					value={introduction}
+					onChange={(e: ChangeEvent<HTMLInputElement>) =>
+						setIntroduction(e.target.value)
+					}
+				/>
 			</div>
 
 			<MdEditor

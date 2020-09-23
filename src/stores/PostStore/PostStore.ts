@@ -2,10 +2,11 @@ import { autobind } from 'core-decorators';
 import {
 	IPostListTypes,
 	IPostRequestTypes,
+	IPostResponseListTypes,
 	IPostResponseTypes,
 } from 'interface/PostTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
-import { getResponse, postRequest } from 'lib/Axios';
+import { deleteRequest, getResponse, postRequest } from 'lib/Axios';
 import { getToken } from 'lib/Token';
 import { observable, action } from 'mobx';
 
@@ -16,8 +17,25 @@ export default class PostStore {
 	@action
 	handlePostList = async () => {
 		try {
-			const response: IPostResponseTypes = await getResponse('/post');
-			this.postList = response.data.posts;
+			const response: IPostResponseListTypes = await getResponse('/post');
+			this.postList = response.data.posts.sort(
+				(a: IPostListTypes, b: IPostListTypes) => {
+					if (a.created_at! > b.created_at!) {
+						return -1;
+					}
+					return 0;
+				}
+			);
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
+	handlePostView = async (idx: number) => {
+		try {
+			const response: IPostResponseTypes = await getResponse(`/post/${idx}`);
 			return response;
 		} catch (error) {
 			throw error;
@@ -32,6 +50,22 @@ export default class PostStore {
 				request,
 				getToken()
 			);
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
+	handleDeletePost = async (idx: number) => {
+		try {
+			const response: ISuccessTypes = await deleteRequest(`/post?idx=${idx}`);
+			if (response.status === 200) {
+				this.postList = this.postList.filter(
+					(post: IPostListTypes) => post.idx !== idx
+				);
+			}
+
 			return response;
 		} catch (error) {
 			throw error;

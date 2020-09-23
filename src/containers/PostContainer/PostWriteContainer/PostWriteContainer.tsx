@@ -18,6 +18,7 @@ const PostWriteContainer = observer(() => {
 	const router: NextRouter = useRouter();
 
 	const [title, setTitle] = useState<string>('');
+	const [introduction, setIntroduction] = useState<string>('');
 	const [contents, setContents] = useState<string>('');
 	const [categoryIdx, setCategoryIdx] = useState<number>(0);
 	// const [thumbnail, setThumbnail] = useState<string>('');
@@ -25,10 +26,21 @@ const PostWriteContainer = observer(() => {
 	const requestWritePost = useCallback(async (): Promise<void> => {
 		const request: IPostRequestTypes = {
 			title,
+			introduction,
 			contents,
 			categoryIdx,
 			thumbnail: null,
 		};
+
+		if (
+			!title.trim() ||
+			!introduction.trim() ||
+			!contents.trim() ||
+			!categoryIdx
+		) {
+			toast.error('내용을 모두 입력해주세요!');
+			return;
+		}
 
 		await handleWritePost(request)
 			.then((response: ISuccessTypes) => {
@@ -48,6 +60,11 @@ const PostWriteContainer = observer(() => {
 	const postWriteForm: JSX.Element = (
 		<PostWriteForm
 			titleObject={GroupingState('title', title, setTitle)}
+			introductionObject={GroupingState(
+				'introduction',
+				introduction,
+				setIntroduction
+			)}
 			contentsObject={GroupingState('contents', contents, setContents)}
 			categoryIdxObject={GroupingState(
 				'categoryIdx',

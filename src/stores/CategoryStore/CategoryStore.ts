@@ -11,6 +11,7 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
+import { getToken } from 'lib/Token';
 import { action, observable } from 'mobx';
 
 @autobind
@@ -32,7 +33,11 @@ export default class CategoryStore {
 	@action
 	handleCreateCategory = async (request: IPostCategoryTypes) => {
 		try {
-			const response: ISuccessTypes = await postRequest('/category', request);
+			const response: ISuccessTypes = await postRequest(
+				'/category',
+				request,
+				getToken()
+			);
 			return response;
 		} catch (error) {
 			throw error;
@@ -42,7 +47,11 @@ export default class CategoryStore {
 	@action
 	handleModifyCategory = async (request: IPostCategoryTypes) => {
 		try {
-			const response: ISuccessTypes = await modifyRequest('/category', request);
+			const response: ISuccessTypes = await modifyRequest(
+				'/category',
+				request,
+				getToken()
+			);
 			return response;
 		} catch (error) {
 			throw error;
@@ -53,7 +62,8 @@ export default class CategoryStore {
 	handleDeleteCategory = async (idx: number) => {
 		try {
 			const response: ISuccessTypes = await deleteRequest(
-				`/category?idx=${idx}`
+				`/category?idx=${idx}`,
+				getToken()
 			);
 			return response;
 		} catch (error) {

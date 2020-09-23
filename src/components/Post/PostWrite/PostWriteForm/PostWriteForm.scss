@@ -12,6 +12,17 @@
 	transition: all 0.2s ease-in;
 }
 
+@mixin inputStyle($width) {
+	width: $width;
+	border: none;
+	border-bottom: 2px solid $lighterGray;
+	outline: none;
+	padding: 5px 0;
+	font-size: $font_22;
+	margin-right: 1rem;
+	margin-bottom: 10px;
+}
+
 .PostWriteForm {
 	max-width: 1200px;
 	margin: 1rem auto;
@@ -25,14 +36,17 @@
 		align-items: center;
 
 		&-Title {
-			width: 400px;
-			border: none;
-			border-bottom: 2px solid $lighterGray;
-			outline: none;
-			padding: 5px 0;
-			font-size: $font_22;
-			margin-right: 1rem;
-			margin-bottom: 10px;
+			@include inputStyle(400px);
+		}
+	}
+
+	&-Introduction {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		& > input {
+			@include inputStyle(100%);
 		}
 	}
 
