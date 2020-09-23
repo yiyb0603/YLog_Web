@@ -35,7 +35,6 @@ export default class PostStore {
 	@action
 	handlePostView = async (idx: number) => {
 		try {
-			console.log(idx);
 			const response: IPostResponseTypes = await getResponse(`/post/${idx}`);
 			return response;
 		} catch (error) {

@@ -29,7 +29,7 @@
 			flex-direction: column;
 			-ms-flex-direction: column;
 			justify-content: space-around;
-			margin: 5px;
+			margin-left: 10px;
 
 			&-Top {
 				display: flex;
@@ -37,7 +37,7 @@
 
 				&-Writer {
 					color: $blue;
-					margin: 0 5px 5px 0;
+					margin: 0 10px 5px 0;
 				}
 
 				&-Time {

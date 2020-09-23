@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import timeCounting from 'time-counting';
 import parseTime from 'lib/TimeCounting';
 
 const style = require('./CommentItem.scss');
@@ -36,7 +35,7 @@ const CommentItem = ({
 				<div className={cx('CommentItem-Contents-InfoWrapper')}>
 					<div className={cx('CommentItem-Contents-InfoWrapper-Top')}>
 						<div className={cx('CommentItem-Contents-InfoWrapper-Top-Writer')}>
-							{writer}
+							{writer === null ? '게스트' : writer}
 						</div>
 						<div className={cx('CommentItem-Contents-InfoWrapper-Top-Time')}>
 							{parseTime(createdAt)}

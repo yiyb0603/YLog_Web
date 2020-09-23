@@ -6,15 +6,17 @@ import ReactMarkdown from 'react-markdown';
 import timeCounting from 'time-counting';
 import CodeBlock from './CodeBlock';
 import CommentContainer from 'containers/CommentContainer';
+import CommentWriteContainer from 'containers/CommentContainer/CommentWrite';
 
 const style = require('./PostView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface IPostViewProps {
 	postInfo: IPostListTypes;
+	requestPostView: () => Promise<void>;
 }
 
-const PostView = ({ postInfo }: IPostViewProps) => {
+const PostView = ({ postInfo, requestPostView }: IPostViewProps) => {
 	const {
 		title,
 		introduction,
@@ -58,6 +60,7 @@ const PostView = ({ postInfo }: IPostViewProps) => {
 					댓글 {comment_length}개
 				</div>
 
+				<CommentWriteContainer requestPostView={requestPostView} />
 				<CommentContainer />
 			</div>
 		</div>

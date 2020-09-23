@@ -1,9 +1,11 @@
 import { autobind } from 'core-decorators';
 import {
+	ICommentRequestTypes,
 	ICommentResponseListTypes,
 	ICommentResponseTypes,
 } from 'interface/CommentTypes';
-import { getResponse } from 'lib/Axios';
+import { getResponse, postRequest } from 'lib/Axios';
+import { getToken } from 'lib/Token';
 import { observable, action } from 'mobx';
 
 @autobind
@@ -18,6 +20,16 @@ export default class CommentStore {
 			);
 			this.commentList = response.data.comments;
 
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
+	handleCommentWrite = async (request: ICommentRequestTypes) => {
+		try {
+			const response = await postRequest('/comment', request, getToken());
 			return response;
 		} catch (error) {
 			throw error;

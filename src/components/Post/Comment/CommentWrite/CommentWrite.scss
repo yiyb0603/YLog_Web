@@ -1,0 +1,30 @@
+@import '../../../../styles/Fonts/FontScheme.scss';
+@import '../../../../styles/Palette/Palette.scss';
+
+.CommentWrite {
+	width: 100%;
+	height: 100%;
+	margin-bottom: 20px;
+	outline: 2px solid $lighterGray;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+
+	&-Focus {
+		outline: 2px solid $skyBlue;
+	}
+
+	&-Form {
+		width: 100%;
+		font-size: $font_18;
+		border: none;
+		outline: none;
+
+		&-Send {
+			cursor: pointer;
+			font-size: $font_22;
+		}
+	}
+}

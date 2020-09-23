@@ -39,7 +39,7 @@ const PostViewContainer = observer(() => {
 
 	return (
 		<>
-			<PostView postInfo={postInfo} />
+			<PostView postInfo={postInfo} requestPostView={requestPostView} />
 		</>
 	);
 });
