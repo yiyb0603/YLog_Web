@@ -49,7 +49,7 @@ const CommentWrite = ({
 				}
 			/>
 
-			<BiSend className={cx('CommentWrite-Form-Send')} />
+			<BiSend className={cx('CommentWrite-Form-Send')} onClick ={requestCommentWrite} />
 		</div>
 	);
 };

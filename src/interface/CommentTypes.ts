@@ -16,6 +16,7 @@ export interface ICommentResponseTypes {
 }
 
 export interface ICommentRequestTypes {
+	idx?: number;
 	contents: string;
 	postIdx: number;
 }
