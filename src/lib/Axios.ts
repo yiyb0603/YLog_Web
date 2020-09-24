@@ -3,9 +3,9 @@ import { SERVER } from 'config/config.json';
 
 export const getResponse = async (url: string, token?: string) => {
 	try {
-		const { data }: AxiosResponse = await axios.get(`${SERVER}/${url}`, {
+		const { data }: AxiosResponse = await axios.get(`${SERVER}${url}`, {
 			headers: token && {
-				'y-log-token': token,
+				'ylog-token': token,
 			},
 		});
 		return data;
@@ -21,7 +21,7 @@ export const postRequest = async (
 ) => {
 	try {
 		const { data }: AxiosResponse = await axios.post(
-			`${SERVER}/${url}`,
+			`${SERVER}${url}`,
 			request,
 			{
 				headers: token && {
@@ -42,11 +42,11 @@ export const modifyRequest = async (
 ) => {
 	try {
 		const { data }: AxiosResponse = await axios.put(
-			`${SERVER}/${url}`,
+			`${SERVER}${url}`,
 			request,
 			{
 				headers: token && {
-					'y-log-token': token,
+					'ylog-token': token,
 				},
 			}
 		);
@@ -58,9 +58,9 @@ export const modifyRequest = async (
 
 export const deleteRequest = async (url: string, token?: string | null) => {
 	try {
-		const { data }: AxiosResponse = await axios.delete(`${SERVER}/${url}`, {
+		const { data }: AxiosResponse = await axios.delete(`${SERVER}${url}`, {
 			headers: token && {
-				'y-log-token': token,
+				'ylog-token': token,
 			},
 		});
 		return data;

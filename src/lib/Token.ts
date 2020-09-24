@@ -1,5 +1,5 @@
 export const getToken = () => {
-	if (sessionStorage) {
-		return sessionStorage.getItem('ylog-token');
+	if (localStorage) {
+		return localStorage.getItem('ylog-token');
 	}
 };

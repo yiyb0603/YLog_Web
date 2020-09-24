@@ -3,7 +3,6 @@ import React, {
 	Dispatch,
 	KeyboardEvent,
 	SetStateAction,
-	useCallback,
 	useState,
 } from 'react';
 import classNames from 'classnames';
@@ -11,7 +10,9 @@ import { ClassNamesFn } from 'classnames/types';
 import CheckBox from 'components/Common/CheckBox';
 import FadeIn from 'react-fade-in';
 import { RiAccountCircleFill } from 'react-icons/ri';
+import { Spinner } from '@class101/ui';
 import FormButton from 'components/Common/FormButton';
+import { onKeyDown } from 'lib/onKeyDown';
 
 const style = require('./SignIn.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,6 +20,8 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface SignInProps {
 	setPageType: Dispatch<SetStateAction<string>>;
 	requestSignIn: () => Promise<void>;
+	isLoading: boolean;
+
 	idObject: {
 		id: string;
 		setId: Dispatch<SetStateAction<string>>;
@@ -33,6 +36,7 @@ interface SignInProps {
 const SignIn = ({
 	setPageType,
 	requestSignIn,
+	isLoading,
 	idObject,
 	passwordObject,
 }: SignInProps) => {
@@ -40,15 +44,6 @@ const SignIn = ({
 	const { password, setPassword } = passwordObject;
 
 	const [checked, setChecked] = useState<boolean>(false);
-
-	const onKeyDown = useCallback(
-		(e: KeyboardEvent<HTMLInputElement>) => {
-			if (e.key === 'Enter') {
-				requestSignIn();
-			}
-		},
-		[requestSignIn]
-	);
 
 	return (
 		<div className={cx('SignIn')}>
@@ -69,7 +64,9 @@ const SignIn = ({
 							setId(e.target.value)
 						}
 						autoComplete={'off'}
-						onKeyDown={onKeyDown}
+						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
+							onKeyDown(e, requestSignIn)
+						}
 					/>
 
 					<input
@@ -80,7 +77,9 @@ const SignIn = ({
 							setPassword(e.target.value)
 						}
 						autoComplete={'off'}
-						onKeyDown={onKeyDown}
+						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
+							onKeyDown(e, requestSignIn)
+						}
 					/>
 				</div>
 
@@ -98,7 +97,12 @@ const SignIn = ({
 					</div>
 				</div>
 
-				<FormButton buttonValue="로그인" requestFunction={requestSignIn} />
+				<FormButton
+					buttonValue={
+						isLoading ? <Spinner size={20} color="white" /> : '로그인'
+					}
+					requestFunction={requestSignIn}
+				/>
 			</FadeIn>
 		</div>
 	);

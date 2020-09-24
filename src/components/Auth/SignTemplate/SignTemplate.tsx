@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import SignIn from '../SignIn';
-import SignUp from '../SignUp';
 import SignInContainer from 'containers/AuthContainer/SignIn';
 import SignUpContainer from 'containers/AuthContainer/SignUp';
+import { clearStorage } from 'lib/Storage';
 
 const style = require('./SignTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -13,6 +12,10 @@ interface SignTemplateProps {}
 
 const SignTemplate = ({}: SignTemplateProps) => {
 	const [pageType, setPageType] = useState<string>('login');
+
+	useEffect(() => {
+		clearStorage();
+	}, [clearStorage]);
 
 	return (
 		<div className={cx('SignTemplate')}>

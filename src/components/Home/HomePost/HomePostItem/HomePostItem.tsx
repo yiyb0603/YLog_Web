@@ -4,6 +4,8 @@ import Link from 'next/link';
 import timeCounting from 'time-counting';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
+import SecureLS from 'secure-ls';
+import { IUserInfoTypes } from 'interface/AuthTypes';
 
 const style = require('./HomePostItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -31,6 +33,9 @@ const HomePostItem = ({
 	categoryList,
 	requestDeletePost,
 }: HomePostItemProps) => {
+	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
+	const myInfo: IUserInfoTypes = ls.get('userInfo');
+
 	return (
 		<div className={cx('HomePost-Item')} key={idx}>
 			<Link href={`/post/${idx}`}>
@@ -69,13 +74,21 @@ const HomePostItem = ({
 
 			<div className={cx('HomePost-Item-Bottom')}>
 				<div className={cx('HomePost-Item-Bottom-Option')}>
-					<div className={cx('HomePost-Item-Bottom-Option-Modify')}>수정</div>
-					<div
-						className={cx('HomePost-Item-Bottom-Option-Remove')}
-						onClick={() => requestDeletePost(idx!)}
-					>
-						삭제
-					</div>
+					{myInfo.name === writer || myInfo.is_admin ? (
+						<>
+							<div className={cx('HomePost-Item-Bottom-Option-Modify')}>
+								수정
+							</div>
+							<div
+								className={cx('HomePost-Item-Bottom-Option-Remove')}
+								onClick={() => requestDeletePost(idx!)}
+							>
+								삭제
+							</div>
+						</>
+					) : (
+						<></>
+					)}
 				</div>
 
 				<div className={cx('HomePost-Item-Bottom-Writer')}>{writer}</div>

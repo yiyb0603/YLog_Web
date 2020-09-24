@@ -1,1 +1,7 @@
-/* your css code */
+.Comment {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	flex-direction: column;
+	-ms-flex-direction: column;
+}
