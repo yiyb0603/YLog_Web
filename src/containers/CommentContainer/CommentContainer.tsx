@@ -5,29 +5,65 @@ import { NextRouter, useRouter } from 'next/router';
 import IErrorTypes from 'interface/ErrorTypes';
 import Comment from 'components/Post/Comment';
 import { toast } from 'react-toastify';
+import ISuccessTypes from 'interface/SuccessTypes';
 
-const CommentContainer = observer(() => {
-	const { store } = useStores();
-	const { handleCommentList, commentList } = store.CommentStore;
+interface ICommentContainerProps {
+	requestPostView: (idx: number) => Promise<void>;
+}
 
-	const router: NextRouter = useRouter();
-	const postIdx: number = Number(router.query.idx);
+const CommentContainer = observer(
+	({ requestPostView }: ICommentContainerProps) => {
+		const { store } = useStores();
+		const {
+			handleCommentList,
+			handleCommentDelete,
+			commentList,
+		} = store.CommentStore;
 
-	const requestCommentList = useCallback(async () => {
-		await handleCommentList(postIdx).catch((error: IErrorTypes) => {
-			const { message } = error.response.data;
-			toast.error(message);
-			return;
-		});
-	}, [handleCommentList, postIdx]);
+		const router: NextRouter = useRouter();
+		const postIdx: number = Number(router.query.idx);
 
-	useEffect(() => {
-		if (Number.isInteger(postIdx)) {
-			requestCommentList();
-		}
-	}, [requestCommentList, postIdx]);
+		const requestCommentList = useCallback(async () => {
+			await handleCommentList(postIdx).catch((error: IErrorTypes) => {
+				const { message } = error.response.data;
+				toast.error(message);
+				return;
+			});
+		}, [handleCommentList, postIdx]);
 
-	return <Comment commentList={commentList} />;
-});
+		const requestCommentDelete = useCallback(
+			async (idx: number) => {
+				await handleCommentDelete(idx)
+					.then(async (response: ISuccessTypes) => {
+						if (response.status === 200) {
+							toast.success('댓글을 삭제하였습니다.');
+							await requestCommentList();
+							await requestPostView(postIdx);
+						}
+					})
+
+					.catch((error: IErrorTypes) => {
+						const { message } = error.response.data;
+						toast.error(message);
+						return;
+					});
+			},
+			[handleCommentDelete, requestPostView, postIdx]
+		);
+
+		useEffect(() => {
+			if (Number.isInteger(postIdx)) {
+				requestCommentList();
+			}
+		}, [requestCommentList, postIdx]);
+
+		return (
+			<Comment
+				commentList={commentList}
+				requestCommentDelete={requestCommentDelete}
+			/>
+		);
+	}
+);
 
 export default CommentContainer;

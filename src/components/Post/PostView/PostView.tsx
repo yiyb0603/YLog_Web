@@ -61,7 +61,7 @@ const PostView = ({ postInfo, requestPostView }: IPostViewProps) => {
 				</div>
 
 				<CommentWriteContainer requestPostView={requestPostView} />
-				<CommentContainer />
+				<CommentContainer requestPostView={requestPostView} />
 			</div>
 		</div>
 	);

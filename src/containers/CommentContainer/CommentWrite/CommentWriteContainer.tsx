@@ -30,6 +30,11 @@ const CommentWriteContainer = observer(
 				contents,
 			};
 
+			if (!contents.trim()) {
+				toast.error('내용을 입력해주세요!');
+				return;
+			}
+
 			if (Number.isInteger(postIdx)) {
 				await handleCommentWrite(request)
 					.then(async (response: ISuccessTypes) => {

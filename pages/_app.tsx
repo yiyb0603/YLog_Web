@@ -17,7 +17,7 @@ export default class MyApp extends App {
 					<link rel="shortcut icon" href="/icon/shortcut.PNG" />
 					<title>YLog</title>
 				</Head>
-				<ToastContainer />
+				<ToastContainer pauseOnHover={false} />
 				<Component {...pageProps} />
 			</Provider>
 		);

@@ -9,9 +9,10 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface CommentProps {
 	commentList: ICommentResponseTypes[];
+	requestCommentDelete: (idx: number) => Promise<void>;
 }
 
-const Comment = ({ commentList }: CommentProps) => {
+const Comment = ({ commentList, requestCommentDelete }: CommentProps) => {
 	return (
 		<div className={cx('Comment')}>
 			{commentList.map((comment: ICommentResponseTypes) => {
@@ -25,12 +26,14 @@ const Comment = ({ commentList }: CommentProps) => {
 				} = comment;
 				return (
 					<CommentItem
+						key={idx}
 						idx={idx!}
 						writer={writer!}
 						contents={contents!}
 						createdAt={created_at!}
 						postIdx={post_idx!}
 						updatedAt={updated_at!}
+						requestCommentDelete={requestCommentDelete}
 					/>
 				);
 			})}
