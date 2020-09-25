@@ -1,7 +1,8 @@
-@import '../../../../styles/Palette/Palette.scss';
-@import '../../../../styles/Fonts/FontScheme.scss';
+/* your css code */
+@import '../../../styles/Fonts/FontScheme.scss';
+@import '../../../styles/Palette/Palette.scss';
 
-.CommentModify {
+.CommentModifyForm {
 	width: 100%;
 	height: 100%;
 	display: flex;

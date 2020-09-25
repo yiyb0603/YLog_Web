@@ -17,7 +17,7 @@ const CommentContainer = observer(
 		const {
 			handleCommentList,
 			handleCommentDelete,
-			commentList,
+			commentReplyList,
 		} = store.CommentStore;
 
 		const router: NextRouter = useRouter();
@@ -59,7 +59,7 @@ const CommentContainer = observer(
 
 		return (
 			<Comment
-				commentList={commentList}
+				commentReplyList={commentReplyList}
 				requestCommentDelete={requestCommentDelete}
 			/>
 		);

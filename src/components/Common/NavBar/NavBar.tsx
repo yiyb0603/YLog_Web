@@ -13,7 +13,6 @@ const cx: ClassNamesFn = classNames.bind(style);
 const NavBar = () => {
 	const [isFocus, setIsFocus] = useState<boolean>(false);
 	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
-	const router: NextRouter = useRouter();
 
 	return (
 		<div className={cx('NavBar')}>
@@ -36,7 +35,13 @@ const NavBar = () => {
 				</div> */}
 
 				<div className={cx('NavBar-Contents-Right')}>
-					<Link href="/sign">로그인</Link>
+					<Link href="/sign">
+						{getStorage('ylog-token') !== null ? (
+							<div>로그아웃</div>
+						) : (
+							<div>로그인</div>
+						)}
+					</Link>
 					<img
 						src="/icon/profile_default.jpg"
 						alt="profile"

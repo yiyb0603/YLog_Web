@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
 import CommentModify from 'components/Post/Comment/CommentModify';
 import GroupingState from 'lib/GroupingState';
@@ -13,6 +13,7 @@ interface ICommentModifyContainerProps {
 	commentIdx: number;
 	commentValue: string;
 	isModify: boolean;
+	setIsModify: Dispatch<SetStateAction<boolean>>;
 	onBlur: () => void;
 }
 
@@ -21,6 +22,7 @@ const CommentModifyContainer = observer(
 		commentIdx,
 		commentValue,
 		onBlur,
+		setIsModify,
 		isModify,
 	}: ICommentModifyContainerProps) => {
 		const { store } = useStores();
@@ -64,6 +66,7 @@ const CommentModifyContainer = observer(
 				contentsObject={GroupingState('contents', contents, setContents)}
 				requestCommentModify={requestCommentModify}
 				isModify={isModify}
+				setIsModify={setIsModify}
 				onBlur={onBlur}
 			/>
 		);

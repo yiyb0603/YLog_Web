@@ -3,16 +3,18 @@ export interface ISignInResponseTypes {
 	message: string;
 	data: {
 		ylogToken: string;
-		userInfo: {
-			id: string;
-			name: string;
-			password: string;
-			email: string;
-			joined_at: string;
-			profile_image: string;
-			is_admin: null;
-		};
+		userInfo: IUserInfoTypes;
 	};
+}
+
+export interface IUserInfoTypes {
+	id: string;
+	name: string;
+	password: string;
+	email: string;
+	joined_at: string;
+	proflile_image: string;
+	is_admin: boolean | string | null;
 }
 
 export interface ISignUpTypes {

@@ -9,6 +9,7 @@ import GroupingState from 'lib/GroupingState';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
 import SecureLS from 'secure-ls';
+import { setStorage } from 'lib/Storage';
 
 interface ISignInContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;
@@ -16,7 +17,7 @@ interface ISignInContainerProps {
 
 const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 	const { store } = useStores();
-	const { handleSignIn } = store.AuthStore;
+	const { handleSignIn, isLoading } = store.AuthStore;
 
 	const [id, setId] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
@@ -42,7 +43,8 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 
 					if (localStorage) {
 						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-						sessionStorage.setItem('ylog-token', response.data.ylogToken);
+						// sessionStorage.setItem('ylog-token', response.data.ylogToken);
+						setStorage('ylog-token', response.data.ylogToken);
 						ls.set('userInfo', response.data.userInfo);
 					}
 				}
@@ -77,6 +79,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 			requestSignIn={requestSignIn}
 			idObject={GroupingState('id', id, setId)}
 			passwordObject={GroupingState('password', password, setPassword)}
+			isLoading={isLoading}
 		/>
 	);
 });

@@ -6,9 +6,14 @@
 	outline: none;
 	background-color: $primary;
 	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: center;
 	padding: $font_1rem 0;
 	font-size: $font_20;
 	color: $white;
 	cursor: pointer;
 	margin-top: 1rem;
+	vertical-align: middle;
 }

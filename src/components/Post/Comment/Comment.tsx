@@ -8,21 +8,22 @@ const style = require('./Comment.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface CommentProps {
-	commentList: ICommentResponseTypes[];
+	commentReplyList: any[];
 	requestCommentDelete: (idx: number) => Promise<void>;
 }
 
-const Comment = ({ commentList, requestCommentDelete }: CommentProps) => {
+const Comment = ({ requestCommentDelete, commentReplyList }: CommentProps) => {
 	return (
 		<div className={cx('Comment')}>
-			{commentList.map((comment: ICommentResponseTypes) => {
+			{commentReplyList.map((comment: any) => {
 				const {
 					idx,
 					writer,
 					contents,
-					created_at,
-					post_idx,
-					updated_at,
+					createdAt,
+					postIdx,
+					updatedAt,
+					replies,
 				} = comment;
 				return (
 					<CommentItem
@@ -30,9 +31,10 @@ const Comment = ({ commentList, requestCommentDelete }: CommentProps) => {
 						idx={idx!}
 						writer={writer!}
 						contents={contents!}
-						createdAt={created_at!}
-						postIdx={post_idx!}
-						updatedAt={updated_at!}
+						createdAt={createdAt!}
+						postIdx={postIdx!}
+						updatedAt={updatedAt!}
+						replies={replies}
 						requestCommentDelete={requestCommentDelete}
 					/>
 				);

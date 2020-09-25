@@ -6,7 +6,7 @@ const style = require('./FormButton.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface FormButtonProps {
-	buttonValue: string;
+	buttonValue: string | JSX.Element;
 	requestFunction?: () => Promise<void>;
 }
 
