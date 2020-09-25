@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import parseTime from 'lib/TimeCounting';
 import CommentLayout from 'components/Common/CommentLayout';
 
 const style = require('./ReplyItem.scss');

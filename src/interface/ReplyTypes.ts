@@ -6,6 +6,13 @@ export interface IReplyResponseTypes {
 	};
 }
 
+export interface IReplyModifyTypes {
+	idx: number;
+	commentIdx: number;
+	postIdx: number;
+	contents: string;
+}
+
 export interface IReplyTypes {
 	comment_idx: number;
 	contents: string;

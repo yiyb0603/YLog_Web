@@ -13,8 +13,6 @@ interface CommentProps {
 }
 
 const Comment = ({ requestCommentDelete, commentReplyList }: CommentProps) => {
-	console.log(commentReplyList);
-
 	return (
 		<div className={cx('Comment')}>
 			{commentReplyList.map((comment: any) => {

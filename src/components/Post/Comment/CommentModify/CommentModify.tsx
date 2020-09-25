@@ -1,17 +1,7 @@
-import React, {
-	ChangeEvent,
-	Dispatch,
-	KeyboardEvent,
-	SetStateAction,
-	useEffect,
-	useRef,
-} from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { onKeyDown } from 'lib/onKeyDown';
-
-const style = require('./CommentModify.scss');
-const cx: ClassNamesFn = classNames.bind(style);
+import CommentModifyForm from 'components/Common/CommentModifyForm';
 
 interface CommentModifyProps {
 	contentsObject: {
@@ -19,6 +9,7 @@ interface CommentModifyProps {
 		setContents: Dispatch<SetStateAction<string>>;
 	};
 	isModify: boolean;
+	setIsModify: Dispatch<SetStateAction<boolean>>;
 	onBlur: () => void;
 	requestCommentModify: () => Promise<void>;
 }
@@ -26,44 +17,22 @@ interface CommentModifyProps {
 const CommentModify = ({
 	contentsObject,
 	isModify,
+	setIsModify,
 	onBlur,
 	requestCommentModify,
 }: CommentModifyProps) => {
 	const { contents, setContents } = contentsObject;
-	const modifyRef = useRef<HTMLInputElement | null>(null);
-
-	useEffect(() => {
-		if (isModify) {
-			document.addEventListener('click', (event: any) => {
-				if (modifyRef.current && !modifyRef.current.contains(event.target)) {
-					onBlur();
-				}
-			});
-		}
-	}, [isModify]);
 
 	return (
-		<div className={cx('CommentModify')} ref={modifyRef}>
-			<input
-				type="text"
-				value={contents}
-				className={cx('CommentModify-Input')}
-				onChange={(e: ChangeEvent<HTMLInputElement>) =>
-					setContents(e.target.value)
-				}
-				onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-					onKeyDown(e, requestCommentModify)
-				}
-				autoFocus={true}
+		<>
+			<CommentModifyForm
+				contents={contents}
+				setContents={setContents}
+				modifyFunction={requestCommentModify}
+				onBlur={onBlur}
+				isModify={isModify}
 			/>
-
-			<button
-				className={cx('CommentModify-Button')}
-				onClick={requestCommentModify}
-			>
-				수정
-			</button>
-		</div>
+		</>
 	);
 };
 

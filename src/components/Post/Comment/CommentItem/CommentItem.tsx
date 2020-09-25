@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import parseTime from 'lib/TimeCounting';
 import CommentModifyContainer from 'containers/CommentContainer/CommentModify';
-import SecureLS from 'secure-ls';
-import { IUserInfoTypes } from 'interface/AuthTypes';
 import { IReplyTypes } from 'interface/ReplyTypes';
 import ReplyItem from 'components/Post/ReplyItem';
 import CommentLayout from 'components/Common/CommentLayout';
@@ -52,6 +49,7 @@ const CommentItem = ({
 					commentValue={contents}
 					onBlur={() => setIsModify(false)}
 					isModify={isModify}
+					setIsModify={setIsModify}
 				/>
 			</CommentLayout>
 

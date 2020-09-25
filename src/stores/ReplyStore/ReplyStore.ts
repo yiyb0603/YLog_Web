@@ -1,6 +1,6 @@
 import { autobind } from 'core-decorators';
 import { IReplyResponseTypes, IReplyTypes } from 'interface/ReplyTypes';
-import { getResponse } from 'lib/Axios';
+import { getResponse, modifyRequest } from 'lib/Axios';
 import { action, observable } from 'mobx';
 
 @autobind
@@ -16,6 +16,16 @@ export default class ReplyStore {
 			);
 			this.replyList = response.data.replies;
 
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
+	handleModifyReply = async (request: IReplyTypes) => {
+		try {
+			const response = await modifyRequest('/reply', request);
 			return response;
 		} catch (error) {
 			throw error;

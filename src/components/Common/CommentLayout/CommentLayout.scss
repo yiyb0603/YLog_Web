@@ -82,4 +82,28 @@
 			}
 		}
 	}
+
+	&-WriteReply {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-top: 5px;
+		margin-left: 60px;
+		padding: 0 5px;
+		background-color: $lighterGray;
+
+		&-Write {
+			width: 100%;
+			border: none;
+			outline: none;
+			background-color: $lighterGray;
+			padding: 10px 5px;
+		}
+
+		&-Send {
+			cursor: pointer;
+			font-size: $font_22;
+		}
+	}
 }
