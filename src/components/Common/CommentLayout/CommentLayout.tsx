@@ -1,10 +1,10 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import parseTime from 'lib/TimeCounting';
 import SecureLS from 'secure-ls';
 import { IUserInfoTypes } from 'interface/AuthTypes';
-import { BiSend } from 'react-icons/bi';
+import ReplyCreateContainer from 'containers/ReplyContainer/ReplyCreateContainer';
 
 const style = require('./CommentLayout.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,6 +19,7 @@ interface CommentLayoutProps {
 	children?: any;
 	deleteFunction: any;
 	commentType: number;
+	requestCommentList?: () => Promise<void>;
 }
 
 const CommentLayout = ({
@@ -30,8 +31,10 @@ const CommentLayout = ({
 	children,
 	deleteFunction,
 	commentType,
+	requestCommentList,
 }: CommentLayoutProps) => {
 	const [isReply, setIsReply] = useState<boolean>(false);
+	const [commentIdx, setCommentIdx] = useState<number>(0);
 
 	const beforeTime: string = parseTime(createdAt);
 	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
@@ -69,7 +72,7 @@ const CommentLayout = ({
 							</div>
 						</div>
 
-						{(children && !children.props.isModify) || commentType === 1 ? (
+						{children && !children.props.isModify ? (
 							<div>{contents}</div>
 						) : (
 							children && children
@@ -77,7 +80,10 @@ const CommentLayout = ({
 						{commentType === 0 && (
 							<div
 								className={cx('CommentLayout-Contents-ReplyButton')}
-								onClick={() => setIsReply(!isReply)}
+								onClick={() => {
+									setIsReply(!isReply);
+									setCommentIdx(idx);
+								}}
 							>
 								답글
 							</div>
@@ -85,8 +91,7 @@ const CommentLayout = ({
 					</div>
 				</div>
 
-				{(children && !children.props.isModify && myInfo.name === writer) ||
-				(!children && myInfo.is_admin) ? (
+				{children && !children.props.isModify && myInfo.name === writer ? (
 					<div className={cx('CommentLayout-Contents-Right')}>
 						<div
 							className={cx('CommentLayout-Contents-Right-Modify')}
@@ -106,15 +111,11 @@ const CommentLayout = ({
 				)}
 			</div>
 			{isReply && (
-				<div className={cx('CommentLayout-WriteReply')}>
-					<input
-						type="text"
-						placeholder="답글을 입력하세요..."
-						className={cx('CommentLayout-WriteReply-Write')}
-					/>
-
-					<BiSend className={cx('CommentLayout-WriteReply-Send')} />
-				</div>
+				<ReplyCreateContainer
+					setIsReply={setIsReply}
+					commentIdx={commentIdx}
+					requestCommentList={requestCommentList}
+				/>
 			)}
 		</div>
 	);

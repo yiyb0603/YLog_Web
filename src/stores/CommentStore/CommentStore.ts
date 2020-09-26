@@ -18,12 +18,10 @@ import ReplyStore from 'stores/ReplyStore';
 
 @autobind
 export default class CommentStore {
-	@observable commentReplyList: any[] = [];
-
 	@action
 	handleCommentList = async (postIdx: number) => {
 		try {
-			this.commentReplyList = [];
+			let commentReplyList: any = [];
 
 			const replyStore: ReplyStore = new ReplyStore();
 			const { handleReplyList } = replyStore;
@@ -32,61 +30,42 @@ export default class CommentStore {
 			const response: ICommentResponseListTypes = await getResponse(
 				`/comment?postIdx=${postIdx}`
 			);
+
 			const commentList: ICommentResponseTypes[] = response.data.comments;
+			const replies = [];
+			commentReplyList = commentList;
 
-			for (let i = 0; i < commentList.length; i++) {
-				for (let j = 0; j < replyStore.replyList.length; j++) {
-					const {
-						idx,
-						writer,
-						contents,
-						created_at,
-						updated_at,
-						post_idx,
-					} = commentList[i];
-					const { comment_idx } = replyStore.replyList[j];
+			if (replyStore.replyList.length > 0 && commentList.length > 0) {
+				for (let i: number = 0; i < commentList.length; i++) {
+					for (let j: number = 0; j < replyStore.replyList.length; j++) {
+						const {
+							idx,
+							writer,
+							contents,
+							created_at,
+							updated_at,
+							post_idx,
+						} = commentList[i];
 
-					if (idx === comment_idx) {
-						this.commentReplyList = [
-							...this.commentReplyList,
-							{
-								idx,
-								writer,
-								contents,
-								createdAt: created_at,
-								updatedAt: updated_at,
-								postIdx: post_idx,
-								replies: [
-									{
-										idx: replyStore.replyList[j].idx,
-										writer: replyStore.replyList[j].writer,
-										contents: replyStore.replyList[j].contents,
-										repliedAt: replyStore.replyList[j].replied_at,
-										updatedAt: replyStore.replyList[j].updated_at,
-										commentIdx: replyStore.replyList[j].comment_idx,
-										postIdx: replyStore.replyList[j].post_idx,
-									},
-								],
-							},
-						];
-					} else {
-						this.commentReplyList = [
-							...this.commentReplyList,
-							{
-								idx,
-								writer,
-								contents,
-								createdAt: created_at,
-								updatedAt: updated_at,
-								postIdx: post_idx,
-								replies: [],
-							},
-						];
+						const { comment_idx } = replyStore.replyList[j];
+
+						if (idx === comment_idx) {
+							replies.push({
+								idx: replyStore.replyList[j].idx,
+								writer: replyStore.replyList[j].writer,
+								contents: replyStore.replyList[j].contents,
+								repliedAt: replyStore.replyList[j].replied_at,
+								updatedAt: replyStore.replyList[j].updated_at,
+								commentIdx: replyStore.replyList[j].comment_idx,
+								postIdx: replyStore.replyList[j].post_idx,
+							});
+
+							commentReplyList[i].replies = replies;
+						}
 					}
 				}
 			}
-
-			return response;
+			return commentReplyList;
 		} catch (error) {
 			throw error;
 		}
@@ -127,11 +106,6 @@ export default class CommentStore {
 				`/comment?idx=${idx}`,
 				getToken()
 			);
-			if (response.status === 200) {
-				// this.commentList = this.commentList.filter(
-				// 	(comment: ICommentResponseTypes) => comment.idx !== idx
-				// );
-			}
 
 			return response;
 		} catch (error) {

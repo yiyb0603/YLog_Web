@@ -25,7 +25,7 @@ export const postRequest = async (
 			request,
 			{
 				headers: token && {
-					'y-log-token': token,
+					'ylog-token': token,
 				},
 			}
 		);

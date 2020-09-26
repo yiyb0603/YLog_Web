@@ -7,7 +7,7 @@ export interface IReplyResponseTypes {
 }
 
 export interface IReplyModifyTypes {
-	idx: number;
+	idx?: number;
 	commentIdx: number;
 	postIdx: number;
 	contents: string;

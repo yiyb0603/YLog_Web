@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CommentModifyContainer from 'containers/CommentContainer/CommentModify';
 import { IReplyTypes } from 'interface/ReplyTypes';
-import ReplyItem from 'components/Post/ReplyItem';
+import ReplyItem from 'components/Post/Reply/ReplyItem';
 import CommentLayout from 'components/Common/CommentLayout';
 
 const style = require('./CommentItem.scss');
@@ -18,6 +18,8 @@ interface CommentItemProps {
 	updatedAt: string | Date;
 	replies: IReplyTypes[];
 	requestCommentDelete: (idx: number) => Promise<void>;
+	requestDeleteReply: (idx: number) => Promise<void>;
+	requestCommentList: () => Promise<void>;
 }
 
 const CommentItem = ({
@@ -29,6 +31,8 @@ const CommentItem = ({
 	updatedAt,
 	requestCommentDelete,
 	replies,
+	requestDeleteReply,
+	requestCommentList,
 }: CommentItemProps) => {
 	const [isModify, setIsModify] = useState<boolean>(false);
 
@@ -43,6 +47,7 @@ const CommentItem = ({
 				updatedAt={updatedAt}
 				deleteFunction={() => requestCommentDelete(idx)}
 				commentType={0}
+				requestCommentList={requestCommentList}
 			>
 				<CommentModifyContainer
 					commentIdx={idx}
@@ -53,29 +58,33 @@ const CommentItem = ({
 				/>
 			</CommentLayout>
 
-			{/* <input type="text" placeholder="답글을 입력하세요..." /> */}
-
 			<div className={cx('CommentItem-Replies')}>
-				{replies.map((reply: any) => {
-					const {
-						idx,
-						commentIdx,
-						contents,
-						repliedAt,
-						updatedAt,
-						writer,
-					} = reply;
-					return (
-						<ReplyItem
-							key={idx}
-							idx={idx}
-							contents={contents}
-							repliedAt={repliedAt}
-							updatedAt={updatedAt}
-							writer={writer}
-						/>
-					);
-				})}
+				{replies &&
+					replies.map((reply: any, index: number) => {
+						const {
+							contents,
+							repliedAt,
+							updatedAt,
+							writer,
+							commentIdx,
+						} = reply;
+
+						return (
+							reply.commentIdx === idx && (
+								<ReplyItem
+									key={index}
+									idx={reply.idx}
+									contents={contents}
+									repliedAt={repliedAt}
+									updatedAt={updatedAt}
+									writer={writer}
+									commentIdx={commentIdx}
+									requestDeleteReply={requestDeleteReply}
+									requestCommentList={requestCommentList}
+								/>
+							)
+						);
+					})}
 			</div>
 		</div>
 	);
