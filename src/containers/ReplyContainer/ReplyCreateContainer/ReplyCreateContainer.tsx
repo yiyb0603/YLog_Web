@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/useStores';
 import { NextRouter, useRouter } from 'next/router';
@@ -10,12 +10,18 @@ import { toast } from 'react-toastify';
 
 interface IReplyCreateContainerProps {
 	commentIdx: number;
+	requestCommentList: (() => Promise<void>) | undefined;
+	setIsReply: Dispatch<SetStateAction<boolean>>;
 }
 
 const ReplyCreateContainer = observer(
-	({ commentIdx }: IReplyCreateContainerProps) => {
+	({
+		commentIdx,
+		requestCommentList,
+		setIsReply,
+	}: IReplyCreateContainerProps) => {
 		const { store } = useStores();
-		const { handleCreateReply, handleReplyList } = store.ReplyStore;
+		const { handleCreateReply } = store.ReplyStore;
 
 		const router: NextRouter = useRouter();
 		const postIdx: number = Number(router.query.idx);
@@ -30,10 +36,12 @@ const ReplyCreateContainer = observer(
 			};
 
 			await handleCreateReply(request)
-				.then((response: ISuccessTypes) => {
+				.then(async (response: ISuccessTypes) => {
 					if (response.status === 200) {
+						setIsReply(true);
+						setContents('');
 						toast.success('답글 작성을 성공하였습니다.');
-						handleReplyList(postIdx);
+						await requestCommentList!();
 					}
 				})
 
@@ -42,7 +50,14 @@ const ReplyCreateContainer = observer(
 					toast.error(message);
 					return;
 				});
-		}, [postIdx, commentIdx, contents, handleCreateReply, handleReplyList]);
+		}, [
+			postIdx,
+			commentIdx,
+			contents,
+			handleCreateReply,
+			requestCommentList,
+			setIsReply,
+		]);
 
 		return (
 			<ReplyWrite

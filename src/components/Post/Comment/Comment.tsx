@@ -9,9 +9,16 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface CommentProps {
 	commentReplyList: any[];
 	requestCommentDelete: (idx: number) => Promise<void>;
+	requestDeleteReply: (idx: number) => Promise<void>;
+	requestCommentList: () => Promise<void>;
 }
 
-const Comment = ({ requestCommentDelete, commentReplyList }: CommentProps) => {
+const Comment = ({
+	requestCommentDelete,
+	commentReplyList,
+	requestDeleteReply,
+	requestCommentList,
+}: CommentProps) => {
 	return (
 		<div className={cx('Comment')}>
 			{commentReplyList.map((comment: any) => {
@@ -35,6 +42,8 @@ const Comment = ({ requestCommentDelete, commentReplyList }: CommentProps) => {
 						updatedAt={updatedAt!}
 						replies={replies}
 						requestCommentDelete={requestCommentDelete}
+						requestDeleteReply={requestDeleteReply}
+						requestCommentList={requestCommentList}
 					/>
 				);
 			})}

@@ -19,6 +19,7 @@ interface CommentLayoutProps {
 	children?: any;
 	deleteFunction: any;
 	commentType: number;
+	requestCommentList?: () => Promise<void>;
 }
 
 const CommentLayout = ({
@@ -30,6 +31,7 @@ const CommentLayout = ({
 	children,
 	deleteFunction,
 	commentType,
+	requestCommentList,
 }: CommentLayoutProps) => {
 	const [isReply, setIsReply] = useState<boolean>(false);
 	const [commentIdx, setCommentIdx] = useState<number>(0);
@@ -70,7 +72,7 @@ const CommentLayout = ({
 							</div>
 						</div>
 
-						{(children && !children.props.isModify) || commentType === 1 ? (
+						{children && !children.props.isModify ? (
 							<div>{contents}</div>
 						) : (
 							children && children
@@ -108,7 +110,13 @@ const CommentLayout = ({
 					<></>
 				)}
 			</div>
-			{isReply && <ReplyCreateContainer commentIdx={commentIdx} />}
+			{isReply && (
+				<ReplyCreateContainer
+					setIsReply={setIsReply}
+					commentIdx={commentIdx}
+					requestCommentList={requestCommentList}
+				/>
+			)}
 		</div>
 	);
 };

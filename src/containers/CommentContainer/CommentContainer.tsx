@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/useStores';
 import { NextRouter, useRouter } from 'next/router';
@@ -6,6 +6,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import Comment from 'components/Post/Comment';
 import { toast } from 'react-toastify';
 import ISuccessTypes from 'interface/SuccessTypes';
+import { ICommentReplyTypes } from 'interface/ReplyTypes';
 
 interface ICommentContainerProps {
 	requestPostView: (idx: number) => Promise<void>;
@@ -14,21 +15,27 @@ interface ICommentContainerProps {
 const CommentContainer = observer(
 	({ requestPostView }: ICommentContainerProps) => {
 		const { store } = useStores();
-		const {
-			handleCommentList,
-			handleCommentDelete,
-			commentReplyList,
-		} = store.CommentStore;
+		const { handleCommentList, handleCommentDelete } = store.CommentStore;
+		const { handleDeleteReply } = store.ReplyStore;
+
+		const [commentReplyList, setCommentReplyList] = useState<
+			ICommentReplyTypes[]
+		>([]);
 
 		const router: NextRouter = useRouter();
 		const postIdx: number = Number(router.query.idx);
 
 		const requestCommentList = useCallback(async () => {
-			await handleCommentList(postIdx).catch((error: IErrorTypes) => {
-				const { message } = error.response.data;
-				toast.error(message);
-				return;
-			});
+			await handleCommentList(postIdx)
+				.then((response: ICommentReplyTypes[]) => {
+					setCommentReplyList(response);
+				})
+
+				.catch((error: IErrorTypes) => {
+					const { message } = error.response.data;
+					toast.error(message);
+					return;
+				});
 		}, [handleCommentList, postIdx]);
 
 		const requestCommentDelete = useCallback(
@@ -48,7 +55,26 @@ const CommentContainer = observer(
 						return;
 					});
 			},
-			[handleCommentDelete, requestPostView, postIdx]
+			[handleCommentDelete, requestCommentList, requestPostView, postIdx]
+		);
+
+		const requestDeleteReply = useCallback(
+			async (idx: number) => {
+				await handleDeleteReply(idx)
+					.then((response: ISuccessTypes) => {
+						if (response.status === 200) {
+							toast.success('답글 삭제를 성공하였습니다.');
+							requestCommentList();
+						}
+					})
+
+					.catch((error: IErrorTypes) => {
+						const { message } = error.response.data;
+						toast.error(message);
+						return;
+					});
+			},
+			[handleDeleteReply, requestCommentList]
 		);
 
 		useEffect(() => {
@@ -61,6 +87,8 @@ const CommentContainer = observer(
 			<Comment
 				commentReplyList={commentReplyList}
 				requestCommentDelete={requestCommentDelete}
+				requestDeleteReply={requestDeleteReply}
+				requestCommentList={requestCommentList}
 			/>
 		);
 	}

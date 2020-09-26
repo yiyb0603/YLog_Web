@@ -4,7 +4,12 @@ import {
 	IReplyResponseTypes,
 	IReplyTypes,
 } from 'interface/ReplyTypes';
-import { getResponse, modifyRequest, postRequest } from 'lib/Axios';
+import {
+	deleteRequest,
+	getResponse,
+	modifyRequest,
+	postRequest,
+} from 'lib/Axios';
 import { getToken } from 'lib/Token';
 import { action, observable } from 'mobx';
 
@@ -41,6 +46,16 @@ export default class ReplyStore {
 	handleModifyReply = async (request: IReplyTypes) => {
 		try {
 			const response = await modifyRequest('/reply', request);
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
+	handleDeleteReply = async (idx: number) => {
+		try {
+			const response = await deleteRequest(`/reply?idx=${idx}`);
 			return response;
 		} catch (error) {
 			throw error;
