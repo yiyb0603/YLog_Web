@@ -5,7 +5,7 @@ import { NextRouter, useRouter } from 'next/router';
 import { IReplyModifyTypes, IReplyTypes } from 'interface/ReplyTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
-import ReplyModify from 'components/Post/ReplyModify';
+import ReplyModify from 'components/Post/Reply/ReplyModify';
 import GroupingState from 'lib/GroupingState';
 
 const ReplyModifyContainer = observer(() => {

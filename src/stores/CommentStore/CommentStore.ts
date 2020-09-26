@@ -33,55 +33,58 @@ export default class CommentStore {
 				`/comment?postIdx=${postIdx}`
 			);
 			const commentList: ICommentResponseTypes[] = response.data.comments;
+			this.commentReplyList = commentList;
 
-			for (let i = 0; i < commentList.length; i++) {
-				for (let j = 0; j < replyStore.replyList.length; j++) {
-					const {
-						idx,
-						writer,
-						contents,
-						created_at,
-						updated_at,
-						post_idx,
-					} = commentList[i];
-					const { comment_idx } = replyStore.replyList[j];
+			if (replyStore.replyList.length > 0 && commentList.length > 0) {
+				for (let i = 0; i < commentList.length; i++) {
+					for (let j = 0; j < replyStore.replyList.length; j++) {
+						const {
+							idx,
+							writer,
+							contents,
+							created_at,
+							updated_at,
+							post_idx,
+						} = commentList[i];
+						const { comment_idx } = replyStore.replyList[j];
 
-					if (idx === comment_idx) {
-						this.commentReplyList = [
-							...this.commentReplyList,
-							{
-								idx,
-								writer,
-								contents,
-								createdAt: created_at,
-								updatedAt: updated_at,
-								postIdx: post_idx,
-								replies: [
-									{
-										idx: replyStore.replyList[j].idx,
-										writer: replyStore.replyList[j].writer,
-										contents: replyStore.replyList[j].contents,
-										repliedAt: replyStore.replyList[j].replied_at,
-										updatedAt: replyStore.replyList[j].updated_at,
-										commentIdx: replyStore.replyList[j].comment_idx,
-										postIdx: replyStore.replyList[j].post_idx,
-									},
-								],
-							},
-						];
-					} else {
-						this.commentReplyList = [
-							...this.commentReplyList,
-							{
-								idx,
-								writer,
-								contents,
-								createdAt: created_at,
-								updatedAt: updated_at,
-								postIdx: post_idx,
-								replies: [],
-							},
-						];
+						if (idx === comment_idx) {
+							this.commentReplyList = [
+								...this.commentReplyList,
+								{
+									idx,
+									writer,
+									contents,
+									createdAt: created_at,
+									updatedAt: updated_at,
+									postIdx: post_idx,
+									replies: [
+										{
+											idx: replyStore.replyList[j].idx,
+											writer: replyStore.replyList[j].writer,
+											contents: replyStore.replyList[j].contents,
+											repliedAt: replyStore.replyList[j].replied_at,
+											updatedAt: replyStore.replyList[j].updated_at,
+											commentIdx: replyStore.replyList[j].comment_idx,
+											postIdx: replyStore.replyList[j].post_idx,
+										},
+									],
+								},
+							];
+						} else {
+							this.commentReplyList = [
+								...this.commentReplyList,
+								{
+									idx,
+									writer,
+									contents,
+									createdAt: created_at,
+									updatedAt: updated_at,
+									postIdx: post_idx,
+									replies: [],
+								},
+							];
+						}
 					}
 				}
 			}
@@ -95,6 +98,7 @@ export default class CommentStore {
 	@action
 	handleCommentWrite = async (request: ICommentRequestTypes) => {
 		try {
+			console.log(getToken());
 			const response: ISuccessTypes = await postRequest(
 				'/comment',
 				request,

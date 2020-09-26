@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { ICommentResponseTypes } from 'interface/CommentTypes';
 import CommentItem from './CommentItem';
 
 const style = require('./Comment.scss');
@@ -20,7 +19,7 @@ const Comment = ({ requestCommentDelete, commentReplyList }: CommentProps) => {
 					idx,
 					writer,
 					contents,
-					createdAt,
+					created_at,
 					postIdx,
 					updatedAt,
 					replies,
@@ -31,7 +30,7 @@ const Comment = ({ requestCommentDelete, commentReplyList }: CommentProps) => {
 						idx={idx!}
 						writer={writer!}
 						contents={contents!}
-						createdAt={createdAt!}
+						createdAt={created_at!}
 						postIdx={postIdx!}
 						updatedAt={updatedAt!}
 						replies={replies}

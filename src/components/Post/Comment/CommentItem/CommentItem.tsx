@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CommentModifyContainer from 'containers/CommentContainer/CommentModify';
 import { IReplyTypes } from 'interface/ReplyTypes';
-import ReplyItem from 'components/Post/ReplyItem';
+import ReplyItem from 'components/Post/Reply/ReplyItem';
 import CommentLayout from 'components/Common/CommentLayout';
 
 const style = require('./CommentItem.scss');
@@ -56,26 +56,27 @@ const CommentItem = ({
 			{/* <input type="text" placeholder="답글을 입력하세요..." /> */}
 
 			<div className={cx('CommentItem-Replies')}>
-				{replies.map((reply: any) => {
-					const {
-						idx,
-						commentIdx,
-						contents,
-						repliedAt,
-						updatedAt,
-						writer,
-					} = reply;
-					return (
-						<ReplyItem
-							key={idx}
-							idx={idx}
-							contents={contents}
-							repliedAt={repliedAt}
-							updatedAt={updatedAt}
-							writer={writer}
-						/>
-					);
-				})}
+				{replies &&
+					replies.map((reply: any) => {
+						const {
+							idx,
+							commentIdx,
+							contents,
+							repliedAt,
+							updatedAt,
+							writer,
+						} = reply;
+						return (
+							<ReplyItem
+								key={idx}
+								idx={idx}
+								contents={contents}
+								repliedAt={repliedAt}
+								updatedAt={updatedAt}
+								writer={writer}
+							/>
+						);
+					})}
 			</div>
 		</div>
 	);
