@@ -5,7 +5,7 @@ interface IPostWriteProps {
 }
 
 const PostWrite = ({ postWriteForm }: IPostWriteProps) => {
-	return <div>{postWriteForm}</div>;
+	return postWriteForm;
 };
 
 export default PostWrite;
