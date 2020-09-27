@@ -45,7 +45,7 @@ export default class ReplyStore {
 	@action
 	handleModifyReply = async (request: IReplyTypes) => {
 		try {
-			const response = await modifyRequest('/reply', request);
+			const response = await modifyRequest('/reply', request, getToken());
 			return response;
 		} catch (error) {
 			throw error;
@@ -55,7 +55,7 @@ export default class ReplyStore {
 	@action
 	handleDeleteReply = async (idx: number) => {
 		try {
-			const response = await deleteRequest(`/reply?idx=${idx}`);
+			const response = await deleteRequest(`/reply?idx=${idx}`, getToken());
 			return response;
 		} catch (error) {
 			throw error;
