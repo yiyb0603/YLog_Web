@@ -16,7 +16,7 @@ const PostViewContainer = observer(() => {
 	const router: NextRouter = useRouter();
 	const { idx } = router.query;
 
-	const requestPostView = useCallback(async () => {
+	const requestPostView = useCallback(async (): Promise<void> => {
 		if (idx) {
 			await handlePostView(idx)
 				.then((response: IPostResponseTypes) => {

@@ -32,13 +32,13 @@ const PostWriteContainer = observer(() => {
 			thumbnail: null,
 		};
 
-		if (
-			!title.trim() ||
-			!introduction.trim() ||
-			!contents.trim() ||
-			!categoryIdx
-		) {
+		if (!title.trim() || !introduction.trim() || !contents.trim()) {
 			toast.error('내용을 모두 입력해주세요!');
+			return;
+		}
+
+		if (!categoryIdx) {
+			toast.error('카테고리를 선택해주세요!');
 			return;
 		}
 

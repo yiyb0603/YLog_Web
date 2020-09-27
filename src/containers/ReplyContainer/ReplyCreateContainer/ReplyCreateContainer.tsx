@@ -35,6 +35,11 @@ const ReplyCreateContainer = observer(
 				contents,
 			};
 
+			if (!contents.trim()) {
+				toast.error('내용을 입력해주세요!');
+				return;
+			}
+
 			await handleCreateReply(request)
 				.then(async (response: ISuccessTypes) => {
 					if (response.status === 200) {

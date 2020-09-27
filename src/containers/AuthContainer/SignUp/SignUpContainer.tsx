@@ -34,12 +34,7 @@ const SignUpContainer = ({ setPageType }: ISignUpContainerProps) => {
 			adminCode: adminCode !== '' ? adminCode : '',
 		};
 
-		if (
-			id.trim() === '' ||
-			password.trim() === '' ||
-			name.trim() === '' ||
-			email.trim() === ''
-		) {
+		if (!id.trim() || !password.trim() || !name.trim() || !email.trim()) {
 			toast.warning('빈칸없이 입력해주세요!');
 			return;
 		}

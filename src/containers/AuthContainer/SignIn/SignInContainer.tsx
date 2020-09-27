@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import React, { useState, useCallback, Dispatch, SetStateAction } from 'react';
 import { observer } from 'mobx-react';
 import { sha512 } from 'js-sha512';
 import useStores from 'lib/useStores';
@@ -28,7 +28,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 			password: sha512(password),
 		};
 
-		if (id.trim() === '' || password.trim() === '') {
+		if (!id.trim() || !password.trim()) {
 			toast.warning('빈칸없이 입력해주세요!');
 			return;
 		}
@@ -43,7 +43,6 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 
 					if (localStorage) {
 						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-						// sessionStorage.setItem('ylog-token', response.data.ylogToken);
 						setStorage('ylog-token', response.data.ylogToken);
 						ls.set('userInfo', response.data.userInfo);
 					}
