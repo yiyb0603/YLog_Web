@@ -33,7 +33,7 @@ const SignTemplate = ({}: SignTemplateProps) => {
 				</div>
 
 				<div className={cx('SignTemplate-FormBox-RightPanel')}>
-					<img src="https://mk0muwucepum99ape3ia.kinstacdn.com/wp-content/uploads/2019/12/%E2%80%94Pngtree%E2%80%94flat-wind-men-s-business_4575829-400x400.png" />
+					<img src="/images/Login/Banner.svg" alt="banner" />
 				</div>
 			</div>
 		</div>

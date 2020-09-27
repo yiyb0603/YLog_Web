@@ -1,11 +1,11 @@
+import ISuccessTypes from './SuccessTypes';
+
 export interface IPostCategoryTypes {
 	idx?: number;
 	categoryName?: string;
 }
 
-export interface ICategoryResponseTypes {
-	status: number;
-	message: string;
+export interface ICategoryResponseTypes extends ISuccessTypes {
 	data: ICategoryListTypes[];
 }
 

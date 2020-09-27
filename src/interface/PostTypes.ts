@@ -1,3 +1,5 @@
+import ISuccessTypes from './SuccessTypes';
+
 export interface IPostRequestTypes {
 	title: string;
 	introduction: string;
@@ -6,17 +8,13 @@ export interface IPostRequestTypes {
 	categoryIdx: number;
 }
 
-export interface IPostResponseListTypes {
-	status: 200;
-	message: string;
+export interface IPostResponseListTypes extends ISuccessTypes {
 	data: {
 		posts: IPostListTypes[];
 	};
 }
 
-export interface IPostResponseTypes {
-	status: 200;
-	message: string;
+export interface IPostResponseTypes extends ISuccessTypes {
 	data: {
 		post: IPostListTypes;
 	};

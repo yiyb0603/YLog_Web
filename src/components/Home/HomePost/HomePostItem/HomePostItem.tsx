@@ -42,7 +42,7 @@ const HomePostItem = ({
 				<div>
 					<img
 						className={cx('HomePost-Item-Thumbnail')}
-						src={thumbnail ? thumbnail : '/icon/Logo.PNG'}
+						src={thumbnail ? thumbnail : '/images/NO_IMAGES.PNG'}
 						alt="thumbnail"
 					/>
 

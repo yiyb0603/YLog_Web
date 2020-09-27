@@ -9,6 +9,7 @@ import {
 } from 'interface/CategoryTypes';
 import { NextRouter, useRouter } from 'next/router';
 import ModifyCategoryContainer from 'containers/CategoryContainer/ModifyCategory/ModifyCategoryContainer';
+import CategoryItem from './CategoryItem';
 
 const style = require('./Category.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -53,29 +54,13 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 					const { idx, category_name } = category;
 
 					return (
-						<li key={idx} className={cx('Category-List-Item')}>
-							<span
-								className={cx('Category-List-Item-Text', {
-									'Category-List-Item-Text-Current': Number(topic) === idx,
-								})}
-								onClick={() => router.push(`/?topic=${idx}`)}
-							>
-								{category_name.length > 14
-									? category_name.substring(0, 14).concat('...')
-									: category_name}
-							</span>
-
-							<div className={cx('Category-List-Item-Icon')}>
-								<BsPen
-									onClick={() => {
-										setCategoryInfo({ idx, categoryName: category_name });
-										setIsModify(true);
-									}}
-								/>
-
-								<BsTrash onClick={() => requestDeleteCategory(idx)} />
-							</div>
-						</li>
+						<CategoryItem
+							idx={idx}
+							categoryName={category_name}
+							setCategoryInfo={setCategoryInfo}
+							setIsModify={setIsModify}
+							requestDeleteCategory={requestDeleteCategory}
+						/>
 					);
 				})}
 			</ul>
