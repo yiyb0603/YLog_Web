@@ -24,6 +24,11 @@ const CreateCategoryContainer = observer(
 				categoryName,
 			};
 
+			if (!categoryName.trim()) {
+				toast.error('내용을 입력해주세요!');
+				return;
+			}
+
 			await handleCreateCategory(request)
 				.then(async (response: ISuccessTypes) => {
 					if (response.status === 200) {

@@ -46,6 +46,11 @@ const ReplyModifyContainer = observer(
 				contents,
 			};
 
+			if (!contents.trim()) {
+				toast.error('내용을 입력해주세요!');
+				return;
+			}
+
 			await handleModifyReply(data)
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
