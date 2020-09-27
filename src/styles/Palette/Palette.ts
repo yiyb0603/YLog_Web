@@ -14,6 +14,7 @@ interface IPaletteTypes {
 	white: string;
 	black: string;
 	snow: string;
+	primary: string;
 }
 
 export const Palette: IPaletteTypes = {
@@ -32,4 +33,5 @@ export const Palette: IPaletteTypes = {
 	white: '#ffffff',
 	black: '#000000',
 	snow: '#dff9fb',
+	primary: '#1b60ff',
 };

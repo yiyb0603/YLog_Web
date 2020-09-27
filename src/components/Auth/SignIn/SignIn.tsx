@@ -13,6 +13,7 @@ import { RiAccountCircleFill } from 'react-icons/ri';
 import { Spinner } from '@class101/ui';
 import FormButton from 'components/Common/FormButton';
 import { onKeyDown } from 'lib/onKeyDown';
+import AuthInput from 'components/Common/AuthInput';
 
 const style = require('./SignIn.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -56,27 +57,21 @@ const SignIn = ({
 				</div>
 
 				<div className={cx('SignIn-Form')}>
-					<input
+					<AuthInput
 						type="text"
 						placeholder="아이디를 입력하세요"
 						value={id}
-						onChange={(e: ChangeEvent<HTMLInputElement>) =>
-							setId(e.target.value)
-						}
-						autoComplete={'off'}
+						setValue={setId}
 						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
 							onKeyDown(e, requestSignIn)
 						}
 					/>
 
-					<input
+					<AuthInput
 						type="password"
 						placeholder="비밀번호를 입력하세요"
 						value={password}
-						onChange={(e: ChangeEvent<HTMLInputElement>) =>
-							setPassword(e.target.value)
-						}
-						autoComplete={'off'}
+						setValue={setPassword}
 						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
 							onKeyDown(e, requestSignIn)
 						}

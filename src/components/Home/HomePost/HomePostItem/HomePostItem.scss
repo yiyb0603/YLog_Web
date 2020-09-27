@@ -34,9 +34,10 @@
 		&-Thumbnail {
 			min-width: 300px;
 			max-width: 300px;
-			min-height: 170px;
-			max-height: 170px;
+			min-height: 150px;
+			max-height: 150px;
 			cursor: pointer;
+			object-fit: fill;
 		}
 
 		&-Contents {
@@ -45,7 +46,7 @@
 			flex-direction: column;
 			justify-content: space-around;
 			padding: 0 5px 5px 5px;
-			height: calc(340px - 170px);
+			height: calc(340px - 150px);
 			cursor: pointer;
 
 			&-Title {
@@ -80,6 +81,7 @@
 			display: -webkit-flex;
 			justify-content: space-between;
 			align-items: center;
+			padding: 0 5px 5px 5px;
 
 			&-Option {
 				display: flex;

@@ -1,6 +1,6 @@
-export interface ISignInResponseTypes {
-	status: number;
-	message: string;
+import ISuccessTypes from './SuccessTypes';
+
+export interface ISignInResponseTypes extends ISuccessTypes {
 	data: {
 		ylogToken: string;
 		userInfo: IUserInfoTypes;

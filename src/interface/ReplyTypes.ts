@@ -1,6 +1,6 @@
-export interface IReplyResponseTypes {
-	status: number;
-	message: string;
+import ISuccessTypes from './SuccessTypes';
+
+export interface IReplyResponseTypes extends ISuccessTypes {
 	data: {
 		replies: IReplyTypes[];
 	};

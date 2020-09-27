@@ -20,7 +20,7 @@
 			transition: 0.2s ease-out;
 
 			&:hover {
-				color: $purple;
+				color: $primary;
 				font-weight: bold;
 			}
 		}
@@ -42,13 +42,15 @@
 			margin-bottom: $font_1rem;
 
 			&-Text {
+				transition: 0.1s ease-in;
+
 				&:hover {
 					cursor: pointer;
-					color: $purple;
+					color: $primary;
 				}
 
 				&-Current {
-					color: $purple;
+					color: $primary;
 				}
 			}
 
@@ -61,10 +63,14 @@
 					cursor: pointer;
 					transition: 0.2s ease-out;
 					margin-right: 5px;
+				}
 
-					&:hover {
-						color: red;
-					}
+				&-Modify:hover {
+					color: $primary;
+				}
+
+				&-Delete:hover {
+					color: $red;
 				}
 			}
 		}

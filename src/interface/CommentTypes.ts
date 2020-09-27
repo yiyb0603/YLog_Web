@@ -1,6 +1,6 @@
-export interface ICommentResponseListTypes {
-	status: number;
-	message: string;
+import ISuccessTypes from './SuccessTypes';
+
+export interface ICommentResponseListTypes extends ISuccessTypes {
 	data: {
 		comments: ICommentResponseTypes[];
 	};

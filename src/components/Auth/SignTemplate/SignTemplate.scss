@@ -30,7 +30,7 @@
 		&-LeftPanel {
 			@include panelStyle($white);
 			border: none;
-			border-right: 2px solid $lighterGray;
+			border-right: 2px solid rgba($rgbaPrimary, 0.5);
 			padding: 2rem;
 
 			&-Welcome {
@@ -48,9 +48,9 @@
 			align-items: center;
 
 			& > img {
-				width: 70%;
-				height: 70%;
-				object-fit: cover;
+				width: 90%;
+				height: 50%;
+				object-fit: fill;
 			}
 		}
 	}
