@@ -59,7 +59,10 @@ export default class PostStore {
 	@action
 	handleDeletePost = async (idx: number) => {
 		try {
-			const response: ISuccessTypes = await deleteRequest(`/post?idx=${idx}`);
+			const response: ISuccessTypes = await deleteRequest(
+				`/post?idx=${idx}`,
+				getToken()
+			);
 			if (response.status === 200) {
 				this.postList = this.postList.filter(
 					(post: IPostListTypes) => post.idx !== idx
