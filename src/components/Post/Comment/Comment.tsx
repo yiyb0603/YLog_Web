@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CommentItem from './CommentItem';
+import NoComments from './NoComments';
 
 const style = require('./Comment.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -21,32 +22,37 @@ const Comment = ({
 }: CommentProps) => {
 	return (
 		<div className={cx('Comment')}>
-			{commentReplyList.map((comment: any) => {
-				const {
-					idx,
-					writer,
-					contents,
-					created_at,
-					postIdx,
-					updatedAt,
-					replies,
-				} = comment;
-				return (
-					<CommentItem
-						key={idx}
-						idx={idx!}
-						writer={writer!}
-						contents={contents!}
-						createdAt={created_at!}
-						postIdx={postIdx!}
-						updatedAt={updatedAt!}
-						replies={replies}
-						requestCommentDelete={requestCommentDelete}
-						requestDeleteReply={requestDeleteReply}
-						requestCommentList={requestCommentList}
-					/>
-				);
-			})}
+			{commentReplyList.length > 0 ? (
+				commentReplyList.map((comment: any) => {
+					const {
+						idx,
+						writer,
+						contents,
+						created_at,
+						postIdx,
+						updatedAt,
+						replies,
+					} = comment;
+
+					return (
+						<CommentItem
+							key={idx}
+							idx={idx!}
+							writer={writer!}
+							contents={contents!}
+							createdAt={created_at!}
+							postIdx={postIdx!}
+							updatedAt={updatedAt!}
+							replies={replies ? replies : []}
+							requestCommentDelete={requestCommentDelete}
+							requestDeleteReply={requestDeleteReply}
+							requestCommentList={requestCommentList}
+						/>
+					);
+				})
+			) : (
+				<NoComments />
+			)}
 		</div>
 	);
 };

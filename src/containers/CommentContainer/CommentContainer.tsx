@@ -9,33 +9,30 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import { ICommentReplyTypes } from 'interface/ReplyTypes';
 
 interface ICommentContainerProps {
-	requestPostView: (idx: number) => Promise<void>;
+	requestPostView: () => Promise<void>;
 }
 
 const CommentContainer = observer(
 	({ requestPostView }: ICommentContainerProps) => {
 		const { store } = useStores();
-		const { handleCommentList, handleCommentDelete } = store.CommentStore;
+		const {
+			handleCommentList,
+			handleCommentDelete,
+			commentReplyList,
+			isLoading,
+		} = store.CommentStore;
 		const { handleDeleteReply } = store.ReplyStore;
-
-		const [commentReplyList, setCommentReplyList] = useState<
-			ICommentReplyTypes[]
-		>([]);
 
 		const router: NextRouter = useRouter();
 		const postIdx: number = Number(router.query.idx);
 
 		const requestCommentList = useCallback(async () => {
-			await handleCommentList(postIdx)
-				.then((response: ICommentReplyTypes[]) => {
-					setCommentReplyList(response);
-				})
-
-				.catch((error: IErrorTypes) => {
-					const { message } = error.response.data;
-					toast.error(message);
-					return;
-				});
+			await handleCommentList(postIdx).catch((error: IErrorTypes) => {
+				console.log(error);
+				const { message } = error.response.data;
+				toast.error(message);
+				return;
+			});
 		}, [handleCommentList, postIdx]);
 
 		const requestCommentDelete = useCallback(
@@ -45,7 +42,7 @@ const CommentContainer = observer(
 						if (response.status === 200) {
 							toast.success('댓글을 삭제하였습니다.');
 							await requestCommentList();
-							await requestPostView(postIdx);
+							await requestPostView();
 						}
 					})
 
@@ -55,16 +52,16 @@ const CommentContainer = observer(
 						return;
 					});
 			},
-			[handleCommentDelete, requestCommentList, requestPostView, postIdx]
+			[handleCommentDelete, requestCommentList, requestPostView]
 		);
 
 		const requestDeleteReply = useCallback(
 			async (idx: number) => {
 				await handleDeleteReply(idx)
-					.then((response: ISuccessTypes) => {
+					.then(async (response: ISuccessTypes) => {
 						if (response.status === 200) {
 							toast.success('답글 삭제를 성공하였습니다.');
-							requestCommentList();
+							await requestCommentList();
 						}
 					})
 
@@ -84,12 +81,18 @@ const CommentContainer = observer(
 		}, [requestCommentList, postIdx]);
 
 		return (
-			<Comment
-				commentReplyList={commentReplyList}
-				requestCommentDelete={requestCommentDelete}
-				requestDeleteReply={requestDeleteReply}
-				requestCommentList={requestCommentList}
-			/>
+			<>
+				{isLoading ? (
+					<div>Loading..</div>
+				) : (
+					<Comment
+						commentReplyList={commentReplyList}
+						requestCommentDelete={requestCommentDelete}
+						requestDeleteReply={requestDeleteReply}
+						requestCommentList={requestCommentList}
+					/>
+				)}
+			</>
 		);
 	}
 );

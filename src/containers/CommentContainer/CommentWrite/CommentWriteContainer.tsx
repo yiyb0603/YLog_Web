@@ -16,7 +16,12 @@ interface ICommentWriteContainerProps {
 const CommentWriteContainer = observer(
 	({ requestPostView }: ICommentWriteContainerProps) => {
 		const { store } = useStores();
-		const { handleCommentWrite, handleCommentList } = store.CommentStore;
+		const {
+			handleCommentWrite,
+			handleCommentList,
+			commentReplyList,
+		} = store.CommentStore;
+		const { handleReplyList } = store.ReplyStore;
 		const { handlePostView } = store.PostStore;
 
 		const router: NextRouter = useRouter();
@@ -41,8 +46,8 @@ const CommentWriteContainer = observer(
 						if (response.status === 200) {
 							toast.success('댓글 작성에 성공하였습니다.');
 							setContents('');
-							await handleCommentList(postIdx);
 							await requestPostView();
+							await handleCommentList(postIdx);
 						}
 					})
 
@@ -58,6 +63,8 @@ const CommentWriteContainer = observer(
 			handleCommentWrite,
 			handleCommentList,
 			handlePostView,
+			requestPostView,
+			commentReplyList,
 		]);
 
 		return (
