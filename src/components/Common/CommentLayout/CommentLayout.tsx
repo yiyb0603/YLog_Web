@@ -91,7 +91,8 @@ const CommentLayout = ({
 					</div>
 				</div>
 
-				{children && !children.props.isModify && myInfo.name === writer ? (
+				{(children && !children.props.isModify && myInfo.name === writer) ||
+				myInfo.is_admin ? (
 					<div className={cx('CommentLayout-Contents-Right')}>
 						<div
 							className={cx('CommentLayout-Contents-Right-Modify')}

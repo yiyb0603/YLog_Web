@@ -59,7 +59,7 @@ const CommentItem = ({
 			</CommentLayout>
 
 			<div className={cx('CommentItem-Replies')}>
-				{replies &&
+				{replies && replies.length > 0 ? (
 					replies.map((reply: any, index: number) => {
 						const {
 							contents,
@@ -84,7 +84,10 @@ const CommentItem = ({
 								/>
 							)
 						);
-					})}
+					})
+				) : (
+					<></>
+				)}
 			</div>
 		</div>
 	);

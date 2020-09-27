@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 const PostViewContainer = observer(() => {
 	const { store } = useStores();
 	const { handlePostView } = store.PostStore;
+	const { handleCommentList } = store.CommentStore;
 
 	const [postInfo, setPostInfo] = useState<IPostListTypes>({});
 

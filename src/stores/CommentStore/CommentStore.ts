@@ -18,11 +18,14 @@ import ReplyStore from 'stores/ReplyStore';
 
 @autobind
 export default class CommentStore {
+	@observable commentReplyList: any = [];
+	@observable isLoading: boolean = true;
+
 	@action
 	handleCommentList = async (postIdx: number) => {
 		try {
-			let commentReplyList: any = [];
-
+			this.isLoading = true;
+			this.commentReplyList = [];
 			const replyStore: ReplyStore = new ReplyStore();
 			const { handleReplyList } = replyStore;
 			await handleReplyList(postIdx);
@@ -32,11 +35,33 @@ export default class CommentStore {
 			);
 
 			const commentList: ICommentResponseTypes[] = response.data.comments;
-			const replies = [];
-			commentReplyList = commentList;
+			for (let i = 0; i < commentList.length; i++) {
+				const {
+					idx,
+					writer,
+					contents,
+					post_idx,
+					created_at,
+					updated_at,
+				} = commentList[i];
+				this.commentReplyList = [
+					...this.commentReplyList,
+					{
+						idx,
+						writer,
+						contents,
+						post_idx,
+						created_at,
+						updated_at,
+						replies: [],
+					},
+				];
+			}
 
-			if (replyStore.replyList.length > 0 && commentList.length > 0) {
-				for (let i: number = 0; i < commentList.length; i++) {
+			const replies = [];
+
+			if (replyStore.replyList.length > 0 && this.commentReplyList.length > 0) {
+				for (let i: number = 0; i < this.commentReplyList.length; i++) {
 					for (let j: number = 0; j < replyStore.replyList.length; j++) {
 						const {
 							idx,
@@ -45,7 +70,7 @@ export default class CommentStore {
 							created_at,
 							updated_at,
 							post_idx,
-						} = commentList[i];
+						} = this.commentReplyList[i];
 
 						const { comment_idx } = replyStore.replyList[j];
 
@@ -60,12 +85,15 @@ export default class CommentStore {
 								postIdx: replyStore.replyList[j].post_idx,
 							});
 
-							commentReplyList[i].replies = replies;
+							this.commentReplyList[i].replies = replies;
 						}
 					}
 				}
+			} else {
+				this.commentReplyList = commentList;
 			}
-			return commentReplyList;
+			this.isLoading = false;
+			return response;
 		} catch (error) {
 			throw error;
 		}

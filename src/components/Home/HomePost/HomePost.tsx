@@ -8,6 +8,7 @@ import timeCounting from 'time-counting';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import Link from 'next/link';
 import HomePostItem from './HomePostItem';
+import NoPosts from '../NoPosts';
 
 const style = require('./HomePost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -38,31 +39,35 @@ const HomePost = ({
 	return (
 		<FadeIn>
 			<div className={cx('HomePost')}>
-				{postLists.map((post: IPostListTypes) => {
-					const {
-						idx,
-						title,
-						introduction,
-						category_idx,
-						created_at,
-						writer,
-						thumbnail,
-					} = post;
+				{postLists.length > 0 ? (
+					postLists.map((post: IPostListTypes) => {
+						const {
+							idx,
+							title,
+							introduction,
+							category_idx,
+							created_at,
+							writer,
+							thumbnail,
+						} = post;
 
-					return (
-						<HomePostItem
-							idx={idx!}
-							title={title!}
-							introduction={introduction!}
-							category_idx={category_idx!}
-							created_at={created_at!}
-							writer={writer!}
-							thumbnail={thumbnail!}
-							categoryList={categoryList}
-							requestDeletePost={requestDeletePost}
-						/>
-					);
-				})}
+						return (
+							<HomePostItem
+								idx={idx!}
+								title={title!}
+								introduction={introduction!}
+								category_idx={category_idx!}
+								created_at={created_at!}
+								writer={writer!}
+								thumbnail={thumbnail!}
+								categoryList={categoryList}
+								requestDeletePost={requestDeletePost}
+							/>
+						);
+					})
+				) : (
+					<NoPosts />
+				)}
 			</div>
 		</FadeIn>
 	);
