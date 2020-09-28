@@ -12,6 +12,7 @@ import Profile from 'components/Home/Profile';
 import Link from 'next/link';
 import { getStorage } from 'lib/Storage';
 import { onKeyDown } from 'lib/onKeyDown';
+import { getToken } from 'lib/Token';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -74,11 +75,15 @@ const NavBar = () => {
 							<div>로그인</div>
 						)}
 					</Link>
-					<img
-						src="/icon/profile_default.jpg"
-						alt="profile"
-						onClick={() => setIsMyInfo(true)}
-					/>
+					{typeof window !== 'undefined' && getToken() !== null ? (
+						<img
+							src="/icon/profile_default.jpg"
+							alt="profile"
+							onClick={() => setIsMyInfo(true)}
+						/>
+					) : (
+						<></>
+					)}
 				</div>
 			</div>
 			{isMyInfo && <Profile handleCloseModal={() => setIsMyInfo(false)} />}

@@ -16,9 +16,10 @@
 .HomePost {
 	&-Item {
 		position: relative;
-		min-width: 300px;
-		max-width: 300px;
-		min-height: 300px;
+		min-width: 330px;
+		max-width: 330px;
+		min-height: 400px;
+		max-height: 400px;
 		margin-right: 10px;
 		margin-bottom: 10px;
 
@@ -32,10 +33,10 @@
 		}
 
 		&-Thumbnail {
-			min-width: 300px;
-			max-width: 300px;
-			min-height: 150px;
-			max-height: 150px;
+			min-width: 330px;
+			max-width: 330px;
+			min-height: 180px;
+			max-height: 180px;
 			cursor: pointer;
 			object-fit: fill;
 		}
@@ -46,7 +47,7 @@
 			flex-direction: column;
 			justify-content: space-around;
 			padding: 0 5px 5px 5px;
-			height: calc(340px - 150px);
+			height: calc(340px - 180px);
 			cursor: pointer;
 
 			&-Title {
