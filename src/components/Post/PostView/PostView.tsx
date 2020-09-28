@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IPostListTypes } from 'interface/PostTypes';
@@ -41,6 +41,9 @@ const PostView = ({ postInfo, requestPostView }: IPostViewProps) => {
 					src={thumbnail ? thumbnail : '/icon/Logo.PNG'}
 					alt="thumbnail"
 					className={cx('PostView-Contents-Thumbnail')}
+					onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
+						(e.currentTarget.src = '/icon/Logo.PNG')
+					}
 				/>
 				<div className={cx('PostView-Contents-Introduction')}>
 					{introduction}
