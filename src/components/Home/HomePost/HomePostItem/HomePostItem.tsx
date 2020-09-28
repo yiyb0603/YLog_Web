@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import timeCounting from 'time-counting';
@@ -6,6 +6,7 @@ import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import SecureLS from 'secure-ls';
 import { IUserInfoTypes } from 'interface/AuthTypes';
+import { NextRouter, useRouter } from 'next/router';
 
 const style = require('./HomePostItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -35,6 +36,7 @@ const HomePostItem = ({
 }: HomePostItemProps) => {
 	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
 	const myInfo: IUserInfoTypes = ls.get('userInfo');
+	const router: NextRouter = useRouter();
 
 	return (
 		<div className={cx('HomePost-Item')} key={idx}>
@@ -44,6 +46,9 @@ const HomePostItem = ({
 						className={cx('HomePost-Item-Thumbnail')}
 						src={thumbnail ? thumbnail : '/images/NO_IMAGES.PNG'}
 						alt="thumbnail"
+						onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
+							(e.currentTarget.src = '/images/NO_IMAGES.PNG')
+						}
 					/>
 
 					<div className={cx('HomePost-Item-Contents')}>
@@ -76,7 +81,10 @@ const HomePostItem = ({
 				<div className={cx('HomePost-Item-Bottom-Option')}>
 					{myInfo.name === writer || myInfo.is_admin ? (
 						<>
-							<div className={cx('HomePost-Item-Bottom-Option-Modify')}>
+							<div
+								className={cx('HomePost-Item-Bottom-Option-Modify')}
+								onClick={() => router.push(`/post/modify/${idx}`)}
+							>
 								수정
 							</div>
 							<div

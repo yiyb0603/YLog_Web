@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Modal from 'components/Common/Modal';
+import SecureLS from 'secure-ls';
+import { handleMomentParse } from 'lib/Moment';
 
 const style = require('./Profile.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -11,10 +13,29 @@ interface ProfileProps {
 }
 
 const Profile = ({ handleCloseModal }: ProfileProps) => {
+	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
+	const { id, email, name, joined_at } = ls.get('userInfo');
+
 	return (
 		<div className={cx('Profile')}>
-			<Modal title="내 정보" handleCloseModal={handleCloseModal}>
-				<div>asdfsdfasdf</div>
+			<Modal
+				width="300px"
+				height="300px"
+				title="내 정보"
+				handleCloseModal={handleCloseModal}
+			>
+				<div className={cx('Profile-Contents')}>
+					<img src="/images/NO_IMAGES.PNG" alt="profile" />
+
+					<div className={cx('Profile-Contents-List')}>
+						<div>아이디: {id}</div>
+						<div>이름: {name}</div>
+						<div>이메일: {email}</div>
+						<div>
+							가입일: {handleMomentParse(joined_at, 'YYYY년 MM월 DD일')}
+						</div>
+					</div>
+				</div>
 			</Modal>
 		</div>
 	);

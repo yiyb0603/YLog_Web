@@ -4,6 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import { NextRouter, useRouter } from 'next/router';
 import { BsPen, BsTrash } from 'react-icons/bs';
 import { IPostCategoryTypes } from 'interface/CategoryTypes';
+import SecureLS from 'secure-ls';
 
 const style = require('./CategoryItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -24,7 +25,10 @@ const CategoryItem = ({
 	requestDeleteCategory,
 }: CategoryItemProps) => {
 	const router: NextRouter = useRouter();
-	const { topic } = router.query;
+	const { topic, keyword } = router.query;
+
+	const ls = new SecureLS({ encodingType: 'aes' });
+	const { is_admin } = ls.get('userInfo');
 
 	return (
 		<li key={idx} className={cx('Category-List-Item')}>
@@ -32,27 +36,33 @@ const CategoryItem = ({
 				className={cx('Category-List-Item-Text', {
 					'Category-List-Item-Text-Current': Number(topic) === idx,
 				})}
-				onClick={() => router.push(`/?topic=${idx}`)}
+				onClick={() =>
+					router.push(
+						keyword ? `/?topic=${idx}&keyword=${keyword}` : `/?topic=${idx}`
+					)
+				}
 			>
 				{categoryName.length > 14
 					? categoryName.substring(0, 14).concat('...')
 					: categoryName}
 			</span>
 
-			<div className={cx('Category-List-Item-Icon')}>
-				<BsPen
-					className={cx('Category-List-Item-Icon-Modify')}
-					onClick={() => {
-						setCategoryInfo({ idx, categoryName });
-						setIsModify(true);
-					}}
-				/>
+			{is_admin && (
+				<div className={cx('Category-List-Item-Icon')}>
+					<BsPen
+						className={cx('Category-List-Item-Icon-Modify')}
+						onClick={() => {
+							setCategoryInfo({ idx, categoryName });
+							setIsModify(true);
+						}}
+					/>
 
-				<BsTrash
-					className={cx('Category-List-Item-Icon-Delete')}
-					onClick={() => requestDeleteCategory(idx)}
-				/>
-			</div>
+					<BsTrash
+						className={cx('Category-List-Item-Icon-Delete')}
+						onClick={() => requestDeleteCategory(idx)}
+					/>
+				</div>
+			)}
 		</li>
 	);
 };

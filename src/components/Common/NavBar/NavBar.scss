@@ -2,7 +2,6 @@
 @import '../../../styles/Fonts/FontScheme.scss';
 
 .NavBar {
-	width: 100%;
 	height: 70px;
 	background-color: $primary;
 	box-shadow: $lighterGray 0 2px 5px 0;
@@ -16,38 +15,44 @@
 		padding: 0 1.5rem;
 		display: flex;
 		display: -webkit-flex;
-		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: center;
 
 		&-Logo {
 			width: 150px;
+			cursor: pointer;
 		}
 
-		// &-SearchWrapper {
-		// 	width: 15%;
-		// 	display: flex;
-		// 	display: -webkit-flex;
-		// 	align-items: center;
-		// 	flex-wrap: wrap;
-		// 	border: none;
-		// 	outline: none;
-		// 	border-bottom: 2px solid $lighterGray;
-		// 	color: $white;
+		&-SearchWrapper {
+			width: 250px;
+			max-width: 250px;
+			display: flex;
+			display: -webkit-flex;
+			align-items: center;
+			border: none;
+			outline: none;
+			border-bottom: 2px solid $lighterGray;
+			color: $white;
 
-		// 	&-Focused {
-		// 		border-bottom: 2px solid $skyBlue;
-		// 	}
+			&-Focused {
+				border-bottom: 2px solid $lighterGreen;
+			}
 
-		// 	& > input {
-		// 		all: unset;
-		// 		padding: 10px 0;
+			& > input {
+				width: 100%;
+				border: none;
+				outline: none;
+				background: none;
+				padding: 10px 0;
+				font-size: $font_18;
+				color: $white;
 
-		// 		&::placeholder {
-		// 			color: $white;
-		// 		}
-		// 	}
-		// }
+				&::placeholder {
+					color: $white;
+					vertical-align: middle;
+				}
+			}
+		}
 
 		&-Right {
 			display: flex;
