@@ -31,5 +31,6 @@ export interface IPostListTypes {
 	thumbnail?: string | null | undefined;
 	category_idx?: number;
 	created_at?: Date | string;
+	updated_at?: Date | string;
 	writer?: string;
 }

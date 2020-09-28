@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import Constants from 'Constants';
 
 const style = require('./Footer.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -8,7 +9,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 const Footer = () => {
 	return (
 		<div className={cx('Footer')}>
-			<div>Copyright @yiyb0603 All right reserved.</div>
+			<div>{Constants.FOOTER_TEXT}</div>
 		</div>
 	);
 };

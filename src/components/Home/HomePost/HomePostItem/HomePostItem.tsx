@@ -7,6 +7,7 @@ import { ICategoryListTypes } from 'interface/CategoryTypes';
 import SecureLS from 'secure-ls';
 import { IUserInfoTypes } from 'interface/AuthTypes';
 import { NextRouter, useRouter } from 'next/router';
+import parseTime from 'lib/TimeCounting';
 
 const style = require('./HomePostItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,6 +18,7 @@ interface HomePostItemProps {
 	introduction: string;
 	category_idx: number;
 	created_at: string | Date;
+	updated_at: string | Date;
 	thumbnail: string;
 	writer: string;
 	categoryList: ICategoryListTypes[];
@@ -29,6 +31,7 @@ const HomePostItem = ({
 	introduction,
 	category_idx,
 	created_at,
+	updated_at,
 	thumbnail,
 	writer,
 	categoryList,
@@ -61,7 +64,8 @@ const HomePostItem = ({
 
 						<div className={cx('HomePost-Item-Contents-TimeWrapper')}>
 							<div className={cx('HomePost-Item-Contents-TimeWrapper-Time')}>
-								{timeCounting(created_at!, { lang: 'ko' })}
+								{parseTime(created_at)}
+								{updated_at && '(수정됨)'}
 							</div>
 
 							<div className={cx('HomePost-Item-Contents-Category')}>

@@ -49,6 +49,7 @@ const HomePost = ({
 							created_at,
 							writer,
 							thumbnail,
+							updated_at,
 						} = post;
 
 						return (
@@ -58,6 +59,7 @@ const HomePost = ({
 								introduction={introduction!}
 								category_idx={category_idx!}
 								created_at={created_at!}
+								updated_at={updated_at!}
 								writer={writer!}
 								thumbnail={thumbnail!}
 								categoryList={categoryList}
