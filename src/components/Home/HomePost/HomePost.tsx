@@ -26,7 +26,7 @@ const HomePost = ({
 }: HomePostProps) => {
 	const router: NextRouter = useRouter();
 	const {
-		query: { topic },
+		query: { topic, keyword },
 	}: NextRouter = router;
 
 	const postLists: false | IPostListTypes[] =

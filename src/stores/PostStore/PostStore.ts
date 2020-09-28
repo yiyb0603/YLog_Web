@@ -6,7 +6,12 @@ import {
 	IPostResponseTypes,
 } from 'interface/PostTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
-import { deleteRequest, getResponse, postRequest } from 'lib/Axios';
+import {
+	deleteRequest,
+	getResponse,
+	modifyRequest,
+	postRequest,
+} from 'lib/Axios';
 import { getToken } from 'lib/Token';
 import { observable, action } from 'mobx';
 
@@ -45,9 +50,37 @@ export default class PostStore {
 	};
 
 	@action
+	handleSearchPosts = async (keyword: string) => {
+		try {
+			const response: IPostResponseListTypes = await getResponse(
+				`/post/search?keyword=${keyword}`
+			);
+			this.postList = response.data.posts;
+
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
 	handleWritePost = async (request: IPostRequestTypes) => {
 		try {
 			const response: ISuccessTypes = await postRequest(
+				'/post',
+				request,
+				getToken()
+			);
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
+	handleModifyPost = async (request: IPostRequestTypes) => {
+		try {
+			const response: ISuccessTypes = await modifyRequest(
 				'/post',
 				request,
 				getToken()

@@ -1,1 +1,12 @@
-/* your css code */
+.Profile {
+	overflow: hidden;
+
+	&-Contents {
+		margin-top: 1rem;
+
+		& img {
+			width: 200px;
+			margin-bottom: 1rem;
+		}
+	}
+}

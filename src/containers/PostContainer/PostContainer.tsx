@@ -5,25 +5,38 @@ import HomePost from 'components/Home/HomePost';
 import IErrorTypes from 'interface/ErrorTypes';
 import { toast } from 'react-toastify';
 import ISuccessTypes from 'interface/SuccessTypes';
+import { NextRouter, useRouter } from 'next/router';
 
 const PostContainer = observer(() => {
+	const router: NextRouter = useRouter();
+	const { keyword } = router.query;
+
 	const { store } = useStores();
-	const { handlePostList, postList, handleDeletePost } = store.PostStore;
+	const {
+		handlePostList,
+		postList,
+		handleDeletePost,
+		handleSearchPosts,
+	} = store.PostStore;
 	const { handleCategoryList, categoryList } = store.CategoryStore;
 
 	const requestInitialData = useCallback(async () => {
-		await handlePostList().catch((error: IErrorTypes) => {
-			const { message } = error.response.data;
-			toast.error(message);
-			return;
-		});
+		if (!keyword) {
+			await handlePostList().catch((error: IErrorTypes) => {
+				const { message } = error.response.data;
+				toast.error(message);
+				return;
+			});
+		} else {
+			await handleSearchPosts(keyword);
+		}
 
 		await handleCategoryList().catch((error: IErrorTypes) => {
 			const { message } = error.response.data;
 			toast.error(message);
 			return;
 		});
-	}, [handlePostList, handleCategoryList]);
+	}, [handlePostList, handleCategoryList, keyword]);
 
 	const requestDeletePost = useCallback(
 		async (idx: number) => {
@@ -45,7 +58,7 @@ const PostContainer = observer(() => {
 
 	useEffect(() => {
 		requestInitialData();
-	}, [requestInitialData]);
+	}, [requestInitialData, keyword]);
 
 	return (
 		<HomePost

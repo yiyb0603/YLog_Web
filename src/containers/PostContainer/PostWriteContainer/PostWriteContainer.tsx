@@ -77,7 +77,15 @@ const PostWriteContainer = observer(() => {
 				toast.error(message);
 				return;
 			});
-	}, [title, contents, categoryIdx, handleWritePost, showAlert]);
+	}, [
+		title,
+		contents,
+		categoryIdx,
+		thumbnail,
+		introduction,
+		handleWritePost,
+		showAlert,
+	]);
 
 	const postWriteForm: JSX.Element = (
 		<PostWriteForm

@@ -1,6 +1,7 @@
 import ISuccessTypes from './SuccessTypes';
 
 export interface IPostRequestTypes {
+	idx?: number;
 	title: string;
 	introduction: string;
 	contents: string;
