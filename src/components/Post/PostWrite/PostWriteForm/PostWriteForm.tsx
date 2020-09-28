@@ -32,6 +32,7 @@ interface PostWriteFormProps {
 	};
 
 	categoryList: ICategoryListTypes[];
+	requestFileUpload: (e: ChangeEvent<HTMLInputElement>) => void;
 	requestWritePost: () => Promise<void>;
 }
 
@@ -64,39 +65,13 @@ const PostWriteForm = ({
 	contentsObject,
 	categoryIdxObject,
 	categoryList,
+	requestFileUpload,
 	requestWritePost,
 }: PostWriteFormProps) => {
 	const { title, setTitle } = titleObject;
 	const { introduction, setIntroduction } = introductionObject;
 	const { contents, setContents } = contentsObject;
 	const { setCategoryIdx } = categoryIdxObject;
-
-	const handleImageUpload = (file: File, callback: (url: string) => void) => {
-		const reader: FileReader = new FileReader();
-
-		reader.onload = () => {
-			// 	const convertBase64UrlToBlob = (urlData: any) => {
-			// 		let arr = urlData.split(','),
-			// 			mime = arr[0].match(/:(.*?);/)[1];
-			// 		let bstr = atob(arr[1]);
-			// 		let n = bstr.length;
-			// 		let u8arr = new Uint8Array(n);
-			// 		while (n--) {
-			// 			u8arr[n] = bstr.charCodeAt(n);
-			// 		}
-			// 		return new Blob([u8arr], { type: mime });
-			// 	};
-			// 	const blob = convertBase64UrlToBlob(reader.result);
-			// 	setTimeout(() => {
-			//
-			// setTimeout은 사진의 비동기 업로드를 시뮬레이션합니다.
-			// 이미지 주소를 얻기위한 비동기 업로드 후 calback 콜백 (매개 변수는 imageUrl 문자열)을 실행하여 이미지 주소를 마크 다운에 씁니다
-			// 		callback('https://avatars0.githubusercontent.com/u/21263805?s=40&v=4');
-			// 	}, 1000);
-			// };
-			// reader.readAsDataURL(file);
-		};
-	};
 
 	return (
 		<div className={cx('PostWriteForm')}>
@@ -135,17 +110,18 @@ const PostWriteForm = ({
 				/>
 			</div>
 
+			<input type="file" onChange={requestFileUpload} />
+
 			<MdEditor
 				value={contents}
 				onChange={({ text }) => setContents(text)}
 				style={{ height: '80vh' }}
 				renderHTML={(text) => mdParser.render(text)}
-				onImageUpload={handleImageUpload}
 				placeholder="내용을 입력하세요..."
 			/>
 
 			<div className={cx('PostWriteForm-Button')}>
-				<button className={cx('PostWriteForm-Button-Save')}>임시 저장</button>
+				{/* <button className={cx('PostWriteForm-Button-Save')}>임시 저장</button> */}
 				<button
 					className={cx('PostWriteForm-Button-Write')}
 					onClick={requestWritePost}
