@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/useStores';
 import PostWrite from 'components/Post/PostWrite';
@@ -10,18 +10,40 @@ import GroupingState from 'lib/GroupingState';
 import { toast } from 'react-toastify';
 import { showAlert } from 'lib/SweetAlert';
 import { NextRouter, useRouter } from 'next/router';
+import IUploadTypes from 'interface/UploadTypes';
 
 const PostWriteContainer = observer(() => {
 	const { store } = useStores();
 	const { handleWritePost } = store.PostStore;
 	const { categoryList, handleCategoryList } = store.CategoryStore;
+	const { handleFileUpload } = store.UploadStore;
 	const router: NextRouter = useRouter();
 
 	const [title, setTitle] = useState<string>('');
 	const [introduction, setIntroduction] = useState<string>('');
 	const [contents, setContents] = useState<string>('');
 	const [categoryIdx, setCategoryIdx] = useState<number>(0);
-	// const [thumbnail, setThumbnail] = useState<string>('');
+	const [thumbnail, setThumbnail] = useState<string | null>(null);
+
+	const requestFileUpload = useCallback(
+		async (e: ChangeEvent<HTMLInputElement>) => {
+			const { files } = e.target;
+			const formData: FormData = new FormData();
+			formData.append('files', files![0]);
+
+			await handleFileUpload(formData)
+				.then((response: IUploadTypes) => {
+					setThumbnail(response.data.files[0]);
+				})
+
+				.catch((error: IErrorTypes) => {
+					const { message } = error.response.data;
+					toast.error(message);
+					return;
+				});
+		},
+		[handleFileUpload]
+	);
 
 	const requestWritePost = useCallback(async (): Promise<void> => {
 		const request: IPostRequestTypes = {
@@ -29,7 +51,7 @@ const PostWriteContainer = observer(() => {
 			introduction,
 			contents,
 			categoryIdx,
-			thumbnail: null,
+			thumbnail: thumbnail || null,
 		};
 
 		if (!title.trim() || !introduction.trim() || !contents.trim()) {
@@ -72,6 +94,7 @@ const PostWriteContainer = observer(() => {
 				setCategoryIdx
 			)}
 			categoryList={categoryList}
+			requestFileUpload={requestFileUpload}
 			requestWritePost={requestWritePost}
 		/>
 	);

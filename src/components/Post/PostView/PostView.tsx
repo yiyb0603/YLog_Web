@@ -60,8 +60,8 @@ const PostView = ({ postInfo, requestPostView }: IPostViewProps) => {
 					댓글 {comment_length}개
 				</div>
 
-				<CommentWriteContainer requestPostView={requestPostView} />
-				<CommentContainer requestPostView={requestPostView} />
+				<CommentWriteContainer />
+				<CommentContainer />
 			</div>
 		</div>
 	);

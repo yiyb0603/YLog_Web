@@ -13,6 +13,7 @@ import { observable, action } from 'mobx';
 @autobind
 export default class PostStore {
 	@observable postList: IPostListTypes[] = [];
+	@observable postInfo: IPostListTypes = {};
 
 	@action
 	handlePostList = async () => {
@@ -36,6 +37,7 @@ export default class PostStore {
 	handlePostView = async (idx: number) => {
 		try {
 			const response: IPostResponseTypes = await getResponse(`/post/${idx}`);
+			this.postInfo = response.data.post;
 			return response;
 		} catch (error) {
 			throw error;
