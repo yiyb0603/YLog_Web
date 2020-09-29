@@ -1,14 +1,11 @@
-import dynamic from 'next/dynamic';
 import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import 'react-markdown-editor-lite/lib/index.css';
-import MarkdownIt from 'markdown-it';
-import 'react-markdown-editor-lite/lib/index.css';
-import hljs from 'highlight.js';
-import 'highlight.js/styles/atom-one-light.css';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import { SelectBox } from 'components/Common/SelectBox';
+import WriteForm from 'components/Common/MarkdownForm';
+import MarkdownForm from 'components/Common/MarkdownForm';
 
 interface PostWriteFormProps {
 	titleObject: {
@@ -38,26 +35,6 @@ interface PostWriteFormProps {
 
 const style = require('./PostWriteForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
-
-const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
-	ssr: false,
-});
-
-const mdParser: MarkdownIt = new MarkdownIt({
-	html: true,
-	linkify: true,
-	typographer: true,
-	highlight: (str: string, lang: string) => {
-		if (lang && hljs.getLanguage(lang)) {
-			try {
-				return hljs.highlight(lang, str).value;
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
-		return '';
-	},
-});
 
 const PostWriteForm = ({
 	titleObject,
@@ -112,13 +89,7 @@ const PostWriteForm = ({
 
 			<input type="file" onChange={requestFileUpload} />
 
-			<MdEditor
-				value={contents}
-				onChange={({ text }) => setContents(text)}
-				style={{ height: '80vh' }}
-				renderHTML={(text) => mdParser.render(text)}
-				placeholder="내용을 입력하세요..."
-			/>
+			<MarkdownForm contents={contents} setContents={setContents} />
 
 			<div className={cx('PostWriteForm-Button')}>
 				{/* <button className={cx('PostWriteForm-Button-Save')}>임시 저장</button> */}
