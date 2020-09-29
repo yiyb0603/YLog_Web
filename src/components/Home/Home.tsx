@@ -14,21 +14,25 @@ const Home = () => {
 
 	return (
 		<div className={cx('Home')}>
-			<div className={cx('Home-Contents')}>
+			<div>
 				<NoticeContainer />
-				<div className={cx('Home-Contents-Post')}>
-					<PostContainer />
-				</div>
 			</div>
+			<div className={cx('Home-Middle')}>
+				<div className={cx('Home-Middle-Contents')}>
+					<div className={cx('Home-Middle-Contents-Post')}>
+						<PostContainer />
+					</div>
+				</div>
 
-			<div className={cx('Home-Right')}>
-				<button
-					className={cx('Home-Right-WriteButton')}
-					onClick={() => router.push('/post/postwrite')}
-				>
-					글 작성
-				</button>
-				<CategoryContainer />
+				<div className={cx('Home-Right')}>
+					<button
+						className={cx('Home-Right-WriteButton')}
+						onClick={() => router.push('/post/postwrite')}
+					>
+						글 작성
+					</button>
+					<CategoryContainer />
+				</div>
 			</div>
 		</div>
 	);

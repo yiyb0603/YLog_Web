@@ -3,8 +3,8 @@ import ISuccessTypes from './SuccessTypes';
 export interface INoticeRequestTypes {
 	idx?: number;
 	title?: string;
-	contents?: string;
 	writer?: string;
+	contents?: string;
 }
 
 export interface INotceResponseListTypes extends ISuccessTypes {

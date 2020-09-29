@@ -1,1 +1,7 @@
-/* your css code */
+.NoticeList {
+	&-CountWrapper {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+	}
+}
