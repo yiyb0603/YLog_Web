@@ -27,7 +27,6 @@ const PostView = ({ postInfo, categoryName }: IPostViewProps) => {
 		contents,
 		comment_length,
 		thumbnail,
-		category_idx,
 	} = postInfo;
 
 	return (

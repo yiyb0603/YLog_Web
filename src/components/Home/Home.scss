@@ -7,18 +7,25 @@
 	display: flex;
 	display: -webkit-flex;
 	justify-content: space-between;
-	margin: 3rem auto;
+	flex-direction: column;
+	-ms-flex-direction: column;
+	margin: 1rem auto;
 	padding: 0 3rem;
 
-	&-Contents {
+	&-Middle {
 		display: flex;
 		display: -webkit-flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		flex: 1;
 
-		&-Post {
+		&-Contents {
+			display: flex;
+			display: -webkit-flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
 			flex: 1;
+
+			&-Post {
+				flex: 1;
+			}
 		}
 	}
 

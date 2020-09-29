@@ -1,0 +1,58 @@
+@import '../../../styles/Fonts/FontScheme.scss';
+@import '../../../styles/Palette/Palette.scss';
+
+@mixin buttonStyle($background) {
+	margin-left: 10px;
+	border: none;
+	outline: none;
+	background-color: $background;
+	color: $white;
+	cursor: pointer;
+	padding: 10px 20px;
+	transition: all 0.2s ease-in;
+}
+
+@mixin inputStyle() {
+	width: 100%;
+	border: none;
+	border-bottom: 2px solid $lighterGray;
+	outline: none;
+	padding: 5px 0;
+	font-size: $font_22;
+	margin-right: 1rem;
+	margin-bottom: 10px;
+}
+
+.CreateNotice {
+	max-width: 1200px;
+	margin: 1rem auto;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+
+	&-Top {
+		width: 100%;
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		&-Title {
+			@include inputStyle();
+		}
+	}
+
+	&-Button {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		margin-top: 10px;
+
+		&-Save {
+			@include buttonStyle($lighterGreen);
+		}
+
+		&-Write {
+			@include buttonStyle($primary);
+		}
+	}
+}
