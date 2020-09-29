@@ -5,29 +5,36 @@ import IErrorTypes from 'interface/ErrorTypes';
 import { NextRouter, useRouter } from 'next/router';
 import PostView from 'components/Post/PostView';
 import { toast } from 'react-toastify';
+import { ICategoryListTypes } from 'interface/CategoryTypes';
 
 const PostViewContainer = observer(() => {
 	const { store } = useStores();
 	const { handlePostView, postInfo } = store.PostStore;
+	const { handleCategoryList, categoryList } = store.CategoryStore;
 
 	const router: NextRouter = useRouter();
 	const { idx } = router.query;
 
+	const categoryName: ICategoryListTypes = categoryList.find(
+		(category: ICategoryListTypes) => category.idx === postInfo.category_idx
+	);
+
 	const requestPostView = useCallback(async (): Promise<void> => {
 		if (idx) {
+			await handleCategoryList();
 			await handlePostView(idx).catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
 				toast.error(message);
 				return;
 			});
 		}
-	}, [idx, handlePostView]);
+	}, [idx, handleCategoryList, handlePostView]);
 
 	useEffect(() => {
 		requestPostView();
 	}, [requestPostView]);
 
-	return <PostView postInfo={postInfo} requestPostView={requestPostView} />;
+	return <PostView postInfo={postInfo} categoryName={categoryName} />;
 });
 
 export default PostViewContainer;

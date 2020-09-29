@@ -3,30 +3,31 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IPostListTypes } from 'interface/PostTypes';
 import ReactMarkdown from 'react-markdown';
-import timeCounting from 'time-counting';
 import CodeBlock from './CodeBlock';
 import CommentContainer from 'containers/CommentContainer';
 import CommentWriteContainer from 'containers/CommentContainer/CommentWrite';
+import parseTime from 'lib/TimeCounting';
+import { ICategoryListTypes } from 'interface/CategoryTypes';
 
 const style = require('./PostView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface IPostViewProps {
 	postInfo: IPostListTypes;
-	requestPostView: () => Promise<void>;
+	categoryName: ICategoryListTypes;
 }
 
-const PostView = ({ postInfo, requestPostView }: IPostViewProps) => {
+const PostView = ({ postInfo, categoryName }: IPostViewProps) => {
 	const {
 		title,
 		introduction,
 		writer,
 		created_at,
+		updated_at,
 		contents,
-		category_idx,
 		comment_length,
 		thumbnail,
-		writer_id,
+		category_idx,
 	} = postInfo;
 
 	return (
@@ -34,8 +35,18 @@ const PostView = ({ postInfo, requestPostView }: IPostViewProps) => {
 			<div className={cx('PostView-Contents')}>
 				<div className={cx('PostView-Contents-Title')}>{title}</div>
 				<div className={cx('PostView-Contents-Info')}>
-					<div>{timeCounting(created_at!, { lang: 'ko' })}</div>
-					<div>{writer}</div>
+					<div className={cx('PostView-Contents-Info-Category')}>
+						{categoryName && categoryName.category_name}
+					</div>
+					<div className={cx('PostView-Contents-Info-Personal')}>
+						<div>
+							{parseTime(created_at!)}
+							{updated_at && ' (수정됨)'}
+						</div>
+						<div className={cx('PostView-Contents-Info-Personal-Writer')}>
+							{writer}
+						</div>
+					</div>
 				</div>
 				<img
 					src={thumbnail ? thumbnail : '/icon/Logo.PNG'}
