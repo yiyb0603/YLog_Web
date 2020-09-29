@@ -20,11 +20,26 @@
 		&-Info {
 			display: flex;
 			display: -webkit-flex;
-			justify-content: flex-start;
+			justify-content: space-between;
+			align-items: center;
 			margin-top: 10px;
 
-			& > * {
-				margin-right: 10px;
+			&-Category {
+				color: $primary;
+			}
+
+			&-Personal {
+				display: flex;
+				display: -webkit-flex;
+
+				& > div:first-child {
+					margin-right: 10px;
+				}
+
+				&-Writer {
+					color: $primary;
+					font-size: $font_18;
+				}
 			}
 		}
 
