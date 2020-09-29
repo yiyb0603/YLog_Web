@@ -4,6 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import CategoryContainer from 'containers/CategoryContainer/Category';
 import { NextRouter, useRouter } from 'next/router';
 import PostContainer from 'containers/PostContainer';
+import NoticeContainer from 'containers/NoticeContainer';
 
 const style = require('./Home.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -14,6 +15,7 @@ const Home = () => {
 	return (
 		<div className={cx('Home')}>
 			<div className={cx('Home-Contents')}>
+				<NoticeContainer />
 				<div className={cx('Home-Contents-Post')}>
 					<PostContainer />
 				</div>
