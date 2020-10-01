@@ -1,11 +1,7 @@
 import React, { ReactNode } from 'react';
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
 import NavBar from '../NavBar';
 import Footer from '../Footer';
-
-const style = require('./PageTemplate.scss');
-const cx: ClassNamesFn = classNames.bind(style);
+import ScrollTop from '../ScrollTop';
 
 interface IPageTemplateProps {
 	children?: ReactNode;
@@ -13,11 +9,12 @@ interface IPageTemplateProps {
 
 const PageTemplate = ({ children }: IPageTemplateProps) => {
 	return (
-		<div className={cx('PageTemplate')}>
+		<>
 			<NavBar />
 			{children}
 			<Footer />
-		</div>
+			<ScrollTop />
+		</>
 	);
 };
 
