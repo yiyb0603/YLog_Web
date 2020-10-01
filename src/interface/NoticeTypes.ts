@@ -5,6 +5,8 @@ export interface INoticeRequestTypes {
 	title?: string;
 	writer?: string;
 	contents?: string;
+	created_at?: Date | string;
+	updated_at?: Date | string;
 }
 
 export interface INotceResponseListTypes extends ISuccessTypes {
