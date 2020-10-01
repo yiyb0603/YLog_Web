@@ -5,6 +5,7 @@ import { INoticeRequestTypes } from 'interface/NoticeTypes';
 import parseTime from 'lib/TimeCounting';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from 'components/Common/CodeBlock';
+import { NextRouter, useRouter } from 'next/router';
 
 const style = require('./NoticeView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -15,6 +16,7 @@ interface NoticeViewProps {
 }
 
 const NoticeView = ({ noticeInfo, requestDeleteNotice }: NoticeViewProps) => {
+	const router: NextRouter = useRouter();
 	const { idx, writer, title, contents, created_at, updated_at } = noticeInfo;
 
 	return (
@@ -33,7 +35,10 @@ const NoticeView = ({ noticeInfo, requestDeleteNotice }: NoticeViewProps) => {
 					</div>
 
 					<div className={cx('NoticeView-Contents-Info-Option')}>
-						<div className={cx('NoticeView-Contents-Info-Option-Modify')}>
+						<div
+							className={cx('NoticeView-Contents-Info-Option-Modify')}
+							onClick={() => router.push(`/notice/modify/${idx}`)}
+						>
 							수정
 						</div>
 						<div

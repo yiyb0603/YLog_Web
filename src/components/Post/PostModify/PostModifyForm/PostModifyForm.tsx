@@ -89,7 +89,11 @@ const PostModifyForm = ({
 					{categoryList &&
 						filterCategories.map((category: ICategoryListTypes) => {
 							const { idx, category_name } = category;
-							return <option value={idx}>{category_name}</option>;
+							return (
+								<option value={idx} key={idx}>
+									{category_name}
+								</option>
+							);
 						})}
 				</SelectBox>
 			</div>
