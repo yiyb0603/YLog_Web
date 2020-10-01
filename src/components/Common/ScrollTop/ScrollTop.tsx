@@ -6,10 +6,9 @@ import { BsBoxArrowInUp } from 'react-icons/bs';
 const style = require('./ScrollTop.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface ScrollTopProps {}
-
-const ScrollTop = ({}: ScrollTopProps) => {
+const ScrollTop = () => {
 	const [isTop, setIsTop] = useState<boolean>(true);
+
 	const detectingScroll = useCallback((): void => {
 		if (document.documentElement.scrollTop > 0) {
 			setIsTop(false);
