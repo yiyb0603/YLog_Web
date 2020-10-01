@@ -54,6 +54,7 @@ const HomePost = ({
 
 						return (
 							<HomePostItem
+								key={idx!}
 								idx={idx!}
 								title={title!}
 								introduction={introduction!}

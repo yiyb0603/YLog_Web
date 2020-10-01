@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IPostListTypes } from 'interface/PostTypes';
 import ReactMarkdown from 'react-markdown';
-import CodeBlock from './CodeBlock';
+import CodeBlock from 'components/Common/CodeBlock';
 import CommentContainer from 'containers/CommentContainer';
 import CommentWriteContainer from 'containers/CommentContainer/CommentWrite';
 import parseTime from 'lib/TimeCounting';

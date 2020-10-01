@@ -14,22 +14,18 @@ interface NoticeItemProps {
 
 const NoticeItem = ({ itemInfo, children }: NoticeItemProps) => {
 	const router: NextRouter = useRouter();
+	const { idx, title } = itemInfo;
 
 	return (
 		<div className={cx('NoticeItem')}>
 			<div className={cx('NoticeItem-Contents')}>
-				<div className={cx('NoticeItem-Contents-Tag')}>공지사항</div>
-				<div className={cx('NoticeItem-Contents-Title')}>{itemInfo.title}</div>
-				{children && children}
-			</div>
-
-			<div className={cx('NoticeItem-Button')}>
-				<button
-					className={cx('NoticeItem-Button-WriteButton')}
-					onClick={() => router.push('/notice/write')}
+				<div
+					className={cx('NoticeItem-Contents-Title')}
+					onClick={() => router.push(`/notice/${idx}`)}
 				>
-					공지사항 작성
-				</button>
+					{title}
+				</div>
+				{children && children}
 			</div>
 		</div>
 	);

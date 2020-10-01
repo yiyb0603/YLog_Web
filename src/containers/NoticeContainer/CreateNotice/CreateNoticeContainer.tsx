@@ -9,6 +9,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import { toast } from 'react-toastify';
 import CreateNotice from 'components/Notice/CreateNotice';
 import GroupingState from 'lib/GroupingState';
+import NoticeForm from 'components/Common/NoticeForm';
 
 const CreateNoticeContainer = observer(() => {
 	const { store } = useStores();
@@ -45,13 +46,15 @@ const CreateNoticeContainer = observer(() => {
 			});
 	}, [title, contents, handleCreateNotice, router]);
 
-	return (
-		<CreateNotice
+	const noticeForm: JSX.Element = (
+		<NoticeForm
 			titleObject={GroupingState('title', title, setTitle)}
 			contentsObject={GroupingState('contents', contents, setContents)}
-			requestCreateNotice={requestCreateNotice}
+			requestFunction={requestCreateNotice}
 		/>
 	);
+
+	return <CreateNotice noticeForm={noticeForm} />;
 });
 
 export default CreateNoticeContainer;

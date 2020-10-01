@@ -64,6 +64,7 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 
 						return (
 							<CategoryItem
+								key={idx}
 								idx={idx}
 								categoryName={category_name}
 								setCategoryInfo={setCategoryInfo}
