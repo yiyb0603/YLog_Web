@@ -5,11 +5,12 @@
 	display: flex;
 	display: -webkit-flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 	align-items: center;
 	margin-bottom: 10px;
 	border: none;
-	border-bottom: 2px solid $primary;
-	padding-bottom: 5px;
+	border-bottom: 2px solid rgba($rgbaPrimary, 0.6);
+	padding-bottom: 3px;
 
 	&-CountWrapper {
 		display: flex;
@@ -23,9 +24,10 @@
 		align-items: center;
 
 		&-Tag {
-			border: 1px solid $black;
+			background-color: rgba($rgbaPrimary, 0.8);
+			color: $white;
 			border-radius: 25px;
-			padding: 5px;
+			padding: 7px 10px;
 			margin-right: 5px;
 		}
 	}

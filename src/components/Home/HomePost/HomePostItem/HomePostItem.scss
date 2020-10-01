@@ -20,8 +20,8 @@
 		max-width: 330px;
 		min-height: 400px;
 		max-height: 400px;
-		margin-right: 10px;
-		margin-bottom: 10px;
+		margin: 15px;
+		box-shadow: 5px 5px 10px $gray, -5px -5px 10px $lighterGray;
 
 		& > * {
 			word-break: break-all;
@@ -39,6 +39,7 @@
 			max-height: 180px;
 			cursor: pointer;
 			object-fit: fill;
+			margin: auto;
 		}
 
 		&-Contents {
@@ -46,7 +47,7 @@
 			display: -webkit-flex;
 			flex-direction: column;
 			justify-content: space-around;
-			padding: 0 5px 5px 5px;
+			padding: 0 5px 5px 10px;
 			height: calc(340px - 180px);
 			cursor: pointer;
 
@@ -82,7 +83,7 @@
 			display: -webkit-flex;
 			justify-content: space-between;
 			align-items: center;
-			padding: 0 5px 5px 5px;
+			padding: 0 5px 5px 10px;
 
 			&-Option {
 				display: flex;

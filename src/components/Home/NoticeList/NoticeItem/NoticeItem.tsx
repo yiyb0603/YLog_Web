@@ -23,7 +23,7 @@ const NoticeItem = ({ itemInfo, children }: NoticeItemProps) => {
 					className={cx('NoticeItem-Contents-Title')}
 					onClick={() => router.push(`/notice/${idx}`)}
 				>
-					{title}
+					{title!.length >= 15 ? title!.substring(0, 15).concat('...') : title}
 				</div>
 				{children && children}
 			</div>
