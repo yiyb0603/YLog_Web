@@ -19,11 +19,14 @@ import { observable, action } from 'mobx';
 export default class PostStore {
 	@observable postList: IPostListTypes[] = [];
 	@observable postInfo: IPostListTypes = {};
+	@observable isLoading: boolean = true;
 
 	@action
 	handlePostList = async () => {
+		this.isLoading = true;
 		try {
 			const response: IPostResponseListTypes = await getResponse('/post');
+
 			this.postList = response.data.posts.sort(
 				(a: IPostListTypes, b: IPostListTypes) => {
 					if (a.created_at! > b.created_at!) {
@@ -32,8 +35,11 @@ export default class PostStore {
 					return 0;
 				}
 			);
+
+			this.isLoading = false;
 			return response;
 		} catch (error) {
+			this.isLoading = false;
 			throw error;
 		}
 	};
@@ -41,10 +47,14 @@ export default class PostStore {
 	@action
 	handlePostView = async (idx: number) => {
 		try {
+			this.isLoading = true;
 			const response: IPostResponseTypes = await getResponse(`/post/${idx}`);
 			this.postInfo = response.data.post;
+
+			this.isLoading = false;
 			return response;
 		} catch (error) {
+			this.isLoading = false;
 			throw error;
 		}
 	};

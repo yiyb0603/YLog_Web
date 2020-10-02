@@ -6,6 +6,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import { toast } from 'react-toastify';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { NextRouter, useRouter } from 'next/router';
+import HomeLoading from 'components/Common/Loading/HomeLoading';
 
 const PostContainer = observer(() => {
 	const router: NextRouter = useRouter();
@@ -13,6 +14,7 @@ const PostContainer = observer(() => {
 
 	const { store } = useStores();
 	const {
+		isLoading,
 		handlePostList,
 		postList,
 		handleDeletePost,
@@ -61,11 +63,17 @@ const PostContainer = observer(() => {
 	}, [requestInitialData, keyword]);
 
 	return (
-		<HomePost
-			postList={postList}
-			categoryList={categoryList}
-			requestDeletePost={requestDeletePost}
-		/>
+		<>
+			{!isLoading ? (
+				<HomePost
+					postList={postList}
+					categoryList={categoryList}
+					requestDeletePost={requestDeletePost}
+				/>
+			) : (
+				<HomeLoading />
+			)}
+		</>
 	);
 });
 

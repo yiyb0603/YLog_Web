@@ -1,7 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
-import timeCounting from 'time-counting';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import SecureLS from 'secure-ls';

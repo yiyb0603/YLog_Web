@@ -8,8 +8,11 @@ firebase.initializeApp({
 const messaging = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function (payload) {
-	console.log(payload);
-	console.log(JSON.parse(payload.data.notification));
+	const { title, body, icon } = JSON.parse(payload.data.notification);
+	const options = {
+		body,
+		icon,
+	};
 
 	const promiseChain = clients
 		.matchAll({
@@ -23,7 +26,7 @@ messaging.setBackgroundMessageHandler(function (payload) {
 			}
 		})
 		.then(() => {
-			return registration.showNotification('my notification titl12121212e');
+			return self.registration.showNotification(title);
 		});
 	return promiseChain;
 });
