@@ -9,7 +9,7 @@ interface ICodeBlockProps {
 
 const CodeBlock = ({ language, value }: ICodeBlockProps) => {
 	return (
-		<SyntaxHighlighter language={language} style={styles.vscDarkPlus}>
+		<SyntaxHighlighter language={language} style={styles.prism}>
 			{value}
 		</SyntaxHighlighter>
 	);

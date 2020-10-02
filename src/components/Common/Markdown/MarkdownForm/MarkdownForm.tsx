@@ -1,6 +1,4 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
 import dynamic from 'next/dynamic';
 import 'react-markdown-editor-lite/lib/index.css';
 import MarkdownIt from 'markdown-it';

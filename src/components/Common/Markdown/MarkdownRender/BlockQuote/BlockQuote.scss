@@ -1,0 +1,8 @@
+@import '../../../../../styles/Palette/Palette.scss';
+
+.BlockQuote {
+	background-color: $lighterGray;
+	color: $primary;
+	border-left: 4px solid $primary;
+	padding: 10px;
+}

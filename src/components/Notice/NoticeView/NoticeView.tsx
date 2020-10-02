@@ -3,9 +3,8 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { INoticeRequestTypes } from 'interface/NoticeTypes';
 import parseTime from 'lib/TimeCounting';
-import ReactMarkdown from 'react-markdown';
-import CodeBlock from 'components/Common/CodeBlock';
 import { NextRouter, useRouter } from 'next/router';
+import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 
 const style = require('./NoticeView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -51,11 +50,7 @@ const NoticeView = ({ noticeInfo, requestDeleteNotice }: NoticeViewProps) => {
 				</div>
 
 				<div className={cx('NoticeView-Contents-Contents')}>
-					<ReactMarkdown
-						source={contents}
-						escapeHtml={false}
-						renderers={{ code: CodeBlock }}
-					/>
+					<MarkdownRender contents={contents!} />
 				</div>
 			</div>
 		</div>

@@ -1,9 +1,8 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import Home from 'components/Home';
 
-const HomeContainer = observer(() => {
+const HomeContainer = () => {
 	return <Home />;
-});
+};
 
 export default HomeContainer;

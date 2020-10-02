@@ -2,12 +2,11 @@ import React, { SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { IPostListTypes } from 'interface/PostTypes';
-import ReactMarkdown from 'react-markdown';
-import CodeBlock from 'components/Common/CodeBlock';
 import CommentContainer from 'containers/CommentContainer';
 import CommentWriteContainer from 'containers/CommentContainer/CommentWrite';
 import parseTime from 'lib/TimeCounting';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
+import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 
 const style = require('./PostView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -60,11 +59,7 @@ const PostView = ({ postInfo, categoryName }: IPostViewProps) => {
 				</div>
 
 				<div className={cx('PostView-Contents-Contents')}>
-					<ReactMarkdown
-						source={contents}
-						escapeHtml={false}
-						renderers={{ code: CodeBlock }}
-					/>
+					<MarkdownRender contents={contents!} />
 				</div>
 			</div>
 

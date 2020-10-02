@@ -6,10 +6,11 @@ import { NextRouter, useRouter } from 'next/router';
 import PostView from 'components/Post/PostView';
 import { toast } from 'react-toastify';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
+import PostLoading from 'components/Common/Loading/PostLoading';
 
 const PostViewContainer = observer(() => {
 	const { store } = useStores();
-	const { handlePostView, postInfo } = store.PostStore;
+	const { handlePostView, postInfo, isLoading } = store.PostStore;
 	const { handleCategoryList, categoryList } = store.CategoryStore;
 
 	const router: NextRouter = useRouter();
@@ -34,7 +35,15 @@ const PostViewContainer = observer(() => {
 		requestPostView();
 	}, [requestPostView]);
 
-	return <PostView postInfo={postInfo} categoryName={categoryName} />;
+	return (
+		<>
+			{!isLoading ? (
+				<PostView postInfo={postInfo} categoryName={categoryName} />
+			) : (
+				<PostLoading />
+			)}
+		</>
+	);
 });
 
 export default PostViewContainer;

@@ -4,9 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
 import { IPostListTypes } from 'interface/PostTypes';
 import { NextRouter, useRouter } from 'next/router';
-import timeCounting from 'time-counting';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
-import Link from 'next/link';
 import HomePostItem from './HomePostItem';
 import NoPosts from '../NoPosts';
 
