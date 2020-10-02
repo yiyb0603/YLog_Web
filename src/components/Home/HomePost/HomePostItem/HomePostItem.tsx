@@ -47,10 +47,10 @@ const HomePostItem = ({
 				<div>
 					<img
 						className={cx('HomePost-Item-Thumbnail')}
-						src={thumbnail ? thumbnail : '/images/NO_IMAGES.PNG'}
+						src={thumbnail ? thumbnail : '/assets/images/NO_IMAGES.PNG'}
 						alt="thumbnail"
 						onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
-							(e.currentTarget.src = '/images/NO_IMAGES.PNG')
+							(e.currentTarget.src = '/assets/images/NO_IMAGES.PNG')
 						}
 					/>
 

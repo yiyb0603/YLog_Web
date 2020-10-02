@@ -33,7 +33,7 @@ const SignTemplate = ({}: SignTemplateProps) => {
 				</div>
 
 				<div className={cx('SignTemplate-FormBox-RightPanel')}>
-					<img src="/images/Login/Banner.svg" alt="banner" />
+					<img src="/assets/images/Login/Banner.svg" alt="banner" />
 				</div>
 			</div>
 		</div>

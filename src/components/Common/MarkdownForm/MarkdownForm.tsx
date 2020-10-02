@@ -8,7 +8,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-light.css';
 
-interface WriteFormProps {
+interface MarkdownFormProps {
 	contents: string;
 	setContents: Dispatch<SetStateAction<string>>;
 }
@@ -33,7 +33,7 @@ const mdParser: MarkdownIt = new MarkdownIt({
 	},
 });
 
-const MarkdownForm = ({ contents, setContents }: WriteFormProps) => {
+const MarkdownForm = ({ contents, setContents }: MarkdownFormProps) => {
 	return (
 		<MdEditor
 			value={contents}

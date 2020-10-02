@@ -39,7 +39,7 @@ const NavBar = () => {
 				<img
 					onClick={() => router.push('/')}
 					className={cx('NavBar-Contents-Logo')}
-					src="/icon/Logo.PNG"
+					src="/assets/icon/Logo.PNG"
 					alt="logo"
 				/>
 
@@ -77,7 +77,7 @@ const NavBar = () => {
 					</Link>
 					{typeof window !== 'undefined' && getToken() !== null ? (
 						<img
-							src="/icon/profile_default.jpg"
+							src="/assets/icon/profile_default.jpg"
 							alt="profile"
 							onClick={() => setIsMyInfo(true)}
 						/>
