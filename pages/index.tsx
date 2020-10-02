@@ -1,11 +1,11 @@
 import React from 'react';
 import PageTemplate from 'components/Common/PageTemplate';
-import Home from 'components/Home';
+import HomeContainer from 'containers/HomeContainer';
 
 const IndexPage = () => {
 	return (
 		<PageTemplate>
-			<Home />
+			<HomeContainer />
 		</PageTemplate>
 	);
 };

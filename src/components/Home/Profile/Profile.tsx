@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Modal from 'components/Common/Modal';
@@ -25,7 +25,7 @@ const Profile = ({ handleCloseModal }: ProfileProps) => {
 				handleCloseModal={handleCloseModal}
 			>
 				<div className={cx('Profile-Contents')}>
-					<img src="/images/NO_IMAGES.PNG" alt="profile" />
+					<img src="/assets/images/NO_IMAGES.PNG" alt="profile" />
 
 					<div className={cx('Profile-Contents-List')}>
 						<div>아이디: {id}</div>

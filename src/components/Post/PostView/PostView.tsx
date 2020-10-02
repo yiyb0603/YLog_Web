@@ -48,11 +48,11 @@ const PostView = ({ postInfo, categoryName }: IPostViewProps) => {
 					</div>
 				</div>
 				<img
-					src={thumbnail ? thumbnail : '/icon/Logo.PNG'}
+					src={thumbnail ? thumbnail : '/assets/icon/Logo.PNG'}
 					alt="thumbnail"
 					className={cx('PostView-Contents-Thumbnail')}
 					onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
-						(e.currentTarget.src = '/icon/Logo.PNG')
+						(e.currentTarget.src = '/assets/icon/Logo.PNG')
 					}
 				/>
 				<div className={cx('PostView-Contents-Introduction')}>

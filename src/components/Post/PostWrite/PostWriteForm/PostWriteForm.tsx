@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import 'react-markdown-editor-lite/lib/index.css';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
-import { SelectBox } from 'components/Common/SelectBox';
-import WriteForm from 'components/Common/MarkdownForm';
+import SelectBox from 'components/Common/SelectBox';
 import MarkdownForm from 'components/Common/MarkdownForm';
 
 interface PostWriteFormProps {

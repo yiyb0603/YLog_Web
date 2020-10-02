@@ -49,7 +49,7 @@ const CommentLayout = ({
 			<div className={cx('CommentLayout-Contents')}>
 				<div className={cx('CommentLayout-Contents-Left')}>
 					<img
-						src="/icon/profile_default.jpg"
+						src="/assets/icon/profile_default.jpg"
 						alt="profile"
 						className={cx('CommentLayout-Contents-Left-Profile')}
 					/>
