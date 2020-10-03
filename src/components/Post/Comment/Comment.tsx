@@ -23,7 +23,7 @@ const Comment = ({
 	return (
 		<div className={cx('Comment')}>
 			{commentReplyList.length > 0 ? (
-				commentReplyList.map((comment: any) => {
+				commentReplyList.map((comment: any, index: number) => {
 					const {
 						idx,
 						writer,
@@ -36,7 +36,7 @@ const Comment = ({
 
 					return (
 						<CommentItem
-							key={idx}
+							key={index}
 							idx={idx!}
 							writer={writer!}
 							contents={contents!}

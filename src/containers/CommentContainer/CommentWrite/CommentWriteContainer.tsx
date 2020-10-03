@@ -16,7 +16,6 @@ const CommentWriteContainer = observer(() => {
 		handleCommentList,
 		commentReplyList,
 	} = store.CommentStore;
-	const { handleReplyList } = store.ReplyStore;
 	const { handlePostView } = store.PostStore;
 
 	const router: NextRouter = useRouter();
