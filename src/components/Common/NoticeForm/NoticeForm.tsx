@@ -1,7 +1,7 @@
 import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import MarkdownForm from '../MarkdownForm';
+import MarkdownForm from '../Markdown/MarkdownForm';
 
 const style = require('./NoticeForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);

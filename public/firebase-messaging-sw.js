@@ -13,20 +13,5 @@ messaging.setBackgroundMessageHandler(function (payload) {
 		body,
 		icon,
 	};
-
-	const promiseChain = clients
-		.matchAll({
-			type: 'window',
-			includeUncontrolled: true,
-		})
-		.then((windowClients) => {
-			for (let i = 0; i < windowClients.length; i++) {
-				const windowClient = windowClients[i];
-				windowClient.postMessage(payload);
-			}
-		})
-		.then(() => {
-			return self.registration.showNotification(title);
-		});
-	return promiseChain;
+	return registration.showNotification(title);
 });
