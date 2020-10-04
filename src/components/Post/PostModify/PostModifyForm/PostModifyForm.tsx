@@ -5,7 +5,7 @@ import 'highlight.js/styles/atom-one-light.css';
 import 'react-markdown-editor-lite/lib/index.css';
 import SelectBox from 'components/Common/SelectBox';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
-import MarkdownForm from 'components/Common/MarkdownForm';
+import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
 
 interface PostModifyFormProps {
 	titleObject: {
