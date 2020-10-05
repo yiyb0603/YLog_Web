@@ -1,0 +1,37 @@
+@import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/Fonts/FontScheme.scss';
+
+.AdminLogin {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: $white;
+	box-shadow: -5px -5px 10px $gray, 5px 5px 10px $gray;
+	padding: 25px;
+	min-width: 300px;
+	max-width: 450px;
+	max-height: 450px;
+
+	&-Wrapper {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $lighterGray;
+	}
+
+	&-Title {
+		text-align: center;
+		font-size: $font_22;
+		margin-bottom: 1rem;
+	}
+
+	&-Form {
+		& > * + * {
+			margin-top: 1rem;
+			width: 100%;
+		}
+	}
+}
