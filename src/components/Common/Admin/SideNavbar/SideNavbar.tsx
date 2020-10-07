@@ -1,4 +1,9 @@
-import React, { CSSProperties, useState } from 'react';
+import React, {
+	CSSProperties,
+	Dispatch,
+	SetStateAction,
+	useState,
+} from 'react';
 import { BsPersonCheckFill, BsBoxArrowInLeft } from 'react-icons/bs';
 import { AiTwotoneSetting } from 'react-icons/ai';
 import { GiHighKick } from 'react-icons/gi';
@@ -11,11 +16,14 @@ import NavToggle from './NavToggle';
 const style = require('./SideNavbar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const SideNavbar = () => {
+interface ISideNavbarProps {
+	isEnabled: boolean;
+	setIsEnabled: Dispatch<SetStateAction<boolean>>;
+}
+
+const SideNavbar = ({ isEnabled, setIsEnabled }: ISideNavbarProps) => {
 	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
 	const { name, email } = ls.get('userInfo');
-
-	const [isEnabled, setIsEnabled] = useState<boolean>(true);
 
 	const iconStyle: CSSProperties = {
 		fontSize: 24,
@@ -25,7 +33,7 @@ const SideNavbar = () => {
 	return (
 		<div
 			className={cx('SideNavbar-Wrapper', {
-				'SideNavbar-Wrapper-hidden': !isEnabled,
+				// 'SideNavbar-Wrapper-hidden': !isEnabled,
 			})}
 		>
 			<div className={cx('SideNavbar')}>

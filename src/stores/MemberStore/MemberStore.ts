@@ -1,14 +1,23 @@
 import { autobind } from 'core-decorators';
+import { IMemberResponseTypes, IMemberTypes } from 'interface/MemberTypes';
+import ISuccessTypes from 'interface/SuccessTypes';
 import { deleteRequest, getResponse, postRequest } from 'lib/Axios';
-import { action } from 'mobx';
+import { action, observable } from 'mobx';
 import { getAdminToken } from 'Token/Token';
 
 @autobind
 export default class MemberStore {
+	@observable memberList: IMemberTypes[] = [];
+
 	@action
 	handleMemberList = async (isAllow: boolean | null) => {
 		try {
-			const response = await getResponse('/member/list', getAdminToken());
+			const response: IMemberResponseTypes = await getResponse(
+				`/member/list?isAllow=${isAllow}`,
+				getAdminToken()
+			);
+			this.memberList = response.data.members;
+
 			return response;
 		} catch (error) {
 			throw error;
@@ -18,7 +27,7 @@ export default class MemberStore {
 	@action
 	handleAllowMember = async (memberId: string) => {
 		try {
-			const response = await postRequest(
+			const response: ISuccessTypes = await postRequest(
 				'/member/allow',
 				{ memberId },
 				getAdminToken()
@@ -32,7 +41,7 @@ export default class MemberStore {
 	@action
 	handleRefuseMember = async (memberId: string) => {
 		try {
-			const response = await postRequest(
+			const response: ISuccessTypes = await postRequest(
 				'/member/refuse',
 				{ memberId },
 				getAdminToken()
@@ -46,7 +55,7 @@ export default class MemberStore {
 	@action
 	handleDeleteMember = async (memberId: string) => {
 		try {
-			const response = await deleteRequest(
+			const response: ISuccessTypes = await deleteRequest(
 				`/member/delete?memberId=${memberId}`,
 				getAdminToken()
 			);

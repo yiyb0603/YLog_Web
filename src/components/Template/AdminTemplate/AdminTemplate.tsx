@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import SideNavbar from 'components/Common/Admin/SideNavbar';
@@ -11,9 +11,16 @@ interface AdminTemplateProps {
 }
 
 const AdminTemplate = ({ children }: AdminTemplateProps) => {
+	const [isEnabled, setIsEnabled] = useState<boolean>(true);
+
 	return (
-		<div className={cx('AdminTemplate')}>
-			<SideNavbar />
+		<div
+			className={cx('AdminTemplate', {
+				'AdminTemplate-hidden': !isEnabled,
+			})}
+		>
+			<SideNavbar isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
+			{children && children}
 		</div>
 	);
 };
