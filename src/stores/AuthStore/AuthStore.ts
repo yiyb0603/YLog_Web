@@ -6,7 +6,7 @@ import {
 } from 'interface/AuthTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { postRequest } from 'lib/Axios';
-import { getToken } from 'lib/Token';
+import { getUserToken } from 'Token/Token';
 import { action, observable } from 'mobx';
 
 @autobind
@@ -48,7 +48,11 @@ export default class AuthStore {
 	@action
 	handleFCMToken = async (fcmToken: string) => {
 		try {
-			const response = await postRequest('/auth/fcm', { fcmToken }, getToken());
+			const response = await postRequest(
+				'/auth/fcm',
+				{ fcmToken },
+				getUserToken()
+			);
 			return response;
 		} catch (error) {
 			throw error;

@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { Provider } from 'mobx-react';
+import { useStaticRendering, Provider } from 'mobx-react';
 import stores from '../src/stores';
 import App from 'next/app';
 import { ToastContainer } from 'react-toastify';
@@ -9,11 +9,7 @@ import 'react-toastify/scss/main.scss';
 
 export default class MyApp extends App {
 	componentDidMount() {
-		navigator.serviceWorker
-			.register('/firebase-messaging-sw.js')
-			.catch((err) => {
-				console.error('Service worker registration failed', err);
-			});
+		navigator.serviceWorker.register('/firebase-messaging-sw.js');
 	}
 
 	render() {
@@ -30,7 +26,7 @@ export default class MyApp extends App {
 					<title>YLog</title>
 				</Head>
 				<ToastContainer pauseOnHover={false} />
-				<Component {...pageProps} />
+				{typeof window !== 'undefined' && <Component {...pageProps} />}
 			</Provider>
 		);
 	}

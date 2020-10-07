@@ -8,8 +8,12 @@ import GroupingState from 'lib/GroupingState';
 import { toast } from 'react-toastify';
 import IErrorTypes from 'interface/ErrorTypes';
 import { setStorage } from 'lib/Storage';
+import { NextRouter, useRouter } from 'next/router';
+import { setUserInfo } from 'lib/SecureLS';
 
 const AdminLoginContainer = observer(() => {
+	const router: NextRouter = useRouter();
+
 	const { store } = useStores();
 	const { handleSignIn } = store.AuthStore;
 
@@ -34,7 +38,9 @@ const AdminLoginContainer = observer(() => {
 				if (status === 200) {
 					if (data.userInfo.is_admin) {
 						toast.success('관리자 로그인을 성공하였습니다.');
-						setStorage('ylog-token', response.data.ylogToken);
+						setStorage('ylog-adminToken', response.data.ylogToken);
+						setUserInfo('userInfo', response.data.userInfo);
+						router.push('/admin');
 						return;
 					}
 

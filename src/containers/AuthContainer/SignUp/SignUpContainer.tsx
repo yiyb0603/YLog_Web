@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import SignUp from 'components/Auth/SignUp';
 import useStores from 'lib/useStores';
+import { sha512 } from 'js-sha512';
 import { ISignUpTypes } from 'interface/AuthTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
@@ -27,10 +28,9 @@ const SignUpContainer = ({ setPageType }: ISignUpContainerProps) => {
 	const requestSignUp = useCallback(async () => {
 		const request: ISignUpTypes = {
 			id,
-			password,
+			password: sha512(password),
 			name,
 			email,
-			joinedAt,
 			adminCode: adminCode !== '' ? adminCode : '',
 		};
 

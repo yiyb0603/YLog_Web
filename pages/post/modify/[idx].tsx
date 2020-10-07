@@ -1,4 +1,4 @@
-import PageTemplate from 'components/Common/PageTemplate';
+import PageTemplate from 'components/Template/PageTemplate';
 import PostModifyContainer from 'containers/PostContainer/PostModifyContainer';
 import React from 'react';
 

@@ -1,0 +1,42 @@
+@import '../../../../styles/Palette/Palette.scss';
+@import '../../../../styles/Fonts/FontScheme.scss';
+
+.SideNavbar {
+	width: 300px;
+	max-width: 300px;
+	min-height: 100vh;
+	background-color: $primary;
+	display: flex;
+	display: -webkit-flex;
+	flex-direction: column;
+	-ms-flex-direction: column;
+	justify-content: space-between;
+
+	&-Contents {
+		padding: $font_2rem 0;
+		&-Logo {
+			width: 200px;
+			display: block;
+			margin: auto;
+		}
+
+		&-Profile {
+			text-align: center;
+
+			& > img {
+				width: 150px;
+				height: 150px;
+				border-radius: 50%;
+				margin: 10px 0;
+			}
+
+			&-Name {
+				font-size: $font_22;
+			}
+		}
+
+		&-Items {
+			margin: 1rem 0;
+		}
+	}
+}

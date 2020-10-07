@@ -11,7 +11,7 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
-import { getToken } from 'lib/Token';
+import { getUserToken } from 'Token/Token';
 import { observable, action } from 'mobx';
 
 @autobind
@@ -51,7 +51,7 @@ export default class NoticeStore {
 			const response: ISuccessTypes = await postRequest(
 				'/notice',
 				request,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {
@@ -65,7 +65,7 @@ export default class NoticeStore {
 			const response: ISuccessTypes = await modifyRequest(
 				'/notice',
 				request,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {
@@ -78,7 +78,7 @@ export default class NoticeStore {
 		try {
 			const response: ISuccessTypes = await deleteRequest(
 				`/notice?idx=${idx}`,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {

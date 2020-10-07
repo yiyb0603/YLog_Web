@@ -8,12 +8,10 @@ import IErrorTypes from 'interface/ErrorTypes';
 import GroupingState from 'lib/GroupingState';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
-import SecureLS from 'secure-ls';
 import { setStorage } from 'lib/Storage';
 import option from '../../../config/firebase.json';
 import firebase from 'firebase/app';
-import 'firebase/messaging';
-import ISuccessTypes from 'interface/SuccessTypes';
+import { setUserInfo } from 'lib/SecureLS';
 
 interface ISignInContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;
@@ -65,9 +63,8 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 					requestNotificationAllow();
 
 					if (localStorage) {
-						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
 						setStorage('ylog-token', response.data.ylogToken);
-						ls.set('userInfo', response.data.userInfo);
+						setUserInfo('userInfo', response.data.userInfo);
 					}
 				}
 			})

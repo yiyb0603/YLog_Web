@@ -1,5 +1,5 @@
 import React from 'react';
-import PageTemplate from 'components/Common/PageTemplate';
+import PageTemplate from 'components/Template/PageTemplate';
 import HomeContainer from 'containers/HomeContainer';
 
 const IndexPage = () => {

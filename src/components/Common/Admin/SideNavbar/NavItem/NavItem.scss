@@ -1,0 +1,26 @@
+@import '../../../../../styles/Palette/Palette.scss';
+@import '../../../../../styles/Fonts/FontScheme.scss';
+
+.NavItem {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	justify-content: center;
+	margin: 10px 0;
+	padding: $font_1rem 0;
+	z-index: 2;
+	cursor: pointer;
+	transition: 0.2s ease-in-out;
+
+	&-Current {
+		background-color: $white;
+	}
+
+	&:hover {
+		background-color: $white;
+	}
+
+	&-Name {
+		font-size: 20px;
+	}
+}
