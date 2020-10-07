@@ -12,9 +12,9 @@ interface AdminTemplateProps {
 
 const AdminTemplate = ({ children }: AdminTemplateProps) => {
 	return (
-		<>
+		<div className={cx('AdminTemplate')}>
 			<SideNavbar />
-		</>
+		</div>
 	);
 };
 
