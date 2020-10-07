@@ -55,7 +55,7 @@ const AllowMemberContainer = observer(() => {
 		[handleRefuseMember, handleMemberList]
 	);
 
-	const memberLists = memberList.map((member: IMemberTypes) => {
+	const memberLists: JSX.Element[] = memberList.map((member: IMemberTypes) => {
 		const { id, name, email, is_admin } = member;
 		return (
 			<MemberCard
