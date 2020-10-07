@@ -11,7 +11,7 @@ import Router from 'next/router';
 import { setStorage } from 'lib/Storage';
 import option from '../../../config/firebase.json';
 import firebase from 'firebase/app';
-import { setUserInfo } from 'lib/SecureLS';
+import SecureLS from 'secure-ls';
 
 interface ISignInContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;
@@ -64,7 +64,8 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 
 					if (localStorage) {
 						setStorage('ylog-token', response.data.ylogToken);
-						setUserInfo('userInfo', response.data.userInfo);
+						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
+						ls.set('userInfo', response.data.userInfo);
 					}
 				}
 			})

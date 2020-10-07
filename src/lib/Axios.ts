@@ -1,7 +1,10 @@
 import axios, { AxiosResponse } from 'axios';
 import { SERVER } from 'config/config.json';
 
-export const getResponse = async (url: string, token?: string) => {
+export const getResponse = async (
+	url: string,
+	token?: string | null | undefined
+) => {
 	try {
 		const { data }: AxiosResponse = await axios.get(`${SERVER}${url}`, {
 			headers: token && {

@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import IErrorTypes from 'interface/ErrorTypes';
 import { setStorage } from 'lib/Storage';
 import { NextRouter, useRouter } from 'next/router';
-import { setUserInfo } from 'lib/SecureLS';
+import SecureLS from 'secure-ls';
 
 const AdminLoginContainer = observer(() => {
 	const router: NextRouter = useRouter();
@@ -39,7 +39,8 @@ const AdminLoginContainer = observer(() => {
 					if (data.userInfo.is_admin) {
 						toast.success('관리자 로그인을 성공하였습니다.');
 						setStorage('ylog-adminToken', response.data.ylogToken);
-						setUserInfo('userInfo', response.data.userInfo);
+						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
+						ls.set('userInfo', response.data.userInfo);
 						router.push('/admin');
 						return;
 					}
