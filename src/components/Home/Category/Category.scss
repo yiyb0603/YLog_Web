@@ -17,6 +17,7 @@
 
 		&-Pen {
 			cursor: pointer;
+			-webkit-transition: 0.2s ease-out;
 			transition: 0.2s ease-out;
 
 			&:hover {
@@ -42,6 +43,7 @@
 			margin-bottom: $font_1rem;
 
 			&-Text {
+				-webkit-transition: 0.1s ease-in;
 				transition: 0.1s ease-in;
 
 				&:hover {
@@ -61,6 +63,7 @@
 
 				& > * {
 					cursor: pointer;
+					-webkit-transition: 0.2s ease-out;
 					transition: 0.2s ease-out;
 					margin-right: 5px;
 				}

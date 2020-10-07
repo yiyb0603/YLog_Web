@@ -12,7 +12,7 @@ import Profile from 'components/Home/Profile';
 import Link from 'next/link';
 import { getStorage } from 'lib/Storage';
 import { onKeyDown } from 'lib/onKeyDown';
-import { getToken } from 'lib/Token';
+import { getUserToken } from 'Token/Token';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -75,7 +75,7 @@ const NavBar = () => {
 							<div>로그인</div>
 						)}
 					</Link>
-					{typeof window !== 'undefined' && getToken() !== null ? (
+					{typeof window !== 'undefined' && getUserToken() !== null ? (
 						<img
 							src="/assets/icon/profile_default.jpg"
 							alt="profile"

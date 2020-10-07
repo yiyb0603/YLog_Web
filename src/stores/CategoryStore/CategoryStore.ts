@@ -11,7 +11,7 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
-import { getToken } from 'lib/Token';
+import { getUserToken } from 'Token/Token';
 import { action, observable } from 'mobx';
 
 @autobind
@@ -36,7 +36,7 @@ export default class CategoryStore {
 			const response: ISuccessTypes = await postRequest(
 				'/category',
 				request,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {
@@ -50,7 +50,7 @@ export default class CategoryStore {
 			const response: ISuccessTypes = await modifyRequest(
 				'/category',
 				request,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {
@@ -63,7 +63,7 @@ export default class CategoryStore {
 		try {
 			const response: ISuccessTypes = await deleteRequest(
 				`/category?idx=${idx}`,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {

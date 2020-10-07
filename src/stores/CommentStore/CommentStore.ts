@@ -12,7 +12,7 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
-import { getToken } from 'lib/Token';
+import { getUserToken } from 'Token/Token';
 import { observable, action } from 'mobx';
 import ReplyStore from 'stores/ReplyStore';
 
@@ -105,7 +105,7 @@ export default class CommentStore {
 			const response: ISuccessTypes = await postRequest(
 				'/comment',
 				request,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {
@@ -119,7 +119,7 @@ export default class CommentStore {
 			const response: ISuccessTypes = await modifyRequest(
 				'/comment',
 				request,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {
@@ -132,7 +132,7 @@ export default class CommentStore {
 		try {
 			const response: ISuccessTypes = await deleteRequest(
 				`/comment?idx=${idx}`,
-				getToken()
+				getUserToken()
 			);
 
 			return response;

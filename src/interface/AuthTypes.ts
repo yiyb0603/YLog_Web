@@ -22,7 +22,6 @@ export interface ISignUpTypes {
 	password: string;
 	name: string;
 	email: string;
-	joinedAt: Date | string;
 	adminCode?: string | false | null;
 }
 

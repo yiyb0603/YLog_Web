@@ -12,7 +12,7 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
-import { getToken } from 'lib/Token';
+import { getUserToken } from 'Token/Token';
 import { observable, action } from 'mobx';
 
 @autobind
@@ -79,7 +79,7 @@ export default class PostStore {
 			const response: ISuccessTypes = await postRequest(
 				'/post',
 				request,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {
@@ -93,7 +93,7 @@ export default class PostStore {
 			const response: ISuccessTypes = await modifyRequest(
 				'/post',
 				request,
-				getToken()
+				getUserToken()
 			);
 			return response;
 		} catch (error) {
@@ -106,7 +106,7 @@ export default class PostStore {
 		try {
 			const response: ISuccessTypes = await deleteRequest(
 				`/post?idx=${idx}`,
-				getToken()
+				getUserToken()
 			);
 			if (response.status === 200) {
 				this.postList = this.postList.filter(

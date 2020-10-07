@@ -1,0 +1,13 @@
+@import '../../../../styles/Palette/Palette.scss';
+@import '../../../../styles/Fonts/FontScheme.scss';
+
+.PageHeader {
+	width: 50%;
+	border-bottom: 1.5px solid $primary;
+	padding-bottom: 5px;
+	margin: 1rem 0;
+
+	&-Title {
+		font-size: $font_30;
+	}
+}

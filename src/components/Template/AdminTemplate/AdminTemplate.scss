@@ -1,0 +1,15 @@
+.AdminTemplate {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	display: -webkit-flex;
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+	-webkit-transition: all 0.4s ease-out;
+	transition: all 0.4s ease-out;
+
+	&-hidden {
+		-webkit-transform: translateX(-300px);
+		transform: translateX(-300px);
+	}
+}

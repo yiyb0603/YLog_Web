@@ -20,6 +20,7 @@
 		align-items: center;
 		margin-right: 0.5rem;
 		cursor: pointer;
+		-webkit-transition: color ease-in 0.1s, border-color ease-in 0.1s;
 		transition: color ease-in 0.1s, border-color ease-in 0.1s;
 		&-icon {
 			z-index: 1;

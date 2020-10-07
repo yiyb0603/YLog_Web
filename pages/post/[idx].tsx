@@ -1,5 +1,5 @@
 import React from 'react';
-import PageTemplate from 'components/Common/PageTemplate';
+import PageTemplate from 'components/Template/PageTemplate';
 import PostViewContainer from 'containers/PostContainer/PostViewContainer';
 
 const PostViewPage = () => {

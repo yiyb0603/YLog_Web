@@ -10,7 +10,7 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
-import { getToken } from 'lib/Token';
+import { getUserToken } from 'Token/Token';
 import { action, observable } from 'mobx';
 
 @autobind
@@ -35,7 +35,7 @@ export default class ReplyStore {
 	@action
 	handleCreateReply = async (request: IReplyModifyTypes) => {
 		try {
-			const response = await postRequest('/reply', request, getToken());
+			const response = await postRequest('/reply', request, getUserToken());
 			return response;
 		} catch (error) {
 			throw error;
@@ -45,7 +45,7 @@ export default class ReplyStore {
 	@action
 	handleModifyReply = async (request: IReplyTypes) => {
 		try {
-			const response = await modifyRequest('/reply', request, getToken());
+			const response = await modifyRequest('/reply', request, getUserToken());
 			return response;
 		} catch (error) {
 			throw error;
@@ -55,7 +55,7 @@ export default class ReplyStore {
 	@action
 	handleDeleteReply = async (idx: number) => {
 		try {
-			const response = await deleteRequest(`/reply?idx=${idx}`, getToken());
+			const response = await deleteRequest(`/reply?idx=${idx}`, getUserToken());
 			return response;
 		} catch (error) {
 			throw error;
