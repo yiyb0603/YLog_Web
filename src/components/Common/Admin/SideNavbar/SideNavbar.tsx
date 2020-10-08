@@ -62,7 +62,7 @@ const SideNavbar = ({ isEnabled, setIsEnabled }: ISideNavbarProps) => {
 							icon={<AiTwotoneSetting style={iconStyle} />}
 						/>
 						<NavItem
-							link={'/'}
+							link={'/admin/kick'}
 							name="멤버 강퇴"
 							icon={<GiHighKick style={iconStyle} />}
 						/>

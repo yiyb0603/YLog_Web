@@ -20,7 +20,8 @@ const AdminTemplate = ({ children }: AdminTemplateProps) => {
 			})}
 		>
 			<SideNavbar isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
-			{children && children}
+
+			<div className={cx('AdminTemplate-Children')}>{children && children}</div>
 		</div>
 	);
 };
