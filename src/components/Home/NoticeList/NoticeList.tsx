@@ -5,6 +5,8 @@ import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { INoticeRequestTypes } from 'interface/NoticeTypes';
 import NoticeItem from './NoticeItem';
 import { NextRouter, useRouter } from 'next/router';
+import SecureLS from 'secure-ls';
+import isAdmin from 'lib/isAdmin';
 
 const style = require('./NoticeList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -23,7 +25,6 @@ const NoticeList = ({
 	handleDecreaseCount,
 }: NoticeListProps) => {
 	const router: NextRouter = useRouter();
-
 	const arrowStyle: CSSProperties = {
 		fontSize: 18,
 		cursor: 'pointer',
@@ -62,14 +63,16 @@ const NoticeList = ({
 				)}
 			</div>
 
-			<div className={cx('NoticeList-Button')}>
-				<button
-					className={cx('NoticeList-Button-WriteButton')}
-					onClick={() => router.push('/notice/write')}
-				>
-					공지사항 작성
-				</button>
-			</div>
+			{isAdmin() && (
+				<div className={cx('NoticeList-Button')}>
+					<button
+						className={cx('NoticeList-Button-WriteButton')}
+						onClick={() => router.push('/notice/write')}
+					>
+						공지사항 작성
+					</button>
+				</div>
+			)}
 		</div>
 	);
 };

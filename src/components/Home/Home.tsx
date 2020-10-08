@@ -5,6 +5,7 @@ import CategoryContainer from 'containers/CategoryContainer/Category';
 import { NextRouter, useRouter } from 'next/router';
 import PostContainer from 'containers/PostContainer';
 import NoticeContainer from 'containers/NoticeContainer';
+import isAdmin from 'lib/isAdmin';
 
 const style = require('./Home.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -25,12 +26,14 @@ const Home = () => {
 				</div>
 
 				<div className={cx('Home-Right')}>
-					<button
-						className={cx('Home-Right-WriteButton')}
-						onClick={() => router.push('/post/postwrite')}
-					>
-						글 작성
-					</button>
+					{isAdmin() && (
+						<button
+							className={cx('Home-Right-WriteButton')}
+							onClick={() => router.push('/post/postwrite')}
+						>
+							글 작성
+						</button>
+					)}
 					<CategoryContainer />
 				</div>
 			</div>
