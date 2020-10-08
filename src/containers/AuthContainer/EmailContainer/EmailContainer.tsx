@@ -6,6 +6,8 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import { toast } from 'react-toastify';
 import IErrorTypes from 'interface/ErrorTypes';
 import { showAlert } from 'lib/SweetAlert';
+import EmailAuth from 'components/Auth/EmailAuth';
+import GroupingState from 'lib/GroupingState';
 
 interface IEmailContainerProps {
 	registerInfo: ISignUpTypes;
@@ -20,7 +22,7 @@ const EmailContainer = observer(
 		const { email } = registerInfo;
 		const [code, setCode] = useState<string>('');
 
-		const requestCheckCode = useCallback(async () => {
+		const requestCheckCode = useCallback(async (): Promise<boolean | void> => {
 			const request: IEmailCodeTypes = {
 				email: email!,
 				code,
@@ -41,7 +43,7 @@ const EmailContainer = observer(
 		}, [handleCheckCode, email, code]);
 
 		const requestSignUp = useCallback(async () => {
-			if (requestCheckCode()) {
+			await requestCheckCode().then(async () => {
 				await handleSignUp(registerInfo)
 					.then((response: ISuccessTypes) => {
 						if (response.status === 200) {
@@ -59,10 +61,15 @@ const EmailContainer = observer(
 						toast.error(message);
 						return;
 					});
-			}
-		}, [requestCheckCode, handleSignUp, registerInfo]);
+			});
+		}, [requestCheckCode, registerInfo]);
 
-		return <></>;
+		return (
+			<EmailAuth
+				codeObject={GroupingState('code', code, setCode)}
+				requestSignUp={requestSignUp}
+			/>
+		);
 	}
 );
 

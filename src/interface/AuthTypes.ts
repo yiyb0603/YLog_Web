@@ -15,6 +15,7 @@ export interface IUserInfoTypes {
 	joined_at: string;
 	proflile_image: string;
 	is_admin: boolean | string | null;
+	is_allow: boolean;
 }
 
 export interface ISignUpTypes {

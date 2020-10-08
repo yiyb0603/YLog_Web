@@ -27,7 +27,7 @@ const SignUpContainer = ({ setPageType }: ISignUpContainerProps) => {
 	const [email, setEmail] = useState<string>('');
 	const [adminCode, setAdminCode] = useState<string>('');
 
-	const requestSignUp = useCallback(async () => {
+	const requestEmailAuth = useCallback(async () => {
 		const request: ISignUpTypes = {
 			id,
 			password: sha512(password),
@@ -48,40 +48,6 @@ const SignUpContainer = ({ setPageType }: ISignUpContainerProps) => {
 				setIsEntered(true);
 			}
 		});
-
-		// await handleSignUp(request)
-		// 	.then((response: ISuccessTypes) => {
-		// 		if (response.status === 200) {
-		// 			toast.success('회원가입에 성공하였습니다!');
-		// 			setPageType('login');
-		// 		}
-		// 	})
-
-		// 	.catch((error: IErrorTypes) => {
-		// 		const { status, message } = error.response.data;
-
-		// 		switch (status) {
-		// 			case 400:
-		// 				toast.error('검증 오류입니다.');
-		// 				return;
-
-		// 			case 401:
-		// 				toast.error('어드민 코드가 올바르지 않습니다.');
-		// 				return;
-
-		// 			case 409:
-		// 				toast.error('이미 존재하는 유저입니다.');
-		// 				return;
-
-		// 			case 500:
-		// 				toast.error('서버 오류입니다.');
-		// 				return;
-
-		// 			default:
-		// 				toast.error(message);
-		// 				return;
-		// 		}
-		// 	});
 	}, [id, password, name, email, adminCode, handleSendCode]);
 
 	return (
@@ -94,7 +60,7 @@ const SignUpContainer = ({ setPageType }: ISignUpContainerProps) => {
 					nameObject={GroupingState('name', name, setName)}
 					emailObject={GroupingState('email', email, setEmail)}
 					adminCodeObject={GroupingState('adminCode', adminCode, setAdminCode)}
-					requestSignUp={requestSignUp}
+					requestEmailAuth={requestEmailAuth}
 				/>
 			) : (
 				<EmailContainer registerInfo={registerInfo} setPageType={setPageType} />
