@@ -15,6 +15,7 @@ const AdminTemplate = ({ children }: AdminTemplateProps) => {
 
 	return (
 		<div
+			style={{ width: !isEnabled ? 'calc(100% + 300px)' : '' }}
 			className={cx('AdminTemplate', {
 				'AdminTemplate-hidden': !isEnabled,
 			})}
