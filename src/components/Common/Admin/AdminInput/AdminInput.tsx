@@ -36,7 +36,6 @@ const AdminInput = ({
 	return (
 		<form className={root}>
 			<TextField
-				style={{ width: '100%' }}
 				type={type}
 				id="outlined-basic"
 				label={outline}
