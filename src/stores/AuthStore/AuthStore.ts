@@ -1,5 +1,6 @@
 import { autobind } from 'core-decorators';
 import {
+	IEmailCodeTypes,
 	ISignInResponseTypes,
 	ISignInTypes,
 	ISignUpTypes,
@@ -26,6 +27,28 @@ export default class AuthStore {
 			throw error;
 		} finally {
 			this.isLoading = false;
+		}
+	};
+
+	@action
+	handleSendCode = async (email: string) => {
+		try {
+			const response: ISuccessTypes = await postRequest('/auth/send', {
+				email,
+			});
+			return response;
+		} catch (error) {
+			throw error;
+		}
+	};
+
+	@action
+	handleCheckCode = async (request: IEmailCodeTypes) => {
+		try {
+			const response: ISuccessTypes = await postRequest('/auth/check', request);
+			return response;
+		} catch (error) {
+			throw error;
 		}
 	};
 

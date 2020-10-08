@@ -37,7 +37,7 @@ interface SignUpProps {
 		setAdminCode: Dispatch<SetStateAction<string>>;
 	};
 
-	requestSignUp: () => Promise<void>;
+	requestEmailAuth: () => Promise<void>;
 }
 
 const SignUp = ({
@@ -47,7 +47,7 @@ const SignUp = ({
 	nameObject,
 	emailObject,
 	adminCodeObject,
-	requestSignUp,
+	requestEmailAuth,
 }: SignUpProps) => {
 	const { id, setId } = idObject;
 	const { password, setPassword } = passwordObject;
@@ -122,7 +122,7 @@ const SignUp = ({
 					</div>
 				</div>
 
-				<FormButton buttonValue="회원가입" requestFunction={requestSignUp} />
+				<FormButton buttonValue="다음으로" requestFunction={requestEmailAuth} />
 			</FadeIn>
 		</div>
 	);

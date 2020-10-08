@@ -9,7 +9,7 @@
 
 .SignTemplate {
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
 	background-color: $primary;
 	display: flex;
 	display: -webkit-flex;

@@ -55,41 +55,31 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 
 		await handleSignIn(request)
 			.then((response: ISignInResponseTypes) => {
-				const { status } = response;
+				const { status, data } = response;
 
 				if (status === 200) {
-					toast.success('로그인에 성공하였습니다.');
-					Router.push('/');
-					requestNotificationAllow();
+					if (data.userInfo.is_allow) {
+						toast.success('로그인에 성공하였습니다.');
+						Router.push('/');
+						requestNotificationAllow();
 
-					if (localStorage) {
-						setStorage('ylog-token', response.data.ylogToken);
-						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-						ls.set('userInfo', response.data.userInfo);
+						if (localStorage) {
+							setStorage('ylog-token', response.data.ylogToken);
+							const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
+							ls.set('userInfo', response.data.userInfo);
+						}
+						return;
 					}
+
+					toast.error('현재 승인되지 않은 유저입니다.');
+					return;
 				}
 			})
 
 			.catch((error: IErrorTypes) => {
-				const { status, message } = error.response.data;
-
-				switch (status) {
-					case 400:
-						toast.error('로그인 검증 오류입니다.');
-						return;
-
-					case 401:
-						toast.error('아이디 또는 비밀번호가 올바르지 않습니다.');
-						return;
-
-					case 500:
-						toast.error('서버 오류입니다.');
-						return;
-
-					default:
-						toast.error(message);
-						return;
-				}
+				const { message } = error.response.data;
+				toast.error(message);
+				return;
 			});
 	}, [handleSignIn, id, password]);
 
