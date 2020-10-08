@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import { useStaticRendering, Provider } from 'mobx-react';
+import { Provider } from 'mobx-react';
 import stores from '../src/stores';
 import App from 'next/app';
 import { ToastContainer } from 'react-toastify';

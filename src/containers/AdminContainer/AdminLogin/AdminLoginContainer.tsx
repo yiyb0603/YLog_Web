@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { sha512 } from 'js-sha512';
 import { observer } from 'mobx-react';
 import useStores from 'lib/useStores';
@@ -7,7 +7,7 @@ import AdminLogin from 'components/Admin/AdminLogin';
 import GroupingState from 'lib/GroupingState';
 import { toast } from 'react-toastify';
 import IErrorTypes from 'interface/ErrorTypes';
-import { setStorage } from 'lib/Storage';
+import { clearStorage, setStorage } from 'lib/Storage';
 import { NextRouter, useRouter } from 'next/router';
 import SecureLS from 'secure-ls';
 
@@ -56,6 +56,10 @@ const AdminLoginContainer = observer(() => {
 				return;
 			});
 	}, [id, password, handleSignIn]);
+
+	useEffect(() => {
+		clearStorage();
+	}, [clearStorage]);
 
 	return (
 		<AdminLogin

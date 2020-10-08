@@ -8,6 +8,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { toast } from 'react-toastify';
 import GroupingState from 'lib/GroupingState';
+import { confirmAlert } from 'lib/SweetAlert';
 
 const AdminKickContainer = observer(() => {
 	const { store } = useStores();
@@ -17,27 +18,34 @@ const AdminKickContainer = observer(() => {
 		memberList,
 	} = store.MemberStore;
 
+	// 0: 회원 1: 관리자, 2: 전체
 	const [filterKinds, setFilterKinds] = useState<number>(2);
 	const [keyword, setKeyword] = useState<string>('');
-	// 0: 회원 1: 관리자, 2: 전체
 
 	const requestDeleteMember = useCallback(
 		async (memberId: string) => {
-			await handleDeleteMember(memberId)
-				.then((response: ISuccessTypes) => {
-					if (response.status === 200) {
-						toast.success('멤버를 강퇴하였습니다.');
-						handleMemberList(true);
-					}
-				})
+			confirmAlert(
+				'잠시만요!',
+				'해당 회원을 강퇴하시겠습니까?',
+				'warning',
+				async () => {
+					await handleDeleteMember(memberId)
+						.then((response: ISuccessTypes) => {
+							if (response.status === 200) {
+								toast.success('멤버를 강퇴하였습니다.');
+								handleMemberList(true);
+							}
+						})
 
-				.catch((error: IErrorTypes) => {
-					const { message } = error.response.data;
-					toast.error(message);
-					return;
-				});
+						.catch((error: IErrorTypes) => {
+							const { message } = error.response.data;
+							toast.error(message);
+							return;
+						});
+				}
+			);
 		},
-		[handleDeleteMember, handleMemberList]
+		[handleDeleteMember, handleMemberList, confirmAlert]
 	);
 
 	const filterMember: IMemberTypes[] = memberList.filter(
