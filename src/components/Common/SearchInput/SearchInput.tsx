@@ -3,7 +3,6 @@ import React, {
 	Dispatch,
 	KeyboardEvent,
 	SetStateAction,
-	useState,
 	CSSProperties,
 } from 'react';
 import classNames from 'classnames';
@@ -25,8 +24,6 @@ const SearchInput = ({
 	setKeyword,
 	requestFunction,
 }: SearchInputProps) => {
-	const [isFocus, setIsFocus] = useState<boolean>(false);
-
 	const iconStyle: CSSProperties = {
 		marginRight: 5,
 		fontSize: 25,
@@ -35,13 +32,7 @@ const SearchInput = ({
 	};
 
 	return (
-		<div
-			className={cx('SearchInput', {
-				'SearchInput-Focused': isFocus,
-			})}
-			onFocus={() => setIsFocus(true)}
-			onBlur={() => setIsFocus(false)}
-		>
+		<div className={cx('SearchInput')}>
 			<BiSearch style={iconStyle} onClick={requestFunction} />
 			<input
 				type="text"
