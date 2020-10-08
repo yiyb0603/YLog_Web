@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
+import React, { useState, useCallback, Dispatch, SetStateAction } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/useStores';
 import { IEmailCodeTypes, ISignUpTypes } from 'interface/AuthTypes';
