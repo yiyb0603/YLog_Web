@@ -57,11 +57,6 @@ const SideNavbar = ({ isEnabled, setIsEnabled }: ISideNavbarProps) => {
 							icon={<BsPersonCheckFill style={iconStyle} />}
 						/>
 						<NavItem
-							link={'/'}
-							name="멤버 권한"
-							icon={<AiTwotoneSetting style={iconStyle} />}
-						/>
-						<NavItem
 							link={'/admin/kick'}
 							name="멤버 강퇴"
 							icon={<GiHighKick style={iconStyle} />}

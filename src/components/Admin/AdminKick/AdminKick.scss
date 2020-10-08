@@ -1,6 +1,17 @@
 .AdminKick {
+	width: 100%;
+	position: relative;
+
 	&-Table {
 		width: 100%;
 		height: 80vh;
+	}
+
+	&-FilterSearch {
+		display: flex;
+		display: -webkit-flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 10px;
 	}
 }

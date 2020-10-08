@@ -13,12 +13,12 @@ import Link from 'next/link';
 import { getStorage } from 'lib/Storage';
 import { onKeyDown } from 'lib/onKeyDown';
 import { getUserToken } from 'Token/Token';
+import SearchInput from '../SearchInput';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const NavBar = () => {
-	const [isFocus, setIsFocus] = useState<boolean>(false);
 	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
 	const [keyword, setKeyword] = useState<string>('');
 
@@ -43,29 +43,11 @@ const NavBar = () => {
 					alt="logo"
 				/>
 
-				<div
-					className={cx('NavBar-Contents-SearchWrapper', {
-						'NavBar-Contents-SearchWrapper-Focused': isFocus,
-					})}
-					onFocus={() => setIsFocus(true)}
-					onBlur={() => setIsFocus(false)}
-				>
-					<BiSearch
-						style={{ marginRight: 5, fontSize: 25, cursor: 'pointer' }}
-						onClick={searchQuery}
-					/>
-					<input
-						type="text"
-						placeholder="검색어를 입력하세요"
-						value={keyword}
-						onChange={(e: ChangeEvent<HTMLInputElement>) =>
-							setKeyword(e.target.value)
-						}
-						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-							onKeyDown(e, searchQuery)
-						}
-					/>
-				</div>
+				<SearchInput
+					keyword={keyword}
+					setKeyword={setKeyword}
+					requestFunction={searchQuery}
+				/>
 
 				<div className={cx('NavBar-Contents-Right')}>
 					<Link href="/sign">
