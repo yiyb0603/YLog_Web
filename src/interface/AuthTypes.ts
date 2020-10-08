@@ -18,14 +18,19 @@ export interface IUserInfoTypes {
 }
 
 export interface ISignUpTypes {
-	id: string;
-	password: string;
-	name: string;
-	email: string;
+	id?: string;
+	password?: string;
+	name?: string;
+	email?: string;
 	adminCode?: string | false | null;
 }
 
 export interface ISignInTypes {
 	id: string;
 	password: string;
+}
+
+export interface IEmailCodeTypes {
+	email: string;
+	code: string;
 }

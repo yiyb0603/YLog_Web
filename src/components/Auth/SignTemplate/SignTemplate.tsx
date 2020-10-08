@@ -8,9 +8,7 @@ import { clearStorage } from 'lib/Storage';
 const style = require('./SignTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface SignTemplateProps {}
-
-const SignTemplate = ({}: SignTemplateProps) => {
+const SignTemplate = () => {
 	const [pageType, setPageType] = useState<string>('login');
 
 	useEffect(() => {
