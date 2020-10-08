@@ -9,6 +9,7 @@ interface MemberRowProps {
 	id: string;
 	name: string;
 	email: string;
+	isAdmin: boolean;
 	requestDeleteMember: (memberId: string) => Promise<void>;
 }
 
@@ -16,6 +17,7 @@ const MemberRow = ({
 	id,
 	name,
 	email,
+	isAdmin,
 	requestDeleteMember,
 }: MemberRowProps) => {
 	return (
@@ -27,6 +29,7 @@ const MemberRow = ({
 					alt="profile"
 				/>
 			</td>
+			<td>{isAdmin ? '관리자' : '회원'}</td>
 			<td>{id}</td>
 			<td>{name}</td>
 			<td>{email}</td>

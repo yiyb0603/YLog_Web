@@ -1,0 +1,33 @@
+@import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/Fonts/FontScheme.scss';
+
+.SearchInput {
+	width: 250px;
+	max-width: 250px;
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	border: none;
+	outline: none;
+	border-bottom: 2px solid $black;
+	color: $white;
+
+	&-Focused {
+		border-bottom: 2px solid $skyBlue;
+	}
+
+	& > input {
+		width: 100%;
+		border: none;
+		outline: none;
+		background: none;
+		padding: 5px 0;
+		font-size: $font_18;
+		color: $black;
+
+		&::placeholder {
+			color: $black;
+			vertical-align: middle;
+		}
+	}
+}
