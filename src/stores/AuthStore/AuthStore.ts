@@ -32,6 +32,7 @@ export default class AuthStore {
 
 	@action
 	handleSendCode = async (email: string) => {
+		this.isLoading = true;
 		try {
 			const response: ISuccessTypes = await postRequest('/auth/send', {
 				email,
@@ -39,23 +40,28 @@ export default class AuthStore {
 			return response;
 		} catch (error) {
 			throw error;
+		} finally {
+			this.isLoading = false;
 		}
 	};
 
 	@action
 	handleCheckCode = async (request: IEmailCodeTypes) => {
+		this.isLoading = true;
 		try {
 			const response: ISuccessTypes = await postRequest('/auth/check', request);
 			return response;
 		} catch (error) {
 			throw error;
+		} finally {
+			this.isLoading = false;
 		}
 	};
 
 	@action
 	handleSignUp = async (request: ISignUpTypes) => {
+		this.isLoading = true;
 		try {
-			this.isLoading = true;
 			const response: ISuccessTypes = await postRequest(
 				'/auth/signup',
 				request
