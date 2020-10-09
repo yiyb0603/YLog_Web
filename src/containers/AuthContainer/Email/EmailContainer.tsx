@@ -17,7 +17,7 @@ interface IEmailContainerProps {
 const EmailContainer = observer(
 	({ registerInfo, setPageType }: IEmailContainerProps) => {
 		const { store } = useStores();
-		const { handleCheckCode, handleSignUp } = store.AuthStore;
+		const { handleCheckCode, handleSignUp, isLoading } = store.AuthStore;
 
 		const { email } = registerInfo;
 		const [code, setCode] = useState<string>('');
@@ -27,6 +27,11 @@ const EmailContainer = observer(
 				email: email!,
 				code,
 			};
+
+			if (!code.trim()) {
+				toast.error('인증 코드를 입력해주세요!');
+				return;
+			}
 
 			await handleCheckCode(request)
 				.then((response: ISuccessTypes) => {
@@ -66,6 +71,7 @@ const EmailContainer = observer(
 
 		return (
 			<EmailAuth
+				isLoading={isLoading}
 				codeObject={GroupingState('code', code, setCode)}
 				requestSignUp={requestSignUp}
 			/>

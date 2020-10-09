@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
+import { Spinner } from '@class101/ui';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import FormButton from 'components/Common/FormButton';
 import CheckBox from 'components/Common/CheckBox';
@@ -11,6 +12,7 @@ const style = require('./SignUp.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface SignUpProps {
+	isLoading: boolean;
 	setPageType: Dispatch<SetStateAction<string>>;
 	idObject: {
 		id: string;
@@ -41,6 +43,7 @@ interface SignUpProps {
 }
 
 const SignUp = ({
+	isLoading,
 	setPageType,
 	idObject,
 	passwordObject,
@@ -122,7 +125,12 @@ const SignUp = ({
 					</div>
 				</div>
 
-				<FormButton buttonValue="다음으로" requestFunction={requestEmailAuth} />
+				<FormButton
+					buttonValue={
+						isLoading ? <Spinner size={20} color="white" /> : '다음으로'
+					}
+					requestFunction={requestEmailAuth}
+				/>
 			</FadeIn>
 		</div>
 	);

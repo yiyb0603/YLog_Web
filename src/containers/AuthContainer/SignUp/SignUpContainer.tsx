@@ -4,19 +4,19 @@ import useStores from 'lib/useStores';
 import { sha512 } from 'js-sha512';
 import { ISignUpTypes } from 'interface/AuthTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
-import IErrorTypes from 'interface/ErrorTypes';
 import GroupingState from 'lib/GroupingState';
-import { handleMomentParse } from 'lib/Moment';
 import { toast } from 'react-toastify';
-import EmailContainer from '../EmailContainer';
+import EmailContainer from '../Email';
+import IErrorTypes from 'interface/ErrorTypes';
+import { observer } from 'mobx-react';
 
 interface ISignUpContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;
 }
 
-const SignUpContainer = ({ setPageType }: ISignUpContainerProps) => {
+const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 	const { store } = useStores();
-	const { handleSendCode } = store.AuthStore;
+	const { handleSendCode, isLoading } = store.AuthStore;
 
 	const [isEntered, setIsEntered] = useState<boolean>(false);
 	const [registerInfo, setRegisterInfo] = useState<ISignUpTypes>({});
@@ -32,7 +32,7 @@ const SignUpContainer = ({ setPageType }: ISignUpContainerProps) => {
 			id,
 			password: sha512(password),
 			name,
-			email,
+			email: email.trim(),
 			adminCode: adminCode !== '' ? adminCode : '',
 		};
 
@@ -41,19 +41,27 @@ const SignUpContainer = ({ setPageType }: ISignUpContainerProps) => {
 			return;
 		}
 
-		await handleSendCode(email).then((response: ISuccessTypes) => {
-			if (response.status === 200) {
-				toast.success('인증코드를 발송하였습니다!');
-				setRegisterInfo(request);
-				setIsEntered(true);
-			}
-		});
+		await handleSendCode(email)
+			.then((response: ISuccessTypes) => {
+				if (response.status === 200) {
+					toast.success('인증코드를 발송하였습니다!');
+					setRegisterInfo(request);
+					setIsEntered(true);
+				}
+			})
+
+			.catch((error: IErrorTypes) => {
+				const { message } = error.response.data;
+				toast.error(message);
+				return;
+			});
 	}, [id, password, name, email, adminCode, handleSendCode]);
 
 	return (
 		<>
 			{!isEntered ? (
 				<SignUp
+					isLoading={isLoading}
 					setPageType={setPageType}
 					idObject={GroupingState('id', id, setId)}
 					passwordObject={GroupingState('password', password, setPassword)}
@@ -67,6 +75,6 @@ const SignUpContainer = ({ setPageType }: ISignUpContainerProps) => {
 			)}
 		</>
 	);
-};
+});
 
 export default SignUpContainer;

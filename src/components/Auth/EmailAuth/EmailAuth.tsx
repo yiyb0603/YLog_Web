@@ -4,11 +4,14 @@ import { ClassNamesFn } from 'classnames/types';
 import AuthInput from 'components/Common/AuthInput';
 import FadeIn from 'react-fade-in';
 import FormButton from 'components/Common/FormButton';
+import { Spinner } from '@class101/ui';
 
 const style = require('./EmailAuth.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface EmailAuthProps {
+	isLoading: boolean;
+
 	codeObject: {
 		code: string;
 		setCode: Dispatch<SetStateAction<string>>;
@@ -17,7 +20,11 @@ interface EmailAuthProps {
 	requestSignUp: () => Promise<void>;
 }
 
-const EmailAuth = ({ codeObject, requestSignUp }: EmailAuthProps) => {
+const EmailAuth = ({
+	isLoading,
+	codeObject,
+	requestSignUp,
+}: EmailAuthProps) => {
 	const { code, setCode } = codeObject;
 
 	return (
@@ -39,7 +46,12 @@ const EmailAuth = ({ codeObject, requestSignUp }: EmailAuthProps) => {
 					/>
 				</div>
 
-				<FormButton buttonValue="회원가입" requestFunction={requestSignUp} />
+				<FormButton
+					buttonValue={
+						isLoading ? <Spinner size={20} color="white" /> : '회원가입'
+					}
+					requestFunction={requestSignUp}
+				/>
 			</FadeIn>
 		</div>
 	);

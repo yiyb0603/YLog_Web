@@ -10,7 +10,8 @@ import { toast } from 'react-toastify';
 import Router from 'next/router';
 import { setStorage } from 'lib/Storage';
 import option from '../../../config/firebase.json';
-import firebase from 'firebase/app';
+import * as firebase from 'firebase/app';
+import '@firebase/messaging';
 import SecureLS from 'secure-ls';
 
 interface ISignInContainerProps {
@@ -25,9 +26,11 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 	const [password, setPassword] = useState<string>('');
 
 	const getFCMToken = useCallback(async () => {
-		firebase.initializeApp(option);
+		if (!firebase.apps.length) {
+			firebase.initializeApp(option);
+		}
 
-		const token = await firebase.messaging().getToken();
+		const token: string = await firebase.messaging().getToken();
 
 		handleFCMToken(token);
 	}, [handleFCMToken]);
