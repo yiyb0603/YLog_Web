@@ -12,6 +12,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface CategoryItemProps {
 	idx: number;
 	categoryName: string;
+	post_count: number;
 	setCategoryInfo: Dispatch<SetStateAction<IPostCategoryTypes>>;
 	setIsModify: Dispatch<SetStateAction<boolean>>;
 	requestDeleteCategory: (idx: number) => void;
@@ -20,6 +21,7 @@ interface CategoryItemProps {
 const CategoryItem = ({
 	idx,
 	categoryName,
+	post_count,
 	setCategoryInfo,
 	setIsModify,
 	requestDeleteCategory,
@@ -27,25 +29,28 @@ const CategoryItem = ({
 	const router: NextRouter = useRouter();
 	const { topic, keyword } = router.query;
 
-	const ls = new SecureLS({ encodingType: 'aes' });
+	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
 	const { is_admin } = ls.get('userInfo');
 
 	return (
-		<li key={idx} className={cx('Category-List-Item')}>
-			<span
-				className={cx('Category-List-Item-Text', {
-					'Category-List-Item-Text-Current': Number(topic) === idx,
-				})}
-				onClick={() =>
-					router.push(
-						keyword ? `/?topic=${idx}&keyword=${keyword}` : `/?topic=${idx}`
-					)
-				}
-			>
-				{categoryName.length > 14
-					? categoryName.substring(0, 14).concat('...')
-					: categoryName}
-			</span>
+		<li className={cx('CategoryItem')}>
+			<div className={cx('CategoryItem-Left')}>
+				<div
+					className={cx('CategoryItem-Left-Text', {
+						'Category-List-Item-Text-Current': Number(topic) === idx,
+					})}
+					onClick={() =>
+						router.push(
+							keyword ? `/?topic=${idx}&keyword=${keyword}` : `/?topic=${idx}`
+						)
+					}
+				>
+					{categoryName.length > 14
+						? categoryName.substring(0, 14).concat('...')
+						: categoryName}
+				</div>
+				<div className={cx('CategoryItem-Left-Count')}>({post_count})</div>
+			</div>
 
 			{is_admin && (
 				<div className={cx('Category-List-Item-Icon')}>

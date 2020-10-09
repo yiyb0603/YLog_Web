@@ -12,4 +12,5 @@ export interface ICategoryResponseTypes extends ISuccessTypes {
 export interface ICategoryListTypes {
 	idx: number;
 	category_name: string;
+	post_count: number;
 }
