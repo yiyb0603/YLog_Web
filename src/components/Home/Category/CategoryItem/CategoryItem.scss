@@ -1,21 +1,33 @@
 @import '../../../../styles/Fonts/FontScheme.scss';
 @import '../../../../styles/Palette/Palette.scss';
 
-.Categroy-List-Item {
+.CategoryItem {
 	display: flex;
 	display: -webkit-flex;
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: $font_1rem;
 
-	&-Text {
-		&:hover {
-			cursor: pointer;
-			color: $primary;
+	&-Left {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		&-Text {
+			margin-right: 3px;
+
+			&:hover {
+				cursor: pointer;
+				color: $primary;
+			}
+
+			&-Current {
+				color: $primary;
+			}
 		}
 
-		&-Current {
-			color: $primary;
+		&-Count {
+			color: $gray;
 		}
 	}
 }

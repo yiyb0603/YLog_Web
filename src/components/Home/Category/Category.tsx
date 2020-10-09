@@ -60,13 +60,14 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 					</li>
 
 					{categoryList.map((category: ICategoryListTypes) => {
-						const { idx, category_name } = category;
+						const { idx, category_name, post_count } = category;
 
 						return (
 							<CategoryItem
 								key={idx}
 								idx={idx}
 								categoryName={category_name}
+								post_count={post_count}
 								setCategoryInfo={setCategoryInfo}
 								setIsModify={setIsModify}
 								requestDeleteCategory={requestDeleteCategory}
