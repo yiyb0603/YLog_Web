@@ -37,9 +37,7 @@ const MarkdownForm = ({ contents, setContents, requestImageUpload }: MarkdownFor
 	const handleImageUpload = (file: File) => {
 		return new Promise(resolve => {
 			const reader: FileReader = new FileReader();
-			reader.onload = async (data: any) => {
-				console.log(data);
-				console.log(file);
+			reader.onload = async () => {
 				await requestImageUpload(file)
 				.then((response: string) => {
 					resolve(response);
