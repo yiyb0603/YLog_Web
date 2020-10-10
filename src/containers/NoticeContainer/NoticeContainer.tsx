@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import NoticeList from 'components/Home/NoticeList';
 
 const NoticeContainer = observer(() => {

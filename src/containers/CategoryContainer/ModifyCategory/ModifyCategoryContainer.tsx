@@ -1,11 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
 import ModifyCategory from 'components/Home/Category/ModifyCategory';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { IPostCategoryTypes } from 'interface/CategoryTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import { toast } from 'react-toastify';
 
 interface ModifyCategoryContainerProps {

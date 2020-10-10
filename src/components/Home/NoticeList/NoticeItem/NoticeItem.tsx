@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { INoticeRequestTypes } from 'interface/NoticeTypes';
 import { NextRouter, useRouter } from 'next/router';
+import stringEllipsis from 'lib/util/StringEllipsis';
 
 const style = require('./NoticeItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -23,7 +24,7 @@ const NoticeItem = ({ itemInfo, children }: NoticeItemProps) => {
 					className={cx('NoticeItem-Contents-Title')}
 					onClick={() => router.push(`/notice/${idx}`)}
 				>
-					{title!.length >= 15 ? title!.substring(0, 15).concat('...') : title}
+					{stringEllipsis(title!, 15)}
 				</div>
 				{children && children}
 			</div>

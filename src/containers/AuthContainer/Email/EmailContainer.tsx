@@ -1,13 +1,13 @@
 import React, { useState, useCallback, Dispatch, SetStateAction } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { IEmailCodeTypes, ISignUpTypes } from 'interface/AuthTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { toast } from 'react-toastify';
 import IErrorTypes from 'interface/ErrorTypes';
 import { showAlert } from 'lib/SweetAlert';
 import EmailAuth from 'components/Auth/EmailAuth';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 
 interface IEmailContainerProps {
 	registerInfo: ISignUpTypes;

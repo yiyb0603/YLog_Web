@@ -7,7 +7,7 @@ import React, {
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { BiSend } from 'react-icons/bi';
-import { onKeyDown } from 'lib/onKeyDown';
+import { useKeyDown } from 'lib/hooks/useKeyDown';
 
 const style = require('./ReplyWrite.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -34,7 +34,7 @@ const ReplyWrite = ({
 					setContents!(e.target.value)
 				}
 				onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-					onKeyDown(e, requestCreateReply)
+					useKeyDown(e, requestCreateReply)
 				}
 			/>
 

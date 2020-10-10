@@ -7,6 +7,7 @@ import SecureLS from 'secure-ls';
 import { IUserInfoTypes } from 'interface/AuthTypes';
 import { NextRouter, useRouter } from 'next/router';
 import parseTime from 'lib/TimeCounting';
+import stringEllipsis from 'lib/util/StringEllipsis';
 
 const style = require('./HomePostItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -56,9 +57,7 @@ const HomePostItem = ({
 					<div className={cx('HomePost-Item-Contents')}>
 						<div className={cx('HomePost-Item-Contents-Title')}>{title}</div>
 						<div className={cx('HomePost-Item-Introduction')}>
-							{introduction!.length > 50
-								? introduction!.substring(0, 50).concat('...')
-								: introduction}
+							{stringEllipsis(introduction!, 50)}
 						</div>
 
 						<div className={cx('HomePost-Item-Contents-TimeWrapper')}>

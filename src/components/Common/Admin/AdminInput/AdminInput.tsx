@@ -5,7 +5,7 @@ import React, {
 	KeyboardEvent,
 } from 'react';
 import { makeStyles, TextField, Theme } from '@material-ui/core';
-import { onKeyDown } from 'lib/onKeyDown';
+import { useKeyDown } from 'lib/hooks/useKeyDown';
 
 interface AdminInputProps {
 	type: string;
@@ -45,7 +45,7 @@ const AdminInput = ({
 					setValue(e.target.value)
 				}
 				onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-					onKeyDown(e, requestFunction)
+					useKeyDown(e, requestFunction)
 				}
 			/>
 		</form>

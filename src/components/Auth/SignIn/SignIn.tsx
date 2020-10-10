@@ -12,7 +12,7 @@ import FadeIn from 'react-fade-in';
 import { RiAccountCircleFill } from 'react-icons/ri';
 import { Spinner } from '@class101/ui';
 import FormButton from 'components/Common/FormButton';
-import { onKeyDown } from 'lib/onKeyDown';
+import { useKeyDown } from 'lib/hooks/useKeyDown';
 import AuthInput from 'components/Common/AuthInput';
 
 const style = require('./SignIn.scss');
@@ -63,7 +63,7 @@ const SignIn = ({
 						value={id}
 						setValue={setId}
 						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-							onKeyDown(e, requestSignIn)
+							useKeyDown(e, requestSignIn)
 						}
 					/>
 
@@ -73,7 +73,7 @@ const SignIn = ({
 						value={password}
 						setValue={setPassword}
 						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-							onKeyDown(e, requestSignIn)
+							useKeyDown(e, requestSignIn)
 						}
 					/>
 				</div>

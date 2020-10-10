@@ -1,6 +1,9 @@
+@import '../styles/Palette/Palette.scss';
+
 @font-face {
 	font-family: 'NanumSquare';
-	src: url('/assets/fonts/NanumSquareRoundOTFB.otf') format('woff');
+	src: url('/assets/fonts/NanumSquare_Round/NanumSquareRoundOTFB.otf')
+		format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -16,6 +19,7 @@ html,
 body {
 	width: 100%;
 	height: 100%;
+	background-color: $white;
 }
 
 td {

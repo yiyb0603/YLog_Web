@@ -1,12 +1,11 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import IErrorTypes from 'interface/ErrorTypes';
 import Comment from 'components/Post/Comment';
 import { toast } from 'react-toastify';
 import ISuccessTypes from 'interface/SuccessTypes';
-import { ICommentReplyTypes } from 'interface/ReplyTypes';
 
 const CommentContainer = observer(() => {
 	const { store } = useStores();
@@ -24,7 +23,6 @@ const CommentContainer = observer(() => {
 
 	const requestCommentList = useCallback(async () => {
 		await handleCommentList(postIdx).catch((error: IErrorTypes) => {
-			console.log(error);
 			const { message } = error.response.data;
 			toast.error(message);
 			return;

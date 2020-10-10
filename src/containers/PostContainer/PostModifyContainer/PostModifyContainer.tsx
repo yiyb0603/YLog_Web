@@ -1,17 +1,16 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import { IPostResponseTypes } from 'interface/PostTypes';
 import PostModify from 'components/Post/PostModify';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import PostModifyForm from 'components/Post/PostModify/PostModifyForm';
 import IUploadTypes from 'interface/UploadTypes';
 import { toast } from 'react-toastify';
 import { showAlert } from 'lib/SweetAlert';
-import { BsArrowReturnLeft } from 'react-icons/bs';
 
 const PostModifyContainer = observer(() => {
 	const { store } = useStores();
@@ -28,7 +27,7 @@ const PostModifyContainer = observer(() => {
 	const [categoryIdx, setCategoryIdx] = useState<number | undefined>(0);
 	const [thumbnail, setThumbnail] = useState<string | null | undefined>(null);
 
-	const requestFileUpload = useCallback(
+	const requestThumbnailUpload = useCallback(
 		async (e: ChangeEvent<HTMLInputElement>) => {
 			const { files } = e.target;
 			const formData: FormData = new FormData();
@@ -47,6 +46,22 @@ const PostModifyContainer = observer(() => {
 		},
 		[handleFileUpload]
 	);
+
+	const requestImageUpload = useCallback(async (files: File) => {
+		let selectFile: string = '';
+
+		const formData: FormData = new FormData();
+		formData.append('files', files);
+		
+		await handleFileUpload(formData)
+		.then((response: IUploadTypes) => {
+			if (response.status === 200) {
+				selectFile = response.data.files[0];
+			}
+		});
+
+		return selectFile;
+	}, [handleFileUpload]);
 
 	const requestModifyPost = useCallback(async (): Promise<void> => {
 		const request = {
@@ -118,9 +133,9 @@ const PostModifyContainer = observer(() => {
 				categoryIdx,
 				setCategoryIdx
 			)}
-			thumbnailObject={GroupingState('thumbnail', thumbnail, setThumbnail)}
 			categoryList={categoryList}
-			requestFileUpload={requestFileUpload}
+			requestThumbnailUpload={requestThumbnailUpload}
+			requestImageUpload ={requestImageUpload}
 			requestModifyPost={requestModifyPost}
 		/>
 	);

@@ -3,9 +3,9 @@
 
 .PostView {
 	width: 100%;
-	max-width: 1400px;
-	margin: 1rem auto;
-	padding: 0 3rem 10px;
+	max-width: 1025px;
+	margin: 2rem auto;
+	padding: 0 2rem;
 
 	&-Contents {
 		display: flex;
@@ -18,6 +18,10 @@
 			white-space: pre-wrap;
 		}
 
+		&-Introduction {
+			margin-bottom: $font_1rem;
+		}
+
 		&-Info {
 			display: flex;
 			display: -webkit-flex;
@@ -27,30 +31,34 @@
 
 			&-Category {
 				color: $primary;
+				font-size: $font_22;
 			}
 
 			&-Personal {
 				display: flex;
 				display: -webkit-flex;
+				font-size: $font_22;
 
-				& > div:first-child {
+				&-Time {
 					margin-right: 10px;
+					color: $gray;
 				}
 
 				&-Writer {
 					color: $primary;
-					font-size: $font_18;
 				}
 			}
 		}
 
 		&-Thumbnail {
-			width: 60%;
+			width: 90%;
+			max-height: 500px;
 			margin: $font_2rem auto;
 		}
 
 		&-Title {
-			font-size: $font_2rem;
+			font-size: 2.5rem;
+			font-weight: bold;
 		}
 	}
 

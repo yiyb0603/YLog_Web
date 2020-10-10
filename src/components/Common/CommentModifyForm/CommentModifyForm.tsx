@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { onKeyDown } from 'lib/onKeyDown';
+import { useKeyDown } from 'lib/hooks/useKeyDown';
 
 const style = require('./CommentModifyForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -50,7 +50,7 @@ const CommentModifyForm = ({
 					setContents(e.target.value)
 				}
 				onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-					onKeyDown(e, modifyFunction)
+					useKeyDown(e, modifyFunction)
 				}
 				autoFocus={true}
 			/>

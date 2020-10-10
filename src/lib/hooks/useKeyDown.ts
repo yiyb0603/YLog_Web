@@ -1,6 +1,6 @@
 import { KeyboardEvent } from 'react';
 
-export const onKeyDown = (
+export const useKeyDown = (
 	e: KeyboardEvent<HTMLInputElement>,
 	requestFunction: () => Promise<void> | void
 ) => {

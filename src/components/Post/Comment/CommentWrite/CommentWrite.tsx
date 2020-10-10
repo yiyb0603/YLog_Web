@@ -8,7 +8,7 @@ import React, {
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { BiSend } from 'react-icons/bi';
-import { onKeyDown } from 'lib/onKeyDown';
+import { useKeyDown } from 'lib/hooks/useKeyDown';
 
 const style = require('./CommentWrite.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -45,7 +45,7 @@ const CommentWrite = ({
 				onFocus={() => setIsFocus(true)}
 				onBlur={() => setIsFocus(false)}
 				onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-					onKeyDown(e, requestCommentWrite)
+					useKeyDown(e, requestCommentWrite)
 				}
 			/>
 

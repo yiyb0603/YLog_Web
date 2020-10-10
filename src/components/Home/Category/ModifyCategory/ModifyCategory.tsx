@@ -6,7 +6,7 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { onKeyDown } from 'lib/onKeyDown';
+import { useKeyDown } from 'lib/hooks/useKeyDown';
 import Modal from 'components/Common/Modal';
 
 const style = require('./ModifyCategory.scss');
@@ -40,7 +40,7 @@ const ModifyCategory = ({
 							setCategoryName(e.target.value)
 						}
 						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-							onKeyDown(e, requestModifyCategory)
+							useKeyDown(e, requestModifyCategory)
 						}
 					/>
 					<button onClick={requestModifyCategory}>수정</button>

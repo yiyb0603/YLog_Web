@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import AdminKick from 'components/Admin/AdminKick';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { IMemberTypes } from 'interface/MemberTypes';
 import MemberRow from 'components/Admin/AdminKick/MemberRow';
 import IErrorTypes from 'interface/ErrorTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { toast } from 'react-toastify';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import { confirmAlert } from 'lib/SweetAlert';
 
 const AdminKickContainer = observer(() => {

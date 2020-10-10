@@ -5,6 +5,7 @@ import { NextRouter, useRouter } from 'next/router';
 import { BsPen, BsTrash } from 'react-icons/bs';
 import { IPostCategoryTypes } from 'interface/CategoryTypes';
 import SecureLS from 'secure-ls';
+import stringEllipsis from 'lib/util/StringEllipsis';
 
 const style = require('./CategoryItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -45,9 +46,7 @@ const CategoryItem = ({
 						)
 					}
 				>
-					{categoryName.length > 14
-						? categoryName.substring(0, 14).concat('...')
-						: categoryName}
+					{stringEllipsis(categoryName, 14)}
 				</div>
 				<div className={cx('CategoryItem-Left-Count')}>({post_count})</div>
 			</div>

@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import dynamic from 'next/dynamic';
 import 'react-markdown-editor-lite/lib/index.css';
 import MarkdownIt from 'markdown-it';
@@ -9,6 +9,7 @@ import 'highlight.js/styles/atom-one-light.css';
 interface MarkdownFormProps {
 	contents: string;
 	setContents: Dispatch<SetStateAction<string>>;
+	requestImageUpload: any;
 }
 
 const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {
@@ -31,7 +32,24 @@ const mdParser: MarkdownIt = new MarkdownIt({
 	},
 });
 
-const MarkdownForm = ({ contents, setContents }: MarkdownFormProps) => {
+const MarkdownForm = ({ contents, setContents, requestImageUpload }: MarkdownFormProps) => {
+
+	const handleImageUpload = (file: File) => {
+		return new Promise(resolve => {
+			const reader: FileReader = new FileReader();
+			reader.onload = async (data: any) => {
+				console.log(data);
+				console.log(file);
+				await requestImageUpload(file)
+				.then((response: string) => {
+					resolve(response);
+				});
+			};
+			
+			reader.readAsDataURL(file);
+		});
+	}
+
 	return (
 		<MdEditor
 			value={contents}
@@ -39,6 +57,7 @@ const MarkdownForm = ({ contents, setContents }: MarkdownFormProps) => {
 			style={{ height: '80vh' }}
 			renderHTML={(text) => mdParser.render(text)}
 			placeholder="내용을 입력하세요..."
+			onImageUpload={handleImageUpload}
 		/>
 	);
 };

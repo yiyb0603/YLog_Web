@@ -6,7 +6,6 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { onKeyDown } from 'lib/onKeyDown';
 
 const style = require('./AuthInput.scss');
 const cx: ClassNamesFn = classNames.bind(style);

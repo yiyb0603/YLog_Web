@@ -8,7 +8,7 @@ import React, {
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Modal from 'components/Common/Modal';
-import { onKeyDown } from 'lib/onKeyDown';
+import { useKeyDown } from 'lib/hooks/useKeyDown';
 
 const style = require('./CreateCategory.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -41,7 +41,7 @@ const CreateCategory = ({
 							setCategoryName(e.target.value)
 						}
 						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-							onKeyDown(e, requestCreateCategory)
+							useKeyDown(e, requestCreateCategory)
 						}
 					/>
 					<button onClick={requestCreateCategory}>생성</button>

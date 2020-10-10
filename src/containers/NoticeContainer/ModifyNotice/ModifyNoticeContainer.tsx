@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import {
 	INoticeRequestTypes,
@@ -11,7 +11,7 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import { toast } from 'react-toastify';
 import NoticeForm from 'components/Common/NoticeForm';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import ModifyNotice from 'components/Notice/ModifyNotice';
 
 const ModifyNoticeContainer = observer(() => {

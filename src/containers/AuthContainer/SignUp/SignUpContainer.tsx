@@ -1,10 +1,10 @@
 import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import SignUp from 'components/Auth/SignUp';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { sha512 } from 'js-sha512';
 import { ISignUpTypes } from 'interface/AuthTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import { toast } from 'react-toastify';
 import EmailContainer from '../Email';
 import IErrorTypes from 'interface/ErrorTypes';

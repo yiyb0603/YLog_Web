@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import HomePost from 'components/Home/HomePost';
 import IErrorTypes from 'interface/ErrorTypes';
 import { toast } from 'react-toastify';
@@ -46,6 +46,7 @@ const PostContainer = observer(() => {
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
 						toast.success('글 삭제를 성공하였습니다.');
+						handleCategoryList();
 					}
 				})
 
@@ -55,7 +56,7 @@ const PostContainer = observer(() => {
 					return;
 				});
 		},
-		[handleDeletePost]
+		[handleDeletePost, handleCategoryList]
 	);
 
 	useEffect(() => {

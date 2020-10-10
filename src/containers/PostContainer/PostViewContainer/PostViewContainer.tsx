@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import IErrorTypes from 'interface/ErrorTypes';
 import { NextRouter, useRouter } from 'next/router';
 import PostView from 'components/Post/PostView';
