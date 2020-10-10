@@ -4,6 +4,7 @@ import CommentStore from './CommentStore';
 import MemberStore from './MemberStore';
 import NoticeStore from './NoticeStore';
 import PostStore from './PostStore';
+import ReleaseStore from './ReleaseStore';
 import ReplyStore from './ReplyStore';
 import UploadStore from './UploadStore';
 
@@ -16,6 +17,7 @@ const stores = {
 	UploadStore: new UploadStore(),
 	NoticeStore: new NoticeStore(),
 	MemberStore: new MemberStore(),
+	ReleaseStore: new ReleaseStore(),
 };
 
 export default stores;
