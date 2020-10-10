@@ -1,17 +1,16 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import { IPostResponseTypes } from 'interface/PostTypes';
 import PostModify from 'components/Post/PostModify';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import PostModifyForm from 'components/Post/PostModify/PostModifyForm';
 import IUploadTypes from 'interface/UploadTypes';
 import { toast } from 'react-toastify';
 import { showAlert } from 'lib/SweetAlert';
-import { BsArrowReturnLeft } from 'react-icons/bs';
 
 const PostModifyContainer = observer(() => {
 	const { store } = useStores();

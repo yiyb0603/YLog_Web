@@ -8,7 +8,7 @@ import React, {
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { BiSearch } from 'react-icons/bi';
-import { onKeyDown } from 'lib/onKeyDown';
+import { useKeyDown } from 'lib/hooks/useKeyDown';
 
 const style = require('./SearchInput.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -43,7 +43,7 @@ const SearchInput = ({
 				}
 				onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => {
 					if (typeof requestFunction === 'function') {
-						onKeyDown(e, requestFunction);
+						useKeyDown(e, requestFunction);
 					}
 				}}
 			/>

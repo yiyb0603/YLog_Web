@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
 import CommentModify from 'components/Post/Comment/CommentModify';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import { NextRouter, useRouter } from 'next/router';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { ICommentRequestTypes } from 'interface/CommentTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import ISuccessTypes from 'interface/SuccessTypes';

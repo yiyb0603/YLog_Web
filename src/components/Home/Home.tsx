@@ -5,7 +5,7 @@ import CategoryContainer from 'containers/CategoryContainer/Category';
 import { NextRouter, useRouter } from 'next/router';
 import PostContainer from 'containers/PostContainer';
 import NoticeContainer from 'containers/NoticeContainer';
-import isAdmin from 'lib/isAdmin';
+import isAdmin from 'lib/util/isAdmin';
 
 const style = require('./Home.scss');
 const cx: ClassNamesFn = classNames.bind(style);

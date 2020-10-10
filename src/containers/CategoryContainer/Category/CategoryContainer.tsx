@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import Category from 'components/Home/Category';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import IErrorTypes from 'interface/ErrorTypes';
 import { toast } from 'react-toastify';
 import ISuccessTypes from 'interface/SuccessTypes';

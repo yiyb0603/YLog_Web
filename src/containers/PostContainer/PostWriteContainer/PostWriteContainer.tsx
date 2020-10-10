@@ -1,12 +1,12 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import PostWrite from 'components/Post/PostWrite';
 import { IPostRequestTypes } from 'interface/PostTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import PostWriteForm from 'components/Post/PostWrite/PostWriteForm';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import { toast } from 'react-toastify';
 import { showAlert } from 'lib/SweetAlert';
 import { NextRouter, useRouter } from 'next/router';

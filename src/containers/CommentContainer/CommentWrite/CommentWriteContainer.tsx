@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import { ICommentRequestTypes } from 'interface/CommentTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import CommentWrite from 'components/Post/Comment/CommentWrite';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import { toast } from 'react-toastify';
 
 const CommentWriteContainer = observer(() => {

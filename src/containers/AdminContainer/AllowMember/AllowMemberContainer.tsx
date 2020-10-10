@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import AllowMember from 'components/Admin/AllowMember';
 import { toast } from 'react-toastify';
 import ISuccessTypes from 'interface/SuccessTypes';

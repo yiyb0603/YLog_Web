@@ -1,11 +1,11 @@
 import React, { useState, useCallback, Dispatch, SetStateAction } from 'react';
 import { observer } from 'mobx-react';
 import { sha512 } from 'js-sha512';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import SignIn from 'components/Auth/SignIn';
 import { ISignInResponseTypes, ISignInTypes } from 'interface/AuthTypes';
 import IErrorTypes from 'interface/ErrorTypes';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
 import { setStorage } from 'lib/Storage';

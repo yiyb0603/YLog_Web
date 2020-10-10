@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import stringEllipsis from 'lib/util/StringEllipsis';
 
 const style = require('./MemberCard.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -30,7 +31,7 @@ const MemberCard = ({
 					<div>{id}</div>
 					<div>{name}</div>
 					<div>
-						{email.length > 18 ? email.substring(0, 18).concat('...') : email}
+						{stringEllipsis(email, 18)}
 					</div>
 					<div>{is_admin && '관리자'}</div>
 				</div>

@@ -1,12 +1,12 @@
 import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
-import useStores from 'lib/useStores';
+import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import { IReplyModifyTypes } from 'interface/ReplyTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import ReplyModify from 'components/Post/Reply/ReplyModify';
-import GroupingState from 'lib/GroupingState';
+import GroupingState from 'lib/util/GroupingState';
 import { toast } from 'react-toastify';
 
 interface IReplyModifyContainerProps {
@@ -72,7 +72,6 @@ const ReplyModifyContainer = observer(
 				contentsObject={GroupingState('contents', contents, setContents)}
 				requestModifyReply={requestModifyReply}
 				isModify={isModify}
-				setIsModify={setIsModify}
 				onBlur={onBlur}
 			/>
 		);
