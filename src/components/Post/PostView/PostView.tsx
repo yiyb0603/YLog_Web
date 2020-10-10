@@ -37,7 +37,7 @@ const PostView = ({ postInfo, categoryName }: IPostViewProps) => {
 						{categoryName && categoryName.category_name}
 					</div>
 					<div className={cx('PostView-Contents-Info-Personal')}>
-						<div>
+						<div className={cx('PostView-Contents-Info-Personal-Time')}>
 							{parseTime(created_at!)}
 							{updated_at && ' (수정됨)'}
 						</div>

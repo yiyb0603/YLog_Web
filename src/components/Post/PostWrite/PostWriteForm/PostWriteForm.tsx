@@ -28,7 +28,8 @@ interface PostWriteFormProps {
 	};
 
 	categoryList: ICategoryListTypes[];
-	requestFileUpload: (e: ChangeEvent<HTMLInputElement>) => void;
+	requestThumbnailUpload: (e: ChangeEvent<HTMLInputElement>) => void;
+	requestImageUpload: (file: File) => Promise<string>;
 	requestWritePost: () => Promise<void>;
 }
 
@@ -41,7 +42,8 @@ const PostWriteForm = ({
 	contentsObject,
 	categoryIdxObject,
 	categoryList,
-	requestFileUpload,
+	requestThumbnailUpload,
+	requestImageUpload,
 	requestWritePost,
 }: PostWriteFormProps) => {
 	const { title, setTitle } = titleObject;
@@ -90,9 +92,9 @@ const PostWriteForm = ({
 				/>
 			</div>
 
-			<input type="file" onChange={requestFileUpload} />
+			<input type="file" onChange={requestThumbnailUpload} />
 
-			<MarkdownForm contents={contents} setContents={setContents} />
+			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={requestImageUpload} />
 
 			<div className={cx('PostWriteForm-Button')}>
 				{/* <button className={cx('PostWriteForm-Button-Save')}>임시 저장</button> */}

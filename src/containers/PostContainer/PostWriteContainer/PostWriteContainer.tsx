@@ -25,7 +25,7 @@ const PostWriteContainer = observer(() => {
 	const [categoryIdx, setCategoryIdx] = useState<number>(0);
 	const [thumbnail, setThumbnail] = useState<string | null>(null);
 
-	const requestFileUpload = useCallback(
+	const requestThumbnailUpload = useCallback(
 		async (e: ChangeEvent<HTMLInputElement>) => {
 			const { files } = e.target;
 			const formData: FormData = new FormData();
@@ -44,6 +44,22 @@ const PostWriteContainer = observer(() => {
 		},
 		[handleFileUpload]
 	);
+
+	const requestImageUpload = useCallback(async (files: File) => {
+		let selectFile: string = '';
+
+		const formData: FormData = new FormData();
+		formData.append('files', files);
+		
+		await handleFileUpload(formData)
+		.then((response: IUploadTypes) => {
+			if (response.status === 200) {
+				selectFile = response.data.files[0];
+			}
+		});
+
+		return selectFile;
+	}, [handleFileUpload]);
 
 	const requestWritePost = useCallback(async (): Promise<void> => {
 		const request: IPostRequestTypes = {
@@ -102,7 +118,8 @@ const PostWriteContainer = observer(() => {
 				setCategoryIdx
 			)}
 			categoryList={categoryList}
-			requestFileUpload={requestFileUpload}
+			requestThumbnailUpload={requestThumbnailUpload}
+			requestImageUpload ={requestImageUpload}
 			requestWritePost={requestWritePost}
 		/>
 	);

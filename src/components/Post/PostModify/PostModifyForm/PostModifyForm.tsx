@@ -28,13 +28,9 @@ interface PostModifyFormProps {
 		setCategoryIdx: Dispatch<SetStateAction<number>>;
 	};
 
-	thumbnailObject: {
-		thumbnail: string;
-		setThumbnail: Dispatch<SetStateAction<string>>;
-	};
-
 	categoryList: ICategoryListTypes[];
-	requestFileUpload: (e: ChangeEvent<HTMLInputElement>) => void;
+	requestThumbnailUpload: (e: ChangeEvent<HTMLInputElement>) => void;
+	requestImageUpload: (file: File) => Promise<string>;
 	requestModifyPost: () => Promise<void>;
 }
 
@@ -47,14 +43,13 @@ const PostModifyForm = ({
 	introductionObject,
 	contentsObject,
 	categoryIdxObject,
-	thumbnailObject,
-	requestFileUpload,
+	requestThumbnailUpload,
+	requestImageUpload,
 	requestModifyPost,
 }: PostModifyFormProps) => {
 	const { title, setTitle } = titleObject;
 	const { introduction, setIntroduction } = introductionObject;
 	const { categoryIdx, setCategoryIdx } = categoryIdxObject;
-	const { thumbnail, setThumbnail } = thumbnailObject;
 	const { contents, setContents } = contentsObject;
 
 	const findCategory: ICategoryListTypes | undefined = categoryList.find(
@@ -109,9 +104,9 @@ const PostModifyForm = ({
 				/>
 			</div>
 
-			<input type="file" onChange={requestFileUpload} />
+			<input type="file" onChange={requestThumbnailUpload} />
 
-			<MarkdownForm contents={contents} setContents={setContents} />
+			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={requestImageUpload} />
 
 			<div className={cx('PostModifyForm-Button')}>
 				{/* <button className={cx('PostModifyForm-Button-Save')}>임시 저장</button> */}
