@@ -19,9 +19,9 @@ export default class CategoryStore {
 	@observable categoryList: ICategoryListTypes[] = [];
 
 	@action
-	handleCategoryList = async () => {
+	handleCategoryList = async (keyword?: string) => {
 		try {
-			const response: ICategoryResponseTypes = await getResponse('/category');
+			const response: ICategoryResponseTypes = await getResponse(`/category${keyword ? '?keyword=' + keyword : ''}`);
 			this.categoryList = response.data;
 
 			return response;
