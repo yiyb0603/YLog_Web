@@ -33,7 +33,7 @@ const PostContainer = observer(() => {
 			await handleSearchPosts(keyword);
 		}
 
-		await handleCategoryList().catch((error: IErrorTypes) => {
+		await handleCategoryList(keyword && keyword).catch((error: IErrorTypes) => {
 			const { message } = error.response.data;
 			toast.error(message);
 			return;
@@ -46,7 +46,7 @@ const PostContainer = observer(() => {
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
 						toast.success('글 삭제를 성공하였습니다.');
-						handleCategoryList();
+						handleCategoryList(keyword && keyword);
 					}
 				})
 
@@ -56,7 +56,7 @@ const PostContainer = observer(() => {
 					return;
 				});
 		},
-		[handleDeletePost, handleCategoryList]
+		[handleDeletePost, handleCategoryList, keyword]
 	);
 
 	useEffect(() => {

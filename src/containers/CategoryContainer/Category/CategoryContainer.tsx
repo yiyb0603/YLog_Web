@@ -5,9 +5,13 @@ import useStores from 'lib/hooks/useStores';
 import IErrorTypes from 'interface/ErrorTypes';
 import { toast } from 'react-toastify';
 import ISuccessTypes from 'interface/SuccessTypes';
+import { NextRouter, useRouter } from 'next/router';
 
 const CategoryContainer = observer(() => {
 	const { store } = useStores();
+	const router: NextRouter = useRouter();
+	const { keyword } = router.query;
+
 	const {
 		handleCategoryList,
 		categoryList,
@@ -15,12 +19,12 @@ const CategoryContainer = observer(() => {
 	} = store.CategoryStore;
 
 	const requestInitialData = useCallback(async () => {
-		await handleCategoryList().catch((error: IErrorTypes) => {
+		await handleCategoryList(keyword && keyword).catch((error: IErrorTypes) => {
 			const { message } = error.response.data;
 			toast.error(message);
 			return;
 		});
-	}, [handleCategoryList]);
+	}, [handleCategoryList, keyword]);
 
 	const requestDeleteCategory = useCallback(
 		async (idx: number) => {
@@ -43,7 +47,7 @@ const CategoryContainer = observer(() => {
 
 	useEffect(() => {
 		requestInitialData();
-	}, [requestInitialData]);
+	}, [requestInitialData, keyword]);
 
 	return (
 		<Category
