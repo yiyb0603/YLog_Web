@@ -1,5 +1,5 @@
 import { autobind } from 'core-decorators';
-import { IReleaseListResponseTypes, IReleaseResponseTypes, IReleaseTypes } from 'interface/ReleaseTypes';
+import { IReleaseListResponseTypes, IReleaseRequestTypes, IReleaseResponseTypes, IReleaseTypes } from 'interface/ReleaseTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { deleteRequest, getResponse, modifyRequest, postRequest } from 'lib/Axios';
 import { action, observable } from 'mobx';
@@ -40,7 +40,7 @@ export default class ReleaseStore {
   }
 
   @action
-  handleCreateRelease = async (request: IReleaseTypes) => {
+  handleCreateRelease = async (request: IReleaseRequestTypes) => {
     try {
       const response: ISuccessTypes = await postRequest('/release', request, getUserToken());
       return response;

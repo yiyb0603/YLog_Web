@@ -10,7 +10,7 @@ import { showAlert } from 'lib/SweetAlert';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import { toast } from 'react-toastify';
-import NoticeForm from 'components/Common/NoticeForm';
+import NoticeForm from 'components/Notice/NoticeForm';
 import GroupingState from 'lib/util/GroupingState';
 import ModifyNotice from 'components/Notice/ModifyNotice';
 

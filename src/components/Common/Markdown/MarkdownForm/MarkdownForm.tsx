@@ -9,7 +9,7 @@ import 'highlight.js/styles/atom-one-light.css';
 interface MarkdownFormProps {
 	contents: string;
 	setContents: Dispatch<SetStateAction<string>>;
-	requestImageUpload: any;
+	requestImageUpload?: any;
 }
 
 const MdEditor = dynamic(() => import('react-markdown-editor-lite'), {

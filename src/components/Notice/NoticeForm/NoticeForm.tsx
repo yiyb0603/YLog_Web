@@ -1,7 +1,8 @@
 import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import MarkdownForm from '../Markdown/MarkdownForm';
+import MarkdownForm from '../../Common/Markdown/MarkdownForm';
+import TitleInput from 'components/Common/Input/TitleInput';
 
 const style = require('./NoticeForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -31,15 +32,7 @@ const NoticeForm = ({
 	return (
 		<div className={cx('NoticeForm')}>
 			<div className={cx('NoticeForm-Top')}>
-				<input
-					className={cx('NoticeForm-Top-Title')}
-					type="text"
-					placeholder="제목을 입력하세요..."
-					value={title}
-					onChange={(e: ChangeEvent<HTMLInputElement>) =>
-						setTitle(e.target.value)
-					}
-				/>
+				<TitleInput title ={title} setTitle ={setTitle} />
 			</div>
 
 			<MarkdownForm contents={contents} setContents={setContents} />

@@ -11,6 +11,7 @@ import PostModifyForm from 'components/Post/PostModify/PostModifyForm';
 import IUploadTypes from 'interface/UploadTypes';
 import { toast } from 'react-toastify';
 import { showAlert } from 'lib/SweetAlert';
+import ImageUpload from 'lib/util/ImageUpload';
 
 const PostModifyContainer = observer(() => {
 	const { store } = useStores();
@@ -46,22 +47,6 @@ const PostModifyContainer = observer(() => {
 		},
 		[handleFileUpload]
 	);
-
-	const requestImageUpload = useCallback(async (files: File) => {
-		let selectFile: string = '';
-
-		const formData: FormData = new FormData();
-		formData.append('files', files);
-		
-		await handleFileUpload(formData)
-		.then((response: IUploadTypes) => {
-			if (response.status === 200) {
-				selectFile = response.data.files[0];
-			}
-		});
-
-		return selectFile;
-	}, [handleFileUpload]);
 
 	const requestModifyPost = useCallback(async (): Promise<void> => {
 		const request = {
@@ -135,7 +120,7 @@ const PostModifyContainer = observer(() => {
 			)}
 			categoryList={categoryList}
 			requestThumbnailUpload={requestThumbnailUpload}
-			requestImageUpload ={requestImageUpload}
+			requestImageUpload ={ImageUpload}
 			requestModifyPost={requestModifyPost}
 		/>
 	);

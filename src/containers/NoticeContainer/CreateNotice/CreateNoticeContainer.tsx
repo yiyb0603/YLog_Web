@@ -9,7 +9,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import { toast } from 'react-toastify';
 import CreateNotice from 'components/Notice/CreateNotice';
 import GroupingState from 'lib/util/GroupingState';
-import NoticeForm from 'components/Common/NoticeForm';
+import NoticeForm from 'components/Notice/NoticeForm';
 
 const CreateNoticeContainer = observer(() => {
 	const { store } = useStores();

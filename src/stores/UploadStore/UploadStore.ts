@@ -5,7 +5,7 @@ import { action } from 'mobx';
 @autobind
 export default class UploadStore {
 	@action
-	handleFileUpload = async (files: File) => {
+	handleFileUpload = async (files: File | FormData) => {
 		try {
 			const response = await postRequest('/upload', files);
 			return response;

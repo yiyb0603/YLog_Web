@@ -5,6 +5,7 @@ import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import SelectBox from 'components/Common/SelectBox';
 import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
+import TitleInput from 'components/Common/Input/TitleInput';
 
 interface PostWriteFormProps {
 	titleObject: {
@@ -54,15 +55,7 @@ const PostWriteForm = ({
 	return (
 		<div className={cx('PostWriteForm')}>
 			<div className={cx('PostWriteForm-Top')}>
-				<input
-					className={cx('PostWriteForm-Top-Title')}
-					type="text"
-					placeholder="제목을 입력하세요..."
-					value={title}
-					onChange={(e: ChangeEvent<HTMLInputElement>) =>
-						setTitle(e.target.value)
-					}
-				/>
+				<TitleInput title ={title} setTitle ={setTitle} width ="400px" />
 
 				<SelectBox
 					onChange={(e: ChangeEvent<HTMLSelectElement>) =>
