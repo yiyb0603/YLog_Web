@@ -97,7 +97,6 @@ const PostWriteForm = ({
 			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={requestImageUpload} />
 
 			<div className={cx('PostWriteForm-Button')}>
-				{/* <button className={cx('PostWriteForm-Button-Save')}>임시 저장</button> */}
 				<button
 					className={cx('PostWriteForm-Button-Write')}
 					onClick={requestWritePost}

@@ -13,10 +13,9 @@ export interface IReleaseResponseTypes extends ISuccessTypes {
 }
 
 export interface IReleaseTypes {
-  idx?: number;
-  title?: string;
-  contents?: string;
-  created_at?: Date | string;
-  updated_at?: Date | null;
-  writer?: string;
+  idx: number;
+  title: string;
+  created_at: Date | string;
+  updated_at: Date | null;
+  writer: string;
 }

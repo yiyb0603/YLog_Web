@@ -1,0 +1,22 @@
+@import '../../../../styles/Palette/Palette.scss';
+@import '../../../../styles/Fonts/FontScheme.scss';
+
+.WriteButton {
+	width: 200px;
+	border: none;
+	outline: none;
+	color: $white;
+	font-size: $font_20;
+	background-color: $primary;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 10px 0;
+	cursor: pointer;
+	margin-bottom: 10px;
+
+	& > div {
+		margin-left: 5px;
+	}
+}

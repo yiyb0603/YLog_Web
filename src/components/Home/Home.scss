@@ -33,17 +33,5 @@
 		display: flex;
 		display: -webkit-flex;
 		flex-direction: column;
-
-		&-WriteButton {
-			width: 200px;
-			border: none;
-			outline: none;
-			color: $white;
-			font-size: $font_20;
-			background-color: $primary;
-			padding: 10px 0;
-			cursor: pointer;
-			margin-bottom: 10px;
-		}
 	}
 }

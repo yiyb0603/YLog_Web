@@ -2,16 +2,27 @@ import { autobind } from 'core-decorators';
 import { IReleaseListResponseTypes, IReleaseResponseTypes, IReleaseTypes } from 'interface/ReleaseTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { deleteRequest, getResponse, modifyRequest, postRequest } from 'lib/Axios';
-import { action } from 'mobx';
+import { action, observable } from 'mobx';
 import { getUserToken } from 'Token/Token';
 
 @autobind
 export default class ReleaseStore {
+  @observable releaseList: IReleaseTypes[] = [];
 
   @action
   handleReleaseList = async () => {
     try {
       const response: IReleaseListResponseTypes = await getResponse('/release');
+      const { releases } = response.data;
+
+      this.releaseList = releases.sort((a: IReleaseTypes, b: IReleaseTypes) => {
+        if (a.created_at > b.created_at) {
+          return -1;
+        }
+
+        return 0;
+      });
+
       return response;
     } catch (error) {
       throw error;
