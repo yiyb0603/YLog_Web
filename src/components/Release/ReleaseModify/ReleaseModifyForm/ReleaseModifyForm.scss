@@ -13,18 +13,7 @@
 	transition: all 0.2s ease-in;
 }
 
-@mixin inputStyle($width) {
-	width: $width;
-	border: none;
-	border-bottom: 2px solid $lighterGray;
-	outline: none;
-	padding: 5px 0;
-	font-size: $font_22;
-	margin-right: 1rem;
-	margin-bottom: 10px;
-}
-
-.PostWriteForm {
+.ReleaseModifyForm {
 	max-width: 1200px;
 	margin: 1rem auto;
 	display: flex;
@@ -32,19 +21,10 @@
 	flex-direction: column;
 
 	&-Top {
+		width: 100%;
 		display: flex;
 		display: -webkit-flex;
 		align-items: center;
-	}
-
-	&-Introduction {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
-
-		& > input {
-			@include inputStyle(100%);
-		}
 	}
 
 	&-Button {
@@ -62,3 +42,4 @@
 		}
 	}
 }
+/* your css code */

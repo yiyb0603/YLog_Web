@@ -4,7 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import { Table } from 'react-bootstrap';
 import PageHeader from 'components/Common/Admin/PageHeader';
 import SelectBox from 'components/Common/SelectBox';
-import SearchInput from 'components/Common/SearchInput';
+import SearchInput from 'components/Common/Input/SearchInput';
 import NoTopics from 'components/Common/Admin/NoTopics';
 
 const style = require('./AdminKick.scss');

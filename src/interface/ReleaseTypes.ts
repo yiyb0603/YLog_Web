@@ -12,6 +12,12 @@ export interface IReleaseResponseTypes extends ISuccessTypes {
   }
 }
 
+export interface IReleaseRequestTypes {
+  idx?: number;
+  title: string;
+  contents: string;
+}
+
 export interface IReleaseTypes {
   idx?: number;
   title?: string;

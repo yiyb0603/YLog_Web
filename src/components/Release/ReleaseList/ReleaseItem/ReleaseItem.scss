@@ -1,1 +1,38 @@
-/* your css code */
+@import '../../../../styles/Fonts/FontScheme.scss';
+@import '../../../../styles/Palette/Palette.scss';
+
+.ReleaseItem {
+	width: 100%;
+	display: flex;
+	display: -webkit-flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid $lighterGray;
+	padding: 10px 0;
+	margin-bottom: 12px;
+	cursor: pointer;
+
+	&-Left {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		& > * {
+			margin-right: 5px;
+		}
+
+		&-Time {
+			color: $gray;
+		}
+
+		&-Title,
+		&-Idx {
+			font-size: $font_20;
+		}
+	}
+
+	&-Right {
+		color: $primary;
+		font-size: $font_20;
+	}
+}

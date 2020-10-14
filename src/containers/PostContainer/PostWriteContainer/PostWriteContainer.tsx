@@ -11,6 +11,7 @@ import { toast } from 'react-toastify';
 import { showAlert } from 'lib/SweetAlert';
 import { NextRouter, useRouter } from 'next/router';
 import IUploadTypes from 'interface/UploadTypes';
+import ImageUpload from 'lib/util/ImageUpload';
 
 const PostWriteContainer = observer(() => {
 	const { store } = useStores();
@@ -44,22 +45,6 @@ const PostWriteContainer = observer(() => {
 		},
 		[handleFileUpload]
 	);
-
-	const requestImageUpload = useCallback(async (files: File) => {
-		let selectFile: string = '';
-
-		const formData: FormData = new FormData();
-		formData.append('files', files);
-		
-		await handleFileUpload(formData)
-		.then((response: IUploadTypes) => {
-			if (response.status === 200) {
-				selectFile = response.data.files[0];
-			}
-		});
-
-		return selectFile;
-	}, [handleFileUpload]);
 
 	const requestWritePost = useCallback(async (): Promise<void> => {
 		const request: IPostRequestTypes = {
@@ -119,7 +104,7 @@ const PostWriteContainer = observer(() => {
 			)}
 			categoryList={categoryList}
 			requestThumbnailUpload={requestThumbnailUpload}
-			requestImageUpload ={requestImageUpload}
+			requestImageUpload ={ImageUpload}
 			requestWritePost={requestWritePost}
 		/>
 	);

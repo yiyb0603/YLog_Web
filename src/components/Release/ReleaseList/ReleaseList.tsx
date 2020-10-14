@@ -6,13 +6,13 @@ const style = require("./ReleaseList.scss");
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface ReleaseListProps {
-
+  releaseLists: JSX.Element[];
 }
 
-const ReleaseList = ({}: ReleaseListProps) => {
+const ReleaseList = ({ releaseLists }: ReleaseListProps) => {
   return (
     <div className ={cx('ReleaseList')}>
-      <div></div>
+      {releaseLists}
     </div>
   );
 };

@@ -6,6 +6,8 @@ import { NextRouter, useRouter } from 'next/router';
 import PostContainer from 'containers/PostContainer';
 import NoticeContainer from 'containers/NoticeContainer';
 import isAdmin from 'lib/util/isAdmin';
+import WriteButton from 'components/Common/Button/WriteButton';
+import { HiPencil } from 'react-icons/hi';
 
 const style = require('./Home.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -27,12 +29,12 @@ const Home = () => {
 
 				<div className={cx('Home-Right')}>
 					{isAdmin() && (
-						<button
-							className={cx('Home-Right-WriteButton')}
-							onClick={() => router.push('/post/postwrite')}
+						<WriteButton
+							nextFunction ={() => router.push('/post/postwrite')}
 						>
-							글 작성
-						</button>
+							<HiPencil />
+							<div>글 작성</div>
+						</WriteButton>
 					)}
 					<CategoryContainer />
 				</div>
