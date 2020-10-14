@@ -14,11 +14,11 @@ const ReleaseContainer = observer(() => {
     return (
       <ReleaseItem
         key ={idx}
-        idx ={idx}
-        title ={title}
-        writer ={writer}
-        createdAt ={created_at}
-        updatedAt ={updated_at}
+        idx ={idx!}
+        title ={title!}
+        writer ={writer!}
+        createdAt ={created_at!}
+        updatedAt ={updated_at!}
       />
     );
   })

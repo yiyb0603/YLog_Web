@@ -7,7 +7,9 @@ import { getUserToken } from 'Token/Token';
 
 @autobind
 export default class ReleaseStore {
+  @observable isLoading: boolean = true;
   @observable releaseList: IReleaseTypes[] = [];
+  @observable releaseInfo: IReleaseTypes = {};
 
   @action
   handleReleaseList = async () => {
@@ -16,7 +18,7 @@ export default class ReleaseStore {
       const { releases } = response.data;
 
       this.releaseList = releases.sort((a: IReleaseTypes, b: IReleaseTypes) => {
-        if (a.created_at > b.created_at) {
+        if (a.created_at! > b.created_at!) {
           return -1;
         }
 
@@ -32,10 +34,15 @@ export default class ReleaseStore {
   @action
   handleReleaseView = async (idx: number) => {
     try {
+      this.isLoading = true;
       const response: IReleaseResponseTypes = await getResponse(`/release/${idx}`);
+      this.releaseInfo = response.data.release;
+
       return response;
     } catch (error) {
       throw error;
+    } finally {
+      this.isLoading = false;
     }
   }
 

@@ -1,1 +1,92 @@
-/* your css code */
+@import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/Fonts/FontScheme.scss';
+
+@mixin optionStyle($color) {
+	color: $color;
+	font-weight: 200;
+	margin-right: 5px;
+	cursor: pointer;
+	z-index: 3;
+
+	&:hover {
+		opacity: 0.7;
+	}
+}
+
+.ReleasePage {
+	width: 100%;
+	max-width: 1200px;
+	margin: 2rem auto;
+
+	&-Contents {
+		display: flex;
+		display: -webkit-flex;
+		flex-direction: column;
+		-ms-flex-direction: column;
+		border-bottom: 2px solid $lighterGray;
+
+		& * {
+			white-space: pre-wrap;
+		}
+
+		&-Info {
+			width: 100%;
+			display: flex;
+			display: -webkit-flex;
+			align-items: center;
+			margin: 10px 0;
+
+			&-Personal {
+				flex: 1;
+				display: flex;
+				display: -webkit-flex;
+				justify-content: space-between;
+				font-size: $font_22;
+
+				&-Wrapper {
+					display: flex;
+					display: -webkit-flex;
+					align-items: center;
+				}
+
+				&-Option {
+					display: flex;
+					display: -webkit-flex;
+					align-items: flex-end;
+
+					& > * {
+						margin-right: 5px;
+						font-size: $font_1rem;
+						cursor: pointer;
+					}
+
+					&-Modify {
+						@include optionStyle($gray);
+					}
+
+					&-Delete {
+						@include optionStyle($red);
+					}
+				}
+
+				&-Time {
+					margin-right: 10px;
+					color: $gray;
+				}
+
+				&-Writer {
+					color: $primary;
+				}
+			}
+		}
+
+		&-Title {
+			font-size: 2.5rem;
+			font-weight: bold;
+		}
+
+		&-Contents {
+			margin-bottom: 12px;
+		}
+	}
+}

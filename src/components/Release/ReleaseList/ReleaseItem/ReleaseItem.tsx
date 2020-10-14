@@ -2,6 +2,7 @@ import React from "react";
 import classNames from 'classnames';
 import { ClassNamesFn } from "classnames/types";
 import parseTime from "lib/TimeCounting";
+import { NextRouter, useRouter } from "next/router";
 
 const style = require("./ReleaseItem.scss");
 const cx: ClassNamesFn = classNames.bind(style);
@@ -15,8 +16,10 @@ interface ReleaseItemProps {
 }
 
 const ReleaseItem = ({ idx, title, writer, createdAt, updatedAt }: ReleaseItemProps) => {
+  const router: NextRouter = useRouter();
+
   return (
-    <div className ={cx('ReleaseItem')}>
+    <div className ={cx('ReleaseItem')} onClick ={() => router.push(`/release/${idx}`)}>
       <div className ={cx('ReleaseItem-Left')}>
         <div className ={cx('ReleaseItem-Left-Time')}>{parseTime(createdAt)}</div>
         <div className ={cx('ReleaseItem-Left-Idx')}>#{idx}</div>
