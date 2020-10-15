@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { BsPen, BsPencil, BsTrash } from 'react-icons/bs';
+import { BsPencil } from 'react-icons/bs';
 import CreateCategoryContainer from 'containers/CategoryContainer/CreateCategory/CreateCategoryContainer';
 import {
 	ICategoryListTypes,
@@ -11,6 +11,7 @@ import { NextRouter, useRouter } from 'next/router';
 import ModifyCategoryContainer from 'containers/CategoryContainer/ModifyCategory/ModifyCategoryContainer';
 import CategoryItem from './CategoryItem';
 import SecureLS from 'secure-ls';
+import RowCategoryItem from '../RowCategoryItem';
 
 const style = require('./Category.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -30,12 +31,31 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 		query: { topic, keyword },
 	}: NextRouter = router;
 
-	if (typeof window !== 'undefined') {
-		const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-		const { is_admin } = ls.get('userInfo');
+	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
+	const { is_admin } = ls.get('userInfo');
 
-		return (
-			<div className={cx('Category')}>
+	return (
+		<div className={cx('Category')}>
+			<div className ={cx('Category-RowWrapper')}>
+			{
+				categoryList.map((category: ICategoryListTypes) => {
+					const { idx, category_name, post_count } = category;
+
+					return (
+						<RowCategoryItem
+							key={idx}
+							idx={idx}
+							categoryName={category_name}
+							postCount={post_count}
+							setCategoryInfo={setCategoryInfo}
+							setIsModify={setIsModify}
+							requestDeleteCategory={requestDeleteCategory} />
+					)
+				})
+			}
+			</div>
+
+			<div className ={cx('Category-ColumnWrapper')}>
 				<div className={cx('Category-Title')}>
 					<div>메뉴 목록</div>
 					{is_admin && (
@@ -75,24 +95,22 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 						);
 					})}
 				</ul>
-
-				{isCreate && (
-					<CreateCategoryContainer
-						handleCloseModal={() => setIsCreate(false)}
-					/>
-				)}
-
-				{isModify && (
-					<ModifyCategoryContainer
-						handleCloseModal={() => setIsModify(false)}
-						categoryInfo={categoryInfo}
-					/>
-				)}
 			</div>
-		);
-	} else {
-		return <></>;
-	}
+
+			{isCreate && (
+				<CreateCategoryContainer
+					handleCloseModal={() => setIsCreate(false)}
+				/>
+			)}
+
+			{isModify && (
+				<ModifyCategoryContainer
+					handleCloseModal={() => setIsModify(false)}
+					categoryInfo={categoryInfo}
+				/>
+			)}
+		</div>
+	);
 };
 
 export default Category;

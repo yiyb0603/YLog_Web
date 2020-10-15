@@ -11,7 +11,7 @@ import CheckBox from 'components/Common/CheckBox';
 import FadeIn from 'react-fade-in';
 import { RiAccountCircleFill } from 'react-icons/ri';
 import { Spinner } from '@class101/ui';
-import FormButton from 'components/Common/FormButton';
+import FormButton from 'components/Common/Button/FormButton';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
 import AuthInput from 'components/Common/AuthInput';
 

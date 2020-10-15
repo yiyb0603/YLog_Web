@@ -4,7 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
 import { Spinner } from '@class101/ui';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
-import FormButton from 'components/Common/FormButton';
+import FormButton from 'components/Common/Button/FormButton';
 import CheckBox from 'components/Common/CheckBox';
 import AuthInput from 'components/Common/AuthInput';
 

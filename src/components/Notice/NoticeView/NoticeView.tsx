@@ -5,6 +5,7 @@ import { INoticeRequestTypes } from 'interface/NoticeTypes';
 import parseTime from 'lib/TimeCounting';
 import { NextRouter, useRouter } from 'next/router';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
+import SecureLS from 'secure-ls';
 
 const style = require('./NoticeView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -18,11 +19,34 @@ const NoticeView = ({ noticeInfo, requestDeleteNotice }: NoticeViewProps) => {
 	const router: NextRouter = useRouter();
 	const { idx, writer, title, contents, created_at, updated_at } = noticeInfo;
 
+	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
+	const { is_admin } = ls.get('userInfo');
+
 	return (
 		<div className={cx('NoticeView')}>
 			<div className={cx('NoticeView-Contents')}>
 				<div className={cx('NoticeView-Contents-Title')}>{title}</div>
 				<div className={cx('NoticeView-Contents-Info')}>
+					<div className={cx('NoticeView-Contents-Info-Option')}>
+						{
+							is_admin &&
+							<>
+								<div
+									className={cx('NoticeView-Contents-Info-Option-Modify')}
+									onClick={() => router.push(`/notice/modify/${idx}`)}
+								>
+									수정
+								</div>
+								<div
+									className={cx('NoticeView-Contents-Info-Option-Delete')}
+									onClick={() => requestDeleteNotice(idx!)}
+								>
+									삭제
+								</div>
+							</>
+						}
+					</div>
+
 					<div className={cx('NoticeView-Contents-Info-Personal')}>
 						<div>
 							{parseTime(created_at!)}
@@ -30,21 +54,6 @@ const NoticeView = ({ noticeInfo, requestDeleteNotice }: NoticeViewProps) => {
 						</div>
 						<div className={cx('NoticeView-Contents-Info-Personal-Writer')}>
 							{writer}
-						</div>
-					</div>
-
-					<div className={cx('NoticeView-Contents-Info-Option')}>
-						<div
-							className={cx('NoticeView-Contents-Info-Option-Modify')}
-							onClick={() => router.push(`/notice/modify/${idx}`)}
-						>
-							수정
-						</div>
-						<div
-							className={cx('NoticeView-Contents-Info-Option-Delete')}
-							onClick={() => requestDeleteNotice(idx!)}
-						>
-							삭제
 						</div>
 					</div>
 				</div>

@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import AdminInput from 'components/Common/Admin/AdminInput';
-import FormButton from 'components/Common/FormButton';
+import FormButton from 'components/Common/Button/FormButton';
 
 const style = require('./AdminLogin.scss');
 const cx: ClassNamesFn = classNames.bind(style);

@@ -11,7 +11,7 @@
 	margin-bottom: 10px;
 	border: none;
 	border-bottom: 2px solid rgba($rgbaPrimary, 0.6);
-	padding-bottom: 3px;
+	padding-bottom: 4px;
 
 	&-CountWrapper {
 		display: flex;
@@ -23,6 +23,7 @@
 		display: flex;
 		display: -webkit-flex;
 		align-items: center;
+		flex-wrap: wrap;
 
 		&-Tag {
 			background-color: rgba($rgbaPrimary, 0.8);
@@ -31,24 +32,5 @@
 			padding: 7px 10px;
 			margin-right: 5px;
 		}
-	}
-
-	&-Button {
-		&-WriteButton {
-			width: 200px;
-			border: none;
-			outline: none;
-			color: $white;
-			font-size: $font_20;
-			background-color: $primary;
-			padding: 10px 0;
-			cursor: pointer;
-		}
-	}
-}
-
-@media screen and (max-width: 512px) {
-	.NoticeList {
-		min-width: 560px;
 	}
 }

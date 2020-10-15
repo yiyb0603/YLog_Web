@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import AuthInput from 'components/Common/AuthInput';
 import FadeIn from 'react-fade-in';
-import FormButton from 'components/Common/FormButton';
+import FormButton from 'components/Common/Button/FormButton';
 import { Spinner } from '@class101/ui';
 
 const style = require('./EmailAuth.scss');

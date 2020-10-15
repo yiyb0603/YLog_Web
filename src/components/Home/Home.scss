@@ -15,6 +15,11 @@
 	&-Middle {
 		display: flex;
 		display: -webkit-flex;
+		flex-wrap: wrap;
+
+		@media screen and (max-width: 650px) {
+			flex-direction: column-reverse;
+		}
 
 		&-Contents {
 			display: flex;
@@ -32,6 +37,6 @@
 	&-Right {
 		display: flex;
 		display: -webkit-flex;
-		flex-direction: column;
+		flex-flow: column wrap;
 	}
 }
