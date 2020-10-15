@@ -15,6 +15,7 @@ export default class AuthStore {
 	@observable isLoading = false;
 
 	@action
+	// 로그인
 	handleSignIn = async (request: ISignInTypes) => {
 		this.isLoading = true;
 		try {
@@ -31,6 +32,7 @@ export default class AuthStore {
 	};
 
 	@action
+	// 이메일 인증 코드 발급
 	handleSendCode = async (email: string) => {
 		this.isLoading = true;
 		try {
@@ -46,6 +48,7 @@ export default class AuthStore {
 	};
 
 	@action
+	// 이메일 인증 코드 확인
 	handleCheckCode = async (request: IEmailCodeTypes) => {
 		this.isLoading = true;
 		try {
@@ -59,6 +62,7 @@ export default class AuthStore {
 	};
 
 	@action
+	// 어드민 코드 체크
 	handleAdminCheck = async (adminCode: string) => {
 		this.isLoading = true;
 		try {
@@ -72,6 +76,21 @@ export default class AuthStore {
 	}
 
 	@action
+	// 이메일 중복 여부 확인
+	handleEmailDuplicate = async (email: string) => {
+		this.isLoading = true;
+		try {
+			const response: ISuccessTypes = await postRequest('/auth/duplicate', { email });
+			return response;
+		} catch (error) {
+			throw error;
+		} finally {
+			this.isLoading = false;
+		}
+	}
+
+	@action
+	// 회원가입
 	handleSignUp = async (request: ISignUpTypes) => {
 		this.isLoading = true;
 		try {
@@ -88,6 +107,7 @@ export default class AuthStore {
 	};
 
 	@action
+	// FCM 토큰 발급
 	handleFCMToken = async (fcmToken: string) => {
 		try {
 			const response = await postRequest(

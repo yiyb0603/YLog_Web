@@ -16,7 +16,7 @@ interface ISignUpContainerProps {
 
 const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 	const { store } = useStores();
-	const { handleSendCode, handleAdminCheck, isLoading } = store.AuthStore;
+	const { handleSendCode, handleAdminCheck, handleEmailDuplicate, isLoading } = store.AuthStore;
 
 	const [isAdminCheck, setIsAdminCheck] = useState<boolean>(true);
 	const [isEntered, setIsEntered] = useState<boolean>(false);
@@ -52,15 +52,24 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 		}
 		
 		if (isAdminCheck) {
-			await handleSendCode(email)
-			.then((response: ISuccessTypes) => {
-				if (response.status === 200) {
-					toast.success('인증코드를 발송하였습니다!');
-					setRegisterInfo(request);
-					setIsEntered(true);
-				}
+			await handleEmailDuplicate(email)
+			.then(async () => {
+				await handleSendCode(email)
+				.then((response: ISuccessTypes) => {
+					if (response.status === 200) {
+						toast.success('인증코드를 발송하였습니다!');
+						setRegisterInfo(request);
+						setIsEntered(true);
+					}
+				})
+	
+				.catch((error: IErrorTypes) => {
+					const { message } = error.response.data;
+					toast.error(message);
+					return;
+				});
 			})
-
+			
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
 				toast.error(message);
@@ -68,7 +77,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 			});
 		}
 		
-	}, [password, name, email, adminCode, isAdminCheck, handleAdminCheck, handleSendCode]);
+	}, [password, name, email, adminCode, isAdminCheck, handleAdminCheck, handleEmailDuplicate, handleSendCode]);
 
 	return (
 		<>
