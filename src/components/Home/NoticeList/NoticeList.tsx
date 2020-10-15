@@ -23,6 +23,7 @@ const NoticeList = ({
 	handleIncreaseCount,
 	handleDecreaseCount,
 }: NoticeListProps) => {
+	const FIVE_SECONDS = 5000;
 	const router: NextRouter = useRouter();
 	const arrowStyle: CSSProperties = {
 		fontSize: 18,
@@ -30,7 +31,7 @@ const NoticeList = ({
 	};
 
 	useEffect(() => {
-		const counter: NodeJS.Timeout = setInterval(handleIncreaseCount, 5000);
+		const counter: NodeJS.Timeout = setInterval(handleIncreaseCount, FIVE_SECONDS);
 
 		return () => {
 			clearInterval(counter);

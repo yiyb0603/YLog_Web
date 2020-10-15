@@ -18,6 +18,7 @@ import { observable, action } from 'mobx';
 export default class NoticeStore {
 	@observable noticeList: INoticeRequestTypes[] = [];
 	@observable noticeInfo: INoticeRequestTypes = {};
+	@observable isLoading: boolean = true;
 
 	@action
 	handleNoticeList = async () => {
@@ -33,6 +34,7 @@ export default class NoticeStore {
 
 	@action
 	handleNoticeView = async (idx: number) => {
+		this.isLoading = true;
 		try {
 			const response: INoticeResponseTypes = await getResponse(
 				`/notice/${idx}`
@@ -42,6 +44,8 @@ export default class NoticeStore {
 			return response;
 		} catch (error) {
 			throw error;
+		} finally {
+			this.isLoading = false;
 		}
 	};
 

@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import NoticeView from 'components/Notice/NoticeView';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
+import PostLoading from 'components/Common/Loading/PostLoading';
 
 const NoticeViewContainer = observer(() => {
 	const { store } = useStores();
@@ -14,6 +15,7 @@ const NoticeViewContainer = observer(() => {
 		handleNoticeView,
 		noticeInfo,
 		handleDeleteNotice,
+		isLoading
 	} = store.NoticeStore;
 
 	const router: NextRouter = useRouter();
@@ -53,10 +55,15 @@ const NoticeViewContainer = observer(() => {
 	}, [idx, requestNoticeView]);
 
 	return (
-		<NoticeView
-			noticeInfo={noticeInfo}
-			requestDeleteNotice={requestDeleteNotice}
-		/>
+		<>
+		{
+			isLoading ? <PostLoading /> :
+			<NoticeView
+				noticeInfo={noticeInfo}
+				requestDeleteNotice={requestDeleteNotice}
+			/>
+		}
+		</>
 	);
 });
 

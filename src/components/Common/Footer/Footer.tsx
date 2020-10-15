@@ -7,9 +7,12 @@ const style = require('./Footer.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const Footer = () => {
+	const { FOOTER_TEXT, VERSION } = Constants;
+
 	return (
 		<div className={cx('Footer')}>
-			<div>{Constants.FOOTER_TEXT}</div>
+			<div>{FOOTER_TEXT}</div>
+			<div className={cx('Footer-Version')}>현재 버전: {VERSION}</div>
 		</div>
 	);
 };

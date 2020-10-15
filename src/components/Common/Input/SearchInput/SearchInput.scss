@@ -2,8 +2,8 @@
 @import '../../../../styles/Fonts/FontScheme.scss';
 
 .SearchInput {
-	width: 250px;
-	max-width: 250px;
+	width: 220px;
+	max-width: 220px;
 	display: flex;
 	display: -webkit-flex;
 	align-items: center;
@@ -11,10 +11,6 @@
 	outline: none;
 	border-bottom: 2px solid $black;
 	color: $white;
-
-	&:focus-within {
-		border-bottom: 2px solid $skyBlue;
-	}
 
 	& > input {
 		width: 100%;

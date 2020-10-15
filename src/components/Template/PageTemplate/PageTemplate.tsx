@@ -9,12 +9,12 @@ interface IPageTemplateProps {
 
 const PageTemplate = ({ children }: IPageTemplateProps) => {
 	return (
-		<>
+		<div style ={{ width: '100%', height: '100%' }}>
 			<NavBar />
 			{children}
 			<Footer />
 			<ScrollTop />
-		</>
+		</div>
 	);
 };
 

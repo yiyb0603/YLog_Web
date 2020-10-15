@@ -1,10 +1,20 @@
 @import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/Fonts/FontScheme.scss';
 
 .Footer {
 	width: 100%;
 	height: 70px;
 	display: flex;
 	display: -webkit-flex;
+	flex-direction: column;
+	-ms-flex-direction: column;
 	justify-content: center;
 	align-items: center;
+
+	&-Version {
+		cursor: pointer;
+		color: $primary;
+		font-size: $font_20;
+		margin-top: 10px;
+	}
 }
