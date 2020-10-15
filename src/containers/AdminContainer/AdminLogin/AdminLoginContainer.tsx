@@ -17,16 +17,16 @@ const AdminLoginContainer = observer(() => {
 	const { store } = useStores();
 	const { handleSignIn } = store.AuthStore;
 
-	const [id, setId] = useState<string>('');
+	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 
 	const requestAdminLogin = useCallback(async () => {
 		const request: ISignInTypes = {
-			id,
+			email,
 			password: sha512(password),
 		};
 
-		if (!id.trim() || !password.trim()) {
+		if (!email.trim() || !password.trim()) {
 			toast.error('내용을 모두 입력해주세요!');
 			return;
 		}
@@ -55,7 +55,7 @@ const AdminLoginContainer = observer(() => {
 				toast.error(message);
 				return;
 			});
-	}, [id, password, handleSignIn]);
+	}, [email, password, handleSignIn]);
 
 	useEffect(() => {
 		clearStorage();
@@ -63,7 +63,7 @@ const AdminLoginContainer = observer(() => {
 
 	return (
 		<AdminLogin
-			idObject={GroupingState('id', id, setId)}
+			emailObject={GroupingState('email', email, setEmail)}
 			passwordObject={GroupingState('password', password, setPassword)}
 			requestAdminLogin={requestAdminLogin}
 		/>

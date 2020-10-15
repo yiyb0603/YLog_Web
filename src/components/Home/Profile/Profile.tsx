@@ -14,7 +14,7 @@ interface ProfileProps {
 
 const Profile = ({ handleCloseModal }: ProfileProps) => {
 	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-	const { id, email, name, joined_at } = ls.get('userInfo');
+	const { email, name, joined_at } = ls.get('userInfo');
 
 	return (
 		<div className={cx('Profile')}>
@@ -28,7 +28,6 @@ const Profile = ({ handleCloseModal }: ProfileProps) => {
 					<img src="/assets/images/NO_IMAGES.PNG" alt="profile" />
 
 					<div className={cx('Profile-Contents-List')}>
-						<div>아이디: {id}</div>
 						<div>이름: {name}</div>
 						<div>이메일: {email}</div>
 						<div>

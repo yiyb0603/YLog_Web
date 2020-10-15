@@ -7,7 +7,7 @@ export interface IMemberResponseTypes extends ISuccessTypes {
 }
 
 export interface IMemberTypes {
-	id: string;
+	idx: number;
 	name: string;
 	email: string;
 	is_admin: boolean;

@@ -23,9 +23,9 @@ interface SignInProps {
 	requestSignIn: () => Promise<void>;
 	isLoading: boolean;
 
-	idObject: {
-		id: string;
-		setId: Dispatch<SetStateAction<string>>;
+	emailObject: {
+		email: string;
+		setEmail: Dispatch<SetStateAction<string>>;
 	};
 
 	passwordObject: {
@@ -38,10 +38,10 @@ const SignIn = ({
 	setPageType,
 	requestSignIn,
 	isLoading,
-	idObject,
+	emailObject,
 	passwordObject,
 }: SignInProps) => {
-	const { id, setId } = idObject;
+	const { email, setEmail } = emailObject;
 	const { password, setPassword } = passwordObject;
 
 	const [checked, setChecked] = useState<boolean>(false);
@@ -58,10 +58,10 @@ const SignIn = ({
 
 				<div className={cx('SignIn-Form')}>
 					<AuthInput
-						type="text"
-						placeholder="아이디를 입력하세요"
-						value={id}
-						setValue={setId}
+						type="email"
+						placeholder="이메일을 입력하세요"
+						value={email}
+						setValue={setEmail}
 						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
 							useKeyDown(e, requestSignIn)
 						}

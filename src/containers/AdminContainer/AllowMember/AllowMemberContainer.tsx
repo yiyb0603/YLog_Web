@@ -18,8 +18,8 @@ const AllowMemberContainer = observer(() => {
 	} = store.MemberStore;
 
 	const requestAllowMember = useCallback(
-		async (memberId: string) => {
-			await handleAllowMember(memberId)
+		async (memberIdx: number) => {
+			await handleAllowMember(memberIdx)
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
 						toast.success('회원가입을 승인하였습니다.');
@@ -37,8 +37,8 @@ const AllowMemberContainer = observer(() => {
 	);
 
 	const requestRefuseMember = useCallback(
-		async (memberId: string) => {
-			await handleRefuseMember(memberId)
+		async (memberIdx: number) => {
+			await handleRefuseMember(memberIdx)
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
 						toast.success('회원가입을 거절하였습니다.');
@@ -56,11 +56,11 @@ const AllowMemberContainer = observer(() => {
 	);
 
 	const memberLists: JSX.Element[] = memberList.map((member: IMemberTypes) => {
-		const { id, name, email, is_admin } = member;
+		const { idx, name, email, is_admin } = member;
 		return (
 			<MemberCard
-				key={id}
-				id={id}
+				key={idx}
+				idx={idx}
 				name={name}
 				email={email}
 				is_admin={is_admin}

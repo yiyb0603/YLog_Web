@@ -25,11 +25,11 @@ export default class MemberStore {
 	};
 
 	@action
-	handleAllowMember = async (memberId: string) => {
+	handleAllowMember = async (memberIdx: number) => {
 		try {
 			const response: ISuccessTypes = await postRequest(
 				'/member/allow',
-				{ memberId },
+				{ memberIdx },
 				getAdminToken()
 			);
 			return response;
@@ -39,11 +39,11 @@ export default class MemberStore {
 	};
 
 	@action
-	handleRefuseMember = async (memberId: string) => {
+	handleRefuseMember = async (memberIdx: number) => {
 		try {
 			const response: ISuccessTypes = await postRequest(
 				'/member/refuse',
-				{ memberId },
+				{ memberIdx },
 				getAdminToken()
 			);
 			return response;
@@ -53,10 +53,10 @@ export default class MemberStore {
 	};
 
 	@action
-	handleDeleteMember = async (memberId: string) => {
+	handleDeleteMember = async (memberIdx: number) => {
 		try {
 			const response: ISuccessTypes = await deleteRequest(
-				`/member/delete?memberId=${memberId}`,
+				`/member/delete?memberId=${memberIdx}`,
 				getAdminToken()
 			);
 			return response;

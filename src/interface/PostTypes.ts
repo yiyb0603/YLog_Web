@@ -24,7 +24,7 @@ export interface IPostResponseTypes extends ISuccessTypes {
 export interface IPostListTypes {
 	idx?: number;
 	title?: string;
-	writer_id?: string;
+	writer_idx?: number;
 	comment_length?: number;
 	contents?: string;
 	introduction?: string;

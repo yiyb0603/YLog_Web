@@ -23,13 +23,13 @@ const AdminKickContainer = observer(() => {
 	const [keyword, setKeyword] = useState<string>('');
 
 	const requestDeleteMember = useCallback(
-		async (memberId: string) => {
+		async (memberIdx: number) => {
 			confirmAlert(
 				'잠시만요!',
 				'해당 회원을 강퇴하시겠습니까?',
 				'warning',
 				async () => {
-					await handleDeleteMember(memberId)
+					await handleDeleteMember(memberIdx)
 						.then((response: ISuccessTypes) => {
 							if (response.status === 200) {
 								toast.success('멤버를 강퇴하였습니다.');
@@ -50,11 +50,11 @@ const AdminKickContainer = observer(() => {
 
 	const filterMember: IMemberTypes[] = memberList.filter(
 		(member: IMemberTypes) => {
-			const { is_admin, name, id } = member;
+			const { is_admin, name, email } = member;
 
 			const keywordFilter: boolean =
 				name.toLowerCase().includes(keyword.toLowerCase()) ||
-				id.toLowerCase().includes(keyword.toLowerCase());
+				email.toLowerCase().includes(keyword.toLowerCase());
 
 			if (filterKinds >= 2) {
 				return member && keywordFilter;
@@ -66,14 +66,14 @@ const AdminKickContainer = observer(() => {
 
 	const memberLists: JSX.Element[] = filterMember.map(
 		(member: IMemberTypes) => {
-			const { id, name, email, is_admin } = member;
+			const { idx, name, email, is_admin } = member;
 
 			return (
 				<MemberRow
-					id={id}
+					idx={idx}
 					name={name}
 					email={email}
-					key={id}
+					key={idx}
 					isAdmin={is_admin}
 					requestDeleteMember={requestDeleteMember}
 				/>
