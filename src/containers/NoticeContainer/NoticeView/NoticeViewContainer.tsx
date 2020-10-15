@@ -32,8 +32,8 @@ const NoticeViewContainer = observer(() => {
 	const requestDeleteNotice = useCallback(
 		async (idx: number): Promise<void> => {
 			await handleDeleteNotice(idx)
-				.then((response: ISuccessTypes) => {
-					if (response.status === 200) {
+				.then(({ status }: ISuccessTypes) => {
+					if (status === 200) {
 						showAlert('성공', '공지사항을 삭제하였습니다.', 'success');
 						router.push(`/`);
 					}

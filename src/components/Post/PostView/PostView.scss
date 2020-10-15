@@ -3,7 +3,7 @@
 
 .PostView {
 	width: 100%;
-	max-width: 1025px;
+	max-width: 1100px;
 	margin: 2rem auto;
 	padding: 0 2rem;
 
@@ -13,10 +13,6 @@
 		flex-direction: column;
 		-ms-flex-direction: column;
 		border-bottom: 2px solid $lighterGray;
-
-		& * {
-			white-space: pre-wrap;
-		}
 
 		&-Introduction {
 			margin-bottom: $font_1rem;
@@ -51,7 +47,8 @@
 		}
 
 		&-Thumbnail {
-			width: 90%;
+			width: 70%;
+			min-height: 200px;
 			max-height: 500px;
 			margin: $font_2rem auto;
 		}

@@ -2,8 +2,26 @@
 @import '../../../styles/Palette/Palette.scss';
 
 .Category {
-	width: 200px;
+	min-width: 200px;
 	padding: 5px;
+
+	&-RowWrapper {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+		flex-wrap: wrap;
+		flex: 1;
+
+		@media screen and (min-width: 650px) {
+			display: none;
+		}
+	}
+
+	&-ColumnWrapper {
+		@media screen and (max-width: 650px) {
+			display: none;
+		}
+	}
 
 	&-Title {
 		font-size: $font_22;

@@ -6,6 +6,7 @@ import { INoticeRequestTypes } from 'interface/NoticeTypes';
 import NoticeItem from './NoticeItem';
 import { NextRouter, useRouter } from 'next/router';
 import isAdmin from 'lib/util/isAdmin';
+import WriteButton from 'components/Common/Button/WriteButton';
 
 const style = require('./NoticeList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -64,14 +65,9 @@ const NoticeList = ({
 			</div>
 
 			{isAdmin() && (
-				<div className={cx('NoticeList-Button')}>
-					<button
-						className={cx('NoticeList-Button-WriteButton')}
-						onClick={() => router.push('/notice/write')}
-					>
-						공지사항 작성
-					</button>
-				</div>
+				<WriteButton nextFunction ={() => router.push('/notice/write')}>
+					공지사항 작성
+				</WriteButton>
 			)}
 		</div>
 	);
