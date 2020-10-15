@@ -22,7 +22,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 	const { store } = useStores();
 	const { handleFCMToken, handleSignIn, isLoading } = store.AuthStore;
 
-	const [id, setId] = useState<string>('');
+	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 
 	const getFCMToken = useCallback(async () => {
@@ -47,11 +47,11 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 
 	const requestSignIn = useCallback(async () => {
 		const request: ISignInTypes = {
-			id,
+			email,
 			password: sha512(password),
 		};
 
-		if (!id.trim() || !password.trim()) {
+		if (!email.trim() || !password.trim()) {
 			toast.warning('빈칸없이 입력해주세요!');
 			return;
 		}
@@ -84,13 +84,13 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 				toast.error(message);
 				return;
 			});
-	}, [handleSignIn, id, password]);
+	}, [handleSignIn, email, password]);
 
 	return (
 		<SignIn
 			setPageType={setPageType}
 			requestSignIn={requestSignIn}
-			idObject={GroupingState('id', id, setId)}
+			emailObject={GroupingState('email', email, setEmail)}
 			passwordObject={GroupingState('password', password, setPassword)}
 			isLoading={isLoading}
 		/>

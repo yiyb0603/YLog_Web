@@ -66,6 +66,7 @@ const CommentItem = ({
 							repliedAt,
 							updatedAt,
 							writer,
+							writer_idx,
 							commentIdx,
 						} = reply;
 
@@ -78,6 +79,7 @@ const CommentItem = ({
 									repliedAt={repliedAt}
 									updatedAt={updatedAt}
 									writer={writer}
+									writerIdx ={writer_idx}
 									commentIdx={commentIdx}
 									requestDeleteReply={requestDeleteReply}
 									requestCommentList={requestCommentList}

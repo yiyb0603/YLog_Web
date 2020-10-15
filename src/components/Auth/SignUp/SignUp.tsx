@@ -14,10 +14,6 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface SignUpProps {
 	isLoading: boolean;
 	setPageType: Dispatch<SetStateAction<string>>;
-	idObject: {
-		id: string;
-		setId: Dispatch<SetStateAction<string>>;
-	};
 
 	passwordObject: {
 		password: string;
@@ -45,14 +41,12 @@ interface SignUpProps {
 const SignUp = ({
 	isLoading,
 	setPageType,
-	idObject,
 	passwordObject,
 	nameObject,
 	emailObject,
 	adminCodeObject,
 	requestEmailAuth,
 }: SignUpProps) => {
-	const { id, setId } = idObject;
 	const { password, setPassword } = passwordObject;
 	const { name, setName } = nameObject;
 	const { email, setEmail } = emailObject;
@@ -72,20 +66,6 @@ const SignUp = ({
 
 				<div className={cx('SignUp-Form')}>
 					<AuthInput
-						type="text"
-						placeholder="아이디를 입력하세요"
-						value={id}
-						setValue={setId}
-					/>
-
-					<AuthInput
-						type="text"
-						placeholder="이름을 입력하세요"
-						value={name}
-						setValue={setName}
-					/>
-
-					<AuthInput
 						type="email"
 						placeholder="이메일을 입력하세요"
 						value={email}
@@ -97,6 +77,13 @@ const SignUp = ({
 						placeholder="비밀번호를 입력하세요"
 						value={password}
 						setValue={setPassword}
+					/>
+
+					<AuthInput
+						type="text"
+						placeholder="이름을 입력하세요"
+						value={name}
+						setValue={setName}
 					/>
 
 					{checkAdmin && (

@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import MarkdownForm from '../../Common/Markdown/MarkdownForm';
 import TitleInput from 'components/Common/Input/TitleInput';
+import ImageUpload from 'lib/util/ImageUpload';
 
 const style = require('./NoticeForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -35,7 +36,7 @@ const NoticeForm = ({
 				<TitleInput title ={title} setTitle ={setTitle} />
 			</div>
 
-			<MarkdownForm contents={contents} setContents={setContents} />
+			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={ImageUpload} />
 
 			<div className={cx('NoticeForm-Button')}>
 				{/* <button className={cx('CreateNotice-Button-Save')}>임시 저장</button> */}

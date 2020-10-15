@@ -8,7 +8,7 @@ export interface ISignInResponseTypes extends ISuccessTypes {
 }
 
 export interface IUserInfoTypes {
-	id: string;
+	idx: number;
 	name: string;
 	password: string;
 	email: string;
@@ -19,7 +19,6 @@ export interface IUserInfoTypes {
 }
 
 export interface ISignUpTypes {
-	id?: string;
 	password?: string;
 	name?: string;
 	email?: string;
@@ -27,7 +26,7 @@ export interface ISignUpTypes {
 }
 
 export interface ISignInTypes {
-	id: string;
+	email: string;
 	password: string;
 }
 

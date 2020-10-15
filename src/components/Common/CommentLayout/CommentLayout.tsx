@@ -12,6 +12,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface CommentLayoutProps {
 	idx: number;
 	writer: string | null;
+	writerIdx: number;
 	contents: string;
 	postIdx?: number;
 	createdAt: string | Date;
@@ -25,6 +26,7 @@ interface CommentLayoutProps {
 const CommentLayout = ({
 	idx,
 	writer,
+	writerIdx,
 	contents,
 	createdAt,
 	updatedAt,
@@ -93,7 +95,7 @@ const CommentLayout = ({
 
 				{children &&
 				!children.props.isModify &&
-				(myInfo.name === writer || myInfo.is_admin) ? (
+				(myInfo && (myInfo.idx === writerIdx || myInfo.is_admin)) ? (
 					<div className={cx('CommentLayout-Contents-Right')}>
 						<div
 							className={cx('CommentLayout-Contents-Right-Modify')}

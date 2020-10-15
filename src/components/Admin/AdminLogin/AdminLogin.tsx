@@ -8,9 +8,9 @@ const style = require('./AdminLogin.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface AdminLoginProps {
-	idObject: {
-		id: string;
-		setId: Dispatch<SetStateAction<string>>;
+	emailObject: {
+		email: string;
+		setEmail: Dispatch<SetStateAction<string>>;
 	};
 
 	passwordObject: {
@@ -22,11 +22,11 @@ interface AdminLoginProps {
 }
 
 const AdminLogin = ({
-	idObject,
+	emailObject,
 	passwordObject,
 	requestAdminLogin,
 }: AdminLoginProps) => {
-	const { id, setId } = idObject;
+	const { email, setEmail } = emailObject;
 	const { password, setPassword } = passwordObject;
 
 	return (
@@ -36,10 +36,10 @@ const AdminLogin = ({
 				<div className={cx('AdminLogin-Title')}>YLog 관리자 로그인</div>
 				<div className={cx('AdminLogin-Form')}>
 					<AdminInput
-						type="text"
-						value={id}
-						setValue={setId}
-						outline="아이디"
+						type="email"
+						value={email}
+						setValue={setEmail}
+						outline="이메일"
 						requestFunction={requestAdminLogin}
 					/>
 					<AdminInput

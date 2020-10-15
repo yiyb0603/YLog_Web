@@ -16,12 +16,12 @@ interface ISignUpContainerProps {
 
 const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 	const { store } = useStores();
-	const { handleSendCode, isLoading } = store.AuthStore;
+	const { handleSendCode, handleAdminCheck, isLoading } = store.AuthStore;
 
+	const [isAdminCheck, setIsAdminCheck] = useState<boolean>(true);
 	const [isEntered, setIsEntered] = useState<boolean>(false);
 	const [registerInfo, setRegisterInfo] = useState<ISignUpTypes>({});
 
-	const [id, setId] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
@@ -29,19 +29,30 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 
 	const requestEmailAuth = useCallback(async () => {
 		const request: ISignUpTypes = {
-			id,
 			password: sha512(password),
 			name,
 			email: email.trim(),
 			adminCode: adminCode !== '' ? adminCode : '',
 		};
 
-		if (!id.trim() || !password.trim() || !name.trim() || !email.trim()) {
+		if (!password.trim() || !name.trim() || !email.trim()) {
 			toast.warning('빈칸없이 입력해주세요!');
 			return;
 		}
 
-		await handleSendCode(email)
+		if (adminCode) {
+			await handleAdminCheck(adminCode)
+			.catch((error: IErrorTypes) => {
+				setIsAdminCheck(false);
+				
+				const { message } = error.response.data;
+				toast.error(message);
+				return;
+			})
+		}
+		
+		if (isAdminCheck) {
+			await handleSendCode(email)
 			.then((response: ISuccessTypes) => {
 				if (response.status === 200) {
 					toast.success('인증코드를 발송하였습니다!');
@@ -55,7 +66,9 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 				toast.error(message);
 				return;
 			});
-	}, [id, password, name, email, adminCode, handleSendCode]);
+		}
+		
+	}, [password, name, email, adminCode, isAdminCheck, handleAdminCheck, handleSendCode]);
 
 	return (
 		<>
@@ -63,7 +76,6 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 				<SignUp
 					isLoading={isLoading}
 					setPageType={setPageType}
-					idObject={GroupingState('id', id, setId)}
 					passwordObject={GroupingState('password', password, setPassword)}
 					nameObject={GroupingState('name', name, setName)}
 					emailObject={GroupingState('email', email, setEmail)}

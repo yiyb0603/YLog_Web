@@ -6,15 +6,15 @@ const style = require('./MemberRow.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface MemberRowProps {
-	id: string;
+	idx: number;
 	name: string;
 	email: string;
 	isAdmin: boolean;
-	requestDeleteMember: (memberId: string) => Promise<void>;
+	requestDeleteMember: (memberIdx: number) => Promise<void>;
 }
 
 const MemberRow = ({
-	id,
+	idx,
 	name,
 	email,
 	isAdmin,
@@ -30,13 +30,12 @@ const MemberRow = ({
 				/>
 			</td>
 			<td>{isAdmin ? '관리자' : '회원'}</td>
-			<td>{id}</td>
 			<td>{name}</td>
 			<td>{email}</td>
 			<th>
 				<button
 					className={cx('MemberRow-Kick')}
-					onClick={() => requestDeleteMember(id)}
+					onClick={() => requestDeleteMember(idx)}
 				>
 					강퇴
 				</button>

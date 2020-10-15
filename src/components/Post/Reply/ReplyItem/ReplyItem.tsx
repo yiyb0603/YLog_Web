@@ -11,6 +11,7 @@ interface ReplyItemProps {
 	idx: number;
 	contents: string;
 	writer: string | null;
+	writerIdx: number;
 	repliedAt: string | Date;
 	updatedAt: string | Date;
 	commentIdx: number;
@@ -22,6 +23,7 @@ const ReplyItem = ({
 	idx,
 	contents,
 	writer,
+	writerIdx,
 	repliedAt,
 	updatedAt,
 	commentIdx,
@@ -36,6 +38,7 @@ const ReplyItem = ({
 				idx={idx}
 				contents={contents}
 				writer={writer}
+				writerIdx ={writerIdx}
 				createdAt={repliedAt}
 				updatedAt={updatedAt}
 				deleteFunction={() => requestDeleteReply(idx)}

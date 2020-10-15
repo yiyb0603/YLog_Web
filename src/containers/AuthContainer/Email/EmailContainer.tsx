@@ -66,7 +66,13 @@ const EmailContainer = observer(
 						toast.error(message);
 						return;
 					});
-			});
+			})
+
+			.catch((error: IErrorTypes) => {
+				const { message } = error.response.data;
+				toast.error(message);
+				return;
+			})
 		}, [requestCheckCode, registerInfo]);
 
 		return (
