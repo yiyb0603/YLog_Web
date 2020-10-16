@@ -22,18 +22,21 @@ const CommentContainer = observer(() => {
 	const postIdx: number = Number(router.query.idx);
 
 	const requestCommentList = useCallback(async () => {
-		await handleCommentList(postIdx).catch((error: IErrorTypes) => {
-			const { message } = error.response.data;
-			toast.error(message);
-			return;
-		});
+		if (Number.isInteger(postIdx)) {
+			await handleCommentList(postIdx)
+			.catch((error: IErrorTypes) => {
+				const { message } = error.response.data;
+				toast.error(message);
+				return;
+			});
+		}
 	}, [handleCommentList, postIdx]);
 
 	const requestCommentDelete = useCallback(
 		async (idx: number) => {
 			await handleCommentDelete(idx)
-				.then(async (response: ISuccessTypes) => {
-					if (response.status === 200) {
+				.then(async ({ status }: ISuccessTypes) => {
+					if (status === 200) {
 						toast.success('댓글을 삭제하였습니다.');
 						await requestCommentList();
 						await handlePostView(postIdx);
@@ -45,7 +48,7 @@ const CommentContainer = observer(() => {
 					toast.error(message);
 					return;
 				});
-		},
+			},
 		[handleCommentDelete, requestCommentList, handlePostView, postIdx]
 	);
 
@@ -69,10 +72,8 @@ const CommentContainer = observer(() => {
 	);
 
 	useEffect(() => {
-		if (Number.isInteger(postIdx)) {
-			requestCommentList();
-		}
-	}, [requestCommentList, postIdx]);
+		requestCommentList();
+	}, [requestCommentList]);
 
 	return (
 		<>

@@ -6,6 +6,8 @@ import { NextRouter, useRouter } from 'next/router';
 import PostLoading from 'components/Common/Loading/PostLoading';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
+import IErrorTypes from 'interface/ErrorTypes';
+import { toast } from 'react-toastify';
 
 const ReleaseViewContainer = observer(() => {
   const router: NextRouter = useRouter();
@@ -16,9 +18,16 @@ const ReleaseViewContainer = observer(() => {
 
   const requestReleaseView = useCallback(async () => {
     if (releaseIdx) {
-      await handleReleaseView(releaseIdx);
+      await handleReleaseView(releaseIdx)
+      .catch((error: IErrorTypes) => {
+        router.back();
+
+        const { message } = error.response.data;
+        toast.error(message);
+        return;
+      })
     }
-  }, [releaseIdx, handleReleaseView]);
+  }, [releaseIdx, router, handleReleaseView]);
 
   const requestReleaseDelete = useCallback(async (idx: number) => {
     await handleDeleteRelease(idx)

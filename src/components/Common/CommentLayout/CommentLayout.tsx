@@ -80,7 +80,7 @@ const CommentLayout = ({
 							children && children
 						)}
 						{commentType === 0 && (
-							<div
+							<span
 								className={cx('CommentLayout-Contents-ReplyButton')}
 								onClick={() => {
 									setIsReply(!isReply);
@@ -88,7 +88,7 @@ const CommentLayout = ({
 								}}
 							>
 								답글
-							</div>
+							</span>
 						)}
 					</div>
 				</div>
