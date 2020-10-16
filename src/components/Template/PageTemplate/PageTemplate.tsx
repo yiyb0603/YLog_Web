@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
-import NavBar from '../../Common/NavBar';
-import Footer from '../../Common/Footer';
-import ScrollTop from '../../Common/ScrollTop';
+import NavBar from '../../Common/PageItems/NavBar';
+import Footer from '../../Common/PageItems/Footer';
+import ScrollTop from '../../Common/PageItems/ScrollTop';
 
 interface IPageTemplateProps {
 	children?: ReactNode;

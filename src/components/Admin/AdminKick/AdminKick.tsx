@@ -2,7 +2,7 @@ import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Table } from 'react-bootstrap';
-import PageHeader from 'components/Common/Admin/PageHeader';
+import PageHeader from 'components/Common/Admin/PageItems/PageHeader';
 import SelectBox from 'components/Common/SelectBox';
 import SearchInput from 'components/Common/Input/SearchInput';
 import NoTopics from 'components/Common/Admin/NoTopics';
