@@ -11,7 +11,7 @@ import { NextRouter, useRouter } from 'next/router';
 import ModifyCategoryContainer from 'containers/CategoryContainer/ModifyCategory/ModifyCategoryContainer';
 import CategoryItem from './CategoryItem';
 import SecureLS from 'secure-ls';
-import RowCategoryItem from '../RowCategoryItem';
+import RowCategoryItem from './RowCategoryItem';
 
 const style = require('./Category.scss');
 const cx: ClassNamesFn = classNames.bind(style);

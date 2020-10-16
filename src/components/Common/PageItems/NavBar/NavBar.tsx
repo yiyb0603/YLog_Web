@@ -9,7 +9,7 @@ import Profile from 'components/Home/Profile';
 import Link from 'next/link';
 import { getStorage } from 'lib/Storage';
 import { getUserToken } from 'Token/Token';
-import SearchInput from '../Input/SearchInput';
+import SearchInput from '../../Input/SearchInput';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import PageHeader from 'components/Common/Admin/PageHeader';
+import PageHeader from 'components/Common/Admin/PageItems/PageHeader';
 import NoTopics from 'components/Common/Admin/NoTopics';
 
 const style = require('./AllowMember.scss');
