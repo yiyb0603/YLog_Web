@@ -24,6 +24,8 @@ const PostViewContainer = observer(() => {
 		if (idx) {
 			await handleCategoryList();
 			await handlePostView(idx).catch((error: IErrorTypes) => {
+				router.back();
+				
 				const { message } = error.response.data;
 				toast.error(message);
 				return;

@@ -1,7 +1,7 @@
 import React, { ReactNode, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import SideNavbar from 'components/Common/Admin/SideNavbar';
+import SideNavbar from 'components/Common/Admin/PageItems/SideNavbar';
 
 const style = require('./AdminTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);

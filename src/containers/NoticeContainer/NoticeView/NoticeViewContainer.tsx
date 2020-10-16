@@ -23,11 +23,13 @@ const NoticeViewContainer = observer(() => {
 
 	const requestNoticeView = useCallback(async (): Promise<void> => {
 		await handleNoticeView(idx).catch((error: IErrorTypes) => {
+			router.back();
+
 			const { message } = error.response.data;
 			toast.error(message);
 			return;
 		});
-	}, [idx, handleNoticeView]);
+	}, [idx, router, handleNoticeView]);
 
 	const requestDeleteNotice = useCallback(
 		async (idx: number): Promise<void> => {

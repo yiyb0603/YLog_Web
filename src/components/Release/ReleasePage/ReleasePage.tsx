@@ -5,6 +5,7 @@ import { IReleaseTypes } from "interface/ReleaseTypes";
 import parseTime from "lib/TimeCounting";
 import MarkdownRender from "components/Common/Markdown/MarkdownRender";
 import { NextRouter, useRouter } from "next/router";
+import isAdmin from "lib/util/isAdmin";
 
 const style = require("./ReleasePage.scss");
 const cx: ClassNamesFn = classNames.bind(style);
@@ -24,6 +25,16 @@ const ReleasePage = ({ releaseInfo, requestReleaseDelete }: ReleasePageProps) =>
 				<div className={cx('ReleasePage-Contents-Title')}>{title}</div>
 				<div className={cx('ReleasePage-Contents-Info')}>
 					<div className={cx('ReleasePage-Contents-Info-Personal')}>
+            <div className={cx('ReleasePage-Contents-Info-Personal-Option')}>
+              {
+                isAdmin() &&
+                <>
+                  <div className={cx('ReleasePage-Contents-Info-Personal-Option-Modify')} onClick ={() => router.push(`/release/modify/${idx}`)}>수정</div>
+                  <div className={cx('ReleasePage-Contents-Info-Personal-Option-Delete')} onClick ={() => requestReleaseDelete(idx!)}>삭제</div>
+                </>
+              }
+            </div>
+
             <div className={cx('ReleasePage-Contents-Info-Personal-Wrapper')}>
               <div className={cx('ReleasePage-Contents-Info-Personal-Time')}>
                 {parseTime(created_at!)}
@@ -34,10 +45,7 @@ const ReleasePage = ({ releaseInfo, requestReleaseDelete }: ReleasePageProps) =>
               </div>
             </div>
 
-            <div className={cx('ReleasePage-Contents-Info-Personal-Option')}>
-              <div className={cx('ReleasePage-Contents-Info-Personal-Option-Modify')} onClick ={() => router.push(`/release/modify/${idx}`)}>수정</div>
-              <div className={cx('ReleasePage-Contents-Info-Personal-Option-Delete')} onClick ={() => requestReleaseDelete(idx!)}>삭제</div>
-            </div>
+            
 					</div>
 				</div>
 

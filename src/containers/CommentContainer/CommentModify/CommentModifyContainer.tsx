@@ -46,8 +46,8 @@ const CommentModifyContainer = observer(
 			}
 
 			await handleCommentModify(request)
-				.then(async (response: ISuccessTypes) => {
-					if (response.status === 200) {
+				.then(async ({ status }: ISuccessTypes) => {
+					if (status === 200) {
 						onBlur();
 						toast.success('댓글을 수정하였습니다.');
 						await handleCommentList(postIdx);

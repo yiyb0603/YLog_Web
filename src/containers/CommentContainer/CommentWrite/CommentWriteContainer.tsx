@@ -14,7 +14,6 @@ const CommentWriteContainer = observer(() => {
 	const {
 		handleCommentWrite,
 		handleCommentList,
-		commentReplyList,
 	} = store.CommentStore;
 	const { handlePostView } = store.PostStore;
 
@@ -36,12 +35,11 @@ const CommentWriteContainer = observer(() => {
 
 		if (Number.isInteger(postIdx)) {
 			await handleCommentWrite(request)
-				.then(async (response: ISuccessTypes) => {
-					if (response.status === 200) {
+				.then(({ status }: ISuccessTypes) => {
+					if (status === 200) {
 						toast.success('댓글 작성에 성공하였습니다.');
 						setContents('');
-						await handlePostView(postIdx);
-						await handleCommentList(postIdx);
+						handlePostView(postIdx);
 					}
 				})
 
@@ -54,10 +52,8 @@ const CommentWriteContainer = observer(() => {
 	}, [
 		postIdx,
 		contents,
-		handleCommentWrite,
 		handleCommentList,
 		handlePostView,
-		commentReplyList,
 	]);
 
 	return (

@@ -4,7 +4,6 @@ import {
 	ICommentResponseListTypes,
 	ICommentResponseTypes,
 } from 'interface/CommentTypes';
-import { ICommentReplyTypes } from 'interface/ReplyTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import {
 	deleteRequest,
@@ -64,12 +63,7 @@ export default class CommentStore {
 				for (let i: number = 0; i < this.commentReplyList.length; i++) {
 					for (let j: number = 0; j < replyStore.replyList.length; j++) {
 						const {
-							idx,
-							writer,
-							contents,
-							created_at,
-							updated_at,
-							post_idx,
+							idx
 						} = this.commentReplyList[i];
 
 						const { comment_idx } = replyStore.replyList[j];
