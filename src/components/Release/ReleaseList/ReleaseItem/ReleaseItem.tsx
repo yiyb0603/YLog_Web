@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from "classnames/types";
 import parseTime from "lib/TimeCounting";
 import { NextRouter, useRouter } from "next/router";
+import stringEllipsis from "lib/util/StringEllipsis";
 
 const style = require("./ReleaseItem.scss");
 const cx: ClassNamesFn = classNames.bind(style);
@@ -23,7 +24,7 @@ const ReleaseItem = ({ idx, title, writer, createdAt, updatedAt }: ReleaseItemPr
       <div className ={cx('ReleaseItem-Left')}>
         <div className ={cx('ReleaseItem-Left-Time')}>{parseTime(createdAt)}</div>
         <div className ={cx('ReleaseItem-Left-Idx')}>#{idx}</div>
-        <div className ={cx('ReleaseItem-Left-Title')}>{title}</div>
+        <div className ={cx('ReleaseItem-Left-Title')}>{stringEllipsis(title, 13)}</div>
       </div>
 
       <div className ={cx('ReleaseItem-Right')}>{writer}</div>
