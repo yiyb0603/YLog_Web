@@ -49,9 +49,10 @@
 				cursor: pointer;
 			}
 
-			& > div {
+			&-LogText {
 				font-size: $font_20;
 				color: $white;
+				margin-top: 5px;
 			}
 
 			& > img {
