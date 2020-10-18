@@ -84,6 +84,7 @@
 			justify-content: space-between;
 			align-items: center;
 			padding: 0 5px 5px 10px;
+			margin-top: 2px;
 
 			&-Option {
 				display: flex;
@@ -99,8 +100,33 @@
 				}
 			}
 
-			&-Writer {
-				color: $primary;
+			&-RightWrapper {
+				display: flex;
+				display: -webkit-flex;
+				align-items: center;
+				height: 100%;
+
+				&-ViewCount {
+					display: flex;
+					display: -webkit-flex;
+					align-items: center;
+					margin-right: 5px;
+				}
+
+				&-CommentLength {
+					display: flex;
+					display: -webkit-flex;
+					align-items: center;
+					margin-right: 5px;
+
+					& > div {
+						margin-left: 3px;
+					}
+				}
+
+				&-Writer {
+					color: $primary;
+				}
 			}
 		}
 	}

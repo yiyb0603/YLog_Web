@@ -25,12 +25,13 @@ export interface IPostListTypes {
 	idx?: number;
 	title?: string;
 	writer_idx?: number;
-	comment_length?: number;
 	contents?: string;
 	introduction?: string;
 	thumbnail?: string | null | undefined;
+	writer?: string;
 	category_idx?: number;
+	comment_length?: number;
+	view_count?: number;
 	created_at?: Date | string;
 	updated_at?: Date | string;
-	writer?: string;
 }
