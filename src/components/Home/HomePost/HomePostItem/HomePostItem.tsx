@@ -1,6 +1,8 @@
 import React, { SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
+import { MdComment } from 'react-icons/md';
+import { AiOutlineEye } from 'react-icons/ai';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import SecureLS from 'secure-ls';
@@ -21,6 +23,8 @@ interface HomePostItemProps {
 	updated_at: string | Date;
 	thumbnail: string;
 	writer: string;
+	commentLength: number;
+	viewCount: number;
 	categoryList: ICategoryListTypes[];
 	requestDeletePost: (idx: number) => Promise<void>;
 }
@@ -34,6 +38,8 @@ const HomePostItem = ({
 	updated_at,
 	thumbnail,
 	writer,
+	commentLength,
+	viewCount,
 	categoryList,
 	requestDeletePost,
 }: HomePostItemProps) => {
@@ -101,7 +107,17 @@ const HomePostItem = ({
 					)}
 				</div>
 
-				<div className={cx('HomePost-Item-Bottom-Writer')}>{writer}</div>
+				<div className ={cx('HomePost-Item-Bottom-RightWrapper')}>
+					<div className ={cx('HomePost-Item-Bottom-RightWrapper-ViewCount')}>
+						<AiOutlineEye />
+						<div>{viewCount}</div>
+					</div>
+					<div className ={cx('HomePost-Item-Bottom-RightWrapper-CommentLength')}>
+						<MdComment />
+						<div>{commentLength}</div>
+					</div>
+					<div className={cx('HomePost-Item-Bottom-RightWrapper-Writer')}>{writer}</div>
+				</div>
 			</div>
 		</div>
 	);
