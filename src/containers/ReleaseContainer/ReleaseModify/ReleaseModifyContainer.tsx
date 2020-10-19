@@ -10,6 +10,7 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import useStores from 'lib/hooks/useStores';
 import { showAlert } from 'lib/SweetAlert';
 import GroupingState from 'lib/util/GroupingState';
+import { validationReleaseWrite } from 'validation/Release/validationRelease';
 
 const ReleaseModifyContainer = observer(() => {
   const router: NextRouter = useRouter();
@@ -28,8 +29,7 @@ const ReleaseModifyContainer = observer(() => {
       contents
     };
 
-    if (!title.trim() || !contents.trim()) {
-      toast.error('내용을 모두 입력해주세요!');
+    if (!validationReleaseWrite(request)) {
       return;
     }
 

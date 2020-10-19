@@ -8,6 +8,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import ReplyModify from 'components/Post/Reply/ReplyModify';
 import GroupingState from 'lib/util/GroupingState';
 import { toast } from 'react-toastify';
+import { validateCreateReply } from 'validation/Reply/validationReply';
 
 interface IReplyModifyContainerProps {
 	replyIdx: number;
@@ -46,8 +47,7 @@ const ReplyModifyContainer = observer(
 				contents,
 			};
 
-			if (!contents.trim()) {
-				toast.error('내용을 입력해주세요!');
+			if (!validateCreateReply(data)) {
 				return;
 			}
 

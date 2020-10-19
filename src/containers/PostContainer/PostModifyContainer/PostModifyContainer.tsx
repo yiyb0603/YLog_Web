@@ -2,7 +2,7 @@ import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
-import { IPostResponseTypes } from 'interface/PostTypes';
+import { IPostRequestTypes, IPostResponseTypes } from 'interface/PostTypes';
 import PostModify from 'components/Post/PostModify';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
@@ -12,6 +12,7 @@ import IUploadTypes from 'interface/UploadTypes';
 import { toast } from 'react-toastify';
 import { showAlert } from 'lib/SweetAlert';
 import ImageUpload from 'lib/util/ImageUpload';
+import { validationPostWrite } from 'validation/Post/validationPost';
 
 const PostModifyContainer = observer(() => {
 	const { store } = useStores();
@@ -20,12 +21,12 @@ const PostModifyContainer = observer(() => {
 	const { handleFileUpload } = store.UploadStore;
 
 	const router: NextRouter = useRouter();
-	const { idx } = router.query;
+	const idx: number = Number(router.query.idx);
 
-	const [title, setTitle] = useState<string | undefined>('');
-	const [introduction, setIntroduction] = useState<string | undefined>('');
-	const [contents, setContents] = useState<string | undefined>('');
-	const [categoryIdx, setCategoryIdx] = useState<number | undefined>(0);
+	const [title, setTitle] = useState<string>('');
+	const [introduction, setIntroduction] = useState<string>('');
+	const [contents, setContents] = useState<string>('');
+	const [categoryIdx, setCategoryIdx] = useState<number>(0);
 	const [thumbnail, setThumbnail] = useState<string>('');
 
 	const requestThumbnailUpload = useCallback(
@@ -49,7 +50,7 @@ const PostModifyContainer = observer(() => {
 	);
 
 	const requestModifyPost = useCallback(async (): Promise<void> => {
-		const request = {
+		const request: IPostRequestTypes = {
 			idx,
 			title,
 			introduction,
@@ -58,13 +59,7 @@ const PostModifyContainer = observer(() => {
 			thumbnail,
 		};
 
-		if (!title?.trim() || !contents?.trim() || !introduction?.trim()) {
-			toast.error(`내용을 모두 입력해주세요!`);
-			return;
-		}
-
-		if (!thumbnail) {
-			toast.error('썸네일을 선택해주세요!');
+		if (!validationPostWrite(request)) {
 			return;
 		}
 
@@ -96,10 +91,10 @@ const PostModifyContainer = observer(() => {
 		if (idx) {
 			handlePostView(idx).then((response: IPostResponseTypes) => {
 				const { post } = response.data;
-				setTitle(post.title);
-				setIntroduction(post.introduction);
-				setContents(post.contents);
-				setCategoryIdx(post.category_idx);
+				setTitle(post.title!);
+				setIntroduction(post.introduction!);
+				setContents(post.contents!);
+				setCategoryIdx(post.category_idx!);
 				setThumbnail(post.thumbnail!);
 			});
 		}

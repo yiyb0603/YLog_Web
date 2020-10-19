@@ -10,6 +10,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import ReleaseWriteForm from 'components/Release/ReleaseWrite/ReleaseWriteForm';
 import GroupingState from 'lib/util/GroupingState';
 import ReleaseWrite from 'components/Release/ReleaseWrite';
+import { validationReleaseWrite } from 'validation/Release/validationRelease';
 
 const ReleaseWriteContainer = observer(() => {
   const router: NextRouter = useRouter();
@@ -25,8 +26,7 @@ const ReleaseWriteContainer = observer(() => {
       contents
     };
 
-    if (!title.trim() || !contents.trim()) {
-      toast.error('내용을 모두 입력해주세요!');
+    if (!validationReleaseWrite(request)) {
       return;
     }
 

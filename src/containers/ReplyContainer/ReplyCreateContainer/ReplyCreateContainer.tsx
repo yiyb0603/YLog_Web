@@ -7,6 +7,7 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import ReplyWrite from 'components/Post/Reply/ReplyWrite';
 import { toast } from 'react-toastify';
+import { validateCreateReply } from 'validation/Reply/validationReply';
 
 interface IReplyCreateContainerProps {
 	commentIdx: number;
@@ -35,8 +36,7 @@ const ReplyCreateContainer = observer(
 				contents,
 			};
 
-			if (!contents.trim()) {
-				toast.error('내용을 입력해주세요!');
+			if (!validateCreateReply(request)) {
 				return;
 			}
 
