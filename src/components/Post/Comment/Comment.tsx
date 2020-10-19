@@ -32,17 +32,19 @@ const Comment = ({
 						postIdx,
 						updatedAt,
 						replies,
+						writer_idx
 					} = comment;
 
 					return (
 						<CommentItem
 							key={index}
-							idx={idx!}
-							writer={writer!}
-							contents={contents!}
-							createdAt={created_at!}
-							postIdx={postIdx!}
-							updatedAt={updatedAt!}
+							idx={idx}
+							writer={writer}
+							writerIdx ={writer_idx}
+							contents={contents}
+							createdAt={created_at}
+							postIdx={postIdx}
+							updatedAt={updatedAt}
 							replies={replies ? replies : []}
 							requestCommentDelete={requestCommentDelete}
 							requestDeleteReply={requestDeleteReply}

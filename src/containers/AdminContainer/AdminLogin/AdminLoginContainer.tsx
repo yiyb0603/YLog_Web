@@ -10,6 +10,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import { clearStorage, setStorage } from 'lib/Storage';
 import { NextRouter, useRouter } from 'next/router';
 import SecureLS from 'secure-ls';
+import validationSignIn from 'validation/Auth/validationSignIn';
 
 const AdminLoginContainer = observer(() => {
 	const router: NextRouter = useRouter();
@@ -26,8 +27,7 @@ const AdminLoginContainer = observer(() => {
 			password: sha512(password),
 		};
 
-		if (!email.trim() || !password.trim()) {
-			toast.error('내용을 모두 입력해주세요!');
+		if (!validationSignIn(request)) {
 			return;
 		}
 

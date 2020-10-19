@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 import NoticeForm from 'components/Notice/NoticeForm';
 import GroupingState from 'lib/util/GroupingState';
 import ModifyNotice from 'components/Notice/ModifyNotice';
+import validationNoticeWrite from 'validation/Notice/validationNoticeWrite';
 
 const ModifyNoticeContainer = observer(() => {
 	const { store } = useStores();
@@ -39,8 +40,7 @@ const ModifyNoticeContainer = observer(() => {
 			contents,
 		};
 
-		if (!title.trim() || !contents.trim()) {
-			toast.error('내용을 모두 입력해주세요!');
+		if (!validationNoticeWrite(request)) {
 			return;
 		}
 

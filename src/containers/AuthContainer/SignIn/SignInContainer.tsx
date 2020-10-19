@@ -13,6 +13,7 @@ import option from '../../../config/firebase.json';
 import * as firebase from 'firebase/app';
 import '@firebase/messaging';
 import SecureLS from 'secure-ls';
+import validationSignIn from 'validation/Auth/validationSignIn';
 
 interface ISignInContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;
@@ -51,8 +52,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 			password: sha512(password),
 		};
 
-		if (!email.trim() || !password.trim()) {
-			toast.warning('빈칸없이 입력해주세요!');
+		if (!validationSignIn(request)) {
 			return;
 		}
 
@@ -84,7 +84,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 				toast.error(message);
 				return;
 			});
-	}, [handleSignIn, email, password]);
+	}, [handleSignIn, email, password, validationSignIn]);
 
 	return (
 		<SignIn

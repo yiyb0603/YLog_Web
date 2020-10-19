@@ -58,7 +58,6 @@ const AdminKick = ({
 						<tr>
 							<th>프로필</th>
 							<th>분류</th>
-							<th>아이디</th>
 							<th>이름</th>
 							<th>이메일</th>
 							<th>강퇴</th>

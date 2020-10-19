@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import EmailContainer from '../Email';
 import IErrorTypes from 'interface/ErrorTypes';
 import { observer } from 'mobx-react';
+import validationSignUp from 'validation/Auth/validationSignUp';
 
 interface ISignUpContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;
@@ -35,8 +36,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 			adminCode: adminCode !== '' ? adminCode : '',
 		};
 
-		if (!password.trim() || !name.trim() || !email.trim()) {
-			toast.warning('빈칸없이 입력해주세요!');
+		if (!validationSignUp(request)) {
 			return;
 		}
 
@@ -77,7 +77,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 			});
 		}
 		
-	}, [password, name, email, adminCode, isAdminCheck, handleAdminCheck, handleEmailDuplicate, handleSendCode]);
+	}, [password, name, email, adminCode, isAdminCheck, handleAdminCheck, handleEmailDuplicate, handleSendCode, validationSignUp]);
 
 	return (
 		<>

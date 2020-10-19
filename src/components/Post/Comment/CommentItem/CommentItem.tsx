@@ -13,6 +13,7 @@ interface CommentItemProps {
 	idx: number;
 	postIdx: number;
 	writer: string;
+	writerIdx: number;
 	contents: string;
 	createdAt: string | Date;
 	updatedAt: string | Date;
@@ -25,6 +26,7 @@ interface CommentItemProps {
 const CommentItem = ({
 	idx,
 	writer,
+	writerIdx,
 	contents,
 	postIdx,
 	createdAt,
@@ -41,6 +43,7 @@ const CommentItem = ({
 			<CommentLayout
 				idx={idx}
 				writer={writer}
+				writerIdx ={writerIdx}
 				contents={contents}
 				postIdx={postIdx}
 				createdAt={createdAt}
