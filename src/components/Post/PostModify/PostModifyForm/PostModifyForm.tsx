@@ -6,11 +6,17 @@ import 'react-markdown-editor-lite/lib/index.css';
 import SelectBox from 'components/Common/SelectBox';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
+import Thumbnail from 'components/Common/Button/Thumbnail';
 
 interface PostModifyFormProps {
 	titleObject: {
 		title: string;
 		setTitle: Dispatch<SetStateAction<string>>;
+	};
+
+	thumbnailObject: {
+		thumbnail: string;
+		setThumbnail: Dispatch<SetStateAction<string>>;
 	};
 
 	introductionObject: {
@@ -40,6 +46,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 const PostModifyForm = ({
 	categoryList,
 	titleObject,
+	thumbnailObject,
 	introductionObject,
 	contentsObject,
 	categoryIdxObject,
@@ -48,6 +55,7 @@ const PostModifyForm = ({
 	requestModifyPost,
 }: PostModifyFormProps) => {
 	const { title, setTitle } = titleObject;
+	const { thumbnail, setThumbnail } = thumbnailObject;
 	const { introduction, setIntroduction } = introductionObject;
 	const { categoryIdx, setCategoryIdx } = categoryIdxObject;
 	const { contents, setContents } = contentsObject;
@@ -104,8 +112,7 @@ const PostModifyForm = ({
 				/>
 			</div>
 
-			<input type="file" onChange={requestThumbnailUpload} />
-
+			<Thumbnail thumbnail ={thumbnail} requestThumbnailUpload ={requestThumbnailUpload} />
 			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={requestImageUpload} />
 
 			<div className={cx('PostModifyForm-Button')}>

@@ -14,9 +14,9 @@
 }
 
 .ReleasePage {
-	width: 100%;
-	max-width: 1200px;
+	max-width: 1400px;
 	margin: 2rem auto;
+	padding: 0 3rem;
 
 	&-Contents {
 		display: flex;
@@ -24,10 +24,6 @@
 		flex-direction: column;
 		-ms-flex-direction: column;
 		border-bottom: 2px solid $lighterGray;
-
-		& * {
-			white-space: pre-wrap;
-		}
 
 		&-Info {
 			width: 100%;
