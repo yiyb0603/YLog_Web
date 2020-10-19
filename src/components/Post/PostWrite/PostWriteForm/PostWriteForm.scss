@@ -47,16 +47,6 @@
 		}
 	}
 
-	&-FileButton {
-		width: 150px;
-		border-radius: 5px;
-		padding: 10px 0;
-		text-align: center;
-		border: 2px solid $primary;
-		color: $primary;
-		background-color: $white;
-	}
-
 	&-Button {
 		display: flex;
 		justify-content: flex-end;
