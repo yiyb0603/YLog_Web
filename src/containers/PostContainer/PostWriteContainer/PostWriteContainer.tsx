@@ -24,7 +24,7 @@ const PostWriteContainer = observer(() => {
 	const [introduction, setIntroduction] = useState<string>('');
 	const [contents, setContents] = useState<string>('');
 	const [categoryIdx, setCategoryIdx] = useState<number>(0);
-	const [thumbnail, setThumbnail] = useState<string | null>(null);
+	const [thumbnail, setThumbnail] = useState<string>('');
 
 	const requestThumbnailUpload = useCallback(
 		async (e: ChangeEvent<HTMLInputElement>) => {
@@ -91,6 +91,7 @@ const PostWriteContainer = observer(() => {
 	const postWriteForm: JSX.Element = (
 		<PostWriteForm
 			titleObject={GroupingState('title', title, setTitle)}
+			thumbnailObject={GroupingState('thumbnail', thumbnail, setThumbnail)}
 			introductionObject={GroupingState(
 				'introduction',
 				introduction,

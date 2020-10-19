@@ -1,0 +1,40 @@
+@import '../../../../styles/Fonts/FontScheme.scss';
+@import '../../../../styles/Palette/Palette.scss';
+
+.Thumbnail {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	margin-bottom: 10px;
+
+	& input[type='file'] {
+		display: none;
+	}
+
+	&-Button {
+		width: 120px;
+		padding: 10px 0;
+		text-align: center;
+		color: $primary;
+		background-color: $white;
+		border: 1px solid $primary;
+		border-radius: 5px;
+		margin-right: 5px;
+		transition: all 0.1s ease-in;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $primary;
+			color: $white;
+		}
+	}
+
+	&-FileName {
+		max-width: 350px;
+		border: 1px solid $gray;
+		border-radius: 5px;
+		color: $gray;
+		padding: 10px;
+		text-align: center;
+	}
+}

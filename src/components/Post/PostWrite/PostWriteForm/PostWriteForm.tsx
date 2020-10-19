@@ -6,11 +6,18 @@ import { ICategoryListTypes } from 'interface/CategoryTypes';
 import SelectBox from 'components/Common/SelectBox';
 import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
 import TitleInput from 'components/Common/Input/TitleInput';
+import stringEllipsis from 'lib/util/StringEllipsis';
+import Thumbnail from 'components/Common/Button/Thumbnail';
 
 interface PostWriteFormProps {
 	titleObject: {
 		title: string;
 		setTitle: Dispatch<SetStateAction<string>>;
+	};
+
+	thumbnailObject: {
+		thumbnail: string;
+		setThumbnail: Dispatch<SetStateAction<string>>;
 	};
 
 	introductionObject: {
@@ -39,6 +46,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 const PostWriteForm = ({
 	titleObject,
+	thumbnailObject,
 	introductionObject,
 	contentsObject,
 	categoryIdxObject,
@@ -51,6 +59,7 @@ const PostWriteForm = ({
 	const { introduction, setIntroduction } = introductionObject;
 	const { contents, setContents } = contentsObject;
 	const { setCategoryIdx } = categoryIdxObject;
+	const { thumbnail, setThumbnail } = thumbnailObject;
 
 	return (
 		<div className={cx('PostWriteForm')}>
@@ -85,8 +94,7 @@ const PostWriteForm = ({
 				/>
 			</div>
 
-			<input type="file" onChange={requestThumbnailUpload} />
-
+			<Thumbnail thumbnail ={thumbnail} requestThumbnailUpload ={requestThumbnailUpload} />
 			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={requestImageUpload} />
 
 			<div className={cx('PostWriteForm-Button')}>

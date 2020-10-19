@@ -26,7 +26,7 @@ const PostModifyContainer = observer(() => {
 	const [introduction, setIntroduction] = useState<string | undefined>('');
 	const [contents, setContents] = useState<string | undefined>('');
 	const [categoryIdx, setCategoryIdx] = useState<number | undefined>(0);
-	const [thumbnail, setThumbnail] = useState<string | null | undefined>(null);
+	const [thumbnail, setThumbnail] = useState<string>('');
 
 	const requestThumbnailUpload = useCallback(
 		async (e: ChangeEvent<HTMLInputElement>) => {
@@ -100,6 +100,7 @@ const PostModifyContainer = observer(() => {
 				setIntroduction(post.introduction);
 				setContents(post.contents);
 				setCategoryIdx(post.category_idx);
+				setThumbnail(post.thumbnail!);
 			});
 		}
 	}, [handleCategoryList, handlePostView, idx]);
@@ -107,6 +108,7 @@ const PostModifyContainer = observer(() => {
 	const postModifyForm: JSX.Element = (
 		<PostModifyForm
 			titleObject={GroupingState('title', title, setTitle)}
+			thumbnailObject={GroupingState('thumbnail', thumbnail, setThumbnail)}
 			introductionObject={GroupingState(
 				'introduction',
 				introduction,
