@@ -31,7 +31,7 @@ const CreateCategory = ({
 
 	return (
 		<div className={cx('CreateCategory')}>
-			<Modal title="카테고리 생성" handleCloseModal={handleCloseModal}>
+			<Modal height ="250px" title="카테고리 생성" handleCloseModal={handleCloseModal}>
 				<div className={cx('CreateCategory-Wrapper')}>
 					<input
 						type="text"

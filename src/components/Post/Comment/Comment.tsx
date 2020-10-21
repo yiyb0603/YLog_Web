@@ -20,6 +20,7 @@ const Comment = ({
 	requestDeleteReply,
 	requestCommentList,
 }: CommentProps) => {
+
 	return (
 		<div className={cx('Comment')}>
 			{commentReplyList.length > 0 ? (
@@ -32,7 +33,8 @@ const Comment = ({
 						postIdx,
 						updatedAt,
 						replies,
-						writer_idx
+						writer_idx,
+						is_private
 					} = comment;
 
 					return (
@@ -46,6 +48,7 @@ const Comment = ({
 							postIdx={postIdx}
 							updatedAt={updatedAt}
 							replies={replies ? replies : []}
+							isPrivate ={is_private}
 							requestCommentDelete={requestCommentDelete}
 							requestDeleteReply={requestDeleteReply}
 							requestCommentList={requestCommentList}

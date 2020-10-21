@@ -5,6 +5,8 @@ import parseTime from 'lib/TimeCounting';
 import SecureLS from 'secure-ls';
 import { IUserInfoTypes } from 'interface/AuthTypes';
 import ReplyCreateContainer from 'containers/ReplyContainer/ReplyCreateContainer';
+import PrivateComment from '../PrivateComment';
+import { userInfo } from 'os';
 
 const style = require('./CommentLayout.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -17,6 +19,7 @@ interface CommentLayoutProps {
 	postIdx?: number;
 	createdAt: string | Date;
 	updatedAt: string | Date;
+	isPrivate: boolean;
 	children?: any;
 	deleteFunction: any;
 	commentType: number;
@@ -30,6 +33,7 @@ const CommentLayout = ({
 	contents,
 	createdAt,
 	updatedAt,
+	isPrivate,
 	children,
 	deleteFunction,
 	commentType,
@@ -56,41 +60,47 @@ const CommentLayout = ({
 						className={cx('CommentLayout-Contents-Left-Profile')}
 					/>
 
-					<div className={cx('CommentLayout-Contents-Left-InfoWrapper')}>
-						<div className={cx('CommentLayout-Contents-Left-InfoWrapper-Top')}>
-							<div
-								className={cx(
-									'CommentLayout-Contents-Left-InfoWrapper-Top-Writer'
-								)}
-							>
-								{!writer ? '게스트' : writer}
-							</div>
-							<div
-								className={cx(
-									'CommentLayout-Contents-Left-InfoWrapper-Top-Time'
-								)}
-							>
-								{beforeTime}
-							</div>
-						</div>
+					{
+						isPrivate && (!myInfo || myInfo.idx !== writerIdx) && !myInfo.is_admin ?
+						<PrivateComment type ={commentType} />
+						: <div className={cx('CommentLayout-Contents-Left-InfoWrapper')}>
+							<div className={cx('CommentLayout-Contents-Left-InfoWrapper-Top')}>
+								<div
+									className={cx(
+										'CommentLayout-Contents-Left-InfoWrapper-Top-Writer'
+									)}
+								>
+									{!writer ? '게스트' : writer}
+								</div>
+								<div
+									className={cx(
+										'CommentLayout-Contents-Left-InfoWrapper-Top-Time'
+									)}
+								>
+									{beforeTime}
 
-						{children && !children.props.isModify ? (
-							<div>{contents}</div>
-						) : (
-							children && children
-						)}
-						{commentType === 0 && (
-							<span
-								className={cx('CommentLayout-Contents-ReplyButton')}
-								onClick={() => {
-									setIsReply(!isReply);
-									setCommentIdx(idx);
-								}}
-							>
-								답글
-							</span>
-						)}
-					</div>
+									<span>{isPrivate && '(비공개)'}</span>
+								</div>
+							</div>
+
+							{children && !children.props.isModify ? (
+								<div>{contents}</div>
+							) : (
+								children && children
+							)}
+							{commentType === 0 && (
+								<span
+									className={cx('CommentLayout-Contents-ReplyButton')}
+									onClick={() => {
+										setIsReply(!isReply);
+										setCommentIdx(idx);
+									}}
+								>
+									답글
+								</span>
+							)}
+						</div>
+					}
 				</div>
 
 				{children &&

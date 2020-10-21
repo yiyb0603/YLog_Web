@@ -15,6 +15,7 @@ interface ICommentModifyContainerProps {
 	isModify: boolean;
 	setIsModify: Dispatch<SetStateAction<boolean>>;
 	onBlur: () => void;
+	defaultPrivate: boolean;
 }
 
 const CommentModifyContainer = observer(
@@ -22,8 +23,8 @@ const CommentModifyContainer = observer(
 		commentIdx,
 		commentValue,
 		onBlur,
-		setIsModify,
 		isModify,
+		defaultPrivate
 	}: ICommentModifyContainerProps) => {
 		const { store } = useStores();
 		const { handleCommentModify, handleCommentList } = store.CommentStore;
@@ -32,12 +33,14 @@ const CommentModifyContainer = observer(
 		const postIdx: number = Number(router.query.idx);
 
 		const [contents, setContents] = useState<string>(commentValue);
+		const [isPrivate, setIsPrivate] = useState<boolean>(defaultPrivate);
 
 		const requestCommentModify = useCallback(async () => {
 			const request: ICommentRequestTypes = {
 				idx: commentIdx,
 				postIdx,
 				contents,
+				isPrivate
 			};
 
 			if (!contents.trim()) {
@@ -59,14 +62,14 @@ const CommentModifyContainer = observer(
 					toast.error(message);
 					return;
 				});
-		}, [commentIdx, postIdx, contents, handleCommentModify, handleCommentList]);
+		}, [commentIdx, postIdx, contents, isPrivate, handleCommentModify, handleCommentList]);
 
 		return (
 			<CommentModify
 				contentsObject={GroupingState('contents', contents, setContents)}
+				isPrivateObject ={GroupingState('isPrivate', isPrivate, setIsPrivate)}
 				requestCommentModify={requestCommentModify}
 				isModify={isModify}
-				setIsModify={setIsModify}
 				onBlur={onBlur}
 			/>
 		);

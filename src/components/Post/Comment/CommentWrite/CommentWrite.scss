@@ -12,8 +12,24 @@
 	padding: 10px;
 	margin-bottom: 10px;
 
-	&-Focus {
+	&:focus-within {
 		outline: 2px solid $skyBlue;
+	}
+
+	&-IconWrapper {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		& > * {
+			cursor: pointer;
+			font-size: $font_25;
+			color: $gray;
+		}
+
+		&-Send {
+			margin-left: 5px;
+		}
 	}
 
 	&-Form {
@@ -21,10 +37,5 @@
 		font-size: $font_18;
 		border: none;
 		outline: none;
-
-		&-Send {
-			cursor: pointer;
-			font-size: $font_22;
-		}
 	}
 }

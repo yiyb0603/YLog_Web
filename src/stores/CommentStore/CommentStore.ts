@@ -38,20 +38,24 @@ export default class CommentStore {
 				const {
 					idx,
 					writer,
+					writer_idx,
 					contents,
 					post_idx,
 					created_at,
 					updated_at,
+					is_private,
 				} = commentList[i];
 				this.commentReplyList = [
 					...this.commentReplyList,
 					{
 						idx,
 						writer,
+						writer_idx,
 						contents,
 						post_idx,
 						created_at,
 						updated_at,
+						is_private,
 						replies: [],
 					},
 				];
@@ -72,11 +76,13 @@ export default class CommentStore {
 							replies.push({
 								idx: replyStore.replyList[j].idx,
 								writer: replyStore.replyList[j].writer,
+								writerIdx: replyStore.replyList[j].writer_idx,
 								contents: replyStore.replyList[j].contents,
 								repliedAt: replyStore.replyList[j].replied_at,
 								updatedAt: replyStore.replyList[j].updated_at,
 								commentIdx: replyStore.replyList[j].comment_idx,
 								postIdx: replyStore.replyList[j].post_idx,
+								isPrivate: replyStore.replyList[j].is_private,
 							});
 
 							this.commentReplyList[i].replies = replies;

@@ -21,11 +21,13 @@ const CommentWriteContainer = observer(() => {
 	const postIdx: number = Number(router.query.idx);
 
 	const [contents, setContents] = useState<string>('');
+	const [isPrivate, setIsPrivate] = useState<boolean>(false);
 
 	const requestCommentWrite = useCallback(async () => {
 		const request: ICommentRequestTypes = {
 			postIdx,
 			contents,
+			isPrivate,
 		};
 
 		if (!contents.trim()) {
@@ -52,6 +54,7 @@ const CommentWriteContainer = observer(() => {
 	}, [
 		postIdx,
 		contents,
+		isPrivate,
 		handleCommentList,
 		handlePostView,
 	]);
@@ -59,6 +62,7 @@ const CommentWriteContainer = observer(() => {
 	return (
 		<CommentWrite
 			contentsObject={GroupingState('contents', contents, setContents)}
+			isPrivateObject={GroupingState('isPrivate', isPrivate, setIsPrivate)}
 			requestCommentWrite={requestCommentWrite}
 		/>
 	);

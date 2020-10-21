@@ -17,6 +17,7 @@ interface IReplyModifyContainerProps {
 	isModify: boolean;
 	setIsModify: Dispatch<SetStateAction<boolean>>;
 	requestCommentList: () => Promise<void>;
+	defaultPrivate: boolean;
 }
 
 const ReplyModifyContainer = observer(
@@ -24,6 +25,7 @@ const ReplyModifyContainer = observer(
 		replyIdx,
 		commentIdx,
 		replyValue,
+		defaultPrivate,
 		isModify,
 		setIsModify,
 		requestCommentList,
@@ -33,7 +35,9 @@ const ReplyModifyContainer = observer(
 
 		const router: NextRouter = useRouter();
 		const postIdx: number = Number(router.query.idx);
+
 		const [contents, setContents] = useState<string>(replyValue);
+		const [isPrivate, setIsPrivate] = useState<boolean>(defaultPrivate);
 
 		const onBlur = useCallback(() => {
 			setIsModify(false);
@@ -45,6 +49,7 @@ const ReplyModifyContainer = observer(
 				commentIdx,
 				postIdx,
 				contents,
+				isPrivate,
 			};
 
 			if (!validateCreateReply(data)) {
@@ -65,11 +70,12 @@ const ReplyModifyContainer = observer(
 					toast.error(message);
 					return;
 				});
-		}, [replyIdx, commentIdx, postIdx, contents, onBlur, requestCommentList]);
+		}, [replyIdx, commentIdx, postIdx, contents, isPrivate, onBlur, requestCommentList]);
 
 		return (
 			<ReplyModify
 				contentsObject={GroupingState('contents', contents, setContents)}
+				isPrivateObject ={GroupingState('isPrivate', isPrivate, setIsPrivate)}
 				requestModifyReply={requestModifyReply}
 				isModify={isModify}
 				onBlur={onBlur}

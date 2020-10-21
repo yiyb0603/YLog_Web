@@ -2,12 +2,17 @@ import React, {
 	Dispatch,
 	SetStateAction,
 } from 'react';
-import CommentModifyForm from 'components/Common/CommentModifyForm';
+import CommentModifyForm from 'components/Common/Comment/CommentModifyForm';
 
 interface ReplyModifyProps {
 	contentsObject: {
 		contents: string;
 		setContents: Dispatch<SetStateAction<string>>;
+	};
+
+	isPrivateObject: {
+		isPrivate: boolean;
+		setIsPrivate: Dispatch<SetStateAction<boolean>>;
 	};
 
 	requestModifyReply: () => Promise<void>;
@@ -17,16 +22,15 @@ interface ReplyModifyProps {
 
 const ReplyModify = ({
 	contentsObject,
+	isPrivateObject,
 	requestModifyReply,
 	isModify,
 	onBlur,
 }: ReplyModifyProps) => {
-	const { contents, setContents } = contentsObject;
-
 	return (
 		<CommentModifyForm
-			contents={contents}
-			setContents={setContents}
+			contentsObject ={contentsObject}
+			isPrivateObject ={isPrivateObject}
 			modifyFunction={requestModifyReply}
 			onBlur={onBlur}
 			isModify={isModify}

@@ -19,8 +19,19 @@
 		padding: 10px 5px;
 	}
 
-	&-Send {
-		cursor: pointer;
-		font-size: $font_22;
+	&-IconWrapper {
+		display: flex;
+		display: -webkit-flex;
+		align-items: center;
+
+		& > * {
+			cursor: pointer;
+			font-size: $font_25;
+			color: $gray;
+		}
+
+		&-Send {
+			margin-left: 10px;
+		}
 	}
 }

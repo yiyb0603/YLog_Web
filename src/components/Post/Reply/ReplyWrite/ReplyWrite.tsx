@@ -8,21 +8,35 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { BiSend } from 'react-icons/bi';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
+import { AiFillLock, AiFillUnlock } from 'react-icons/ai';
+import { Palette } from 'styles/Palette/Palette';
 
 const style = require('./ReplyWrite.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface ReplyWriteProps {
-	contents: string | undefined;
-	setContents: Dispatch<SetStateAction<string>> | undefined;
+	contentsObject: {
+		contents: string;
+		setContents: Dispatch<SetStateAction<string>>;
+	};
+
+	isPrivateObject: {
+		isPrivate: boolean;
+		setIsPrivate: Dispatch<SetStateAction<boolean>>;
+	};
+
 	requestCreateReply: () => Promise<void>;
 }
 
 const ReplyWrite = ({
-	contents,
-	setContents,
+	contentsObject,
+	isPrivateObject,
 	requestCreateReply,
 }: ReplyWriteProps) => {
+	const { primary } = Palette;
+	const { contents, setContents } = contentsObject;
+	const { isPrivate, setIsPrivate } = isPrivateObject;
+
 	return (
 		<div className={cx('ReplyWrite')}>
 			<input
@@ -38,10 +52,17 @@ const ReplyWrite = ({
 				}
 			/>
 
-			<BiSend
-				className={cx('ReplyWrite-Send')}
-				onClick={requestCreateReply}
-			/>
+			<div className ={cx('ReplyWrite-IconWrapper')}>
+				{
+					isPrivate ?
+						<AiFillLock style ={{ color: primary }} onClick ={() => setIsPrivate(false)} />
+						: <AiFillUnlock onClick ={() => setIsPrivate(true)} />
+				}
+				<BiSend
+					className={cx('ReplyWrite-Send')}
+					onClick={requestCreateReply}
+				/>
+			</div>
 		</div>
 	);
 };

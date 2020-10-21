@@ -8,6 +8,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import ReplyWrite from 'components/Post/Reply/ReplyWrite';
 import { toast } from 'react-toastify';
 import { validateCreateReply } from 'validation/Reply/validationReply';
+import GroupingState from 'lib/util/GroupingState';
 
 interface IReplyCreateContainerProps {
 	commentIdx: number;
@@ -28,12 +29,14 @@ const ReplyCreateContainer = observer(
 		const postIdx: number = Number(router.query.idx);
 
 		const [contents, setContents] = useState<string>('');
+		const [isPrivate, setIsPrivate] = useState<boolean>(false);
 
 		const requestCreateReply = useCallback(async () => {
 			const request: IReplyModifyTypes = {
 				postIdx,
 				commentIdx,
 				contents,
+				isPrivate
 			};
 
 			if (!validateCreateReply(request)) {
@@ -59,6 +62,7 @@ const ReplyCreateContainer = observer(
 			postIdx,
 			commentIdx,
 			contents,
+			isPrivate,
 			handleCreateReply,
 			requestCommentList,
 			setIsReply,
@@ -66,8 +70,8 @@ const ReplyCreateContainer = observer(
 
 		return (
 			<ReplyWrite
-				contents={contents}
-				setContents={setContents}
+				contentsObject ={GroupingState('contents', contents, setContents)}
+				isPrivateObject ={GroupingState('isPrivate', isPrivate, setIsPrivate)}
 				requestCreateReply={requestCreateReply}
 			/>
 		);

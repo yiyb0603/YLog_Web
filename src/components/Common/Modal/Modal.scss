@@ -2,7 +2,7 @@
 @import '../../../styles/Fonts/FontScheme.scss';
 
 .Modal {
-	height: 30%;
+	min-width: 300px;
 	background-color: $white;
 	position: fixed;
 	top: 50%;
