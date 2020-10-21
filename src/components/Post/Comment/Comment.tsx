@@ -20,6 +20,7 @@ const Comment = ({
 	requestDeleteReply,
 	requestCommentList,
 }: CommentProps) => {
+
 	return (
 		<div className={cx('Comment')}>
 			{commentReplyList.length > 0 ? (

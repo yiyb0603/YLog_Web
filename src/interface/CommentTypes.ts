@@ -13,6 +13,7 @@ export interface ICommentResponseTypes {
 	post_idx?: number;
 	updated_at?: Date | null;
 	writer?: string | null;
+	writer_idx?: number | null;
 }
 
 export interface ICommentRequestTypes {

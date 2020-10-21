@@ -38,6 +38,7 @@ export default class CommentStore {
 				const {
 					idx,
 					writer,
+					writer_idx,
 					contents,
 					post_idx,
 					created_at,
@@ -48,6 +49,7 @@ export default class CommentStore {
 					{
 						idx,
 						writer,
+						writer_idx,
 						contents,
 						post_idx,
 						created_at,
@@ -72,6 +74,7 @@ export default class CommentStore {
 							replies.push({
 								idx: replyStore.replyList[j].idx,
 								writer: replyStore.replyList[j].writer,
+								writerIdx: replyStore.replyList[j].writer_idx,
 								contents: replyStore.replyList[j].contents,
 								repliedAt: replyStore.replyList[j].replied_at,
 								updatedAt: replyStore.replyList[j].updated_at,

@@ -18,6 +18,7 @@ export interface IReplyTypes {
 	contents: string;
 	idx: number;
 	writer: string | null;
+	writer_idx: number | null;
 	post_idx: number;
 	replied_at: Date | null;
 	updated_at: Date | null;
