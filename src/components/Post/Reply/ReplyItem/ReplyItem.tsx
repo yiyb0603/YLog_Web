@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import CommentLayout from 'components/Common/CommentLayout';
+import CommentLayout from 'components/Common/Comment/CommentLayout';
 import ReplyModifyContainer from 'containers/ReplyContainer/ReplyModifyContainer';
 
 const style = require('./ReplyItem.scss');

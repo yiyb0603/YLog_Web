@@ -4,7 +4,7 @@ import { ClassNamesFn } from 'classnames/types';
 import CommentModifyContainer from 'containers/CommentContainer/CommentModify';
 import { IReplyTypes } from 'interface/ReplyTypes';
 import ReplyItem from 'components/Post/Reply/ReplyItem';
-import CommentLayout from 'components/Common/CommentLayout';
+import CommentLayout from 'components/Common/Comment/CommentLayout';
 
 const style = require('./CommentItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
