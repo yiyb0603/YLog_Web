@@ -8,37 +8,56 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { AiFillUnlock, AiFillLock } from 'react-icons/ai';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
+import { Palette } from 'styles/Palette/Palette';
 
 const style = require('./CommentModifyForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface CommentModifyFormProps {
-	contents: string;
-	setContents: Dispatch<SetStateAction<string>>;
+	contentsObject: {
+		contents: string;
+		setContents: Dispatch<SetStateAction<string>>;
+	};
+
+	isPrivateObject: {
+		isPrivate: boolean;
+		setIsPrivate: Dispatch<SetStateAction<boolean>>;
+	};
+
 	modifyFunction: () => Promise<void>;
 	onBlur: () => void;
 	isModify: boolean;
 }
 
 const CommentModifyForm = ({
-	contents,
-	setContents,
+	contentsObject,
+	isPrivateObject,
 	modifyFunction,
 	onBlur,
 	isModify,
 }: CommentModifyFormProps) => {
 	const modifyRef = useRef<HTMLInputElement | null>(null);
 
+	const { contents, setContents } = contentsObject;
+	const { isPrivate, setIsPrivate } = isPrivateObject;
+
+	const { primary, gray } = Palette;
+
 	useEffect(() => {
 		if (isModify) {
 			document.addEventListener('click', (event: any) => {
+				if (String(event.target).includes("SVG")) {
+					return;
+				}
+
 				if (modifyRef.current && !modifyRef.current.contains(event.target)) {
 					onBlur();
 				}
 			});
 		}
-	}, [isModify]);
+	}, [isModify, modifyRef]);
 
 	return (
 		<div className={cx('CommentModifyForm')} ref={modifyRef}>
@@ -55,12 +74,22 @@ const CommentModifyForm = ({
 				autoFocus={true}
 			/>
 
-			<button
-				className={cx('CommentModifyForm-Button')}
-				onClick={modifyFunction}
-			>
-				수정
-			</button>
+			<div className ={cx('CommentModifyForm-Right')}>
+				<div className ={cx('CommentModifyForm-Right-Icon')}>
+				{
+					isPrivate ?
+						<AiFillLock style ={{ color: primary }} onClick ={() => setIsPrivate(false)} />
+						: <AiFillUnlock style ={{ color: gray }} onClick ={() => setIsPrivate(true)} />
+				}
+				</div>
+				
+				<button
+					className={cx('CommentModifyForm-Right-Button')}
+					onClick={modifyFunction}
+				>
+					수정
+				</button>
+			</div>
 		</div>
 	);
 };

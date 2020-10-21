@@ -14,10 +14,12 @@ export interface ICommentResponseTypes {
 	updated_at?: Date | null;
 	writer?: string | null;
 	writer_idx?: number | null;
+	is_private?: boolean;
 }
 
 export interface ICommentRequestTypes {
 	idx?: number;
 	contents: string;
 	postIdx: number;
+	isPrivate: boolean;
 }

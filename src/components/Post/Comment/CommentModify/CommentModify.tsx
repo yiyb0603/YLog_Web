@@ -1,6 +1,4 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import classNames from 'classnames';
-import { ClassNamesFn } from 'classnames/types';
 import CommentModifyForm from 'components/Common/CommentModifyForm';
 
 interface CommentModifyProps {
@@ -8,26 +6,31 @@ interface CommentModifyProps {
 		contents: string;
 		setContents: Dispatch<SetStateAction<string>>;
 	};
+
+	isPrivateObject: {
+		isPrivate: boolean;
+		setIsPrivate: Dispatch<SetStateAction<boolean>>;
+	};
+
 	isModify: boolean;
-	setIsModify: Dispatch<SetStateAction<boolean>>;
 	onBlur: () => void;
 	requestCommentModify: () => Promise<void>;
 }
 
 const CommentModify = ({
 	contentsObject,
+	isPrivateObject,
 	isModify,
-	setIsModify,
 	onBlur,
 	requestCommentModify,
 }: CommentModifyProps) => {
-	const { contents, setContents } = contentsObject;
+	
 
 	return (
 		<>
 			<CommentModifyForm
-				contents={contents}
-				setContents={setContents}
+				contentsObject ={contentsObject}
+				isPrivateObject={isPrivateObject}
 				modifyFunction={requestCommentModify}
 				onBlur={onBlur}
 				isModify={isModify}

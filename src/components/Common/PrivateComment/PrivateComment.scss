@@ -1,0 +1,19 @@
+@import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/Fonts/FontScheme.scss';
+
+.PrivateComment {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	margin-left: 5px;
+
+	&-Icon {
+		color: $gray;
+		font-size: $font_30;
+	}
+
+	&-Text {
+		color: $gray;
+		font-size: $font_18;
+	}
+}

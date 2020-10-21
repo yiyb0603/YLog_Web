@@ -11,6 +11,7 @@ export interface IReplyModifyTypes {
 	commentIdx: number;
 	postIdx: number;
 	contents: string;
+	isPrivate: boolean;
 }
 
 export interface IReplyTypes {
@@ -22,6 +23,7 @@ export interface IReplyTypes {
 	post_idx: number;
 	replied_at: Date | null;
 	updated_at: Date | null;
+	is_private: boolean;
 }
 
 export interface ICommentReplyTypes {

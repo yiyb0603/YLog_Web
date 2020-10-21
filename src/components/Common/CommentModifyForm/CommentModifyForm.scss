@@ -21,13 +21,26 @@
 		font-size: $font_16;
 	}
 
-	&-Button {
-		border: none;
-		outline: none;
-		background-color: $primary;
-		color: $white;
-		padding: 10px 20px;
-		cursor: pointer;
-		z-index: 3;
+	&-Right {
+		display: flex;
+		display: -webkit-flex;
+		align-items: flex-end;
+
+		&-Icon > * {
+			font-size: $font_22;
+			color: $gray;
+			cursor: pointer;
+		}
+
+		&-Button {
+			border: none;
+			outline: none;
+			background-color: $primary;
+			color: $white;
+			padding: 10px 20px;
+			cursor: pointer;
+			z-index: 3;
+			margin-left: 5px;
+		}
 	}
 }

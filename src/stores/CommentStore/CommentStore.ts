@@ -43,6 +43,7 @@ export default class CommentStore {
 					post_idx,
 					created_at,
 					updated_at,
+					is_private,
 				} = commentList[i];
 				this.commentReplyList = [
 					...this.commentReplyList,
@@ -54,6 +55,7 @@ export default class CommentStore {
 						post_idx,
 						created_at,
 						updated_at,
+						is_private,
 						replies: [],
 					},
 				];
@@ -80,6 +82,7 @@ export default class CommentStore {
 								updatedAt: replyStore.replyList[j].updated_at,
 								commentIdx: replyStore.replyList[j].comment_idx,
 								postIdx: replyStore.replyList[j].post_idx,
+								isPrivate: replyStore.replyList[j].is_private,
 							});
 
 							this.commentReplyList[i].replies = replies;

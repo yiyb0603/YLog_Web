@@ -10,6 +10,11 @@ interface ReplyModifyProps {
 		setContents: Dispatch<SetStateAction<string>>;
 	};
 
+	isPrivateObject: {
+		isPrivate: boolean;
+		setIsPrivate: Dispatch<SetStateAction<boolean>>;
+	};
+
 	requestModifyReply: () => Promise<void>;
 	isModify: boolean;
 	onBlur: () => void;
@@ -17,16 +22,15 @@ interface ReplyModifyProps {
 
 const ReplyModify = ({
 	contentsObject,
+	isPrivateObject,
 	requestModifyReply,
 	isModify,
 	onBlur,
 }: ReplyModifyProps) => {
-	const { contents, setContents } = contentsObject;
-
 	return (
 		<CommentModifyForm
-			contents={contents}
-			setContents={setContents}
+			contentsObject ={contentsObject}
+			isPrivateObject ={isPrivateObject}
 			modifyFunction={requestModifyReply}
 			onBlur={onBlur}
 			isModify={isModify}
