@@ -6,6 +6,9 @@
 		display: flex;
 		display: -webkit-flex;
 		align-items: center;
+		@media screen and (max-width: 424px) {
+			font-size: $font_14;
+		}
 
 		&-Title {
 			cursor: pointer;

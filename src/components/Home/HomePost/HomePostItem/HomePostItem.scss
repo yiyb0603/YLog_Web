@@ -20,8 +20,12 @@
 		max-width: 330px;
 		min-height: 380px;
 		max-height: 380px;
-		margin: 15px;
+		margin: 15px 15px 15px 0;
 		box-shadow: 5px 5px 10px $gray, -5px -5px 10px $lighterGray;
+
+		@media screen and (max-width: 650px) {
+			margin: 10px auto;
+		}
 
 		& > * {
 			word-break: break-all;

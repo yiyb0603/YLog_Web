@@ -47,13 +47,11 @@ const NavBar = () => {
 
 				<div className={cx('NavBar-Contents-Right')}>
 					<Link href="/sign">
-						{getStorage('ylog-token') !== null ? (
-							<div className={cx('NavBar-Contents-Right-LogText')}>로그아웃</div>
-						) : (
-							<div className={cx('NavBar-Contents-Right-LogText')}>로그인</div>
-						)}
+							<div className={cx('NavBar-Contents-Right-LogText')}>
+								{getStorage('ylog-token') !== null ? '로그아웃' : '로그인'}
+							</div>
 					</Link>
-					{typeof window !== 'undefined' && getUserToken() !== null ? (
+					{getUserToken() !== null ? (
 						<img
 							src="/assets/icon/profile_default.jpg"
 							alt="profile"

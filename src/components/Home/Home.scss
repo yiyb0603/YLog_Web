@@ -10,7 +10,12 @@
 	flex-direction: column;
 	-ms-flex-direction: column;
 	margin: 1rem auto;
-	padding: 0 3rem;
+	padding: 0 2rem;
+	overflow-x: hidden;
+
+	@media screen and (max-width: 400px) {
+		padding: 0 1rem;
+	}
 
 	&-Middle {
 		display: flex;

@@ -16,7 +16,7 @@
 		width: 100%;
 		max-width: 1400px;
 		margin: auto;
-		padding: 0 3rem;
+		padding: 0 2rem;
 		display: flex;
 		display: -webkit-flex;
 		justify-content: space-between;
@@ -24,20 +24,12 @@
 		flex-wrap: wrap;
 
 		&-Logo {
-			width: 150px;
+			width: 140px;
 			cursor: pointer;
-		}
 
-		&-SearchWrapper {
-			width: 250px;
-			max-width: 250px;
-			display: flex;
-			display: -webkit-flex;
-			align-items: center;
-			border: none;
-			outline: none;
-			border-bottom: 2px solid $lighterGray;
-			color: $white;
+			@media screen and (max-width: 500px) {
+				width: 80px;
+			}
 		}
 
 		&-Right {
@@ -53,6 +45,10 @@
 				font-size: $font_20;
 				color: $white;
 				margin-top: 5px;
+
+				@media screen and (max-width: 500px) {
+					font-size: $font_14;
+				}
 			}
 
 			& > img {
@@ -62,11 +58,5 @@
 				margin-left: 1rem;
 			}
 		}
-	}
-}
-
-@media screen and (max-width: 612px) {
-	.NavBar-Contents {
-		flex-direction: column;
 	}
 }
