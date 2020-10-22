@@ -19,10 +19,10 @@ class PostWritePage extends Component<IPostWritePageProps> {
 
 	render() {
 		const { admin } = this.props;
-		if (!admin) {
-			Router.back();
-			return;
-		}
+		// if (!admin) {
+		// 	Router.back();
+		// 	return;
+		// }
 
 		return (
 			<PageTemplate>

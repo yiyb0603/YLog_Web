@@ -2,6 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import BlockQuote from './BlockQuote';
 import CodeBlock from './CodeBlock';
+import Image from './Image';
 
 interface MarkdownRenderProps {
 	contents: string;
@@ -15,6 +16,7 @@ const MarkdownRender = ({ contents }: MarkdownRenderProps) => {
 			renderers={{
 				code: CodeBlock,
 				blockquote: BlockQuote,
+				image: Image,
 			}}
 		/>
 	);

@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import CommentModifyForm from 'components/Common/CommentModifyForm';
+import CommentModifyForm from 'components/Common/Comment/CommentModifyForm';
 
 interface CommentModifyProps {
 	contentsObject: {

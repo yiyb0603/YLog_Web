@@ -3,7 +3,7 @@
 
 .PostView {
 	width: 100%;
-	max-width: 1100px;
+	max-width: 900px;
 	margin: 2rem auto;
 	padding: 0 2rem;
 
@@ -48,9 +48,9 @@
 		}
 
 		&-Thumbnail {
-			width: 70%;
+			max-width: 100%;
 			min-height: 200px;
-			max-height: 500px;
+			max-height: 550px;
 			margin: $font_2rem auto;
 		}
 
