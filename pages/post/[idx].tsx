@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import PostViewContainer from 'containers/PostContainer/PostViewContainer';
+import stores from 'stores';
+import { IPostListTypes, IPostResponseTypes } from 'interface/PostTypes';
 
-const PostViewPage = () => {
-	return (
-		<PageTemplate>
-			<PostViewContainer />
-		</PageTemplate>
-	);
+interface PostViewPageProps {
+	post: IPostListTypes;
+}
+
+class PostViewPage extends Component<PostViewPageProps> {
+	static async getInitialProps(ctx: any) {
+		const { handlePostView } = stores.PostStore;
+
+		const response: IPostResponseTypes = await handlePostView(ctx.query.idx);
+		const { post } = response.data;
+
+		return {
+			post,
+		}
+	}
+
+	render() {
+		const { post } = this.props;
+
+		return (
+			<PageTemplate>
+				<PostViewContainer post ={post} />
+			</PageTemplate>
+		);
+	}
 };
 
 export default PostViewPage;

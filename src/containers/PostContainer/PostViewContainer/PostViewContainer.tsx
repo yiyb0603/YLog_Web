@@ -7,8 +7,13 @@ import PostView from 'components/Post/PostView';
 import { toast } from 'react-toastify';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import PostLoading from 'components/Common/Loading/PostLoading';
+import { IPostListTypes } from 'interface/PostTypes';
 
-const PostViewContainer = observer(() => {
+interface IPostViewContainerProps {
+	post: IPostListTypes;
+}
+
+const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
 	const { store } = useStores();
 	const { handlePostView, postInfo, isLoading } = store.PostStore;
 	const { handleCategoryList, categoryList } = store.CategoryStore;
@@ -39,7 +44,7 @@ const PostViewContainer = observer(() => {
 
 	return (
 		<>
-			{!isLoading ? (
+			{!isLoading && post.idx ? (
 				<PostView postInfo={postInfo} categoryName={categoryName} />
 			) : (
 				<PostLoading />

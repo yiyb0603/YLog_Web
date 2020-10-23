@@ -1,4 +1,5 @@
 import { getStorage } from 'lib/Storage';
+import * as jwt from 'jsonwebtoken';
 
 export const getUserToken = () => {
 	// 유저 페이지 토큰
@@ -11,3 +12,8 @@ export const getAdminToken = () => {
 	const adminToken: string | null | undefined = getStorage('ylog-adminToken');
 	return adminToken;
 };
+
+export const decodeToken = (token: string) => {
+	const decoded = jwt.decode(token);
+	return decoded;
+}

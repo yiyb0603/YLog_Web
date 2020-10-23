@@ -13,6 +13,7 @@ import option from '../../../config/firebase.json';
 import * as firebase from 'firebase/app';
 import '@firebase/messaging';
 import SecureLS from 'secure-ls';
+import cookie from 'js-cookie';
 import validationSignIn from 'validation/Auth/validationSignIn';
 
 interface ISignInContainerProps {
@@ -68,6 +69,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 
 						if (localStorage) {
 							setStorage('ylog-token', response.data.ylogToken);
+							cookie.set('ylog-token', response.data.ylogToken);
 							const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
 							ls.set('userInfo', response.data.userInfo);
 						}

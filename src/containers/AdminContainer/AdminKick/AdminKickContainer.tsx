@@ -9,9 +9,7 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import { toast } from 'react-toastify';
 import GroupingState from 'lib/util/GroupingState';
 import { confirmAlert } from 'lib/SweetAlert';
-import isAdmin from 'lib/util/isAdmin';
 import { NextRouter, useRouter } from 'next/router';
-import redirectPage from 'lib/util/RedirectPage';
 
 const AdminKickContainer = observer(() => {
 	const router: NextRouter = useRouter();
@@ -86,9 +84,8 @@ const AdminKickContainer = observer(() => {
 	);
 
 	useEffect(() => {
-		redirectPage();
 		handleMemberList(true);
-	}, [handleMemberList, redirectPage]);
+	}, [handleMemberList]);
 
 	return (
 		<AdminKick
