@@ -6,6 +6,7 @@ import { ISignInResponseTypes, ISignInTypes } from 'interface/AuthTypes';
 import AdminLogin from 'components/Admin/AdminLogin';
 import GroupingState from 'lib/util/GroupingState';
 import { toast } from 'react-toastify';
+import cookies from 'js-cookie';
 import IErrorTypes from 'interface/ErrorTypes';
 import { clearStorage, setStorage } from 'lib/Storage';
 import { NextRouter, useRouter } from 'next/router';
@@ -32,15 +33,15 @@ const AdminLoginContainer = observer(() => {
 		}
 
 		await handleSignIn(request)
-			.then((response: ISignInResponseTypes) => {
-				const { status, data } = response;
-
+			.then(({ status, data }: ISignInResponseTypes) => {
 				if (status === 200) {
 					if (data.userInfo.is_admin) {
 						toast.success('관리자 로그인을 성공하였습니다.');
-						setStorage('ylog-adminToken', response.data.ylogToken);
+						cookies.set("ylog-adminToken", data.ylogToken);
+						setStorage('ylog-adminToken', data.ylogToken);
+						
 						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-						ls.set('userInfo', response.data.userInfo);
+						ls.set('userInfo', data.userInfo);
 						router.push('/admin');
 						return;
 					}

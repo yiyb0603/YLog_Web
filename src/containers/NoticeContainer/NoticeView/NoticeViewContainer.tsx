@@ -8,8 +8,13 @@ import NoticeView from 'components/Notice/NoticeView';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
 import PostLoading from 'components/Common/Loading/PostLoading';
+import { INoticeRequestTypes } from 'interface/NoticeTypes';
 
-const NoticeViewContainer = observer(() => {
+interface INoticeViewContainerProps {
+	notice: INoticeRequestTypes;
+}
+
+const NoticeViewContainer = observer(({ notice }: INoticeViewContainerProps) => {
 	const { store } = useStores();
 	const {
 		handleNoticeView,
@@ -59,7 +64,8 @@ const NoticeViewContainer = observer(() => {
 	return (
 		<>
 		{
-			isLoading ? <PostLoading /> :
+			!notice.idx || isLoading ?
+			<PostLoading /> :
 			<NoticeView
 				noticeInfo={noticeInfo}
 				requestDeleteNotice={requestDeleteNotice}

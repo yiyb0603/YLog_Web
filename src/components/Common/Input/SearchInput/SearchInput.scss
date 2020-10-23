@@ -2,8 +2,8 @@
 @import '../../../../styles/Fonts/FontScheme.scss';
 
 .SearchInput {
-	width: 220px;
-	max-width: 220px;
+	width: 210px;
+	max-width: 210px;
 	display: flex;
 	display: -webkit-flex;
 	align-items: center;
@@ -12,13 +12,18 @@
 	border-bottom: 2px solid $black;
 	color: $white;
 
+	@media screen and (max-width: 500px) {
+		width: 180px;
+		max-width: 180px;
+	}
+
 	& > input {
 		width: 100%;
 		border: none;
 		outline: none;
 		background: none;
 		padding: 5px 0;
-		font-size: $font_18;
+		font-size: $font_1rem;
 		color: $black;
 
 		&::placeholder {

@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import ReleaseWriteContainer from 'containers/ReleaseContainer/ReleaseWrite';
-import isAdmin from 'lib/util/isAdmin';
 import Router from 'next/router';
+import redirectPage from 'lib/util/RedirectPage';
+import { IAdminPageProps } from '../admin';
 
-interface IPostWritePageProps {
-	admin: boolean;
-}
-
-class ReleaseWritePage extends Component<IPostWritePageProps> {
-  static async getInitialProps() {
-		const admin: boolean = isAdmin();
-
+class ReleaseWritePage extends Component<IAdminPageProps> {
+  static async getInitialProps(ctx: any) {
+		const isValid: boolean = await redirectPage(ctx);
+		
 		return {
-			admin
-		}
+			isValid
+		};
 	}
 
   render() {
-    const { admin } = this.props;
-		if (!admin) {
+    const { isValid } = this.props;
+		if (!isValid) {
 			Router.back();
 			return;
     }

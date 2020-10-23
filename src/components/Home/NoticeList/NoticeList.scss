@@ -16,6 +16,7 @@
 	&-CountWrapper {
 		display: flex;
 		display: -webkit-flex;
+		align-items: center;
 		margin-right: 5px;
 	}
 
@@ -31,6 +32,11 @@
 			border-radius: 25px;
 			padding: 7px 10px;
 			margin-right: 5px;
+
+			@media screen and (max-width: 424px) {
+				padding: 5px;
+				font-size: $font_14;
+			}
 		}
 	}
 }

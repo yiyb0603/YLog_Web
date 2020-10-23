@@ -1,13 +1,34 @@
 import PageTemplate from 'components/Template/PageTemplate';
 import NoticeViewContainer from 'containers/NoticeContainer/NoticeView';
-import React from 'react';
+import { INoticeRequestTypes, INoticeResponseTypes } from 'interface/NoticeTypes';
+import React, { Component } from 'react';
+import stores from 'stores';
 
-const NoticeViewPage = () => {
-	return (
-		<PageTemplate>
-			<NoticeViewContainer />
-		</PageTemplate>
-	);
+interface INoticeViewPageProps {
+	notice: INoticeRequestTypes;
+}
+
+class NoticeViewPage extends Component<INoticeViewPageProps> {
+	static async getInitialProps(ctx: any) {
+		const { handleNoticeView } = stores.NoticeStore;
+
+		const response: INoticeResponseTypes = await handleNoticeView(ctx.query.idx);
+		const { notice } = response.data;
+
+		return {
+			notice,
+		}
+	}
+
+	render() {
+		const { notice } = this.props;
+
+		return (
+			<PageTemplate>
+				<NoticeViewContainer notice ={notice} />
+			</PageTemplate>
+		);
+	}
 };
 
 export default NoticeViewPage;

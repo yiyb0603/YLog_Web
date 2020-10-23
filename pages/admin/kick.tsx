@@ -1,29 +1,26 @@
 import React, { Component } from 'react';
 import AdminTemplate from 'components/Template/AdminTemplate';
 import AdminKickContainer from 'containers/AdminContainer/AdminKick';
-import { getAdminToken } from 'Token/Token';
+import { IAdminPageProps } from '.';
+import redirectPage from 'lib/util/RedirectPage';
 import Router from 'next/router';
 
-interface IAdminKickPageProps {
-	token: string;
-}
-
-class AdminKickPage extends Component<IAdminKickPageProps> {
-	static async getInitialProps() {
-		const token: string | null | undefined = getAdminToken();
-
+class AdminKickPage extends Component<IAdminPageProps> {
+	static async getInitialProps(ctx: any) {
+		const isValid: boolean = await redirectPage(ctx);
+		
 		return {
-			token
-		}
+			isValid
+		};
 	}
 
 	render() {
-		const { token } = this.props;
-		if (!token) {
-			Router.back();
-			return;
+		const { isValid } = this.props;
+		if (!isValid) {
+			Router.push('/');
+			return <></>;
 		}
-
+		
 		return (
 			<AdminTemplate>
 				<AdminKickContainer />

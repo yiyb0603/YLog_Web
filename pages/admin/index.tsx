@@ -1,28 +1,27 @@
 import React, { Component } from 'react';
 import AdminTemplate from 'components/Template/AdminTemplate';
 import AllowMemberContainer from 'containers/AdminContainer/AllowMember';
-import { getAdminToken } from 'Token/Token';
+import redirectPage from 'lib/util/RedirectPage';
 import Router from 'next/router';
 
-interface IAdminPageProps {
-	token: string;
+export interface IAdminPageProps {
+	isValid: boolean;
 }
 
 class AdminIndexPage extends Component<IAdminPageProps> {
-	static async getInitialProps() {
-		const token: string | null | undefined = getAdminToken();
-
+	static async getInitialProps(ctx: any) {
+		const isValid: boolean = await redirectPage(ctx);
+		
 		return {
-			token,
-		}
-	};
+			isValid
+		};
+	}
 
 	render() {
-		const { token } = this.props;
-
-		if (!token) {
-			Router.back();
-			return;
+		const { isValid } = this.props;
+		if (!isValid) {
+			Router.push('/');
+			return <></>;
 		}
 
 		return (
