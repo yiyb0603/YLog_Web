@@ -12,6 +12,7 @@ import ModifyCategoryContainer from 'containers/CategoryContainer/ModifyCategory
 import CategoryItem from './CategoryItem';
 import SecureLS from 'secure-ls';
 import RowCategoryItem from './RowCategoryItem';
+import isAdmin from 'lib/util/isAdmin';
 
 const style = require('./Category.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -30,9 +31,6 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 	const {
 		query: { topic, keyword },
 	}: NextRouter = router;
-
-	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-	const { is_admin } = ls.get('userInfo');
 
 	return (
 		<div className={cx('Category')}>
@@ -58,7 +56,7 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 			<div className ={cx('Category-ColumnWrapper')}>
 				<div className={cx('Category-Title')}>
 					<div>메뉴 목록</div>
-					{is_admin && (
+					{isAdmin() && (
 						<BsPencil
 							className={cx('Category-Title-Pen')}
 							onClick={() => setIsCreate(true)}

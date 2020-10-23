@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
 import Router from 'next/router';
-import isAdmin from 'lib/util/isAdmin';
 import PageTemplate from 'components/Template/PageTemplate';
 import PostModifyContainer from 'containers/PostContainer/PostModifyContainer';
+import { IAdminPageProps } from '../../admin';
+import redirectPage from 'lib/util/RedirectPage';
 
-interface IModifyPageProps {
-	admin: boolean;
-}
-
-class ModifyPage extends Component<IModifyPageProps> {
-	static async getInitialProps() {
-		const admin: boolean = isAdmin();
-
+class ModifyPage extends Component<IAdminPageProps> {
+	static async getInitialProps(ctx: any) {
+		const isValid: boolean = await redirectPage(ctx);
+		
 		return {
-			admin
-		}
+			isValid
+		};
 	}
 
 	render() {
-		const { admin } = this.props;
-		// if (!admin) {
-		// 	Router.back();
-		// 	return;
-		// }
+		const { isValid } = this.props;
+		if (!isValid) {
+			Router.push('/');
+			return <></>;
+		}
 
 		return (
 			<PageTemplate>

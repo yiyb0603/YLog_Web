@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
 import CreateNoticeContainer from 'containers/NoticeContainer/CreateNotice';
-import isAdmin from 'lib/util/isAdmin';
 import Router from 'next/router';
+import { IAdminPageProps } from '../admin';
+import redirectPage from 'lib/util/RedirectPage';
 
-interface INoticeWritePageProps {
-	admin: boolean;
-}
-
-class NoticeWritePage extends Component<INoticeWritePageProps> {
-	static async getInitialProps() {
-		const admin: boolean = isAdmin();
-
+class NoticeWritePage extends Component<IAdminPageProps> {
+	static async getInitialProps(ctx: any) {
+		const isValid: boolean = await redirectPage(ctx);
+		
 		return {
-			admin
-		}
+			isValid
+		};
 	}
 
 	render() {
-		const { admin } = this.props;
-		if (!admin) {
+		const { isValid } = this.props;
+		if (!isValid) {
 			Router.back();
 			return;
 		}
