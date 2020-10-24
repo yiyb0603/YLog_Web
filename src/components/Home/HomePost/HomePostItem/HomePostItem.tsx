@@ -61,17 +61,12 @@ const HomePostItem = ({
 					/>
 
 					<div className={cx('HomePost-Item-Contents')}>
-						<div className={cx('HomePost-Item-Contents-Title')}>{title}</div>
+						<div className={cx('HomePost-Item-Contents-Title')}>{stringEllipsis(title!, 40)}</div>
 						<div className={cx('HomePost-Item-Introduction')}>
 							{stringEllipsis(introduction!, 50)}
 						</div>
 
 						<div className={cx('HomePost-Item-Contents-TimeWrapper')}>
-							<div className={cx('HomePost-Item-Contents-TimeWrapper-Time')}>
-								{parseTime(created_at)}
-								{updated_at && '(수정됨)'}
-							</div>
-
 							<div className={cx('HomePost-Item-Contents-Category')}>
 								{
 									categoryList.find(
@@ -79,6 +74,11 @@ const HomePostItem = ({
 											category.idx === category_idx
 									)?.category_name
 								}
+							</div>
+
+							<div className={cx('HomePost-Item-Contents-TimeWrapper-Time')}>
+								{parseTime(created_at)}
+								{updated_at && '(수정됨)'}
 							</div>
 						</div>
 					</div>

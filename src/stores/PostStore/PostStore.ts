@@ -28,14 +28,7 @@ export default class PostStore {
 		try {
 			const response: IPostResponseListTypes = await getResponse('/post');
 
-			this.postList = response.data.posts.sort(
-				(a: IPostListTypes, b: IPostListTypes) => {
-					if (a.created_at! > b.created_at!) {
-						return -1;
-					}
-					return 0;
-				}
-			);
+			this.postList = response.data.posts;
 
 			this.isLoading = false;
 			return response;

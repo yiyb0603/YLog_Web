@@ -21,7 +21,7 @@ export default class CategoryStore {
 	@action
 	handleCategoryList = async (keyword?: string) => {
 		try {
-			const response: ICategoryResponseTypes = await getResponse(`/category${keyword ? '?keyword=' + keyword : ''}`);
+			const response: ICategoryResponseTypes = await getResponse(`/category${keyword ? '?keyword=' + keyword.toLowerCase() : ''}`);
 			this.categoryList = response.data;
 
 			return response;
