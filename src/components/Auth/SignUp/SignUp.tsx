@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, Dispatch, SetStateAction } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';

@@ -1,8 +1,13 @@
 import getMyInfo from "./getMyInfo";
 
 const isAdmin = () => {
-	const { is_admin } = getMyInfo();
-	return is_admin;
+	const myInfo = getMyInfo();
+
+	if (!myInfo) {
+		return false;
+	}
+
+	return myInfo.is_admin;
 };
 
 export default isAdmin;

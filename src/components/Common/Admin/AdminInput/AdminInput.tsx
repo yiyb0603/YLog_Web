@@ -41,7 +41,7 @@ const AdminInput = ({
 				label={outline}
 				variant="outlined"
 				value={value}
-				style={{ marginBottom: 5, width: '100%' }}
+				style={{ marginBottom: 10, width: '100%' }}
 				onChange={(e: ChangeEvent<HTMLInputElement>) =>
 					setValue(e.target.value)
 				}

@@ -7,10 +7,8 @@ import { ClassNamesFn } from 'classnames/types';
 import { NextRouter, useRouter } from 'next/router';
 import Profile from 'components/Home/Profile';
 import Link from 'next/link';
-import { getStorage } from 'lib/Storage';
 import { getUserToken } from 'Token/Token';
 import SearchInput from '../../Input/SearchInput';
-import Constants from 'Constants';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,9 +17,7 @@ const NavBar = () => {
 	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
 	const [keyword, setKeyword] = useState<string>('');
 
-	const { USER_TOKEN } = Constants;
 	const router: NextRouter = useRouter();
-
 	const searchQuery = useCallback((): void => {
 		if (!keyword) {
 			router.push(`/`);
@@ -50,10 +46,10 @@ const NavBar = () => {
 				<div className={cx('NavBar-Contents-Right')}>
 					<Link href="/sign">
 							<div className={cx('NavBar-Contents-Right-LogText')}>
-								{getStorage(USER_TOKEN) !== null ? '로그아웃' : '로그인'}
+								{getUserToken() ? '로그아웃' : '로그인'}
 							</div>
 					</Link>
-					{getUserToken() !== null ? (
+					{getUserToken() ? (
 						<img
 							src="/assets/icon/profile_default.jpg"
 							alt="profile"

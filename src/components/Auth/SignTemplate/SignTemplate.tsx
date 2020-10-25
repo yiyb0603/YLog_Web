@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import cookies from 'js-cookie';
 import SignInContainer from 'containers/AuthContainer/SignIn';
 import SignUpContainer from 'containers/AuthContainer/SignUp';
 import { clearStorage } from 'lib/Storage';

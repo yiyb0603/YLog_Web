@@ -1,8 +1,10 @@
+import React, { Component } from 'react';
 import AdminLoginContainer from 'containers/AdminContainer/AdminLogin';
-import React from 'react';
 
-const AdminLoginPage = () => {
-	return <AdminLoginContainer />;
-};
+class AdminLoginPage extends Component {
+	render() {
+		return <AdminLoginContainer />;
+	}
+}
 
 export default AdminLoginPage;

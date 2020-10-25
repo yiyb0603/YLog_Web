@@ -2,32 +2,24 @@ import React, { Component } from 'react';
 import AdminTemplate from 'components/Template/AdminTemplate';
 import AllowMemberContainer from 'containers/AdminContainer/AllowMember';
 import redirectPage from 'lib/util/RedirectPage';
-import Router from 'next/router';
 
-export interface IAdminPageProps {
-	isValid: boolean;
-}
-
-class AdminIndexPage extends Component<IAdminPageProps> {
+class AdminIndexPage extends Component {
 	static async getInitialProps(ctx: any) {
-		const isValid = await redirectPage(ctx);
-		
-		return {
-			isValid,
-		};
+		const isValid: boolean = await redirectPage(ctx);
+
+		if (!isValid) {
+			ctx.res.writeHead(302, { Location: '/' });
+			ctx.res.end();
+		}
+
+		return {};
 	}
 
 	render() {
-		const { isValid } = this.props;
-		if (!isValid) {
-			Router.push('/');
-			return <></>;
-		}
-
 		return (
 			<AdminTemplate>
- 				<AllowMemberContainer />
- 			</AdminTemplate>
+				<AllowMemberContainer />
+			</AdminTemplate>
 		)
 	}
 }

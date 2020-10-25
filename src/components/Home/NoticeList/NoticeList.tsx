@@ -24,7 +24,7 @@ const NoticeList = ({
 	handleIncreaseCount,
 	handleDecreaseCount,
 }: NoticeListProps) => {
-	const FIVE_SECONDS = 5000;
+	const FIVE_SECONDS: number = 5000;
 	const router: NextRouter = useRouter();
 	const arrowStyle: CSSProperties = {
 		fontSize: 18,
