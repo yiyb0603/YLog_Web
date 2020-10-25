@@ -3,9 +3,9 @@ import classNames from 'classnames';
 import { ClassNamesFn } from "classnames/types";
 import { IPostCategoryTypes } from "interface/CategoryTypes";
 import { NextRouter, useRouter } from "next/router";
-import SecureLS from "secure-ls";
 import { BsPen, BsTrash } from "react-icons/bs";
 import stringEllipsis from "lib/util/StringEllipsis";
+import getMyInfo from "lib/util/getMyInfo";
 
 const style = require("./RowCategoryItem.scss");
 const cx: ClassNamesFn = classNames.bind(style);
@@ -22,9 +22,7 @@ interface RowCategoryItemProps {
 const RowCategoryItem = ({ idx, categoryName, postCount, setCategoryInfo, setIsModify, requestDeleteCategory }: RowCategoryItemProps) => {
   const router: NextRouter = useRouter();
 	const { topic, keyword } = router.query;
-
-	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-	const { is_admin } = ls.get('userInfo');
+	const { is_admin } = getMyInfo();
   
   return (
     <div className ={cx('RowCategoryItem', {

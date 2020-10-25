@@ -4,8 +4,8 @@ import { ClassNamesFn } from 'classnames/types';
 import { NextRouter, useRouter } from 'next/router';
 import { BsPen, BsTrash } from 'react-icons/bs';
 import { IPostCategoryTypes } from 'interface/CategoryTypes';
-import SecureLS from 'secure-ls';
 import stringEllipsis from 'lib/util/StringEllipsis';
+import getMyInfo from 'lib/util/getMyInfo';
 
 const style = require('./CategoryItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -29,9 +29,7 @@ const CategoryItem = ({
 }: CategoryItemProps) => {
 	const router: NextRouter = useRouter();
 	const { topic, keyword } = router.query;
-
-	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-	const { is_admin } = ls.get('userInfo');
+	const { is_admin } = getMyInfo();
 
 	return (
 		<li className={cx('CategoryItem')}>

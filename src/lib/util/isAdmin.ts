@@ -1,12 +1,13 @@
-import SecureLS from 'secure-ls';
+import getMyInfo from "./getMyInfo";
 
 const isAdmin = () => {
-	if (typeof window !== 'undefined') {
-		const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-		const { is_admin } = ls.get('userInfo');
+	const myInfo = getMyInfo();
 
-		return is_admin;
+	if (!myInfo) {
+		return false;
 	}
+
+	return myInfo.is_admin;
 };
 
 export default isAdmin;

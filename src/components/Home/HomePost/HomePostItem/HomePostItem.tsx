@@ -5,11 +5,11 @@ import { MdComment } from 'react-icons/md';
 import { AiOutlineEye } from 'react-icons/ai';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
-import SecureLS from 'secure-ls';
 import { IUserInfoTypes } from 'interface/AuthTypes';
 import { NextRouter, useRouter } from 'next/router';
 import parseTime from 'lib/TimeCounting';
 import stringEllipsis from 'lib/util/StringEllipsis';
+import getMyInfo from 'lib/util/getMyInfo';
 
 const style = require('./HomePostItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -43,8 +43,7 @@ const HomePostItem = ({
 	categoryList,
 	requestDeletePost,
 }: HomePostItemProps) => {
-	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-	const myInfo: IUserInfoTypes = ls.get('userInfo');
+	const myInfo: IUserInfoTypes = getMyInfo();
 	const router: NextRouter = useRouter();
 
 	return (
@@ -61,17 +60,12 @@ const HomePostItem = ({
 					/>
 
 					<div className={cx('HomePost-Item-Contents')}>
-						<div className={cx('HomePost-Item-Contents-Title')}>{title}</div>
+						<div className={cx('HomePost-Item-Contents-Title')}>{stringEllipsis(title!, 40)}</div>
 						<div className={cx('HomePost-Item-Introduction')}>
 							{stringEllipsis(introduction!, 50)}
 						</div>
 
 						<div className={cx('HomePost-Item-Contents-TimeWrapper')}>
-							<div className={cx('HomePost-Item-Contents-TimeWrapper-Time')}>
-								{parseTime(created_at)}
-								{updated_at && '(수정됨)'}
-							</div>
-
 							<div className={cx('HomePost-Item-Contents-Category')}>
 								{
 									categoryList.find(
@@ -79,6 +73,11 @@ const HomePostItem = ({
 											category.idx === category_idx
 									)?.category_name
 								}
+							</div>
+
+							<div className={cx('HomePost-Item-Contents-TimeWrapper-Time')}>
+								{parseTime(created_at)}
+								{updated_at && '(수정됨)'}
 							</div>
 						</div>
 					</div>

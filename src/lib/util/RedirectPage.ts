@@ -1,15 +1,14 @@
 import { decodeToken } from 'Token/Token';
 import isAdmin from './isAdmin';
+import axios from 'axios';
 
-const redirectPage = (ctx: any) => {
+const redirectPage = async (ctx: any) => {
   const isServer: boolean = typeof window === 'undefined';
 
   if (isServer) {
     if (ctx.req.headers.cookie) {
-      console.log(ctx.req.headers.cookie.split("=")[1]);
-    // ServerSide Rendering
-      const { is_admin }: any = decodeToken(ctx.req.headers.cookie.split("=")[1]);
-
+      // ServerSide Rendering
+      const { is_admin }: any = await decodeToken(axios.defaults.headers.Cookie);
       return is_admin;
     }
     

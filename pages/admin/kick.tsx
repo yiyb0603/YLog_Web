@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
 import AdminTemplate from 'components/Template/AdminTemplate';
 import AdminKickContainer from 'containers/AdminContainer/AdminKick';
-import { IAdminPageProps } from '.';
 import redirectPage from 'lib/util/RedirectPage';
-import Router from 'next/router';
 
-class AdminKickPage extends Component<IAdminPageProps> {
+class AdminKickPage extends Component {
 	static async getInitialProps(ctx: any) {
 		const isValid: boolean = await redirectPage(ctx);
+
+		if (!isValid) {
+			ctx.res.writeHead(302, { Location: '/' });
+			ctx.res.end();
+		}
 		
-		return {
-			isValid
-		};
+		return {};
 	}
 
 	render() {
-		const { isValid } = this.props;
-		if (!isValid) {
-			Router.push('/');
-			return <></>;
-		}
-		
 		return (
 			<AdminTemplate>
 				<AdminKickContainer />

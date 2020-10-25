@@ -18,7 +18,7 @@ interface AdminInputProps {
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		'& > *': {
-			margin: theme.spacing(1),
+			margin: theme.spacing(5),
 			width: '25ch',
 		},
 	},
@@ -41,6 +41,7 @@ const AdminInput = ({
 				label={outline}
 				variant="outlined"
 				value={value}
+				style={{ marginBottom: 10, width: '100%' }}
 				onChange={(e: ChangeEvent<HTMLInputElement>) =>
 					setValue(e.target.value)
 				}

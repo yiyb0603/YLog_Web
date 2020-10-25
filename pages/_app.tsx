@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Head from 'next/head';
 import { Provider } from 'mobx-react';
 import stores from '../src/stores';
-import App from 'next/app';
+import axios from 'axios';
 import { ToastContainer } from 'react-toastify';
-import 'styles/Default.scss';
+import 'styles/AllStyles.scss';
 import 'react-toastify/scss/main.scss';
 
-export default class MyApp extends App {
+export default class MyApp extends Component {
 	componentDidMount() {
 		navigator.serviceWorker.register('/firebase-messaging-sw.js');
 	}
 
+	static async getInitialProps(context: any) {
+		const { ctx, Component } = context; // next에서 넣어주는 context
+		let pageProps = {};
+		if (Component.getInitialProps) {
+			pageProps = await Component.getInitialProps(ctx);
+		}
+
+		return { pageProps };
+	}
+
 	render() {
-		const { Component, pageProps } = this.props;
+		const { Component, pageProps }: any = this.props;
 
 		return (
 			<Provider store={stores}>
@@ -26,7 +36,7 @@ export default class MyApp extends App {
 					<title>YLog</title>
 				</Head>
 				<ToastContainer pauseOnHover={false} />
-				{typeof window !== 'undefined' && <Component {...pageProps} />}
+				<Component {...pageProps} />
 			</Provider>
 		);
 	}
