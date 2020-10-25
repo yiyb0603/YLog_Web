@@ -5,8 +5,8 @@ import axios from 'axios';
 const getMyInfo = () => {
   const isServer: boolean = typeof window === 'undefined';
   if (isServer) {
-    if (axios.defaults.headers.Cookie) {
-      return decodeToken(axios.defaults.headers.Cookie);
+    if (axios.defaults.headers.cookie) {
+      return decodeToken(axios.defaults.headers.cookie.split("=")[1]);
     }
   } else {
     const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
