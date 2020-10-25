@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { getStorage } from 'lib/Storage';
 import { getUserToken } from 'Token/Token';
 import SearchInput from '../../Input/SearchInput';
+import Constants from 'Constants';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -18,6 +19,7 @@ const NavBar = () => {
 	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
 	const [keyword, setKeyword] = useState<string>('');
 
+	const { USER_TOKEN } = Constants;
 	const router: NextRouter = useRouter();
 
 	const searchQuery = useCallback((): void => {
@@ -48,7 +50,7 @@ const NavBar = () => {
 				<div className={cx('NavBar-Contents-Right')}>
 					<Link href="/sign">
 							<div className={cx('NavBar-Contents-Right-LogText')}>
-								{getStorage('ylog-token') !== null ? '로그아웃' : '로그인'}
+								{getStorage(USER_TOKEN) !== null ? '로그아웃' : '로그인'}
 							</div>
 					</Link>
 					{getUserToken() !== null ? (

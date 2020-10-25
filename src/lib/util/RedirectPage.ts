@@ -8,9 +8,7 @@ const redirectPage = async (ctx: any) => {
   if (isServer) {
     if (ctx.req.headers.cookie) {
       // ServerSide Rendering
-      console.log('sdafsadfsdafasdf', axios.defaults.headers.Cookie);
       const { is_admin }: any = await decodeToken(axios.defaults.headers.Cookie);
-
       return is_admin;
     }
     

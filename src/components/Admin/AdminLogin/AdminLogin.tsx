@@ -1,11 +1,8 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import Constants from 'Constants';
-import { clearStorage } from 'lib/Storage';
 import AdminInput from 'components/Common/Admin/AdminInput';
 import FormButton from 'components/Common/Button/FormButton';
-import { removeCookie } from 'lib/Cookie';
 
 const style = require('./AdminLogin.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -31,14 +28,6 @@ const AdminLogin = ({
 }: AdminLoginProps) => {
 	const { email, setEmail } = emailObject;
 	const { password, setPassword } = passwordObject;
-
-	const { USER_TOKEN, ADMIN_TOKEN } = Constants;
-
-	useEffect(() => {
-		clearStorage();
-		removeCookie(USER_TOKEN);
-		removeCookie(ADMIN_TOKEN);
-	}, [clearStorage, USER_TOKEN, ADMIN_TOKEN]);
 
 	return (
 		<>

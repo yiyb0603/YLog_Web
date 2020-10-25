@@ -8,14 +8,13 @@ import IErrorTypes from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
-import { setStorage } from 'lib/Storage';
+import SecureLS from 'secure-ls';
+import Constants from 'Constants';
+import { setCookie } from 'lib/Cookie';
+import validationSignIn from 'validation/Auth/validationSignIn';
 import option from '../../../config/firebase.json';
 import * as firebase from 'firebase/app';
 import '@firebase/messaging';
-import SecureLS from 'secure-ls';
-import cookie from 'js-cookie';
-import validationSignIn from 'validation/Auth/validationSignIn';
-import axios from 'axios';
 
 interface ISignInContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;
@@ -24,6 +23,7 @@ interface ISignInContainerProps {
 const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 	const { store } = useStores();
 	const { handleFCMToken, handleSignIn, isLoading } = store.AuthStore;
+	const { USER_TOKEN } = Constants;
 
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
@@ -69,8 +69,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 						requestNotificationAllow();
 
 						if (localStorage) {
-							setStorage('ylog-token', response.data.ylogToken);
-							cookie.set('ylog-token', response.data.ylogToken);
+							setCookie(USER_TOKEN, response.data.ylogToken);
 							const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
 							ls.set('userInfo', response.data.userInfo);
 						}
