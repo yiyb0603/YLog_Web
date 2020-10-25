@@ -2,19 +2,23 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { sha512 } from 'js-sha512';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
-import { ISignInResponseTypes, ISignInTypes } from 'interface/AuthTypes';
-import AdminLogin from 'components/Admin/AdminLogin';
 import GroupingState from 'lib/util/GroupingState';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import cookies from 'js-cookie';
 import IErrorTypes from 'interface/ErrorTypes';
 import { clearStorage, setStorage } from 'lib/Storage';
 import { NextRouter, useRouter } from 'next/router';
 import SecureLS from 'secure-ls';
+import Constants from 'Constants';
 import validationSignIn from 'validation/Auth/validationSignIn';
+import { ISignInResponseTypes, ISignInTypes } from 'interface/AuthTypes';
+import AdminLogin from 'components/Admin/AdminLogin';
+import { setCookie } from 'lib/Cookie';
 
 const AdminLoginContainer = observer(() => {
 	const router: NextRouter = useRouter();
+	const { ADMIN_TOKEN } = Constants;
 
 	const { store } = useStores();
 	const { handleSignIn } = store.AuthStore;
@@ -37,9 +41,8 @@ const AdminLoginContainer = observer(() => {
 				if (status === 200) {
 					if (data.userInfo.is_admin) {
 						toast.success('관리자 로그인을 성공하였습니다.');
-						cookies.set("ylog-adminToken", data.ylogToken);
+						setCookie("ylog-adminToken", data.ylogToken);
 						setStorage('ylog-adminToken', data.ylogToken);
-						
 						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
 						ls.set('userInfo', data.userInfo);
 						router.push('/admin');

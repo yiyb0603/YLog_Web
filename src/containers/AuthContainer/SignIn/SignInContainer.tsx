@@ -15,6 +15,7 @@ import '@firebase/messaging';
 import SecureLS from 'secure-ls';
 import cookie from 'js-cookie';
 import validationSignIn from 'validation/Auth/validationSignIn';
+import axios from 'axios';
 
 interface ISignInContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;

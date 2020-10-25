@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Modal from 'components/Common/Modal';
-import SecureLS from 'secure-ls';
 import { handleMomentParse } from 'lib/Moment';
+import getMyInfo from 'lib/util/getMyInfo';
 
 const style = require('./Profile.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -13,8 +13,7 @@ interface ProfileProps {
 }
 
 const Profile = ({ handleCloseModal }: ProfileProps) => {
-	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-	const { email, name, joined_at } = ls.get('userInfo');
+	const { email, name, joined_at } = getMyInfo();
 
 	return (
 		<div className={cx('Profile')}>

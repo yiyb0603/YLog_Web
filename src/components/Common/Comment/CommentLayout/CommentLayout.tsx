@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import parseTime from 'lib/TimeCounting';
-import SecureLS from 'secure-ls';
 import { IUserInfoTypes } from 'interface/AuthTypes';
 import ReplyCreateContainer from 'containers/ReplyContainer/ReplyCreateContainer';
 import PrivateComment from '../PrivateComment';
-import { userInfo } from 'os';
+import getMyInfo from 'lib/util/getMyInfo';
 
 const style = require('./CommentLayout.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -43,8 +42,7 @@ const CommentLayout = ({
 	const [commentIdx, setCommentIdx] = useState<number>(0);
 
 	const beforeTime: string = parseTime(createdAt);
-	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-	const myInfo: IUserInfoTypes = ls.get('userInfo');
+	const myInfo: IUserInfoTypes = getMyInfo();
 
 	return (
 		<div

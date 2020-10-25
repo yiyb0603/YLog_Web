@@ -6,6 +6,11 @@ import parseTime from 'lib/TimeCounting';
 import { NextRouter, useRouter } from 'next/router';
 import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
 import SecureLS from 'secure-ls';
+import isAdmin from 'lib/util/isAdmin';
+import getMyInfo from 'lib/util/getMyInfo';
+import axios from 'axios';
+import { decodeToken } from 'Token/Token';
+import cookies from 'js-cookie';
 
 const style = require('./NoticeView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -18,9 +23,7 @@ interface NoticeViewProps {
 const NoticeView = ({ noticeInfo, requestDeleteNotice }: NoticeViewProps) => {
 	const router: NextRouter = useRouter();
 	const { idx, writer, title, contents, created_at, updated_at } = noticeInfo;
-
-	const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-	const { is_admin } = ls.get('userInfo');
+	const { is_admin } = getMyInfo();
 
 	return (
 		<div className={cx('NoticeView')}>

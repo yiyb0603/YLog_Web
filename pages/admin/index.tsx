@@ -10,10 +10,10 @@ export interface IAdminPageProps {
 
 class AdminIndexPage extends Component<IAdminPageProps> {
 	static async getInitialProps(ctx: any) {
-		const isValid: boolean = await redirectPage(ctx);
+		const isValid = await redirectPage(ctx);
 		
 		return {
-			isValid
+			isValid,
 		};
 	}
 
