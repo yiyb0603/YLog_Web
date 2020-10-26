@@ -1,14 +1,16 @@
 import React, {
+	SyntheticEvent,
 	useCallback,
 	useState,
 } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { NextRouter, useRouter } from 'next/router';
-import Profile from 'components/Home/Profile';
 import Link from 'next/link';
 import { getUserToken } from 'Token/Token';
 import SearchInput from '../../Input/SearchInput';
+import ProfileContainer from 'containers/ProfileContainer/ProfileContainer';
+import getMyInfo from 'lib/util/getMyInfo';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -16,6 +18,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 const NavBar = () => {
 	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
 	const [keyword, setKeyword] = useState<string>('');
+	const { profile_image } = getMyInfo();
 
 	const router: NextRouter = useRouter();
 	const searchQuery = useCallback((): void => {
@@ -51,8 +54,9 @@ const NavBar = () => {
 					</Link>
 					{getUserToken() ? (
 						<img
-							src="/assets/icon/profile_default.jpg"
+							src={profile_image ? profile_image : '/assets/icon/profile_default.jpg'}
 							alt="profile"
+							onError={(e: SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = '/assets/icon/profile_default.jpg'}
 							onClick={() => setIsMyInfo(true)}
 						/>
 					) : (
@@ -60,7 +64,7 @@ const NavBar = () => {
 					)}
 				</div>
 			</div>
-			{isMyInfo && <Profile handleCloseModal={() => setIsMyInfo(false)} />}
+			{isMyInfo && <ProfileContainer handleCloseModal={() => setIsMyInfo(false)} />}
 		</div>
 	);
 };

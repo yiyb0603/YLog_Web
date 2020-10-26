@@ -3,6 +3,7 @@ import React, {
 	Dispatch,
 	SetStateAction,
 	KeyboardEvent,
+	CSSProperties,
 } from 'react';
 import { makeStyles, TextField, Theme } from '@material-ui/core';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
@@ -18,8 +19,7 @@ interface AdminInputProps {
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		'& > *': {
-			margin: theme.spacing(5),
-			width: '25ch',
+			margin: theme.spacing(1),
 		},
 	},
 }));
@@ -32,6 +32,10 @@ const AdminInput = ({
 	requestFunction,
 }: AdminInputProps) => {
 	const { root } = useStyles();
+	const adminInputStyle: CSSProperties = {
+		width: '100%',
+		marginBottom: 10,
+	}
 
 	return (
 		<form className={root}>
@@ -41,7 +45,7 @@ const AdminInput = ({
 				label={outline}
 				variant="outlined"
 				value={value}
-				style={{ marginBottom: 10, width: '100%' }}
+				style={adminInputStyle}
 				onChange={(e: ChangeEvent<HTMLInputElement>) =>
 					setValue(e.target.value)
 				}

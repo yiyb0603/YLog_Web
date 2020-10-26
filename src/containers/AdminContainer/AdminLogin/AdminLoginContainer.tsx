@@ -8,6 +8,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import { clearStorage } from 'lib/Storage';
 import { NextRouter, useRouter } from 'next/router';
 import SecureLS from 'secure-ls';
+import axios from 'axios';
 import Constants from 'Constants';
 import validationSignIn from 'validation/Auth/validationSignIn';
 import { ISignInResponseTypes, ISignInTypes } from 'interface/AuthTypes';
@@ -39,6 +40,7 @@ const AdminLoginContainer = observer(() => {
 				if (status === 200) {
 					if (data.userInfo.is_admin) {
 						toast.success('관리자 로그인을 성공하였습니다.');
+						axios.defaults.headers.cookie = data.ylogToken;
 						setCookie("ylog-adminToken", data.ylogToken);
 						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
 						ls.set('userInfo', data.userInfo);

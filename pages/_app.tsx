@@ -13,8 +13,18 @@ export default class MyApp extends Component {
 	}
 
 	static async getInitialProps(context: any) {
-		const { ctx, Component } = context; // next에서 넣어주는 context
+		const { ctx, Component } = context;
+		const isServer = typeof window === "undefined";
 		let pageProps = {};
+
+		if (isServer) {
+			if (ctx.req.headers) {
+				const cookie: string = ctx.req.headers.cookie ? ctx.req.headers.cookie : null;
+				axios.defaults.headers.cookie = cookie;
+			}
+		}
+		
+
 		if (Component.getInitialProps) {
 			pageProps = await Component.getInitialProps(ctx);
 		}
