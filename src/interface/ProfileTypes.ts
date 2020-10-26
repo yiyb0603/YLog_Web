@@ -1,4 +1,4 @@
 export interface IProfileModifyTypes {
-  profileImage: string;
+  profileImage: string | null;
   userIdx: number;
 }

@@ -17,8 +17,7 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
   const { handleModifyProfile, handleGetProfile, userInfo } = store.ProfileStore;
   const { handleFileUpload } = store.UploadStore;
 
-  const { idx, profile_image } = getMyInfo();
-  const profileImage: string = profile_image;
+  const { idx } = getMyInfo();
   const userIdx: number = Number(idx);
 
   const [selectImage, setSelectImage] = useState<string>('');
@@ -34,12 +33,11 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
     })
   }, [handleFileUpload]);
 
-  const requestChangeProfile = useCallback(async () => {
+  const requestDefaultImage = useCallback(async () => {
     const request: IProfileModifyTypes = {
       userIdx,
-      profileImage: selectImage,
-    }
-    console.log(request);
+      profileImage: null,
+    };
 
     await handleModifyProfile(request)
     .then(({ status }: ISuccessTypes) => {
@@ -48,10 +46,22 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
         handleGetProfile(userIdx);
       }
     })
+  }, [handleModifyProfile, handleGetProfile, userIdx]);
 
-    .catch((error) => {
-      console.log(error);
-    })
+  const requestChangeProfile = useCallback(async () => {
+    const request: IProfileModifyTypes = {
+      userIdx,
+      profileImage: selectImage,
+    }
+
+    console.log(request);
+    await handleModifyProfile(request)
+    .then(({ status }: ISuccessTypes) => {
+      if (status === 200) {
+        toast.success('프로필 사진을 변경하였습니다.');
+        handleGetProfile(userIdx);
+      }
+    });
   }, [userIdx, selectImage, handleModifyProfile, handleGetProfile]);
 
   useEffect(() => {
@@ -68,10 +78,9 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
 
   return (
     <Profile
-      selectImage ={selectImage}
-      profileImage ={profileImage}
       userInfo ={userInfo}
       handleCloseModal ={handleCloseModal}
+      requestDefaultImage ={requestDefaultImage}
       requestImageUpload={requestImageUpload}
     />
   )

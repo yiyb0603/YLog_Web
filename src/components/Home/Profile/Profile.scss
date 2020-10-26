@@ -1,6 +1,22 @@
 @import '../../../styles/Fonts/FontScheme.scss';
 @import '../../../styles/Palette/Palette.scss';
 
+@mixin buttonStyle($background, $color) {
+	border: none;
+	outline: none;
+	background-color: $background;
+	color: $color;
+	text-align: center;
+	padding: 10px;
+	cursor: pointer;
+	font-size: $font_1rem;
+
+	&:focus {
+		outline: none;
+		border: none;
+	}
+}
+
 .Profile {
 	overflow: hidden;
 
@@ -32,17 +48,22 @@
 				margin-bottom: 10px;
 			}
 
-			& input {
-				display: none;
-			}
+			&-LabelWrapper {
+				display: flex;
+				display: -webkit-flex;
 
-			&-Label {
-				background-color: $primary;
-				color: $white;
-				border-radius: 10px;
-				text-align: center;
-				padding: 10px 20px;
-				cursor: pointer;
+				& input {
+					display: none;
+				}
+
+				&-Default {
+					@include buttonStyle($black, $white);
+				}
+
+				&-Change {
+					@include buttonStyle($primary, $white);
+					margin-left: 4px;
+				}
 			}
 		}
 

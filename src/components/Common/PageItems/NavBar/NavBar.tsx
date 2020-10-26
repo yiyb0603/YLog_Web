@@ -1,4 +1,5 @@
 import React, {
+	SyntheticEvent,
 	useCallback,
 	useState,
 } from 'react';
@@ -55,6 +56,7 @@ const NavBar = () => {
 						<img
 							src={profile_image ? profile_image : '/assets/icon/profile_default.jpg'}
 							alt="profile"
+							onError={(e: SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = '/assets/icon/profile_default.jpg'}
 							onClick={() => setIsMyInfo(true)}
 						/>
 					) : (

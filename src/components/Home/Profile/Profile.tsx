@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import Modal from 'components/Common/Modal';
@@ -9,29 +9,36 @@ const style = require('./Profile.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface ProfileProps {
-	selectImage: string;
-	profileImage: string;
 	handleCloseModal: () => void;
 	userInfo: IMemberTypes;
-	requestImageUpload: (e: ChangeEvent<HTMLInputElement>) => void;
+	requestDefaultImage: () => Promise<void>;
+	requestImageUpload: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
 }
 
-const Profile = ({ selectImage, profileImage, userInfo, handleCloseModal, requestImageUpload }: ProfileProps) => {
-	const { email, name, joined_at } = userInfo;
+const Profile = ({ userInfo, handleCloseModal, requestDefaultImage, requestImageUpload }: ProfileProps) => {
+	const { email, name, joined_at, profile_image } = userInfo;
 	return (
 		<div className={cx('Profile')}>
 			<Modal
-				width="500px"
+				width="480px"
 				height="500px"
 				title="내 정보"
 				handleCloseModal={handleCloseModal}
 			>
 				<div className={cx('Profile-Contents')}>
 					<div className={cx('Profile-Contents-Top')}>
-						<img src ={!selectImage ? (profileImage ? profileImage : '/assets/icon/profile_default.jpg') : selectImage}
-							className={cx('Profile-Contents-Top-Image')} />
-						<input type ="file" id ="selectImage" onChange ={requestImageUpload} accept="image/*" />
-						<label className ={cx('Profile-Contents-Top-Label')} htmlFor ="selectImage">이미지 변경</label>
+						<img src ={profile_image ? profile_image : '/assets/icon/profile_default.jpg'}
+							className={cx('Profile-Contents-Top-Image')}
+							onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
+								(e.currentTarget.src = '/assets/icon/profile_default.jpg')
+							}
+						/>
+						
+						<div className ={cx('Profile-Contents-Top-LabelWrapper')}>
+							<input type ="file" id ="selectImage" onChange ={requestImageUpload} accept="image/*" />
+							<button className ={cx('Profile-Contents-Top-LabelWrapper-Default')} onClick={requestDefaultImage}>기본 이미지</button>
+							<label className ={cx('Profile-Contents-Top-LabelWrapper-Change')} htmlFor ="selectImage">이미지 변경</label>
+						</div>
 					</div>
 
 					<div className ={cx('Profile-Contents-Bottom')}>

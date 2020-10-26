@@ -13,6 +13,7 @@ export default class ProfileStore {
     name: '',
     email: '',
     is_admin: false,
+    profile_image: '',
   };
 
   @action

@@ -12,4 +12,5 @@ export interface IMemberTypes {
 	email: string;
 	is_admin: boolean;
 	joined_at?: Date | string;
+	profile_image?: string | null;
 }
