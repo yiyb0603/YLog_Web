@@ -2,7 +2,6 @@
 @import '../../../styles/Fonts/FontScheme.scss';
 
 .Modal {
-	min-width: 300px;
 	background-color: $white;
 	position: fixed;
 	top: 50%;
@@ -10,8 +9,14 @@
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	padding: $font_2rem;
-	overflow: auto;
+	overflow-x: hidden;
+	overflow-y: auto;
 	z-index: 5;
+
+	@media screen and (max-width: 450px) {
+		max-width: 300px !important;
+		max-height: 400px !important;
+	}
 
 	&-Wrapper {
 		position: fixed;

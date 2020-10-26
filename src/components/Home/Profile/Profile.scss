@@ -1,12 +1,62 @@
+@import '../../../styles/Fonts/FontScheme.scss';
+@import '../../../styles/Palette/Palette.scss';
+
 .Profile {
 	overflow: hidden;
 
 	&-Contents {
+		display: flex;
+		display: -webkit-flex;
+		flex-flow: column wrap;
+		justify-content: center;
+		align-items: center;
 		margin-top: 1rem;
 
-		& img {
+		&-Top {
 			width: 200px;
+			max-width: 200px;
+			display: flex;
+			display: -webkit-flex;
+			flex-direction: column;
+			-ms-flex-direction: column;
+			align-items: center;
 			margin-bottom: 1rem;
+
+			&-Image {
+				object-fit: cover;
+				border-radius: 50%;
+				width: 225px;
+				max-width: 225px;
+				height: 200px;
+				max-height: 200px;
+				margin-bottom: 10px;
+			}
+
+			& input {
+				display: none;
+			}
+
+			&-Label {
+				background-color: $primary;
+				color: $white;
+				border-radius: 10px;
+				text-align: center;
+				padding: 10px 20px;
+				cursor: pointer;
+			}
+		}
+
+		&-Bottom {
+			display: flex;
+			display: -webkit-flex;
+			flex-direction: column;
+			-ms-flex-direction: column;
+			justify-content: center;
+
+			& > * {
+				margin-bottom: 10px;
+				font-size: $font_22;
+			}
 		}
 	}
 }

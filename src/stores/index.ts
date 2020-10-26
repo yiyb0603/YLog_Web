@@ -6,6 +6,7 @@ import NoticeStore from './NoticeStore';
 import PostStore from './PostStore';
 import ReleaseStore from './ReleaseStore';
 import ReplyStore from './ReplyStore';
+import ProfileStore from './ProfileStore';
 import UploadStore from './UploadStore';
 
 const stores = {
@@ -17,6 +18,7 @@ const stores = {
 	UploadStore: new UploadStore(),
 	NoticeStore: new NoticeStore(),
 	MemberStore: new MemberStore(),
+	ProfileStore: new ProfileStore(),
 	ReleaseStore: new ReleaseStore(),
 };
 

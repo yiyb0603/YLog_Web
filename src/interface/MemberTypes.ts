@@ -11,4 +11,5 @@ export interface IMemberTypes {
 	name: string;
 	email: string;
 	is_admin: boolean;
+	joined_at?: Date | string;
 }
