@@ -4,6 +4,7 @@ import React, {
 	Dispatch,
 	SetStateAction,
 	KeyboardEvent,
+	SyntheticEvent,
 } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
@@ -11,6 +12,7 @@ import { BiSend } from 'react-icons/bi';
 import { AiFillUnlock, AiFillLock } from 'react-icons/ai';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
 import { Palette } from 'styles/Palette/Palette';
+import getMyInfo from 'lib/util/getMyInfo';
 
 const style = require('./CommentWrite.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -38,9 +40,16 @@ const CommentWrite = ({
 	const { isPrivate, setIsPrivate } = isPrivateObject;
 
 	const { primary } = Palette;
+	const { profile_image } = getMyInfo();
+	const PROFILE_DEFAULT: string = '/assets/icon/profile_default.jpg';
 
 	return (
 		<div className={cx('CommentWrite')}>
+			<img className ={cx('CommentWrite-ProfileImage')}
+				src ={profile_image ? profile_image : PROFILE_DEFAULT} alt ="profile"
+				onError={(e: SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = PROFILE_DEFAULT}
+			/>
+
 			<input
 				className={cx('CommentWrite-Form')}
 				type="text"

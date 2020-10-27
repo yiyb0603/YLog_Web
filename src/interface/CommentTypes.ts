@@ -14,6 +14,7 @@ export interface ICommentResponseTypes {
 	updated_at?: Date | null;
 	writer?: string | null;
 	writer_idx?: number | null;
+	writer_profile?: string | null;
 	is_private?: boolean;
 }
 

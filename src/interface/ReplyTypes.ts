@@ -20,6 +20,7 @@ export interface IReplyTypes {
 	idx: number;
 	writer: string | null;
 	writer_idx: number | null;
+	writer_profile: string | null;
 	post_idx: number;
 	replied_at: Date | null;
 	updated_at: Date | null;
