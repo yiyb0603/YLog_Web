@@ -34,6 +34,7 @@ const Comment = ({
 						updatedAt,
 						replies,
 						writer_idx,
+						writer_profile,
 						is_private
 					} = comment;
 
@@ -43,6 +44,7 @@ const Comment = ({
 							idx={idx}
 							writer={writer}
 							writerIdx ={writer_idx}
+							writerProfile={writer_profile}
 							contents={contents}
 							createdAt={created_at}
 							postIdx={postIdx}

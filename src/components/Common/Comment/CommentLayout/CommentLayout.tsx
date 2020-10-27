@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import parseTime from 'lib/TimeCounting';
@@ -14,6 +14,7 @@ interface CommentLayoutProps {
 	idx: number;
 	writer: string | null;
 	writerIdx: number;
+	writerProfile: string;
 	contents: string;
 	postIdx?: number;
 	createdAt: string | Date;
@@ -29,6 +30,7 @@ const CommentLayout = ({
 	idx,
 	writer,
 	writerIdx,
+	writerProfile,
 	contents,
 	createdAt,
 	updatedAt,
@@ -41,6 +43,7 @@ const CommentLayout = ({
 	const [isReply, setIsReply] = useState<boolean>(false);
 	const [commentIdx, setCommentIdx] = useState<number>(0);
 
+	const PROFILE_DEFAULT: string = '/assets/icon/profile_default.jpg';
 	const beforeTime: string = parseTime(createdAt);
 	const myInfo: IUserInfoTypes = getMyInfo();
 
@@ -53,7 +56,8 @@ const CommentLayout = ({
 			<div className={cx('CommentLayout-Contents')}>
 				<div className={cx('CommentLayout-Contents-Left')}>
 					<img
-						src="/assets/icon/profile_default.jpg"
+						src={writerProfile ? writerProfile : PROFILE_DEFAULT}
+						onError={(e: SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = PROFILE_DEFAULT}
 						alt="profile"
 						className={cx('CommentLayout-Contents-Left-Profile')}
 					/>

@@ -54,7 +54,6 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
       profileImage: selectImage,
     }
 
-    console.log(request);
     await handleModifyProfile(request)
     .then(({ status }: ISuccessTypes) => {
       if (status === 200) {

@@ -14,6 +14,7 @@ interface CommentItemProps {
 	postIdx: number;
 	writer: string;
 	writerIdx: number;
+	writerProfile: string;
 	contents: string;
 	createdAt: string | Date;
 	updatedAt: string | Date;
@@ -28,6 +29,7 @@ const CommentItem = ({
 	idx,
 	writer,
 	writerIdx,
+	writerProfile,
 	contents,
 	postIdx,
 	createdAt,
@@ -45,12 +47,13 @@ const CommentItem = ({
 			<CommentLayout
 				idx={idx}
 				writer={writer}
-				writerIdx ={writerIdx}
+				writerIdx={writerIdx}
+				writerProfile={writerProfile}
 				contents={contents}
 				postIdx={postIdx}
 				createdAt={createdAt}
 				updatedAt={updatedAt}
-				isPrivate ={isPrivate}
+				isPrivate={isPrivate}
 				deleteFunction={() => requestCommentDelete(idx)}
 				commentType={0}
 				requestCommentList={requestCommentList}
@@ -87,7 +90,8 @@ const CommentItem = ({
 									repliedAt={repliedAt}
 									updatedAt={updatedAt}
 									writer={writer}
-									writerIdx ={writerIdx}
+									writerIdx={writerIdx}
+									writerProfile={writerProfile}
 									commentIdx={commentIdx}
 									requestDeleteReply={requestDeleteReply}
 									requestCommentList={requestCommentList}
