@@ -9,7 +9,7 @@ import {
 import { showAlert } from 'lib/SweetAlert';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import NoticeForm from 'components/Notice/NoticeForm';
 import GroupingState from 'lib/util/GroupingState';
 import ModifyNotice from 'components/Notice/ModifyNotice';
@@ -54,7 +54,7 @@ const ModifyNoticeContainer = observer(() => {
 
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 	}, [idx, title, contents, handleModifyNotice, router]);

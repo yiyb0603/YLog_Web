@@ -1,13 +1,20 @@
 import { ICommentRequestTypes } from "interface/CommentTypes";
-import { toast } from "react-toastify";
+import { errorToast } from "lib/Toast";
+import getMyInfo from "lib/util/getMyInfo";
 
 export const validateCreateComment = (request: ICommentRequestTypes) => {
-  const { contents } = request;
+  const { contents, isPrivate } = request;
+  const myInfo = getMyInfo();
 
   if (!contents!.trim()) {
-    toast.error('내용을 입력해주세요!');
+    errorToast('내용을 입력해주세요!');
     return false;
   }
 
+  if (!myInfo && isPrivate) {
+    errorToast('비공개 댓글은 로그인 후 가능합니다.');
+    return false;
+  }
+  
   return true;
 }

@@ -3,9 +3,7 @@ import Head from 'next/head';
 import { Provider } from 'mobx-react';
 import stores from '../src/stores';
 import axios from 'axios';
-import { ToastContainer } from 'react-toastify';
 import 'styles/AllStyles.scss';
-import 'react-toastify/scss/main.scss';
 
 export default class MyApp extends Component {
 	componentDidMount() {
@@ -45,7 +43,6 @@ export default class MyApp extends Component {
 					<link rel="shortcut icon" href="/assets/icon/shortcut.PNG" />
 					<title>YLog</title>
 				</Head>
-				<ToastContainer pauseOnHover={false} />
 				<Component {...pageProps} />
 			</Provider>
 		);

@@ -4,7 +4,7 @@ import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import IErrorTypes from 'interface/ErrorTypes';
 import Comment from 'components/Post/Comment';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import ISuccessTypes from 'interface/SuccessTypes';
 
 const CommentContainer = observer(() => {
@@ -26,7 +26,7 @@ const CommentContainer = observer(() => {
 			await handleCommentList(postIdx)
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 		}
@@ -37,14 +37,14 @@ const CommentContainer = observer(() => {
 			await handleCommentDelete(idx)
 				.then(async ({ status }: ISuccessTypes) => {
 					if (status === 200) {
-						toast.success('댓글을 삭제하였습니다.');
+						successToast('댓글을 삭제하였습니다.');
 						await handlePostView(postIdx);
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 			},
@@ -56,14 +56,14 @@ const CommentContainer = observer(() => {
 			await handleDeleteReply(idx)
 				.then(async (response: ISuccessTypes) => {
 					if (response.status === 200) {
-						toast.success('답글 삭제를 성공하였습니다.');
+						successToast('답글 삭제를 성공하였습니다.');
 						await handlePostView(postIdx);
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		},

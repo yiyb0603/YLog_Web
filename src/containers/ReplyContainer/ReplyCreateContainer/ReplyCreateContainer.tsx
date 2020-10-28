@@ -6,20 +6,18 @@ import { IReplyModifyTypes } from 'interface/ReplyTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import ReplyWrite from 'components/Post/Reply/ReplyWrite';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import { validateCreateReply } from 'validation/Reply/validationReply';
 import GroupingState from 'lib/util/GroupingState';
 
 interface IReplyCreateContainerProps {
 	commentIdx: number;
-	requestCommentList: (() => Promise<void>) | undefined;
 	setIsReply: Dispatch<SetStateAction<boolean>>;
 }
 
 const ReplyCreateContainer = observer(
 	({
 		commentIdx,
-		requestCommentList,
 		setIsReply,
 	}: IReplyCreateContainerProps) => {
 		const { store } = useStores();
@@ -49,14 +47,14 @@ const ReplyCreateContainer = observer(
 					if (response.status === 200) {
 						setIsReply(true);
 						setContents('');
-						toast.success('답글 작성을 성공하였습니다.');
+						successToast('답글 작성을 성공하였습니다.');
 						await handlePostView(postIdx);
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		}, [

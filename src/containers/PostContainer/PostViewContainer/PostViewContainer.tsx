@@ -4,7 +4,7 @@ import useStores from 'lib/hooks/useStores';
 import IErrorTypes from 'interface/ErrorTypes';
 import { NextRouter, useRouter } from 'next/router';
 import PostView from 'components/Post/PostView';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import PostLoading from 'components/Common/Loading/PostLoading';
 import { IPostListTypes } from 'interface/PostTypes';
@@ -32,7 +32,7 @@ const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
 				router.back();
 				
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 		}

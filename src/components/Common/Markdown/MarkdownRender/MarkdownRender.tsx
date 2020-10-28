@@ -4,7 +4,7 @@ import BlockQuote from './BlockQuote';
 import CodeBlock from './CodeBlock';
 import Image from './Image';
 
-interface MarkdownRenderProps {
+export interface MarkdownRenderProps {
 	contents: string;
 }
 

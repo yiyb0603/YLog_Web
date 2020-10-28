@@ -6,7 +6,7 @@ import { IPostCategoryTypes } from 'interface/CategoryTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 
 interface ModifyCategoryContainerProps {
 	handleCloseModal: () => void;
@@ -30,21 +30,21 @@ const ModifyCategoryContainer = observer(
 			};
 
 			if (!categoryName?.trim()) {
-				toast.error('내용을 입력해주세요!');
+				errorToast('내용을 입력해주세요!');
 				return;
 			}
 
 			await handleModifyCategory(request)
 				.then(async (response: ISuccessTypes) => {
 					if (response.status === 200) {
-						toast.success('카테고리를 수정하였습니다.');
+						successToast('카테고리를 수정하였습니다.');
 						await handleCategoryList();
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		}, [idx, categoryName, handleModifyCategory, handleCategoryList]);

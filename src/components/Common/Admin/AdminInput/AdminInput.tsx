@@ -19,7 +19,7 @@ interface AdminInputProps {
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
 		'& > *': {
-			margin: theme.spacing(1),
+			// margin: theme.spacing(1),
 		},
 	},
 }));

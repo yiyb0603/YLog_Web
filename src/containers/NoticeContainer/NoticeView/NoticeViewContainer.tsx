@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import IErrorTypes from 'interface/ErrorTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import NoticeView from 'components/Notice/NoticeView';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
@@ -31,7 +31,7 @@ const NoticeViewContainer = observer(({ notice }: INoticeViewContainerProps) => 
 			router.back();
 
 			const { message } = error.response.data;
-			toast.error(message);
+			errorToast(message);
 			return;
 		});
 	}, [idx, router, handleNoticeView]);
@@ -48,7 +48,7 @@ const NoticeViewContainer = observer(({ notice }: INoticeViewContainerProps) => 
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		},

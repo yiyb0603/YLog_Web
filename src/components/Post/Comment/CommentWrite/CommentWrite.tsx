@@ -40,13 +40,13 @@ const CommentWrite = ({
 	const { isPrivate, setIsPrivate } = isPrivateObject;
 
 	const { primary } = Palette;
-	const { profile_image } = getMyInfo();
+	const profileImage: string | null = !getMyInfo() ? null : getMyInfo().profile_image;
 	const PROFILE_DEFAULT: string = '/assets/icon/profile_default.jpg';
 
 	return (
 		<div className={cx('CommentWrite')}>
 			<img className ={cx('CommentWrite-ProfileImage')}
-				src ={profile_image ? profile_image : PROFILE_DEFAULT} alt ="profile"
+				src ={profileImage ? profileImage : PROFILE_DEFAULT} alt ="profile"
 				onError={(e: SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = PROFILE_DEFAULT}
 			/>
 

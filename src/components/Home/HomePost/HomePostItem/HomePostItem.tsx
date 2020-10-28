@@ -86,7 +86,7 @@ const HomePostItem = ({
 
 			<div className={cx('HomePost-Item-Bottom')}>
 				<div className={cx('HomePost-Item-Bottom-Option')}>
-					{myInfo.name === writer || myInfo.is_admin ? (
+					{myInfo && (myInfo.name === writer || myInfo.is_admin) ? (
 						<>
 							<div
 								className={cx('HomePost-Item-Bottom-Option-Modify')}

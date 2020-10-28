@@ -7,7 +7,7 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import ReplyModify from 'components/Post/Reply/ReplyModify';
 import GroupingState from 'lib/util/GroupingState';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import { validateCreateReply } from 'validation/Reply/validationReply';
 
 interface IReplyModifyContainerProps {
@@ -60,14 +60,14 @@ const ReplyModifyContainer = observer(
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
 						onBlur();
-						toast.success('답글 수정을 성공하였습니다.');
+						successToast('답글 수정을 성공하였습니다.');
 						requestCommentList();
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		}, [replyIdx, commentIdx, postIdx, contents, isPrivate, onBlur, requestCommentList]);

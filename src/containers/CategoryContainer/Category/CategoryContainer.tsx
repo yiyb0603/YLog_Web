@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import Category from 'components/Home/Category';
 import useStores from 'lib/hooks/useStores';
 import IErrorTypes from 'interface/ErrorTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { NextRouter, useRouter } from 'next/router';
 
@@ -21,7 +21,7 @@ const CategoryContainer = observer(() => {
 	const requestInitialData = useCallback(async () => {
 		await handleCategoryList(keyword && keyword).catch((error: IErrorTypes) => {
 			const { message } = error.response.data;
-			toast.error(message);
+			errorToast(message);
 			return;
 		});
 	}, [handleCategoryList, keyword]);
@@ -31,14 +31,14 @@ const CategoryContainer = observer(() => {
 			await handleDeleteCategory(idx)
 				.then(async (response: ISuccessTypes) => {
 					if (response.status === 200) {
-						toast.success('카테고리를 삭제하였습니다.');
+						successToast('카테고리를 삭제하였습니다.');
 						await requestInitialData();
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		},

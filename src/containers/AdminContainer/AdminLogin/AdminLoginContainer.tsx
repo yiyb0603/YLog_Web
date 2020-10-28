@@ -3,7 +3,7 @@ import { sha512 } from 'js-sha512';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import GroupingState from 'lib/util/GroupingState';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import IErrorTypes from 'interface/ErrorTypes';
 import { clearStorage } from 'lib/Storage';
 import { NextRouter, useRouter } from 'next/router';
@@ -39,7 +39,7 @@ const AdminLoginContainer = observer(() => {
 			.then(({ status, data }: ISignInResponseTypes) => {
 				if (status === 200) {
 					if (data.userInfo.is_admin) {
-						toast.success('관리자 로그인을 성공하였습니다.');
+						successToast('관리자 로그인을 성공하였습니다.');
 						axios.defaults.headers.cookie = data.ylogToken;
 						setCookie("ylog-adminToken", data.ylogToken);
 						const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
@@ -48,14 +48,14 @@ const AdminLoginContainer = observer(() => {
 						return;
 					}
 
-					toast.error('관리자만 로그인이 가능합니다!');
+					errorToast('관리자만 로그인이 가능합니다!');
 					return;
 				}
 			})
 
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 	}, [email, password, handleSignIn]);

@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { IReleaseRequestTypes } from 'interface/ReleaseTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
 import { NextRouter, useRouter } from 'next/router';
@@ -40,7 +40,7 @@ const ReleaseWriteContainer = observer(() => {
 
     .catch((error: IErrorTypes) => {
       const { message } = error.response.data;
-      toast.error(message);
+      errorToast(message);
       return;
     });
   }, [title, contents, router, handleCreateRelease]);

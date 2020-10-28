@@ -7,7 +7,7 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import PostWriteForm from 'components/Post/PostWrite/PostWriteForm';
 import GroupingState from 'lib/util/GroupingState';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import { showAlert } from 'lib/SweetAlert';
 import { NextRouter, useRouter } from 'next/router';
 import IUploadTypes from 'interface/UploadTypes';
@@ -40,7 +40,7 @@ const PostWriteContainer = observer(() => {
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		},
@@ -70,7 +70,7 @@ const PostWriteContainer = observer(() => {
 
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 	}, [

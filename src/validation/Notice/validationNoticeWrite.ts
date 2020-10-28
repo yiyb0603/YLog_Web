@@ -1,11 +1,11 @@
 import { INoticeRequestTypes } from "interface/NoticeTypes";
-import { toast } from "react-toastify";
+import { errorToast } from "lib/Toast";
 
 const validationNoticeWrite = (request: INoticeRequestTypes) => {
   const { title, contents } = request;
 
   if (!title!.trim() || !contents!.trim()) {
-    toast.error('내용을 모두 입력해주세요!');
+    errorToast('내용을 모두 입력해주세요!');
     return false;
   }
 

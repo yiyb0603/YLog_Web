@@ -130,7 +130,6 @@ const CommentLayout = ({
 				<ReplyCreateContainer
 					setIsReply={setIsReply}
 					commentIdx={commentIdx}
-					requestCommentList={requestCommentList}
 				/>
 			)}
 		</div>

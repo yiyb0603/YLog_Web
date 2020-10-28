@@ -6,7 +6,7 @@ import { IMemberTypes } from 'interface/MemberTypes';
 import MemberRow from 'components/Admin/AdminKick/MemberRow';
 import IErrorTypes from 'interface/ErrorTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import GroupingState from 'lib/util/GroupingState';
 import { confirmAlert } from 'lib/SweetAlert';
 
@@ -32,14 +32,14 @@ const AdminKickContainer = observer(() => {
 					await handleDeleteMember(memberIdx)
 						.then((response: ISuccessTypes) => {
 							if (response.status === 200) {
-								toast.success('멤버를 강퇴하였습니다.');
+								successToast('멤버를 강퇴하였습니다.');
 								handleMemberList(true);
 							}
 						})
 
 						.catch((error: IErrorTypes) => {
 							const { message } = error.response.data;
-							toast.error(message);
+							errorToast(message);
 							return;
 						});
 				}

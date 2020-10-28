@@ -9,7 +9,7 @@ import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
 import { getUserToken } from 'Token/Token';
 import SearchInput from '../../Input/SearchInput';
-import ProfileContainer from 'containers/ProfileContainer/ProfileContainer';
+import ProfileContainer from 'containers/ProfileContainer';
 import getMyInfo from 'lib/util/getMyInfo';
 
 const style = require('./NavBar.scss');
@@ -18,7 +18,13 @@ const cx: ClassNamesFn = classNames.bind(style);
 const NavBar = () => {
 	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
 	const [keyword, setKeyword] = useState<string>('');
-	const { profile_image } = getMyInfo();
+
+	const myInfo = getMyInfo();
+	let profileImage: null | string = null;
+	
+	if (myInfo) {
+		profileImage = myInfo.profile_image;
+	}
 
 	const router: NextRouter = useRouter();
 	const searchQuery = useCallback((): void => {
@@ -48,13 +54,13 @@ const NavBar = () => {
 
 				<div className={cx('NavBar-Contents-Right')}>
 					<Link href="/sign">
-							<div className={cx('NavBar-Contents-Right-LogText')}>
-								{getUserToken() ? '로그아웃' : '로그인'}
-							</div>
+						<div className={cx('NavBar-Contents-Right-LogText')}>
+							{getUserToken() ? '로그아웃' : '로그인'}
+						</div>
 					</Link>
 					{getUserToken() ? (
 						<img
-							src={profile_image ? profile_image : '/assets/icon/profile_default.jpg'}
+							src={profileImage ? profileImage : '/assets/icon/profile_default.jpg'}
 							alt="profile"
 							onError={(e: SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = '/assets/icon/profile_default.jpg'}
 							onClick={() => setIsMyInfo(true)}

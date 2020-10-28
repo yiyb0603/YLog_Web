@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import HomePost from 'components/Home/HomePost';
 import IErrorTypes from 'interface/ErrorTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { NextRouter, useRouter } from 'next/router';
 import HomeLoading from 'components/Common/Loading/HomeLoading';
@@ -26,7 +26,7 @@ const PostContainer = observer(() => {
 		if (!keyword) {
 			await handlePostList().catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 		} else {
@@ -35,7 +35,7 @@ const PostContainer = observer(() => {
 
 		await handleCategoryList(keyword && keyword).catch((error: IErrorTypes) => {
 			const { message } = error.response.data;
-			toast.error(message);
+			errorToast(message);
 			return;
 		});
 	}, [handlePostList, handleCategoryList, keyword]);
@@ -45,14 +45,14 @@ const PostContainer = observer(() => {
 			await handleDeletePost(idx)
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
-						toast.success('글 삭제를 성공하였습니다.');
+						successToast('글 삭제를 성공하였습니다.');
 						handleCategoryList(keyword && keyword);
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		},

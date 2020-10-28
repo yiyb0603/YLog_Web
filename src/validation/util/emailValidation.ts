@@ -1,9 +1,9 @@
-import { toast } from "react-toastify";
+import { errorToast } from "lib/Toast";
 
 const emailValidation = (email: string) => {
   const regularEmail: RegExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   if (!regularEmail.test(email)) {
-    toast.error('이메일 형식이 올바르지 않습니다.');
+    errorToast('이메일 형식이 올바르지 않습니다.');
     return false;
   }
 
