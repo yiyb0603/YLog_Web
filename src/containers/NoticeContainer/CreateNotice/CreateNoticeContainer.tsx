@@ -6,7 +6,7 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
 import { NextRouter, useRouter } from 'next/router';
 import IErrorTypes from 'interface/ErrorTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import CreateNotice from 'components/Notice/CreateNotice';
 import GroupingState from 'lib/util/GroupingState';
 import NoticeForm from 'components/Notice/NoticeForm';
@@ -41,7 +41,7 @@ const CreateNoticeContainer = observer(() => {
 
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 	}, [title, contents, handleCreateNotice, router]);

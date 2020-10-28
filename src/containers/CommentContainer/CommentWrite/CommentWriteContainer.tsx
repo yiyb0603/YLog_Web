@@ -7,7 +7,8 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import CommentWrite from 'components/Post/Comment/CommentWrite';
 import GroupingState from 'lib/util/GroupingState';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
+import { validateCreateComment } from 'validation/Comment/validationComment';
 
 const CommentWriteContainer = observer(() => {
 	const { store } = useStores();
@@ -30,8 +31,7 @@ const CommentWriteContainer = observer(() => {
 			isPrivate,
 		};
 
-		if (!contents.trim()) {
-			toast.error('내용을 입력해주세요!');
+		if (!validateCreateComment(request)) {
 			return;
 		}
 
@@ -39,7 +39,7 @@ const CommentWriteContainer = observer(() => {
 			await handleCommentWrite(request)
 				.then(({ status }: ISuccessTypes) => {
 					if (status === 200) {
-						toast.success('댓글 작성에 성공하였습니다.');
+						successToast('댓글 작성에 성공하였습니다.');
 						setContents('');
 						handlePostView(postIdx);
 					}
@@ -47,7 +47,7 @@ const CommentWriteContainer = observer(() => {
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		}

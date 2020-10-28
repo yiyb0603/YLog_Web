@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import AllowMember from 'components/Admin/AllowMember';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import { IMemberTypes } from 'interface/MemberTypes';
@@ -22,14 +22,14 @@ const AllowMemberContainer = observer(() => {
 			await handleAllowMember(memberIdx)
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
-						toast.success('회원가입을 승인하였습니다.');
+						successToast('회원가입을 승인하였습니다.');
 						handleMemberList(null);
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		},
@@ -41,14 +41,14 @@ const AllowMemberContainer = observer(() => {
 			await handleRefuseMember(memberIdx)
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
-						toast.success('회원가입을 거절하였습니다.');
+						successToast('회원가입을 거절하였습니다.');
 						handleMemberList(null);
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		},

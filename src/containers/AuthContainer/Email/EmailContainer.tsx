@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { IEmailCodeTypes, ISignUpTypes } from 'interface/AuthTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import IErrorTypes from 'interface/ErrorTypes';
 import { showAlert } from 'lib/SweetAlert';
 import EmailAuth from 'components/Auth/EmailAuth';
@@ -29,7 +29,7 @@ const EmailContainer = observer(
 			};
 
 			if (!code.trim()) {
-				toast.error('인증 코드를 입력해주세요!');
+				errorToast('인증 코드를 입력해주세요!');
 				return;
 			}
 
@@ -42,7 +42,7 @@ const EmailContainer = observer(
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		}, [handleCheckCode, email, code]);
@@ -63,14 +63,14 @@ const EmailContainer = observer(
 
 					.catch((error: IErrorTypes) => {
 						const { message } = error.response.data;
-						toast.error(message);
+						errorToast(message);
 						return;
 					});
 			})
 
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			})
 		}, [requestCheckCode, registerInfo]);

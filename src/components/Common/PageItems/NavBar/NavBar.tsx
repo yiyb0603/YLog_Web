@@ -18,7 +18,13 @@ const cx: ClassNamesFn = classNames.bind(style);
 const NavBar = () => {
 	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
 	const [keyword, setKeyword] = useState<string>('');
-	const { profile_image } = getMyInfo();
+
+	const myInfo = getMyInfo();
+	let profileImage: null | string = null;
+	
+	if (myInfo) {
+		profileImage = myInfo.profile_image;
+	}
 
 	const router: NextRouter = useRouter();
 	const searchQuery = useCallback((): void => {
@@ -54,7 +60,7 @@ const NavBar = () => {
 					</Link>
 					{getUserToken() ? (
 						<img
-							src={profile_image ? profile_image : '/assets/icon/profile_default.jpg'}
+							src={profileImage ? profileImage : '/assets/icon/profile_default.jpg'}
 							alt="profile"
 							onError={(e: SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = '/assets/icon/profile_default.jpg'}
 							onClick={() => setIsMyInfo(true)}

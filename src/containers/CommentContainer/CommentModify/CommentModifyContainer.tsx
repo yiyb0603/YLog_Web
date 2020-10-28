@@ -7,7 +7,8 @@ import useStores from 'lib/hooks/useStores';
 import { ICommentRequestTypes } from 'interface/CommentTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
+import { validateCreateComment } from 'validation/Comment/validationComment';
 
 interface ICommentModifyContainerProps {
 	commentIdx: number;
@@ -43,8 +44,7 @@ const CommentModifyContainer = observer(
 				isPrivate
 			};
 
-			if (!contents.trim()) {
-				toast.error(`내용을 입력해주세요!`);
+			if (!validateCreateComment(request)) {
 				return;
 			}
 
@@ -52,14 +52,14 @@ const CommentModifyContainer = observer(
 				.then(async ({ status }: ISuccessTypes) => {
 					if (status === 200) {
 						onBlur();
-						toast.success('댓글을 수정하였습니다.');
+						successToast('댓글을 수정하였습니다.');
 						await handleCommentList(postIdx);
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		}, [commentIdx, postIdx, contents, isPrivate, handleCommentModify, handleCommentList]);

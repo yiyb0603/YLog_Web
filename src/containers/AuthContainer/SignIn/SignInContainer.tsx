@@ -6,7 +6,7 @@ import SignIn from 'components/Auth/SignIn';
 import { ISignInResponseTypes, ISignInTypes } from 'interface/AuthTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import Router from 'next/router';
 import SecureLS from 'secure-ls';
 import Constants from 'Constants';
@@ -64,7 +64,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 
 				if (status === 200) {
 					if (data.userInfo.is_allow) {
-						toast.success('로그인에 성공하였습니다.');
+						successToast('로그인에 성공하였습니다.');
 						Router.push('/');
 						requestNotificationAllow();
 
@@ -76,14 +76,14 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 						return;
 					}
 
-					toast.error('현재 승인되지 않은 유저입니다.');
+					errorToast('현재 승인되지 않은 유저입니다.');
 					return;
 				}
 			})
 
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 	}, [handleSignIn, email, password, validationSignIn]);

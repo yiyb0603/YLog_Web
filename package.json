@@ -63,6 +63,7 @@
 		"axios": "^0.20.0",
 		"babel-plugin-transform-inline-environment-variables": "^0.4.3",
 		"classnames": "^2.2.6",
+		"cogo-toast": "^4.2.3",
 		"core-decorators": "^0.20.0",
 		"firebase": "^7.22.0",
 		"highlight.js": "^10.2.0",

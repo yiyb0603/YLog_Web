@@ -5,7 +5,7 @@ import useStores from 'lib/hooks/useStores';
 import ISuccessTypes from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import { IPostCategoryTypes } from 'interface/CategoryTypes';
 
 interface CreateCategoryContainerProps {
@@ -25,34 +25,21 @@ const CreateCategoryContainer = observer(
 			};
 
 			if (!categoryName.trim()) {
-				toast.error('내용을 입력해주세요!');
+				errorToast('내용을 입력해주세요!');
 				return;
 			}
 
 			await handleCreateCategory(request)
 				.then(async (response: ISuccessTypes) => {
 					if (response.status === 200) {
-						toast.success('카테고리 생성을 성공하였습니다!');
+						successToast('카테고리 생성을 성공하였습니다!');
 						await handleCategoryList();
 					}
 				})
 
 				.catch((error: IErrorTypes) => {
 					const { status, message } = error.response.data;
-
-					switch (status) {
-						case 400:
-							toast.error('검증 오류입니다.');
-							return;
-
-						case 409:
-							toast.error('이미 존재하는 카테고리 입니다.');
-							return;
-
-						default:
-							toast.error(message);
-							return;
-					}
+					errorToast(message);
 				});
 		}, [handleCreateCategory, categoryName, handleCategoryList]);
 

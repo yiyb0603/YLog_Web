@@ -5,7 +5,7 @@ import { sha512 } from 'js-sha512';
 import { ISignUpTypes } from 'interface/AuthTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import GroupingState from 'lib/util/GroupingState';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import EmailContainer from '../Email';
 import IErrorTypes from 'interface/ErrorTypes';
 import { observer } from 'mobx-react';
@@ -46,7 +46,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 				setIsAdminCheck(false);
 				
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			})
 		}
@@ -57,7 +57,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 				await handleSendCode(email)
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
-						toast.success('인증코드를 발송하였습니다!');
+						successToast('인증코드를 발송하였습니다!');
 						setRegisterInfo(request);
 						setIsEntered(true);
 					}
@@ -65,14 +65,14 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 	
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 			})
 			
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 		}

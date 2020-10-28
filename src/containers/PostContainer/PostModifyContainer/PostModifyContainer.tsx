@@ -9,7 +9,7 @@ import IErrorTypes from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
 import PostModifyForm from 'components/Post/PostModify/PostModifyForm';
 import IUploadTypes from 'interface/UploadTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import { showAlert } from 'lib/SweetAlert';
 import ImageUpload from 'lib/util/ImageUpload';
 import { validationPostWrite } from 'validation/Post/validationPost';
@@ -42,7 +42,7 @@ const PostModifyContainer = observer(() => {
 
 				.catch((error: IErrorTypes) => {
 					const { message } = error.response.data;
-					toast.error(message);
+					errorToast(message);
 					return;
 				});
 		},
@@ -73,7 +73,7 @@ const PostModifyContainer = observer(() => {
 
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
-				toast.error(message);
+				errorToast(message);
 				return;
 			});
 	}, [

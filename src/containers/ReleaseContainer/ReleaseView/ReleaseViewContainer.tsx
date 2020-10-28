@@ -7,7 +7,7 @@ import PostLoading from 'components/Common/Loading/PostLoading';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
 import IErrorTypes from 'interface/ErrorTypes';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 
 const ReleaseViewContainer = observer(() => {
   const router: NextRouter = useRouter();
@@ -23,7 +23,7 @@ const ReleaseViewContainer = observer(() => {
         router.back();
 
         const { message } = error.response.data;
-        toast.error(message);
+        errorToast(message);
         return;
       })
     }

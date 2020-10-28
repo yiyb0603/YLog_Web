@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react';
 import { NextRouter, useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { errorToast, successToast } from 'lib/Toast';
 import ReleaseModify from 'components/Release/ReleaseModify';
 import ReleaseModifyForm from 'components/Release/ReleaseModify/ReleaseModifyForm';
 import IErrorTypes from 'interface/ErrorTypes';
@@ -43,7 +43,7 @@ const ReleaseModifyContainer = observer(() => {
 
     .catch((error: IErrorTypes) => {
       const { status, message } = error.response.data;
-      toast.error(message);
+      errorToast(message);
       return;
     })
   }, [releaseIdx, title, contents, handleModifyRelease, router]);

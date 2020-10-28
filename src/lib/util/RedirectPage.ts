@@ -11,7 +11,7 @@ const redirectPage = async (ctx: any) => {
 
       const userInfo: any = await decodeToken(axios.defaults.headers.cookie.split("=")[1]);
       if (userInfo) {
-        return userInfo.is_admin;
+        return userInfo.isAdmin;
       }
     
       return false;
