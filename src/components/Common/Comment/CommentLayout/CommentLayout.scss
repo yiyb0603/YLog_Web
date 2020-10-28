@@ -41,10 +41,12 @@
 				&-Top {
 					display: flex;
 					display: -webkit-flex;
+					align-items: center;
+					margin-bottom: 2px;
 
 					&-Writer {
 						color: $blue;
-						margin: 0 5px 5px 0;
+						margin-right: 4px;
 					}
 
 					&-Time {

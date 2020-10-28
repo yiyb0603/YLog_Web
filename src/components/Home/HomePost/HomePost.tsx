@@ -11,7 +11,7 @@ import NoPosts from '../NoPosts';
 const style = require('./HomePost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface HomePostProps {
+export interface HomePostProps {
 	postList: IPostListTypes[];
 	categoryList: ICategoryListTypes[];
 	requestDeletePost: (idx: number) => Promise<void>;

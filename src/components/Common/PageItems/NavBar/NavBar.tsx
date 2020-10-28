@@ -9,7 +9,7 @@ import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
 import { getUserToken } from 'Token/Token';
 import SearchInput from '../../Input/SearchInput';
-import ProfileContainer from 'containers/ProfileContainer/ProfileContainer';
+import ProfileContainer from 'containers/ProfileContainer';
 import getMyInfo from 'lib/util/getMyInfo';
 
 const style = require('./NavBar.scss');
@@ -54,9 +54,9 @@ const NavBar = () => {
 
 				<div className={cx('NavBar-Contents-Right')}>
 					<Link href="/sign">
-							<div className={cx('NavBar-Contents-Right-LogText')}>
-								{getUserToken() ? '로그아웃' : '로그인'}
-							</div>
+						<div className={cx('NavBar-Contents-Right-LogText')}>
+							{getUserToken() ? '로그아웃' : '로그인'}
+						</div>
 					</Link>
 					{getUserToken() ? (
 						<img
