@@ -25,7 +25,7 @@ class PostViewPage extends Component<PostViewPageProps> {
 
 		return (
 			<PageTemplate>
-				<PostViewContainer post ={post} />
+				<PostViewContainer post ={post || null} />
 			</PageTemplate>
 		);
 	}

@@ -58,6 +58,7 @@
 		"@types/react-fade-in": "^0.1.0",
 		"@types/react-syntax-highlighter": "^11.0.5",
 		"@types/react-toastify": "^4.1.0",
+		"@types/styled-components": "^5.1.4",
 		"@zeit/next-css": "^1.0.1",
 		"@zeit/next-sass": "^1.0.1",
 		"axios": "^0.20.0",

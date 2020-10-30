@@ -8,7 +8,7 @@ import ISuccessTypes from 'interface/SuccessTypes';
 import { NextRouter, useRouter } from 'next/router';
 import HomeLoading from 'components/Common/Loading/HomeLoading';
 
-const PostContainer = observer(() => {
+const PostContainer = observer(({ posts }: any) => {
 	const router: NextRouter = useRouter();
 	const { keyword } = router.query;
 
@@ -67,7 +67,7 @@ const PostContainer = observer(() => {
 		<>
 			{!isLoading ? (
 				<HomePost
-					postList={postList}
+					postList={posts || postList}
 					categoryList={categoryList}
 					requestDeletePost={requestDeletePost}
 				/>

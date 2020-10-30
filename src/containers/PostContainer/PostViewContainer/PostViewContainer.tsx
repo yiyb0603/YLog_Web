@@ -44,8 +44,8 @@ const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
 
 	return (
 		<>
-			{!isLoading && post.idx ? (
-				<PostView postInfo={postInfo} categoryName={categoryName} />
+			{!isLoading ? (
+				<PostView postInfo={post || postInfo} categoryName={categoryName} />
 			) : (
 				<PostLoading />
 			)}

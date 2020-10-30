@@ -32,7 +32,7 @@ const NoticeList = ({
 	};
 
 	useEffect(() => {
-		const counter: NodeJS.Timeout = setInterval(handleIncreaseCount, FIVE_SECONDS);
+		const counter: any = setInterval(handleIncreaseCount, FIVE_SECONDS);
 
 		return () => {
 			clearInterval(counter);
