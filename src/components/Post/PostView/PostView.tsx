@@ -15,10 +15,11 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface IPostViewProps {
 	postInfo: IPostListTypes;
+	commentLength: number;
 	categoryName: ICategoryListTypes;
 }
 
-const PostView = ({ postInfo, categoryName }: IPostViewProps) => {
+const PostView = ({ postInfo, commentLength, categoryName }: IPostViewProps) => {
 	const {
 		title,
 		introduction,
@@ -26,7 +27,6 @@ const PostView = ({ postInfo, categoryName }: IPostViewProps) => {
 		created_at,
 		updated_at,
 		contents,
-		comment_length,
 		thumbnail,
 	} = postInfo;
 
@@ -67,7 +67,7 @@ const PostView = ({ postInfo, categoryName }: IPostViewProps) => {
 
 			<div className={cx('PostView-Comments')}>
 				<div className={cx('PostView-Comments-Title')}>
-					댓글 {comment_length}개
+					댓글 {commentLength}개
 				</div>
 
 				<CommentWriteContainer />

@@ -7,6 +7,7 @@ import { errorToast, successToast } from 'lib/Toast';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { NextRouter, useRouter } from 'next/router';
 import HomeLoading from 'components/Common/Loading/HomeLoading';
+import { IPostListTypes } from 'interface/PostTypes';
 
 const PostContainer = observer(({ posts }: any) => {
 	const router: NextRouter = useRouter();
@@ -46,6 +47,10 @@ const PostContainer = observer(({ posts }: any) => {
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
 						successToast('글 삭제를 성공하였습니다.');
+
+						if (posts) {
+							posts.filter((post: IPostListTypes) => post.idx !== idx);
+						}
 						handleCategoryList(keyword && keyword);
 					}
 				})
@@ -56,7 +61,7 @@ const PostContainer = observer(({ posts }: any) => {
 					return;
 				});
 		},
-		[handleDeletePost, handleCategoryList, keyword]
+		[handleDeletePost, handleCategoryList, keyword, posts]
 	);
 
 	useEffect(() => {
@@ -67,7 +72,7 @@ const PostContainer = observer(({ posts }: any) => {
 		<>
 			{!isLoading ? (
 				<HomePost
-					postList={posts || postList}
+					postList={postList}
 					categoryList={categoryList}
 					requestDeletePost={requestDeletePost}
 				/>
