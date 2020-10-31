@@ -1,13 +1,13 @@
 import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
-import 'react-markdown-editor-lite/lib/index.css';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import SelectBox from 'components/Common/SelectBox';
-import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
 import TitleInput from 'components/Common/Input/TitleInput';
-import stringEllipsis from 'lib/util/StringEllipsis';
 import Thumbnail from 'components/Common/Button/Thumbnail';
+import dynamic from 'next/dynamic';
+
+const MarkdownForm = dynamic(() => import('components/Common/Markdown/MarkdownForm'));
 
 interface PostWriteFormProps {
 	titleObject: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GiHamburgerMenu } from 'react-icons/gi';
+import { IoMdMenu } from 'react-icons/io';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -9,7 +9,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 const NavToggle = () => {
 	return (
 		<div className={cx('NavToggle')}>
-			<GiHamburgerMenu className={cx('NavToggle-Icon')} />
+			<IoMdMenu className={cx('NavToggle-Icon')} />
 		</div>
 	);
 };

@@ -1,7 +1,10 @@
 const withCSS = require('@zeit/next-css');
 const withSass = require('@zeit/next-sass');
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: false,
+})
 
-module.exports = withCSS(
+module.exports = withBundleAnalyzer(withCSS(
 	withSass({
 		webpack(config, options) {
 			config.module.rules.push({
@@ -16,4 +19,4 @@ module.exports = withCSS(
 			return config;
 		},
 	})
-);
+));

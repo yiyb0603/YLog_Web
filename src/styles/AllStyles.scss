@@ -22,6 +22,12 @@ body {
 	background-color: $white;
 }
 
+body {
+	line-height: 1.34;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
 td {
 	vertical-align: middle;
 }

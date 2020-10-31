@@ -6,7 +6,9 @@ import CommentContainer from 'containers/CommentContainer';
 import CommentWriteContainer from 'containers/CommentContainer/CommentWrite';
 import parseTime from 'lib/TimeCounting';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
-import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
+import dynamic from 'next/dynamic';
+
+const MarkdownRender = dynamic(() => import('components/Common/Markdown/MarkdownRender'));
 
 const style = require('./PostView.scss');
 const cx: ClassNamesFn = classNames.bind(style);

@@ -4,13 +4,10 @@ import { ClassNamesFn } from 'classnames/types';
 import { INoticeRequestTypes } from 'interface/NoticeTypes';
 import parseTime from 'lib/TimeCounting';
 import { NextRouter, useRouter } from 'next/router';
-import MarkdownRender from 'components/Common/Markdown/MarkdownRender';
-import SecureLS from 'secure-ls';
-import isAdmin from 'lib/util/isAdmin';
 import getMyInfo from 'lib/util/getMyInfo';
-import axios from 'axios';
-import { decodeToken } from 'Token/Token';
-import cookies from 'js-cookie';
+import dynamic from 'next/dynamic';
+
+const MarkdownRender = dynamic(() => import('components/Common/Markdown/MarkdownRender'));
 
 const style = require('./NoticeView.scss');
 const cx: ClassNamesFn = classNames.bind(style);

@@ -1,12 +1,12 @@
 import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import 'highlight.js/styles/atom-one-light.css';
-import 'react-markdown-editor-lite/lib/index.css';
 import SelectBox from 'components/Common/SelectBox';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
-import MarkdownForm from 'components/Common/Markdown/MarkdownForm';
 import Thumbnail from 'components/Common/Button/Thumbnail';
+import dynamic from 'next/dynamic';
+
+const MarkdownForm = dynamic(() => import('components/Common/Markdown/MarkdownForm'));
 
 interface PostModifyFormProps {
 	titleObject: {

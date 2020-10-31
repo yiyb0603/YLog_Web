@@ -6,6 +6,7 @@ import { BsPen, BsTrash } from 'react-icons/bs';
 import { IPostCategoryTypes } from 'interface/CategoryTypes';
 import stringEllipsis from 'lib/util/StringEllipsis';
 import getMyInfo from 'lib/util/getMyInfo';
+import { IMemberTypes } from 'interface/MemberTypes';
 
 const style = require('./CategoryItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -29,7 +30,9 @@ const CategoryItem = ({
 }: CategoryItemProps) => {
 	const router: NextRouter = useRouter();
 	const { topic, keyword } = router.query;
-	const { is_admin } = getMyInfo();
+
+	const myInfo: IMemberTypes = getMyInfo();
+	let isAdmin: null | boolean = myInfo ? myInfo.is_admin : null;
 
 	return (
 		<li className={cx('CategoryItem')}>
@@ -49,7 +52,7 @@ const CategoryItem = ({
 				<div className={cx('CategoryItem-Left-Count')}>({post_count})</div>
 			</div>
 
-			{is_admin && (
+			{isAdmin && (
 				<div className={cx('Category-List-Item-Icon')}>
 					<BsPen
 						className={cx('Category-List-Item-Icon-Modify')}

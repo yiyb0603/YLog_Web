@@ -1,9 +1,11 @@
 import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import MarkdownForm from '../../Common/Markdown/MarkdownForm';
 import TitleInput from 'components/Common/Input/TitleInput';
 import ImageUpload from 'lib/util/ImageUpload';
+import dynamic from 'next/dynamic';
+
+const MarkdownForm = dynamic(() => import('../../Common/Markdown/MarkdownForm'));
 
 const style = require('./NoticeForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
