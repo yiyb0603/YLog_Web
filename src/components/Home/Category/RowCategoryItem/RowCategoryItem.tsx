@@ -6,6 +6,7 @@ import { NextRouter, useRouter } from "next/router";
 import { BsPen, BsTrash } from "react-icons/bs";
 import stringEllipsis from "lib/util/StringEllipsis";
 import getMyInfo from "lib/util/getMyInfo";
+import { IMemberTypes } from "interface/MemberTypes";
 
 const style = require("./RowCategoryItem.scss");
 const cx: ClassNamesFn = classNames.bind(style);
@@ -22,8 +23,10 @@ interface RowCategoryItemProps {
 const RowCategoryItem = ({ idx, categoryName, postCount, setCategoryInfo, setIsModify, requestDeleteCategory }: RowCategoryItemProps) => {
   const router: NextRouter = useRouter();
 	const { topic, keyword } = router.query;
-	const { is_admin } = getMyInfo();
   
+  const myInfo: IMemberTypes = getMyInfo();
+	let isAdmin: null | boolean = myInfo ? myInfo.is_admin : null;
+
   return (
     <div className ={cx('RowCategoryItem', {
       'RowCategoryItem-Current': idx === Number(topic)
@@ -38,7 +41,7 @@ const RowCategoryItem = ({ idx, categoryName, postCount, setCategoryInfo, setIsM
       </div>
       <div className ={cx('RowCategoryItem-Count')}>({postCount})</div>
       {
-        is_admin &&
+        isAdmin &&
         <>
           <div className={cx('RowCategoryItem-Icon')}>
             <BsPen

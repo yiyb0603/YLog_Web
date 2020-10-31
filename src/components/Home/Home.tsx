@@ -8,22 +8,23 @@ import NoticeContainer from 'containers/NoticeContainer';
 import isAdmin from 'lib/util/isAdmin';
 import WriteButton from 'components/Common/Button/WriteButton';
 import { HiPencil } from 'react-icons/hi';
+import { IHomeProps } from '../../../pages';
 
 const style = require('./Home.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-const Home = () => {
+const Home = ({ postList, noticeList, categoryList }: IHomeProps) => {
 	const router: NextRouter = useRouter();
 
 	return (
 		<div className={cx('Home')}>
 			<div>
-				<NoticeContainer />
+				<NoticeContainer notices={noticeList} />
 			</div>
 			<div className={cx('Home-Middle')}>
 				<div className={cx('Home-Middle-Contents')}>
 					<div className={cx('Home-Middle-Contents-Post')}>
-						<PostContainer />
+						<PostContainer posts={postList} />
 					</div>
 				</div>
 
@@ -36,7 +37,7 @@ const Home = () => {
 							<div>글 작성</div>
 						</WriteButton>
 					)}
-					<CategoryContainer />
+					<CategoryContainer categories={categoryList} />
 				</div>
 			</div>
 		</div>

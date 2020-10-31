@@ -4,7 +4,7 @@ import React, {
 	SetStateAction,
 } from 'react';
 import { BsPersonCheckFill, BsBoxArrowInLeft } from 'react-icons/bs';
-import { GiHighKick } from 'react-icons/gi';
+import { MdClose } from 'react-icons/md';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import NavItem from './NavItem';
@@ -52,7 +52,7 @@ const SideNavbar = ({ isEnabled, setIsEnabled }: ISideNavbarProps) => {
 						<NavItem
 							link={'/admin/kick'}
 							name="멤버 강퇴"
-							icon={<GiHighKick style={iconStyle} />}
+							icon={<MdClose style={iconStyle} />}
 						/>
 					</div>
 				</div>

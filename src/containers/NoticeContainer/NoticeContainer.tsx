@@ -2,8 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import NoticeList from 'components/Home/NoticeList';
+import { INoticeRequestTypes } from 'interface/NoticeTypes';
 
-const NoticeContainer = observer(() => {
+interface INoticeContainerProps {
+	notices: INoticeRequestTypes[];
+}
+
+const NoticeContainer = observer(({ notices }: INoticeContainerProps) => {
 	const { store } = useStores();
 	const { handleNoticeList, noticeList } = store.NoticeStore;
 
@@ -31,7 +36,7 @@ const NoticeContainer = observer(() => {
 
 	return (
 		<NoticeList
-			noticeList={noticeList}
+			noticeList={notices || noticeList}
 			count={count}
 			handleIncreaseCount={handleIncreaseCount}
 			handleDecreaseCount={handleDecreaseCount}

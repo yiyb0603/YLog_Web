@@ -9,7 +9,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CheckBox from 'components/Common/CheckBox';
 import FadeIn from 'react-fade-in';
-import { RiAccountCircleFill } from 'react-icons/ri';
+import { CgProfile } from 'react-icons/cg';
 import { Spinner } from '@class101/ui';
 import FormButton from 'components/Common/Button/FormButton';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
@@ -87,7 +87,7 @@ const SignIn = ({
 						className={cx('SignIn-CheckZone-CreateAccount')}
 						onClick={() => setPageType('register')}
 					>
-						<RiAccountCircleFill style={{ fontSize: 25, marginRight: 5 }} />
+						<CgProfile style={{ fontSize: 25, marginRight: 5 }} />
 						<div>아직 계정이 없으신가요?</div>
 					</div>
 				</div>

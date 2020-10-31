@@ -6,8 +6,13 @@ import IErrorTypes from 'interface/ErrorTypes';
 import { errorToast, successToast } from 'lib/Toast';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { NextRouter, useRouter } from 'next/router';
+import { ICategoryListTypes } from 'interface/CategoryTypes';
 
-const CategoryContainer = observer(() => {
+interface ICategoryContainerProps {
+	categories: ICategoryListTypes[];
+}
+
+const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => {
 	const { store } = useStores();
 	const router: NextRouter = useRouter();
 	const { keyword } = router.query;
@@ -51,7 +56,7 @@ const CategoryContainer = observer(() => {
 
 	return (
 		<Category
-			categoryList={categoryList}
+			categoryList={categories || categoryList}
 			requestDeleteCategory={requestDeleteCategory}
 		/>
 	);

@@ -1,10 +1,9 @@
-import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import dynamic from 'next/dynamic';
-import 'react-markdown-editor-lite/lib/index.css';
 import MarkdownIt from 'markdown-it';
-import 'react-markdown-editor-lite/lib/index.css';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-light.css';
+import 'react-markdown-editor-lite/lib/index.css';
 
 interface MarkdownFormProps {
 	contents: string;

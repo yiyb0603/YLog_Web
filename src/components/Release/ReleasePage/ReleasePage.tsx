@@ -3,9 +3,11 @@ import classNames from 'classnames';
 import { ClassNamesFn } from "classnames/types";
 import { IReleaseTypes } from "interface/ReleaseTypes";
 import parseTime from "lib/TimeCounting";
-import MarkdownRender from "components/Common/Markdown/MarkdownRender";
 import { NextRouter, useRouter } from "next/router";
 import isAdmin from "lib/util/isAdmin";
+import dynamic from "next/dynamic";
+
+const MarkdownRender = dynamic(() => import("components/Common/Markdown/MarkdownRender"));
 
 const style = require("./ReleasePage.scss");
 const cx: ClassNamesFn = classNames.bind(style);
