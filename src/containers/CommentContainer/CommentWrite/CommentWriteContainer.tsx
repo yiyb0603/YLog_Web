@@ -55,7 +55,6 @@ const CommentWriteContainer = observer(() => {
 		postIdx,
 		contents,
 		isPrivate,
-		handleCommentList,
 		handlePostView,
 	]);
 

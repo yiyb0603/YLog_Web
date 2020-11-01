@@ -14,7 +14,6 @@ import {
 } from 'lib/Axios';
 import { getUserToken } from 'Token/Token';
 import { observable, action } from 'mobx';
-import CommentStore from 'stores/CommentStore';
 
 @autobind
 export default class PostStore {
@@ -64,6 +63,8 @@ export default class PostStore {
 			return response;
 		} catch (error) {
 			throw error;
+		} finally {
+			this.isLoading = false;
 		}
 	};
 

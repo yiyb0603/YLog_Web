@@ -16,8 +16,11 @@ const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const NavBar = () => {
+	const router: NextRouter = useRouter();
+	const routerKeyword: string | string[] = router.query.keyword;
+
 	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
-	const [keyword, setKeyword] = useState<string>('');
+	const [keyword, setKeyword] = useState<string>(routerKeyword ? routerKeyword.toString() : '');
 
 	const myInfo = getMyInfo();
 	let profileImage: null | string = null;
@@ -26,8 +29,11 @@ const NavBar = () => {
 		profileImage = myInfo.profile_image;
 	}
 
-	const router: NextRouter = useRouter();
 	const searchQuery = useCallback((): void => {
+		if (routerKeyword === keyword) {
+			return;
+		}
+
 		if (!keyword) {
 			router.push(`/`);
 			return;

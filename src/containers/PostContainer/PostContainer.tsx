@@ -5,12 +5,13 @@ import HomePost from 'components/Home/HomePost';
 import IErrorTypes from 'interface/ErrorTypes';
 import { errorToast, successToast } from 'lib/Toast';
 import ISuccessTypes from 'interface/SuccessTypes';
-import { NextRouter, useRouter } from 'next/router';
 import HomeLoading from 'components/Common/Loading/HomeLoading';
+import { IPostListTypes } from 'interface/PostTypes';
+import { NextRouter, useRouter } from 'next/router';
 
 const PostContainer = observer(({ posts }: any) => {
 	const router: NextRouter = useRouter();
-	const { keyword } = router.query;
+	const { keyword, topic } = router.query;
 
 	const { store } = useStores();
 	const {
@@ -30,7 +31,12 @@ const PostContainer = observer(({ posts }: any) => {
 				return;
 			});
 		} else {
-			await handleSearchPosts(keyword);
+			await handleSearchPosts(keyword)
+			.catch((error: IErrorTypes) => {
+				const { message } = error.response.data;
+				errorToast(message);
+				return;
+			});
 		}
 
 		await handleCategoryList(keyword && keyword).catch((error: IErrorTypes) => {
@@ -38,7 +44,7 @@ const PostContainer = observer(({ posts }: any) => {
 			errorToast(message);
 			return;
 		});
-	}, [handlePostList, handleCategoryList, keyword]);
+	}, [handlePostList, handleCategoryList, handleSearchPosts, keyword]);
 
 	const requestDeletePost = useCallback(
 		async (idx: number) => {
@@ -46,6 +52,10 @@ const PostContainer = observer(({ posts }: any) => {
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
 						successToast('글 삭제를 성공하였습니다.');
+
+						if (posts) {
+							posts = posts.filter((post: IPostListTypes) => post.idx !== idx);
+						}
 						handleCategoryList(keyword && keyword);
 					}
 				})
@@ -56,24 +66,26 @@ const PostContainer = observer(({ posts }: any) => {
 					return;
 				});
 		},
-		[handleDeletePost, handleCategoryList, keyword]
+		[handleDeletePost, handleCategoryList, keyword, posts]
 	);
+
+	const filterPost: IPostListTypes[] = topic !== undefined && keyword !== undefined ?
+		postList.filter((post: IPostListTypes) => post.category_idx === Number(topic)) : postList;
 
 	useEffect(() => {
 		requestInitialData();
-	}, [requestInitialData, keyword]);
+	}, [requestInitialData, topic, keyword]);
 
 	return (
 		<>
-			{!isLoading ? (
+			{
+				isLoading ? <HomeLoading /> :
 				<HomePost
-					postList={posts || postList}
+					filterPost={filterPost}
 					categoryList={categoryList}
 					requestDeletePost={requestDeletePost}
 				/>
-			) : (
-				<HomeLoading />
-			)}
+			}
 		</>
 	);
 });

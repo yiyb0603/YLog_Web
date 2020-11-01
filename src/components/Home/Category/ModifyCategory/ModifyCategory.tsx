@@ -30,7 +30,7 @@ const ModifyCategory = ({
 
 	return (
 		<div className={cx('ModifyCategory')}>
-			<Modal height ="250px" title="카테고리 수정" handleCloseModal={handleCloseModal}>
+			<Modal width ="300px" title="카테고리 수정" handleCloseModal={handleCloseModal}>
 				<div className={cx('ModifyCategory-Wrapper')}>
 					<input
 						type="text"

@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
 import { IPostListTypes } from 'interface/PostTypes';
-import { NextRouter, useRouter } from 'next/router';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import HomePostItem from './HomePostItem';
 import NoPosts from '../NoPosts';
@@ -12,33 +11,21 @@ const style = require('./HomePost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 export interface HomePostProps {
-	postList: IPostListTypes[];
+	filterPost: IPostListTypes[];
 	categoryList: ICategoryListTypes[];
 	requestDeletePost: (idx: number) => Promise<void>;
 }
 
 const HomePost = ({
-	postList,
+	filterPost,
 	categoryList,
 	requestDeletePost,
 }: HomePostProps) => {
-	const router: NextRouter = useRouter();
-	const {
-		query: { topic }
-	}: NextRouter = router;
-
-	const postLists: false | IPostListTypes[] =
-		topic !== undefined
-			? postList.filter(
-					(post: IPostListTypes) => post.category_idx === Number(topic)
-			  )
-			: postList;
-
 	return (
 		<FadeIn>
 			<div className={cx('HomePost')}>
-				{postLists.length > 0 ? (
-					postLists.map((post: IPostListTypes) => {
+				{filterPost.length > 0 ? (
+					filterPost.map((post: IPostListTypes) => {
 						const {
 							idx,
 							title,
