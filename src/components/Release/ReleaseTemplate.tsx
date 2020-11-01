@@ -5,11 +5,14 @@ import ReleaseContainer from 'containers/ReleaseContainer';
 import WriteButton from 'components/Common/Button/WriteButton';
 import { HiPencil } from 'react-icons/hi';
 import isAdmin from 'lib/util/isAdmin';
+import { NextRouter, useRouter } from 'next/router';
 
 const style = require('./ReleaseTemplate.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const ReleaseTemplate = () => {
+  const router: NextRouter = useRouter();
+
   return (
     <div className ={cx('ReleaseTemplate')}>
       <div className ={cx('ReleaseTemplate-TopWrapper')}>
@@ -20,7 +23,7 @@ const ReleaseTemplate = () => {
             isAdmin() &&
             <WriteButton
               width ="180px"
-              nextFunction ={() => {}}
+              nextFunction ={() => router.push(`/release/write`)}
             >
               <HiPencil />
               <div>릴리즈 작성</div>

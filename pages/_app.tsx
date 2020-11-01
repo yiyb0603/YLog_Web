@@ -12,10 +12,10 @@ export default class MyApp extends Component {
 	componentDidMount() {
 		navigator.serviceWorker.register('/firebase-messaging-sw.js');
 		
-		const { USER_TOKEN } = Constants;
-		if (!getCookie(USER_TOKEN)) {
-			clearStorage();
-		}
+		// const { USER_TOKEN } = Constants;
+		// if (!getCookie(USER_TOKEN)) {
+		// 	clearStorage();
+		// }
 	}
 
 	static async getInitialProps(context: any) {
