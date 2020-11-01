@@ -18,8 +18,6 @@ const AdminKickContainer = observer(() => {
 		memberList,
 	} = store.MemberStore;
 
-	// 0: 회원 1: 관리자, 2: 전체
-	const [filterKinds, setFilterKinds] = useState<number>(2);
 	const [keyword, setKeyword] = useState<string>('');
 
 	const requestDeleteMember = useCallback(
@@ -56,11 +54,7 @@ const AdminKickContainer = observer(() => {
 				name.toLowerCase().includes(keyword.toLowerCase()) ||
 				email.toLowerCase().includes(keyword.toLowerCase());
 
-			if (filterKinds >= 2) {
-				return member && keywordFilter;
-			}
-
-			return is_admin === Boolean(filterKinds) && keywordFilter;
+			return keywordFilter && !is_admin;
 		}
 	);
 
@@ -88,11 +82,6 @@ const AdminKickContainer = observer(() => {
 	return (
 		<AdminKick
 			memberLists={memberLists}
-			filterKindsObject={GroupingState(
-				'filterKinds',
-				filterKinds,
-				setFilterKinds
-			)}
 			keywordObject={GroupingState('keyword', keyword, setKeyword)}
 		/>
 	);
