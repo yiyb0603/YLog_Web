@@ -56,7 +56,7 @@ const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => 
 
 	return (
 		<Category
-			categoryList={categories || categoryList}
+			categoryList={categoryList}
 			requestDeleteCategory={requestDeleteCategory}
 		/>
 	);

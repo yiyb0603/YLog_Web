@@ -4,10 +4,18 @@ import { Provider } from 'mobx-react';
 import stores from '../src/stores';
 import axios from 'axios';
 import 'styles/AllStyles.scss';
+import { getCookie } from 'lib/Cookie';
+import Constants from 'Constants';
+import { clearStorage } from 'lib/Storage';
 
 export default class MyApp extends Component {
 	componentDidMount() {
 		navigator.serviceWorker.register('/firebase-messaging-sw.js');
+		
+		const { USER_TOKEN } = Constants;
+		if (!getCookie(USER_TOKEN)) {
+			clearStorage();
+		}
 	}
 
 	static async getInitialProps(context: any) {

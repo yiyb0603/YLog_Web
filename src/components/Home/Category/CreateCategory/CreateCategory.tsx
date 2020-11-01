@@ -2,7 +2,6 @@ import React, {
 	ChangeEvent,
 	Dispatch,
 	SetStateAction,
-	useCallback,
 	KeyboardEvent,
 } from 'react';
 import classNames from 'classnames';
@@ -31,7 +30,7 @@ const CreateCategory = ({
 
 	return (
 		<div className={cx('CreateCategory')}>
-			<Modal height ="250px" title="카테고리 생성" handleCloseModal={handleCloseModal}>
+			<Modal width ="300px" title="카테고리 생성" handleCloseModal={handleCloseModal}>
 				<div className={cx('CreateCategory-Wrapper')}>
 					<input
 						type="text"
