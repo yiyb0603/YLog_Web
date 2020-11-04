@@ -22,12 +22,12 @@ export default class PostStore {
 	@observable isLoading: boolean = true;
 
 	@action
-	handlePostList = async () => {
+	handlePostList = async (postList?: IPostListTypes[]) => {
 		this.isLoading = true;
 		try {
 			const response: IPostResponseListTypes = await getResponse('/post');
 
-			this.postList = response.data.posts;
+			this.postList = postList ? postList : response.data.posts;
 
 			this.isLoading = false;
 			return response;

@@ -24,7 +24,8 @@ const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => 
 	} = store.CategoryStore;
 
 	const requestInitialData = useCallback(async () => {
-		await handleCategoryList(keyword && keyword).catch((error: IErrorTypes) => {
+		await handleCategoryList(keyword && keyword)
+		.catch((error: IErrorTypes) => {
 			const { message } = error.response.data;
 			errorToast(message);
 			return;
