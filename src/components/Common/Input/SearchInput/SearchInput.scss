@@ -12,9 +12,9 @@
 	border-bottom: 2px solid $black;
 	color: $white;
 
-	@media screen and (max-width: 500px) {
-		width: 180px;
-		max-width: 180px;
+	@media screen and (max-width: 450px) {
+		width: 150px;
+		max-width: 150px;
 	}
 
 	& > input {
@@ -25,6 +25,10 @@
 		padding: 5px 0;
 		font-size: $font_1rem;
 		color: $black;
+
+		@media screen and (max-width: 450px) {
+			font-size: $font_12;
+		}
 
 		&::placeholder {
 			color: $black;

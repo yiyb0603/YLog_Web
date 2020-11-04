@@ -28,7 +28,7 @@
 			object-fit: cover;
 			cursor: pointer;
 
-			@media screen and (max-width: 500px) {
+			@media screen and (max-width: 550px) {
 				width: 80px;
 			}
 		}
@@ -47,7 +47,7 @@
 				color: $white;
 				margin-top: 5px;
 
-				@media screen and (max-width: 500px) {
+				@media screen and (max-width: 550px) {
 					font-size: $font_14;
 				}
 			}
@@ -58,6 +58,11 @@
 				border-radius: 50%;
 				margin-left: 12px;
 				object-fit: cover;
+
+				@media screen and (max-width: 550px) {
+					width: 30px;
+					height: 30px;
+				}
 			}
 		}
 	}

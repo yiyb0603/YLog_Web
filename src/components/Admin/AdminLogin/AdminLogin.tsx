@@ -39,14 +39,14 @@ const AdminLogin = ({
 						type="email"
 						value={email}
 						setValue={setEmail}
-						outline="이메일"
+						label="이메일"
 						requestFunction={requestAdminLogin}
 					/>
 					<AdminInput
 						type="password"
 						value={password}
 						setValue={setPassword}
-						outline="비밀번호"
+						label="비밀번호"
 						requestFunction={requestAdminLogin}
 					/>
 

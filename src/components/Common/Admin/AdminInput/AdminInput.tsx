@@ -3,57 +3,40 @@ import React, {
 	Dispatch,
 	SetStateAction,
 	KeyboardEvent,
-	CSSProperties,
 } from 'react';
-import { makeStyles, TextField, Theme } from '@material-ui/core';
+import { Input } from '@class101/ui';
+import classNames from 'classnames';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
+import { ClassNamesFn } from 'classnames/types';
+
+const style = require('./AdminInput.scss');
+const cx: ClassNamesFn = classNames.bind(style);
 
 interface AdminInputProps {
+	label: string;
 	type: string;
 	value: string;
 	setValue: Dispatch<SetStateAction<string>>;
-	outline: string;
 	requestFunction: () => Promise<void>;
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-	root: {
-		'& > *': {
-			// margin: theme.spacing(1),
-		},
-	},
-}));
-
 const AdminInput = ({
+	label,
 	type,
 	value,
 	setValue,
-	outline,
 	requestFunction,
 }: AdminInputProps) => {
-	const { root } = useStyles();
-	const adminInputStyle: CSSProperties = {
-		width: '100%',
-		marginBottom: 10,
-	}
-
 	return (
-		<form className={root}>
-			<TextField
-				type={type}
-				id="outlined-basic"
-				label={outline}
-				variant="outlined"
-				value={value}
-				style={adminInputStyle}
-				onChange={(e: ChangeEvent<HTMLInputElement>) =>
-					setValue(e.target.value)
-				}
-				onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
-					useKeyDown(e, requestFunction)
-				}
-			/>
-		</form>
+		<Input
+			className={cx('AdminInput')}
+			type={type}
+			size="md"
+			value={value}
+			label={label}
+			onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
+			onKeyDown={(e: KeyboardEvent<HTMLInputElement>) => useKeyDown(e, requestFunction)}
+		/>
 	);
 };
 

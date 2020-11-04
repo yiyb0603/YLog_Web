@@ -8,37 +8,6 @@
 		"start": "next start",
 		"type-check": "tsc"
 	},
-	"babel": {
-		"presets": [
-			"module:metro-react-native-babel-preset"
-		],
-		"env": {
-			"production": {}
-		},
-		"plugins": [
-			[
-				"@babel/plugin-proposal-decorators",
-				{
-					"legacy": true
-				}
-			],
-			[
-				"transform-inline-environment-variables",
-				{
-					"include": [
-						"NODE_ENV",
-						"API"
-					]
-				}
-			],
-			[
-				"@babel/plugin-proposal-optional-catch-binding"
-			],
-			[
-				"emotion"
-			]
-		]
-	},
 	"dependencies": {
 		"@babel/core": "^7.1.0",
 		"@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -47,9 +16,6 @@
 		"@babel/preset-env": "^7.1.0",
 		"@babel/preset-react": "^7.10.4",
 		"@class101/ui": "^8.5.0",
-		"@material-ui/core": "^4.11.0",
-		"@material-ui/icons": "^4.9.1",
-		"@material-ui/styles": "^4.10.0",
 		"@next/bundle-analyzer": "^10.0.0",
 		"@svgr/webpack": "^5.4.0",
 		"@types/classnames": "^2.2.10",
