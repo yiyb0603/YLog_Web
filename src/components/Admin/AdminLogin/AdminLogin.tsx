@@ -1,25 +1,12 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import AdminInput from 'components/Common/Admin/AdminInput';
 import FormButton from 'components/Common/Button/FormButton';
+import AdminLoginProps from './AdminLogin.types';
 
 const style = require('./AdminLogin.scss');
 const cx: ClassNamesFn = classNames.bind(style);
-
-interface AdminLoginProps {
-	emailObject: {
-		email: string;
-		setEmail: Dispatch<SetStateAction<string>>;
-	};
-
-	passwordObject: {
-		password: string;
-		setPassword: Dispatch<SetStateAction<string>>;
-	};
-
-	requestAdminLogin: () => Promise<void>;
-}
 
 const AdminLogin = ({
 	emailObject,

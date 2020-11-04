@@ -5,7 +5,8 @@ export const getCookie = (key: string): any => {
 }
 
 export const setCookie = (key: string, value: any): void => {
-  cookies.set(key, value);
+  const expires: number = 2;
+  cookies.set(key, value, { expires });
 }
 
 export const removeCookie = (key: string): void => {

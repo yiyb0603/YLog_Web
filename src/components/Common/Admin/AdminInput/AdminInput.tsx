@@ -8,17 +8,10 @@ import { Input } from '@class101/ui';
 import classNames from 'classnames';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
 import { ClassNamesFn } from 'classnames/types';
+import AdminInputProps from './AdminInput.types';
 
 const style = require('./AdminInput.scss');
 const cx: ClassNamesFn = classNames.bind(style);
-
-interface AdminInputProps {
-	label: string;
-	type: string;
-	value: string;
-	setValue: Dispatch<SetStateAction<string>>;
-	requestFunction: () => Promise<void>;
-}
 
 const AdminInput = ({
 	label,

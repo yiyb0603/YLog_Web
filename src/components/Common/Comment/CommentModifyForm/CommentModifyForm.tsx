@@ -1,6 +1,4 @@
 import React, {
-	Dispatch,
-	SetStateAction,
 	KeyboardEvent,
 	ChangeEvent,
 	useEffect,
@@ -11,25 +9,10 @@ import { ClassNamesFn } from 'classnames/types';
 import { AiFillUnlock, AiFillLock } from 'react-icons/ai';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
 import { Palette } from 'styles/Palette/Palette';
+import CommentModifyFormProps from './CommentModifyForm.types';
 
 const style = require('./CommentModifyForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
-
-interface CommentModifyFormProps {
-	contentsObject: {
-		contents: string;
-		setContents: Dispatch<SetStateAction<string>>;
-	};
-
-	isPrivateObject: {
-		isPrivate: boolean;
-		setIsPrivate: Dispatch<SetStateAction<boolean>>;
-	};
-
-	modifyFunction: () => Promise<void>;
-	onBlur: () => void;
-	isModify: boolean;
-}
 
 const CommentModifyForm = ({
 	contentsObject,

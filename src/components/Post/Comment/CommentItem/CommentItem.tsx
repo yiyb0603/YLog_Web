@@ -2,28 +2,12 @@ import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CommentModifyContainer from 'containers/CommentContainer/CommentModify';
-import { IReplyTypes } from 'interface/ReplyTypes';
 import ReplyItem from 'components/Post/Reply/ReplyItem';
 import CommentLayout from 'components/Common/Comment/CommentLayout';
+import CommentItemProps from './CommentItem.types';
 
 const style = require('./CommentItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
-
-interface CommentItemProps {
-	idx: number;
-	postIdx: number;
-	writer: string;
-	writerIdx: number;
-	writerProfile: string;
-	contents: string;
-	createdAt: string | Date;
-	updatedAt: string | Date;
-	replies: IReplyTypes[];
-	isPrivate: boolean;
-	requestCommentDelete: (idx: number) => Promise<void>;
-	requestDeleteReply: (idx: number) => Promise<void>;
-	requestCommentList: () => Promise<void>;
-}
 
 const CommentItem = ({
 	idx,
