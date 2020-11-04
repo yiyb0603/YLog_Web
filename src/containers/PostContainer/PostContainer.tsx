@@ -9,7 +9,11 @@ import HomeLoading from 'components/Common/Loading/HomeLoading';
 import { IPostListTypes } from 'interface/PostTypes';
 import { NextRouter, useRouter } from 'next/router';
 
-const PostContainer = observer(({ posts }: any) => {
+interface IPostContainerProps {
+	posts: IPostListTypes[];
+}
+
+const PostContainer = observer(({ posts }: IPostContainerProps) => {
 	const router: NextRouter = useRouter();
 	const { keyword, topic } = router.query;
 
@@ -25,7 +29,7 @@ const PostContainer = observer(({ posts }: any) => {
 
 	const requestInitialData = useCallback(async () => {
 		if (!keyword) {
-			await handlePostList().catch((error: IErrorTypes) => {
+			await handlePostList(posts && posts).catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;
@@ -44,7 +48,7 @@ const PostContainer = observer(({ posts }: any) => {
 			errorToast(message);
 			return;
 		});
-	}, [handlePostList, handleCategoryList, handleSearchPosts, keyword]);
+	}, [handlePostList, handleCategoryList, handleSearchPosts, keyword, posts]);
 
 	const requestDeletePost = useCallback(
 		async (idx: number) => {
@@ -52,10 +56,6 @@ const PostContainer = observer(({ posts }: any) => {
 				.then((response: ISuccessTypes) => {
 					if (response.status === 200) {
 						successToast('글 삭제를 성공하였습니다.');
-
-						if (posts) {
-							posts = posts.filter((post: IPostListTypes) => post.idx !== idx);
-						}
 						handleCategoryList(keyword && keyword);
 					}
 				})
@@ -69,7 +69,7 @@ const PostContainer = observer(({ posts }: any) => {
 		[handleDeletePost, handleCategoryList, keyword, posts]
 	);
 
-	const filterPost: IPostListTypes[] = topic !== undefined && keyword !== undefined ?
+	const filterPost: IPostListTypes[] = topic ?
 		postList.filter((post: IPostListTypes) => post.category_idx === Number(topic)) : postList;
 
 	useEffect(() => {

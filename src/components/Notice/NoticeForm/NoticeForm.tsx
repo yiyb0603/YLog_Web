@@ -4,25 +4,12 @@ import { ClassNamesFn } from 'classnames/types';
 import TitleInput from 'components/Common/Input/TitleInput';
 import ImageUpload from 'lib/util/ImageUpload';
 import dynamic from 'next/dynamic';
+import NoticeFormProps from './NoticeForm.types';
 
 const MarkdownForm = dynamic(() => import('../../Common/Markdown/MarkdownForm'));
 
 const style = require('./NoticeForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
-
-interface NoticeFormProps {
-	titleObject: {
-		title: string;
-		setTitle: Dispatch<SetStateAction<string>>;
-	};
-
-	contentsObject: {
-		contents: string;
-		setContents: Dispatch<SetStateAction<string>>;
-	};
-
-	requestFunction: () => Promise<void>;
-}
 
 const NoticeForm = ({
 	titleObject,

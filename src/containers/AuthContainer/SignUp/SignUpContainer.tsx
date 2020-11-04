@@ -23,9 +23,10 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 	const [isEntered, setIsEntered] = useState<boolean>(false);
 	const [registerInfo, setRegisterInfo] = useState<ISignUpTypes>({});
 
-	const [password, setPassword] = useState<string>('');
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
+	const [againPassword, setAgainPassword] = useState<string>('');
 	const [adminCode, setAdminCode] = useState<string>('');
 
 	const requestEmailAuth = useCallback(async () => {
@@ -36,7 +37,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 			adminCode: adminCode !== '' ? adminCode : '',
 		};
 
-		if (!validationSignUp(request)) {
+		if (!validationSignUp(request, sha512(againPassword))) {
 			return;
 		}
 
@@ -76,8 +77,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 				return;
 			});
 		}
-		
-	}, [password, name, email, adminCode, isAdminCheck, handleAdminCheck, handleEmailDuplicate, handleSendCode, validationSignUp]);
+	}, [name, email, againPassword, password, adminCode, isAdminCheck, handleAdminCheck, handleEmailDuplicate, handleSendCode, validationSignUp]);
 
 	return (
 		<>
@@ -85,9 +85,10 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 				<SignUp
 					isLoading={isLoading}
 					setPageType={setPageType}
-					passwordObject={GroupingState('password', password, setPassword)}
 					nameObject={GroupingState('name', name, setName)}
 					emailObject={GroupingState('email', email, setEmail)}
+					passwordObject={GroupingState('password', password, setPassword)}
+					againPasswordObject={GroupingState('againPassword', againPassword, setAgainPassword)}
 					adminCodeObject={GroupingState('adminCode', adminCode, setAdminCode)}
 					requestEmailAuth={requestEmailAuth}
 				/>

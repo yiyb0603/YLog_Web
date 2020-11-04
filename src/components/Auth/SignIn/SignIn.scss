@@ -28,26 +28,12 @@
 		display: flex;
 		display: -webkit-flex;
 		flex-direction: column;
-
-		& > input {
-			border: none;
-			outline: none;
-			margin-bottom: $font_2rem;
-			border-bottom: 2px solid $primary;
-			padding: 10px 0;
-			font-size: $font_20;
-			color: $black;
-
-			&:focus {
-				border-bottom: 2px solid $skyBlue;
-			}
-		}
 	}
 
 	&-CheckZone {
 		display: flex;
 		display: -webkit-flex;
-		justify-content: space-between;
+		justify-content: flex-end;
 		align-items: center;
 		margin-bottom: $font_1rem;
 

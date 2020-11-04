@@ -20,8 +20,8 @@ const Profile = ({ userInfo, handleCloseModal, requestDefaultImage, requestImage
 	return (
 		<div className={cx('Profile')}>
 			<Modal
-				width="480px"
-				height="500px"
+				width="500px"
+				height="520px"
 				title="내 정보"
 				handleCloseModal={handleCloseModal}
 			>

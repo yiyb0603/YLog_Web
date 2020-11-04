@@ -6,25 +6,10 @@ import { IUserInfoTypes } from 'interface/AuthTypes';
 import ReplyCreateContainer from 'containers/ReplyContainer/ReplyCreateContainer';
 import PrivateComment from '../PrivateComment';
 import getMyInfo from 'lib/util/getMyInfo';
+import CommentLayoutProps from './CommentLayout.types';
 
 const style = require('./CommentLayout.scss');
 const cx: ClassNamesFn = classNames.bind(style);
-
-interface CommentLayoutProps {
-	idx: number;
-	writer: string | null;
-	writerIdx: number;
-	writerProfile: string;
-	contents: string;
-	postIdx?: number;
-	createdAt: string | Date;
-	updatedAt: string | Date;
-	isPrivate: boolean;
-	children?: any;
-	deleteFunction: any;
-	commentType: number;
-	requestCommentList?: () => Promise<void>;
-}
 
 const CommentLayout = ({
 	idx,
@@ -38,7 +23,6 @@ const CommentLayout = ({
 	children,
 	deleteFunction,
 	commentType,
-	requestCommentList,
 }: CommentLayoutProps) => {
 	const [isReply, setIsReply] = useState<boolean>(false);
 	const [commentIdx, setCommentIdx] = useState<number>(0);
@@ -91,7 +75,7 @@ const CommentLayout = ({
 								children && children
 							)}
 							{commentType === 0 && (
-								<span
+								<div
 									className={cx('CommentLayout-Contents-ReplyButton')}
 									onClick={() => {
 										setIsReply(!isReply);
@@ -99,7 +83,7 @@ const CommentLayout = ({
 									}}
 								>
 									답글
-								</span>
+								</div>
 							)}
 						</div>
 					}

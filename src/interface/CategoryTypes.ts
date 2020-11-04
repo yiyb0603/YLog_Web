@@ -9,6 +9,11 @@ export interface ICategoryResponseTypes extends ISuccessTypes {
 	data: ICategoryListTypes[];
 }
 
+export interface ICategorySearchTypes {
+	categories?: ICategoryListTypes[];
+	keyword?: string;
+}
+
 export interface ICategoryListTypes {
 	idx: number;
 	category_name: string;

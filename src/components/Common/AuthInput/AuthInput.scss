@@ -6,13 +6,13 @@
 	border: none;
 	outline: none;
 	margin-bottom: $font_2rem;
-	border-bottom: 2px solid rgba($rgbaPrimary, 0.5);
+	border-bottom: 2px solid rgba($rgbaPrimary, 0.7);
 	padding: 10px 0;
 	font-size: $font_20;
 	color: $black;
 
 	&:focus {
-		border-bottom: 2px solid $skyBlue;
+		border-bottom: 2px solid $primary;
 	}
 
 	&:last-child {

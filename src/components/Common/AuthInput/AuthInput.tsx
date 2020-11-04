@@ -1,22 +1,12 @@
 import React, {
-	KeyboardEvent,
 	ChangeEvent,
-	Dispatch,
-	SetStateAction,
 } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import AuthInputProps from './AuthInput.types';
 
 const style = require('./AuthInput.scss');
 const cx: ClassNamesFn = classNames.bind(style);
-
-interface AuthInputProps {
-	type: string;
-	placeholder: string;
-	value: string | number;
-	setValue: Dispatch<SetStateAction<string>>;
-	onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
-}
 
 const AuthInput = ({
 	type,

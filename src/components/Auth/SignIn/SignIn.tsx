@@ -1,13 +1,10 @@
 import React, {
-	ChangeEvent,
 	Dispatch,
 	KeyboardEvent,
-	SetStateAction,
-	useState,
+	SetStateAction
 } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import CheckBox from 'components/Common/CheckBox';
 import FadeIn from 'react-fade-in';
 import { CgProfile } from 'react-icons/cg';
 import { Spinner } from '@class101/ui';
@@ -44,8 +41,6 @@ const SignIn = ({
 	const { email, setEmail } = emailObject;
 	const { password, setPassword } = passwordObject;
 
-	const [checked, setChecked] = useState<boolean>(false);
-
 	return (
 		<div className={cx('SignIn')}>
 			<FadeIn>
@@ -79,10 +74,6 @@ const SignIn = ({
 				</div>
 
 				<div className={cx('SignIn-CheckZone')}>
-					<CheckBox checked={checked} setChecked={setChecked}>
-						로그인 유지
-					</CheckBox>
-
 					<div
 						className={cx('SignIn-CheckZone-CreateAccount')}
 						onClick={() => setPageType('register')}

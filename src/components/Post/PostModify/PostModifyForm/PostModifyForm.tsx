@@ -5,40 +5,9 @@ import SelectBox from 'components/Common/SelectBox';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import Thumbnail from 'components/Common/Button/Thumbnail';
 import dynamic from 'next/dynamic';
+import PostModifyFormProps from './PostModifyForm.types';
 
 const MarkdownForm = dynamic(() => import('components/Common/Markdown/MarkdownForm'));
-
-interface PostModifyFormProps {
-	titleObject: {
-		title: string;
-		setTitle: Dispatch<SetStateAction<string>>;
-	};
-
-	thumbnailObject: {
-		thumbnail: string;
-		setThumbnail: Dispatch<SetStateAction<string>>;
-	};
-
-	introductionObject: {
-		introduction: string;
-		setIntroduction: Dispatch<SetStateAction<string>>;
-	};
-
-	contentsObject: {
-		contents: string;
-		setContents: Dispatch<SetStateAction<string>>;
-	};
-
-	categoryIdxObject: {
-		categoryIdx: number;
-		setCategoryIdx: Dispatch<SetStateAction<number>>;
-	};
-
-	categoryList: ICategoryListTypes[];
-	requestThumbnailUpload: (e: ChangeEvent<HTMLInputElement>) => void;
-	requestImageUpload: (file: File) => Promise<string>;
-	requestModifyPost: () => Promise<void>;
-}
 
 const style = require('./PostModifyForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);

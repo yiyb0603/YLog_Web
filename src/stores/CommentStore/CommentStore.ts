@@ -28,7 +28,6 @@ export default class CommentStore {
 			const replyStore: ReplyStore = new ReplyStore();
 			const { handleReplyList } = replyStore;
 			await handleReplyList(postIdx);
-			console.log(replyStore.replyList);
 
 			const response: ICommentResponseListTypes = await getResponse(
 				`/comment?postIdx=${postIdx}`

@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
@@ -7,49 +7,25 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import FormButton from 'components/Common/Button/FormButton';
 import CheckBox from 'components/Common/CheckBox';
 import AuthInput from 'components/Common/AuthInput';
+import SignUpProps from './SignUp.types';
 
 const style = require('./SignUp.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
-interface SignUpProps {
-	isLoading: boolean;
-	setPageType: Dispatch<SetStateAction<string>>;
-
-	passwordObject: {
-		password: string;
-		setPassword: Dispatch<SetStateAction<string>>;
-	};
-
-	nameObject: {
-		name: string;
-		setName: Dispatch<SetStateAction<string>>;
-	};
-
-	emailObject: {
-		email: string;
-		setEmail: Dispatch<SetStateAction<string>>;
-	};
-
-	adminCodeObject: {
-		adminCode: string;
-		setAdminCode: Dispatch<SetStateAction<string>>;
-	};
-
-	requestEmailAuth: () => Promise<void>;
-}
-
 const SignUp = ({
 	isLoading,
 	setPageType,
-	passwordObject,
 	nameObject,
 	emailObject,
+	passwordObject,
+	againPasswordObject,
 	adminCodeObject,
 	requestEmailAuth,
 }: SignUpProps) => {
-	const { password, setPassword } = passwordObject;
 	const { name, setName } = nameObject;
 	const { email, setEmail } = emailObject;
+	const { password, setPassword } = passwordObject;
+	const { againPassword, setAgainPassword } = againPasswordObject;
 	const { adminCode, setAdminCode } = adminCodeObject;
 
 	const [checkAdmin, setCheckAdmin] = useState<boolean>(false);
@@ -66,6 +42,13 @@ const SignUp = ({
 
 				<div className={cx('SignUp-Form')}>
 					<AuthInput
+						type="text"
+						placeholder="이름을 입력하세요"
+						value={name}
+						setValue={setName}
+					/>
+
+					<AuthInput
 						type="email"
 						placeholder="이메일을 입력하세요"
 						value={email}
@@ -80,15 +63,15 @@ const SignUp = ({
 					/>
 
 					<AuthInput
-						type="text"
-						placeholder="이름을 입력하세요"
-						value={name}
-						setValue={setName}
+						type="password"
+						placeholder ="비밀번호를 재입력 해주세요."
+						value ={againPassword}
+						setValue={setAgainPassword}
 					/>
 
 					{checkAdmin && (
 						<AuthInput
-							type="text"
+							type="password"
 							placeholder="어드민 코드를 입력해주세요"
 							value={adminCode}
 							setValue={setAdminCode}
