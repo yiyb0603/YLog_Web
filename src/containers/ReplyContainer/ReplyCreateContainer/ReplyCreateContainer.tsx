@@ -23,6 +23,7 @@ const ReplyCreateContainer = observer(
 		const { store } = useStores();
 		const { handleCreateReply } = store.ReplyStore;
 		const { handlePostView } = store.PostStore;
+		const { handleCommentList } = store.CommentStore;
 
 		const router: NextRouter = useRouter();
 		const postIdx: number = Number(router.query.idx);
@@ -49,6 +50,7 @@ const ReplyCreateContainer = observer(
 						setContents('');
 						successToast('답글 작성을 성공하였습니다.');
 						await handlePostView(postIdx);
+						await handleCommentList(postIdx);
 					}
 				})
 
@@ -63,6 +65,7 @@ const ReplyCreateContainer = observer(
 			contents,
 			isPrivate,
 			handleCreateReply,
+			handleCommentList,
 			handlePostView,
 			setIsReply,
 		]);

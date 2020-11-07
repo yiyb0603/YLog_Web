@@ -39,6 +39,7 @@ const CommentContainer = observer(() => {
 					if (status === 200) {
 						successToast('댓글을 삭제하였습니다.');
 						await handlePostView(postIdx);
+						await handleCommentList(postIdx);
 					}
 				})
 
@@ -48,7 +49,7 @@ const CommentContainer = observer(() => {
 					return;
 				});
 			},
-		[handleCommentDelete, handlePostView, postIdx]
+		[handleCommentDelete, handleCommentList, handlePostView, postIdx]
 	);
 
 	const requestDeleteReply = useCallback(
@@ -58,6 +59,7 @@ const CommentContainer = observer(() => {
 					if (response.status === 200) {
 						successToast('답글 삭제를 성공하였습니다.');
 						await handlePostView(postIdx);
+						await handleCommentList(postIdx);
 					}
 				})
 
@@ -67,7 +69,7 @@ const CommentContainer = observer(() => {
 					return;
 				});
 		},
-		[handleDeleteReply, handlePostView]
+		[handleDeleteReply, handleCommentList, handlePostView]
 	);
 
 	useEffect(() => {
