@@ -38,11 +38,12 @@ export default class PostStore {
 	};
 
 	@action
-	handlePostView = async (idx: number) => {
+	handlePostView = async (idx: number, postInfo?: IPostListTypes) => {
 		try {
 			this.isLoading = true;
 			const response: IPostResponseTypes = await getResponse(`/post/${idx}`);
-			this.postInfo = response.data.post;
+			const { post } = response.data;
+			this.postInfo = postInfo && Object.keys(this.postInfo).length <= 0 ? postInfo! : post;
 
 			this.isLoading = false;
 			return response;

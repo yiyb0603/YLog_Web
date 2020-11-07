@@ -42,6 +42,7 @@ const CommentWriteContainer = observer(() => {
 						successToast('댓글 작성에 성공하였습니다.');
 						setContents('');
 						handlePostView(postIdx);
+						handleCommentList(postIdx);
 					}
 				})
 
@@ -56,6 +57,7 @@ const CommentWriteContainer = observer(() => {
 		contents,
 		isPrivate,
 		handlePostView,
+		handleCommentList
 	]);
 
 	return (

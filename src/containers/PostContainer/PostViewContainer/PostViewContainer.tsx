@@ -4,7 +4,7 @@ import useStores from 'lib/hooks/useStores';
 import IErrorTypes from 'interface/ErrorTypes';
 import { NextRouter, useRouter } from 'next/router';
 import PostView from 'components/Post/PostView';
-import { errorToast, successToast } from 'lib/Toast';
+import { errorToast } from 'lib/Toast';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import PostLoading from 'components/Common/Loading/PostLoading';
 import { IPostListTypes } from 'interface/PostTypes';
@@ -28,7 +28,8 @@ const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
 	const requestPostView = useCallback(async (): Promise<void> => {
 		if (idx) {
 			await handleCategoryList();
-			await handlePostView(idx).catch((error: IErrorTypes) => {
+			await handlePostView(idx, post)
+			.catch((error: IErrorTypes) => {
 				router.back();
 				
 				const { message } = error.response.data;
@@ -36,7 +37,7 @@ const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
 				return;
 			});
 		}
-	}, [idx, handleCategoryList, handlePostView]);
+	}, [idx, post, handleCategoryList, handlePostView]);
 
 	useEffect(() => {
 		requestPostView();
@@ -44,8 +45,12 @@ const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
 
 	return (
 		<>
-			{!isLoading ? (
-				<PostView postInfo={postInfo} commentLength={postInfo.comment_length} categoryName={categoryName} />
+			{!isLoading || Object.keys(post).length > 0 ? (
+				<PostView
+					postInfo={post || postInfo}
+					commentLength={postInfo.comment_length}
+					categoryName={categoryName}
+				/>
 			) : (
 				<PostLoading />
 			)}
