@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
-import CreateNoticeContainer from 'containers/NoticeContainer/CreateNotice';
+import NoticeFormContainer from 'containers/NoticeContainer/NoticeForm';
 import redirectPage from 'lib/util/RedirectPage';
 
 class NoticeWritePage extends Component {
@@ -18,7 +18,7 @@ class NoticeWritePage extends Component {
 	render() {
 		return (
 			<PageTemplate>
-				<CreateNoticeContainer />
+				<NoticeFormContainer />
 			</PageTemplate>
 		);
 	}

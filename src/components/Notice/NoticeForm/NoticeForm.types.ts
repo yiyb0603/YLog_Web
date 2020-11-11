@@ -11,5 +11,5 @@ export default interface NoticeFormProps {
 		setContents: Dispatch<SetStateAction<string>>;
 	};
 
-	requestFunction: () => Promise<void>;
+	requestFunction: () => void;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
-import PostModifyContainer from 'containers/PostContainer/PostModifyContainer';
 import redirectPage from 'lib/util/RedirectPage';
+import PostFormContainer from 'containers/PostContainer/PostFormContainer';
 
 class ModifyPage extends Component {
 	static async getInitialProps(ctx: any) {
@@ -18,7 +18,7 @@ class ModifyPage extends Component {
 	render() {
 		return (
 			<PageTemplate>
-				<PostModifyContainer />
+				<PostFormContainer />
 			</PageTemplate>
 		);
 	}
