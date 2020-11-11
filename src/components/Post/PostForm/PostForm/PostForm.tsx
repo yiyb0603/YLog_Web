@@ -68,6 +68,13 @@ const PostForm = ({
 
 			<div className={cx('PostForm-Button')}>
 				<button
+					className={cx('PostForm-Button-Save')}
+					onClick={requestWritePost}
+				>
+					임시 저장
+				</button>
+
+				<button
 					className={cx('PostForm-Button-Write')}
 					onClick={requestWritePost}
 				>

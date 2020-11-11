@@ -28,7 +28,7 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 
 	const router: NextRouter = useRouter();
 	const {
-		query: { topic, keyword },
+		query: { topic, keyword, isTemp },
 	}: NextRouter = router;
 
 	return (
@@ -46,8 +46,9 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 							postCount={post_count}
 							setCategoryInfo={setCategoryInfo}
 							setIsModify={setIsModify}
-							requestDeleteCategory={requestDeleteCategory} />
-					)
+							requestDeleteCategory={requestDeleteCategory}
+						/>
+					);
 				})
 			}
 			</div>
@@ -66,7 +67,7 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 					<li className={cx('Category-List-Item')}>
 						<span
 							className={cx('Category-List-Item-Text', {
-								'Category-List-Item-Text-Current': topic === undefined,
+								'Category-List-Item-Text-Current': !topic && !isTemp,
 							})}
 							onClick={() =>
 								router.push(keyword ? `/?keyword=${keyword}` : `/`)
@@ -91,6 +92,21 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 							/>
 						);
 					})}
+
+					{
+						isAdmin() &&
+						<li className={cx('Category-List-Item')}>
+							<span
+								className={cx('Category-List-Item-Text', {
+									'Category-List-Item-Text-Current': isTemp,
+								})}
+
+								onClick={() => router.push(`/?isTemp=true`)}
+							>
+								임시저장
+							</span>
+						</li>
+					}
 				</ul>
 			</div>
 

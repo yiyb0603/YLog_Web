@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState, MouseEvent } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { IPostRequestTypes, IPostResponseTypes } from 'interface/PostTypes';
@@ -48,14 +48,16 @@ const PostFormContainer = observer(() => {
 		[handleFileUpload]
 	);
 
-	const requestWritePost = useCallback(async (): Promise<void> => {
+	const requestWritePost = useCallback(async (isTemp: boolean): Promise<void> => {
 		const request: IPostRequestTypes = {
 			title,
 			introduction,
 			contents,
 			categoryIdx,
 			thumbnail: thumbnail || null,
+			isTemp,
 		};
+		console.log(request);
 
 		if (!validationPostWrite(request)) {
 			return;
@@ -84,7 +86,7 @@ const PostFormContainer = observer(() => {
 		showAlert,
 	]);
 
-	const requestModifyPost = useCallback(async (): Promise<void> => {
+	const requestModifyPost = useCallback(async (isTemp: boolean): Promise<void> => {
 		const request = {
 			idx,
 			title,
@@ -92,7 +94,9 @@ const PostFormContainer = observer(() => {
 			contents,
 			categoryIdx,
 			thumbnail: thumbnail || null,
+			isTemp,
 		};
+		console.log(isTemp);
 
 		await handleModifyPost(request)
 		.then((response: ISuccessTypes) => {
@@ -109,13 +113,17 @@ const PostFormContainer = observer(() => {
 		});
 	}, [idx, title, introduction, contents, categoryIdx, thumbnail, handleModifyPost, router]);
 
-	const clickButton = useCallback((): void => {
+	const clickButton = useCallback((e: MouseEvent<HTMLButtonElement>) => {
+		const { innerText } = e.currentTarget;
+		const TEMP_TEXT: string = "임시 저장";
+		let isTemp: boolean = innerText === TEMP_TEXT ? true : false
+
 		if (idx) {
-			requestModifyPost();
+			requestModifyPost(isTemp);
 			return;
 		}
 
-		requestWritePost();
+		requestWritePost(isTemp);
 	}, [idx, requestModifyPost, requestWritePost]);
 
 	const postWriteForm: JSX.Element = (

@@ -1,5 +1,5 @@
 import { ICategoryListTypes } from "interface/CategoryTypes";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from "react";
 
 export default interface PostWriteFormProps {
 	titleObject: {
@@ -30,5 +30,5 @@ export default interface PostWriteFormProps {
 	categoryList: ICategoryListTypes[];
 	requestThumbnailUpload: (e: ChangeEvent<HTMLInputElement>) => void;
 	requestImageUpload: (file: File) => Promise<string>;
-	requestWritePost: () => void;
+	requestWritePost: (e: MouseEvent<HTMLButtonElement>) => void;
 }

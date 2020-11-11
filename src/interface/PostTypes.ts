@@ -7,6 +7,7 @@ export interface IPostRequestTypes {
 	contents: string;
 	thumbnail?: string | null;
 	categoryIdx: number;
+	isTemp: boolean;
 }
 
 export interface IPostResponseListTypes extends ISuccessTypes {
@@ -32,6 +33,7 @@ export interface IPostListTypes {
 	category_idx?: number;
 	comment_length?: number;
 	view_count?: number;
+	is_temp?: boolean;
 	created_at?: Date | string;
 	updated_at?: Date | string;
 }
