@@ -8,6 +8,7 @@ import { errorToast } from 'lib/Toast';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import PostLoading from 'components/Common/Loading/PostLoading';
 import { IPostListTypes } from 'interface/PostTypes';
+import isAdmin from 'lib/util/isAdmin';
 
 interface IPostViewContainerProps {
 	post: IPostListTypes;
@@ -40,8 +41,13 @@ const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
 	}, [idx, post, handleCategoryList, handlePostView]);
 
 	useEffect(() => {
+		if (post.is_temp && (!isAdmin())) {
+			router.back();
+			return;
+		}
+
 		requestPostView();
-	}, [requestPostView]);
+	}, [requestPostView, post]);
 
 	return (
 		<>

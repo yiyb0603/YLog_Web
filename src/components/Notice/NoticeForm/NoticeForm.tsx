@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import TitleInput from 'components/Common/Input/TitleInput';
@@ -28,7 +28,6 @@ const NoticeForm = ({
 			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={ImageUpload} />
 
 			<div className={cx('NoticeForm-Button')}>
-				{/* <button className={cx('CreateNotice-Button-Save')}>임시 저장</button> */}
 				<button
 					className={cx('NoticeForm-Button-Write')}
 					onClick={requestFunction}

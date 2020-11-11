@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 
 const MarkdownForm = dynamic(() => import("components/Common/Markdown/MarkdownForm"));
 
-const style = require("./ReleaseWriteForm.scss");
+const style = require("./ReleaseForm.scss");
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface ReleaseWriteFormProps {
