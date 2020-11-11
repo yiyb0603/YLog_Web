@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
-import ReleaseWriteContainer from 'containers/ReleaseContainer/ReleaseWrite';
+import ReleaseFormContainer from 'containers/ReleaseContainer/ReleaseForm';
 import redirectPage from 'lib/util/RedirectPage';
 
 class ReleaseWritePage extends Component {
@@ -18,7 +18,7 @@ class ReleaseWritePage extends Component {
   render() {
     return (
       <PageTemplate>
-        <ReleaseWriteContainer />
+        <ReleaseFormContainer />
       </PageTemplate>
     );
   }

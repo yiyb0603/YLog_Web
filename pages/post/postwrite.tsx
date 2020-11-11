@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
-import PostWriteContainer from 'containers/PostContainer/PostWriteContainer';
+import PostFormContainer from 'containers/PostContainer/PostFormContainer';
 import redirectPage from 'lib/util/RedirectPage';
 
 class PostWritePage extends Component {
@@ -18,7 +18,7 @@ class PostWritePage extends Component {
 	render() {
 		return (
 			<PageTemplate>
-				<PostWriteContainer />
+				<PostFormContainer />
 			</PageTemplate>
 		);
 	}

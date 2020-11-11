@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PageTemplate from 'components/Template/PageTemplate';
-import ReleaseModifyContainer from 'containers/ReleaseContainer/ReleaseModify';
+import ReleaseFormContainer from 'containers/ReleaseContainer/ReleaseForm';
 import redirectPage from 'lib/util/RedirectPage';
 
 class ReleaseModifyPage extends Component {
@@ -18,7 +18,7 @@ class ReleaseModifyPage extends Component {
   render() {    
     return (
       <PageTemplate>
-        <ReleaseModifyContainer />
+        <ReleaseFormContainer />
       </PageTemplate>
     );
   }

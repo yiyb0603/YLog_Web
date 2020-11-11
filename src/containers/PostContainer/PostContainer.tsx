@@ -15,7 +15,7 @@ interface IPostContainerProps {
 
 const PostContainer = observer(({ posts }: IPostContainerProps) => {
 	const router: NextRouter = useRouter();
-	const { keyword, topic } = router.query;
+	const { keyword, topic, isTemp } = router.query;
 
 	const { store } = useStores();
 	const {
@@ -69,8 +69,12 @@ const PostContainer = observer(({ posts }: IPostContainerProps) => {
 		[handleDeletePost, handleCategoryList, keyword, posts]
 	);
 
-	const filterPost: IPostListTypes[] = topic ?
-		postList.filter((post: IPostListTypes) => post.category_idx === Number(topic)) : postList;
+	const filterPost: IPostListTypes[] = topic ? 
+		postList.filter((post: IPostListTypes) => post.category_idx === Number(topic) && !post.is_temp):
+
+		isTemp ?
+		postList.filter((post: IPostListTypes) => post.is_temp) :
+		postList.filter((post: IPostListTypes) => !post.is_temp);
 
 	useEffect(() => {
 		requestInitialData();
