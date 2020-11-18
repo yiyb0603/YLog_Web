@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import classNames from 'classnames';
 import { ClassNamesFn } from "classnames/types";
-import { AiOutlineLike, AiFillLike } from 'react-icons/ai';
+import { AiOutlineLike } from 'react-icons/ai';
 import { ILikeTypes } from "interface/LikeTypes";
 import getMyInfo from "lib/util/getMyInfo";
 
@@ -18,7 +18,7 @@ const PostLike = ({ likeList, requestPostCount, requestDeleteCount }: PostLikePr
   const myInfo = getMyInfo();
   const isPressed: number = likeList && likeList.findIndex((like: ILikeTypes) => like.user_idx === myInfo.idx);
 
-  const requestFunction = useCallback(() => {
+  const requestFunction = useCallback((): void => {
     isPressed > -1 ? requestDeleteCount() : requestPostCount();
   }, [requestPostCount, requestDeleteCount, isPressed]);
 

@@ -41,8 +41,13 @@ const PostView = ({ postInfo, commentLength, categoryName }: IPostViewProps) => 
 				<div className={cx('PostView-Contents')}>
 					<div className={cx('PostView-Contents-Title')}>{title}</div>
 					<div className={cx('PostView-Contents-Info')}>
-						<div className={cx('PostView-Contents-Info-Category')}>
-							{categoryName && categoryName.category_name}
+						<div className={cx('PostView-Contents-Info-Left')}>
+							<div className={cx('PostView-Contents-Info-Left-Like')}>
+								<LikeContainer />
+							</div>
+							<div className={cx('PostView-Contents-Info-Left-Category')}>
+								{categoryName && categoryName.category_name}
+							</div>
 						</div>
 						<div className={cx('PostView-Contents-Info-Personal')}>
 							<div className={cx('PostView-Contents-Info-Personal-Time')}>

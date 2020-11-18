@@ -11,7 +11,9 @@
 	align-items: center;
 
 	&-Like {
-		position: relative;
+		@media screen and (max-width: 1000px) {
+			display: none;
+		}
 	}
 
 	&-Contents {
@@ -33,9 +35,24 @@
 			align-items: center;
 			margin-top: 10px;
 
-			&-Category {
-				color: $primary;
-				font-size: $font_22;
+			&-Left {
+				display: flex;
+				display: -webkit-flex;
+				align-items: center;
+				position: relative;
+
+				&-Like {
+					display: none;
+
+					@media screen and (max-width: 1000px) {
+						display: block;
+					}
+				}
+
+				&-Category {
+					color: $primary;
+					font-size: $font_22;
+				}
 			}
 
 			&-Personal {
