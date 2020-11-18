@@ -7,6 +7,7 @@ import CommentWriteContainer from 'containers/CommentContainer/CommentWrite';
 import parseTime from 'lib/TimeCounting';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import dynamic from 'next/dynamic';
+import LikeContainer from 'containers/LikeContainer';
 
 const MarkdownRender = dynamic(() => import('components/Common/Markdown/MarkdownRender'));
 
@@ -32,46 +33,53 @@ const PostView = ({ postInfo, commentLength, categoryName }: IPostViewProps) => 
 
 	return (
 		<div className={cx('PostView')}>
-			<div className={cx('PostView-Contents')}>
-				<div className={cx('PostView-Contents-Title')}>{title}</div>
-				<div className={cx('PostView-Contents-Info')}>
-					<div className={cx('PostView-Contents-Info-Category')}>
-						{categoryName && categoryName.category_name}
-					</div>
-					<div className={cx('PostView-Contents-Info-Personal')}>
-						<div className={cx('PostView-Contents-Info-Personal-Time')}>
-							{parseTime(created_at!)}
-							{updated_at && ' (수정됨)'}
-						</div>
-						<div className={cx('PostView-Contents-Info-Personal-Writer')}>
-							{writer}
-						</div>
-					</div>
-				</div>
-				<img
-					src={thumbnail ? thumbnail : '/assets/icon/Logo.PNG'}
-					alt="thumbnail"
-					className={cx('PostView-Contents-Thumbnail')}
-					onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
-						(e.currentTarget.src = '/assets/icon/Logo.PNG')
-					}
-				/>
-				<div className={cx('PostView-Contents-Introduction')}>
-					{introduction}
-				</div>
-
-				<div className={cx('PostView-Contents-Contents')}>
-					<MarkdownRender contents={contents!} />
-				</div>
+			<div className={cx('PostView-Like')}>
+				<LikeContainer />
 			</div>
 
-			<div className={cx('PostView-Comments')}>
-				<div className={cx('PostView-Comments-Title')}>
-					댓글 {commentLength}개
+			<div className={cx('PostView-Right')}>
+				<div className={cx('PostView-Contents')}>
+					<div className={cx('PostView-Contents-Title')}>{title}</div>
+					<div className={cx('PostView-Contents-Info')}>
+						<div className={cx('PostView-Contents-Info-Category')}>
+							{categoryName && categoryName.category_name}
+						</div>
+						<div className={cx('PostView-Contents-Info-Personal')}>
+							<div className={cx('PostView-Contents-Info-Personal-Time')}>
+								{parseTime(created_at!)}
+								{updated_at && ' (수정됨)'}
+							</div>
+							<div className={cx('PostView-Contents-Info-Personal-Writer')}>
+								{writer}
+							</div>
+						</div>
+					</div>
+					<img
+						src={thumbnail ? thumbnail : '/assets/icon/Logo.PNG'}
+						alt="thumbnail"
+						className={cx('PostView-Contents-Thumbnail')}
+						onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
+							(e.currentTarget.src = '/assets/icon/Logo.PNG')
+						}
+					/>
+					<div className={cx('PostView-Contents-Introduction')}>
+						{introduction}
+					</div>
+
+					<div className={cx('PostView-Contents-Contents')}>
+						<MarkdownRender contents={contents!} />
+						
+					</div>
 				</div>
 
-				<CommentWriteContainer />
-				<CommentContainer />
+				<div className={cx('PostView-Comments')}>
+					<div className={cx('PostView-Comments-Title')}>
+						댓글 {commentLength}개
+					</div>
+
+					<CommentWriteContainer />
+					<CommentContainer />
+				</div>
 			</div>
 		</div>
 	);

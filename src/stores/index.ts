@@ -8,6 +8,7 @@ import ReleaseStore from './ReleaseStore';
 import ReplyStore from './ReplyStore';
 import ProfileStore from './ProfileStore';
 import UploadStore from './UploadStore';
+import LikeStore from './LikeStore';
 
 const stores = {
 	AuthStore: new AuthStore(),
@@ -20,6 +21,7 @@ const stores = {
 	MemberStore: new MemberStore(),
 	ProfileStore: new ProfileStore(),
 	ReleaseStore: new ReleaseStore(),
+	LikeStore: new LikeStore(),
 };
 
 export default stores;
