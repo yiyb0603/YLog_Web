@@ -11,11 +11,11 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface ProfileProps {
 	handleCloseModal: () => void;
 	userInfo: IMemberTypes;
-	requestDefaultImage: () => Promise<void>;
+	requestChangeProfile: () => Promise<void>;
 	requestImageUpload: (e: ChangeEvent<HTMLInputElement>) => Promise<void>;
 }
 
-const Profile = ({ userInfo, handleCloseModal, requestDefaultImage, requestImageUpload }: ProfileProps) => {
+const Profile = ({ userInfo, handleCloseModal, requestChangeProfile, requestImageUpload }: ProfileProps) => {
 	const { email, name, joined_at, profile_image } = userInfo;
 	return (
 		<div className={cx('Profile')}>
@@ -36,7 +36,7 @@ const Profile = ({ userInfo, handleCloseModal, requestDefaultImage, requestImage
 						
 						<div className ={cx('Profile-Contents-Top-LabelWrapper')}>
 							<input type ="file" id ="selectImage" onChange ={requestImageUpload} accept="image/*" />
-							<button className ={cx('Profile-Contents-Top-LabelWrapper-Default')} onClick={requestDefaultImage}>기본 이미지</button>
+							<button className ={cx('Profile-Contents-Top-LabelWrapper-Default')} onClick={requestChangeProfile}>기본 이미지</button>
 							<label className ={cx('Profile-Contents-Top-LabelWrapper-Change')} htmlFor ="selectImage">이미지 변경</label>
 						</div>
 					</div>
