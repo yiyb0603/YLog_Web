@@ -7,6 +7,7 @@ import IUploadTypes from 'interface/UploadTypes';
 import { IProfileModifyTypes } from 'interface/ProfileTypes';
 import ISuccessTypes from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
+import IErrorTypes from 'interface/ErrorTypes';
 
 interface IProfileContainerProps {
   handleCloseModal: () => void;
@@ -31,27 +32,18 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
     .then(async (response: IUploadTypes) => {
       setSelectImage(response.data.files[0]);
     })
-  }, [handleFileUpload]);
 
-  const requestDefaultImage = useCallback(async () => {
-    const request: IProfileModifyTypes = {
-      userIdx,
-      profileImage: null,
-    };
-
-    await handleModifyProfile(request)
-    .then(({ status }: ISuccessTypes) => {
-      if (status === 200) {
-        successToast('프로필 사진을 변경하였습니다.');
-        handleGetProfile(userIdx);
-      }
+    .catch((error: IErrorTypes) => {
+      const { message } = error.response.data;
+      errorToast(message);
+      return;
     })
-  }, [handleModifyProfile, handleGetProfile, userIdx]);
+  }, [handleFileUpload]);
 
   const requestChangeProfile = useCallback(async () => {
     const request: IProfileModifyTypes = {
       userIdx,
-      profileImage: selectImage,
+      profileImage: selectImage ? selectImage : null,
     }
 
     await handleModifyProfile(request)
@@ -60,7 +52,13 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
         successToast('프로필 사진을 변경하였습니다.');
         handleGetProfile(userIdx);
       }
-    });
+    })
+
+    .catch((error: IErrorTypes) => {
+      const { message } = error.response.data;
+      errorToast(message);
+      return;
+    })
   }, [userIdx, selectImage, handleModifyProfile, handleGetProfile]);
 
   useEffect(() => {
@@ -79,7 +77,7 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
     <Profile
       userInfo ={userInfo}
       handleCloseModal ={handleCloseModal}
-      requestDefaultImage ={requestDefaultImage}
+      requestChangeProfile={requestChangeProfile}
       requestImageUpload={requestImageUpload}
     />
   )
