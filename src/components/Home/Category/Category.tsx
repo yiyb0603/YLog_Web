@@ -34,23 +34,27 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 	return (
 		<div className={cx('Category')}>
 			<div className ={cx('Category-RowWrapper')}>
-			{
-				categoryList.map((category: ICategoryListTypes) => {
-					const { idx, category_name, post_count } = category;
+				<div className ={cx('RowCategoryItem', {
+      		'RowCategoryItem-Current': !topic
+    		})} onClick={() => router.push('/')}>전체보기</div>
 
-					return (
-						<RowCategoryItem
-							key={idx}
-							idx={idx}
-							categoryName={category_name}
-							postCount={post_count}
-							setCategoryInfo={setCategoryInfo}
-							setIsModify={setIsModify}
-							requestDeleteCategory={requestDeleteCategory}
-						/>
-					);
-				})
-			}
+				{
+					categoryList.map((category: ICategoryListTypes) => {
+						const { idx, category_name, post_count } = category;
+
+						return (
+							<RowCategoryItem
+								key={idx}
+								idx={idx}
+								categoryName={category_name}
+								postCount={post_count}
+								setCategoryInfo={setCategoryInfo}
+								setIsModify={setIsModify}
+								requestDeleteCategory={requestDeleteCategory}
+							/>
+						);
+					})
+				}
 			</div>
 
 			<div className ={cx('Category-ColumnWrapper')}>

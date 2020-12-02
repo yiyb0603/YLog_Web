@@ -4,6 +4,7 @@ import { ClassNamesFn } from "classnames/types";
 import { AiOutlineLike } from 'react-icons/ai';
 import { ILikeTypes } from "interface/LikeTypes";
 import getMyInfo from "lib/util/getMyInfo";
+import { warningToast } from "lib/Toast";
 
 const style = require("./PostLike.scss");
 const cx: ClassNamesFn = classNames.bind(style);
@@ -19,7 +20,12 @@ const PostLike = ({ likeList, requestPostCount, requestDeleteCount }: PostLikePr
   const isPressed: number = likeList && likeList.findIndex((like: ILikeTypes) => like.user_idx === myInfo.idx);
 
   const requestFunction = useCallback((): void => {
-    isPressed > -1 ? requestDeleteCount() : requestPostCount();
+    if (myInfo) {
+      isPressed > -1 ? requestDeleteCount() : requestPostCount();
+      return;
+    }
+
+    warningToast("로그인 후 좋아요가 가능합니다.");
   }, [requestPostCount, requestDeleteCount, isPressed]);
 
   return (

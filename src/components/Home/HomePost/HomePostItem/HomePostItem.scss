@@ -13,6 +13,19 @@
 	}
 }
 
+@mixin iconStyle($color) {
+	display: flex;
+	display: -webkit-flex;
+	align-items: center;
+	margin-right: 5px;
+	color: $color;
+	font-weight: bold;
+
+	& > div {
+		margin-top: 2px;
+	}
+}
+
 .HomePost {
 	&-Item {
 		position: relative;
@@ -111,20 +124,18 @@
 				height: 100%;
 
 				&-ViewCount {
-					display: flex;
-					display: -webkit-flex;
-					align-items: center;
-					margin-right: 5px;
+					@include iconStyle($black);
+				}
+
+				&-LikeCount {
+					@include iconStyle($primary);
 				}
 
 				&-CommentLength {
-					display: flex;
-					display: -webkit-flex;
-					align-items: center;
-					margin-right: 5px;
+					@include iconStyle($primary);
 
 					& > div {
-						margin-left: 3px;
+						margin-left: 2px;
 					}
 				}
 

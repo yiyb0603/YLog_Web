@@ -31,6 +31,7 @@ export interface IPostListTypes {
 	thumbnail?: string | null | undefined;
 	writer?: string;
 	category_idx?: number;
+	like_count?: number;
 	comment_length?: number;
 	view_count?: number;
 	is_temp?: boolean;
