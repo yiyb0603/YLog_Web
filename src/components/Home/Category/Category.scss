@@ -2,8 +2,13 @@
 @import '../../../styles/Palette/Palette.scss';
 
 .Category {
+	position: fixed;
 	min-width: 200px;
 	padding: 5px;
+
+	@media screen and (max-width: 650px) {
+		position: static;
+	}
 
 	&-RowWrapper {
 		display: flex;

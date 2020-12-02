@@ -1,8 +1,8 @@
 import React, { SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
-import { MdComment } from 'react-icons/md';
-import { AiOutlineEye } from 'react-icons/ai';
+import { VscComment } from 'react-icons/vsc';
+import { AiOutlineEye, AiOutlineLike } from 'react-icons/ai';
 import { ClassNamesFn } from 'classnames/types';
 import { ICategoryListTypes } from 'interface/CategoryTypes';
 import { IUserInfoTypes } from 'interface/AuthTypes';
@@ -25,6 +25,7 @@ interface HomePostItemProps {
 	writer: string;
 	commentLength: number;
 	viewCount: number;
+	likeCount: number;
 	categoryList: ICategoryListTypes[];
 	requestDeletePost: (idx: number) => Promise<void>;
 }
@@ -40,6 +41,7 @@ const HomePostItem = ({
 	writer,
 	commentLength,
 	viewCount,
+	likeCount,
 	categoryList,
 	requestDeletePost,
 }: HomePostItemProps) => {
@@ -111,8 +113,12 @@ const HomePostItem = ({
 						<AiOutlineEye />
 						<div>{viewCount}</div>
 					</div>
+					<div className={cx('HomePost-Item-Bottom-RightWrapper-LikeCount')}>
+						<AiOutlineLike />
+						<div>{likeCount}</div>
+					</div>
 					<div className ={cx('HomePost-Item-Bottom-RightWrapper-CommentLength')}>
-						<MdComment />
+						<VscComment />
 						<div>{commentLength}</div>
 					</div>
 					<div className={cx('HomePost-Item-Bottom-RightWrapper-Writer')}>{writer}</div>

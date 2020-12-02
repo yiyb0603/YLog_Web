@@ -29,15 +29,17 @@ const Home = ({ postList, noticeList, categoryList }: IHomeProps) => {
 				</div>
 
 				<div className={cx('Home-Right')}>
-					{isAdmin() && (
-						<WriteButton
-							nextFunction ={() => router.push('/post/postwrite')}
-						>
-							<HiPencil />
-							<div>글 작성</div>
-						</WriteButton>
-					)}
-					<CategoryContainer categories={categoryList} />
+					<div>
+						{isAdmin() && (
+							<WriteButton
+								nextFunction ={() => router.push('/post/postwrite')}
+							>
+								<HiPencil />
+								<div>글 작성</div>
+							</WriteButton>
+						)}
+						<CategoryContainer categories={categoryList} />
+					</div>
 				</div>
 			</div>
 		</div>

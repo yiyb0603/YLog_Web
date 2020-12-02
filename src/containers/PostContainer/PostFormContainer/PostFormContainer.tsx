@@ -57,7 +57,6 @@ const PostFormContainer = observer(() => {
 			thumbnail: thumbnail || null,
 			isTemp,
 		};
-		console.log(request);
 
 		if (!validationPostWrite(request)) {
 			return;
@@ -99,18 +98,18 @@ const PostFormContainer = observer(() => {
 		console.log(isTemp);
 
 		await handleModifyPost(request)
-		.then((response: ISuccessTypes) => {
-			if (response.status === 200) {
-				showAlert('성공', '글 수정을 성공하였습니다.', 'success');
-				router.push('/');
-			}
-		})
+			.then((response: ISuccessTypes) => {
+				if (response.status === 200) {
+					showAlert('성공', '글 수정을 성공하였습니다.', 'success');
+					router.push('/');
+				}
+			})
 
-		.catch((error: IErrorTypes) => {
-			const { message } = error.response.data;
-			errorToast(message);
-			return;
-		});
+			.catch((error: IErrorTypes) => {
+				const { message } = error.response.data;
+				errorToast(message);
+				return;
+			});
 	}, [idx, title, introduction, contents, categoryIdx, thumbnail, handleModifyPost, router]);
 
 	const clickButton = useCallback((e: MouseEvent<HTMLButtonElement>) => {
@@ -143,7 +142,7 @@ const PostFormContainer = observer(() => {
 			)}
 			categoryList={categoryList}
 			requestThumbnailUpload={requestThumbnailUpload}
-			requestImageUpload ={ImageUpload}
+			requestImageUpload={ImageUpload}
 			requestWritePost={clickButton}
 		/>
 	);
@@ -153,14 +152,14 @@ const PostFormContainer = observer(() => {
 
 		if (idx) {
 			handlePostView(idx)
-			.then((response: IPostResponseTypes) => {
-				const { post } = response.data;
-				setTitle(post.title!);
-				setIntroduction(post.introduction!);
-				setContents(post.contents!);
-				setCategoryIdx(post.category_idx!);
-				setThumbnail(post.thumbnail!);
-			});
+				.then((response: IPostResponseTypes) => {
+					const { post } = response.data;
+					setTitle(post.title!);
+					setIntroduction(post.introduction!);
+					setContents(post.contents!);
+					setCategoryIdx(post.category_idx!);
+					setThumbnail(post.thumbnail!);
+				});
 		}
 	}, [idx, handlePostView, handleCategoryList]);
 

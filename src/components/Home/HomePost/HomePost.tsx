@@ -36,7 +36,8 @@ const HomePost = ({
 							thumbnail,
 							updated_at,
 							comment_length,
-							view_count
+							view_count,
+							like_count,
 						} = post;
 
 						return (
@@ -51,6 +52,7 @@ const HomePost = ({
 								writer={writer!}
 								thumbnail={thumbnail!}
 								viewCount ={view_count!}
+								likeCount={like_count!}
 								commentLength ={comment_length!}
 								categoryList={categoryList}
 								requestDeletePost={requestDeletePost}

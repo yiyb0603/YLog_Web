@@ -3,7 +3,8 @@
 
 .Footer {
 	width: 100%;
-	height: 70px;
+	height: 100px;
+	background-color: rgba($rgbaBackground, 0.02);
 	display: flex;
 	display: -webkit-flex;
 	flex-direction: column;
