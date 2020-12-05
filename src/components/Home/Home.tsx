@@ -8,13 +8,16 @@ import NoticeContainer from 'containers/NoticeContainer';
 import isAdmin from 'lib/util/isAdmin';
 import WriteButton from 'components/Common/Button/WriteButton';
 import { HiPencil } from 'react-icons/hi';
+import { AiOutlineGithub } from 'react-icons/ai';
 import { IHomeProps } from '../../../pages';
+import Constants from 'Constants';
 
 const style = require('./Home.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const Home = ({ postList, noticeList, categoryList }: IHomeProps) => {
 	const router: NextRouter = useRouter();
+	const { GITHUB_ADDRESS } = Constants;
 
 	return (
 		<div className={cx('Home')}>
@@ -30,14 +33,20 @@ const Home = ({ postList, noticeList, categoryList }: IHomeProps) => {
 
 				<div className={cx('Home-Right')}>
 					<div>
-						{isAdmin() && (
+						<button className={cx('Home-Right-Github')} onClick={() => window.open(GITHUB_ADDRESS)}>
+							<AiOutlineGithub style ={{ fontSize: 25 }} />
+							<div>Github</div>
+						</button>
+
+						{
+							isAdmin() ?
 							<WriteButton
 								nextFunction ={() => router.push('/post/postwrite')}
 							>
 								<HiPencil />
 								<div>글 작성</div>
-							</WriteButton>
-						)}
+							</WriteButton> : <></>
+						}
 						<CategoryContainer categories={categoryList} />
 					</div>
 				</div>

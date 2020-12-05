@@ -19,7 +19,6 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 	const { store } = useStores();
 	const { handleSendCode, handleAdminCheck, handleEmailDuplicate, isLoading } = store.AuthStore;
 
-	const [isAdminCheck, setIsAdminCheck] = useState<boolean>(true);
 	const [isEntered, setIsEntered] = useState<boolean>(false);
 	const [registerInfo, setRegisterInfo] = useState<ISignUpTypes>({});
 
@@ -41,43 +40,45 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 			return;
 		}
 
+		let isError: boolean = false;
 		if (adminCode) {
 			await handleAdminCheck(adminCode)
 			.catch((error: IErrorTypes) => {
-				setIsAdminCheck(false);
+				isError = true;
 				
 				const { message } = error.response.data;
 				errorToast(message);
-				return;
-			})
+			});
+		}
+
+		if (isError) {
+			return;
 		}
 		
-		if (isAdminCheck) {
-			await handleEmailDuplicate(email)
-			.then(async () => {
-				await handleSendCode(email)
-				.then((response: ISuccessTypes) => {
-					if (response.status === 200) {
-						successToast('인증코드를 발송하였습니다!');
-						setRegisterInfo(request);
-						setIsEntered(true);
-					}
-				})
-	
-				.catch((error: IErrorTypes) => {
-					const { message } = error.response.data;
-					errorToast(message);
-					return;
-				});
+		await handleEmailDuplicate(email)
+		.then(async () => {
+			await handleSendCode(email)
+			.then((response: ISuccessTypes) => {
+				if (response.status === 200) {
+					successToast('인증코드를 발송하였습니다!');
+					setRegisterInfo(request);
+					setIsEntered(true);
+				}
 			})
-			
+	
 			.catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;
 			});
-		}
-	}, [name, email, againPassword, password, adminCode, isAdminCheck, handleAdminCheck, handleEmailDuplicate, handleSendCode, validationSignUp]);
+		})
+			
+		.catch((error: IErrorTypes) => {
+			const { message } = error.response.data;
+			errorToast(message);
+			return;
+		});
+	}, [name, email, againPassword, password, adminCode, handleAdminCheck, handleEmailDuplicate, handleSendCode, validationSignUp]);
 
 	return (
 		<>

@@ -71,7 +71,7 @@ const SignUp = ({
 
 					{checkAdmin && (
 						<AuthInput
-							type="password"
+							type="text"
 							placeholder="어드민 코드를 입력해주세요"
 							value={adminCode}
 							setValue={setAdminCode}

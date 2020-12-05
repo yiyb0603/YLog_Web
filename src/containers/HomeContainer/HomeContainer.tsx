@@ -5,6 +5,8 @@ import Constants from 'Constants';
 import { IHomeProps } from '../../../pages';
 import { NextRouter, useRouter } from 'next/router';
 import isAdmin from 'lib/util/isAdmin';
+import { getUserToken } from 'Token/Token';
+import { clearStorage } from 'lib/Storage';
 
 const HomeContainer = ({ postList, noticeList, categoryList }: IHomeProps) => {
 	const router: NextRouter = useRouter();
@@ -12,6 +14,10 @@ const HomeContainer = ({ postList, noticeList, categoryList }: IHomeProps) => {
 	const { ADMIN_TOKEN } = Constants;
 
 	useEffect(() => {
+		if (!getUserToken()) {
+			clearStorage();
+		}
+		
 		if (isTemp && (!isAdmin())) {
 			router.push('/');
 		}
