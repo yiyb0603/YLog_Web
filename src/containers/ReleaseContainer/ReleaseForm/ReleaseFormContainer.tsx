@@ -95,7 +95,7 @@ const ReleaseFormContainer = observer(() => {
     <ReleaseForm
       titleObject ={GroupingState('title', title, setTitle)}
       contentsObject ={GroupingState('contents', contents, setContents)}
-      requestFunction ={requestModifyRelease}
+      requestFunction ={releaseIdx ? requestModifyRelease : requestWriteRelease}
     />
   );
 });

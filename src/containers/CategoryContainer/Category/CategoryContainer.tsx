@@ -23,6 +23,8 @@ const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => 
 		handleDeleteCategory,
 	} = store.CategoryStore;
 
+	const { postList } = store.PostStore;
+
 	const requestInitialData = useCallback(async () => {
 		await handleCategoryList(keyword && keyword)
 		.catch((error: IErrorTypes) => {
@@ -59,6 +61,7 @@ const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => 
 		<Category
 			categoryList={categoryList}
 			requestDeleteCategory={requestDeleteCategory}
+			postLength={postList.length}
 		/>
 	);
 });

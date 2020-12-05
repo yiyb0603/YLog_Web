@@ -66,7 +66,7 @@ export default class AuthStore {
 	handleAdminCheck = async (adminCode: string) => {
 		this.isLoading = true;
 		try {
-			const response: ISuccessTypes = await postRequest('/auth/admin-check', { adminCode });
+			const response: ISuccessTypes = await postRequest('/auth/check-admin', { adminCode });
 			return response;
 		} catch (error) {
 			throw error;

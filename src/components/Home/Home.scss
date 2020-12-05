@@ -44,5 +44,30 @@
 		display: -webkit-flex;
 		flex-flow: column wrap;
 		position: relative;
+
+		&-Github {
+			width: 200px;
+			border: none;
+			outline: none;
+			color: $white;
+			font-size: $font_25;
+			background-color: $black;
+			margin-bottom: 5px;
+			display: flex;
+			display: -webkit-flex;
+			justify-content: center;
+			border-radius: 5px;
+			padding: 10px 0;
+			cursor: pointer;
+
+			& > div {
+				margin-left: 5px;
+			}
+
+			@media screen and (max-width: 650px) {
+				width: 100%;
+				margin-top: 5px;
+			}
+		}
 	}
 }

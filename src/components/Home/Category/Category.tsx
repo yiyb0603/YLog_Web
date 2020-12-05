@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { CSSProperties, useState } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { BsPencil } from 'react-icons/bs';
@@ -19,9 +19,10 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface CategoryProps {
 	categoryList: ICategoryListTypes[];
 	requestDeleteCategory: (idx: number) => Promise<void>;
+	postLength: number;
 }
 
-const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
+const Category = ({ categoryList, requestDeleteCategory, postLength }: CategoryProps) => {
 	const [isCreate, setIsCreate] = useState<boolean>(false);
 	const [isModify, setIsModify] = useState<boolean>(false);
 	const [categoryInfo, setCategoryInfo] = useState<IPostCategoryTypes>({});
@@ -31,8 +32,12 @@ const Category = ({ categoryList, requestDeleteCategory }: CategoryProps) => {
 		query: { topic, keyword, isTemp },
 	}: NextRouter = router;
 
+	const fixStyle: CSSProperties = {
+		position: postLength > 0 ? 'fixed' : 'relative',
+	};
+
 	return (
-		<div className={cx('Category')}>
+		<div className={cx('Category')} style={fixStyle}>
 			<div className ={cx('Category-RowWrapper')}>
 				<div className ={cx('RowCategoryItem', {
       		'RowCategoryItem-Current': !topic
