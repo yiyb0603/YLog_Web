@@ -1,4 +1,4 @@
-export default interface ISuccessTypes {
+export default interface ISuccess {
 	status: number;
 	message: string;
 }

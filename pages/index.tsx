@@ -3,8 +3,8 @@ import HomeContainer from 'containers/HomeContainer';
 import PageTemplate from 'components/Template/PageTemplate';
 import stores from 'stores';
 import { IPostListTypes, IPostResponseListTypes } from 'interface/PostTypes';
-import { ICategoryListTypes, ICategoryResponseTypes } from 'interface/CategoryTypes';
-import { INotceResponseListTypes, INoticeRequestTypes } from 'interface/NoticeTypes';
+import { ICategoryList, ICategoryResponseTypes } from 'interface/CategoryTypes';
+import { INotceResponseListTypes, INotice } from 'interface/NoticeTypes';
 import dynamic from 'next/dynamic';
 
 // const PageTemplate = dynamic(() => import('components/Template/PageTemplate'));
@@ -12,8 +12,8 @@ import dynamic from 'next/dynamic';
 
 export interface IHomeProps {
 	postList: IPostListTypes[];
-	categoryList: ICategoryListTypes[];
-	noticeList: INoticeRequestTypes[];
+	categoryList: ICategoryList[];
+	noticeList: INotice[];
 }
 
 class IndexPage extends Component<IHomeProps> {
@@ -26,10 +26,10 @@ class IndexPage extends Component<IHomeProps> {
 		const postList: IPostListTypes[] = postResponse.data.posts;
 
 		const categoryResponse: ICategoryResponseTypes = await handleCategoryList();
-		const categoryList: ICategoryListTypes[] = categoryResponse.data;
+		const categoryList: ICategoryList[] = categoryResponse.data;
 
 		const noticeResponse: INotceResponseListTypes = await handleNoticeList();
-		const noticeList: INoticeRequestTypes[] = noticeResponse.data.notices;
+		const noticeList: INotice[] = noticeResponse.data.notices;
 
 		return {
 			postList,

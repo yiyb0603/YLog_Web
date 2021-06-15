@@ -1,16 +1,8 @@
-import ISuccessTypes from './SuccessTypes';
+import { IUser } from './AuthTypes';
+import ISuccess from './SuccessTypes';
 
-export interface IMemberResponseTypes extends ISuccessTypes {
+export interface IMemberResponse extends ISuccess {
 	data: {
-		members: IMemberTypes[];
+		members: IUser[];
 	};
-}
-
-export interface IMemberTypes {
-	idx: number;
-	name: string;
-	email: string;
-	is_admin: boolean;
-	joined_at?: Date | string;
-	profile_image?: string | null;
 }

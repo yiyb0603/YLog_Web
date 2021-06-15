@@ -2,10 +2,10 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import NoticeList from 'components/Home/NoticeList';
-import { INoticeRequestTypes } from 'interface/NoticeTypes';
+import { INotice } from 'interface/NoticeTypes';
 
 interface INoticeContainerProps {
-	notices: INoticeRequestTypes[];
+	notices: INotice[];
 }
 
 const NoticeContainer = observer(({ notices }: INoticeContainerProps) => {

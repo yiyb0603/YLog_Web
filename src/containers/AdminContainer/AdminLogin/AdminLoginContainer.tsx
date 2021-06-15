@@ -11,7 +11,7 @@ import SecureLS from 'secure-ls';
 import axios from 'axios';
 import Constants from 'Constants';
 import validationSignIn from 'validation/Auth/validationSignIn';
-import { ISignInResponseTypes, ISignInTypes } from 'interface/AuthTypes';
+import { ISignInResponseTypes, ISignInDto } from 'interface/AuthTypes';
 import AdminLogin from 'components/Admin/AdminLogin';
 import { removeCookie, setCookie } from 'lib/Cookie';
 
@@ -26,7 +26,7 @@ const AdminLoginContainer = observer(() => {
 	const [password, setPassword] = useState<string>('');
 
 	const requestAdminLogin = useCallback(async () => {
-		const request: ISignInTypes = {
+		const request: ISignInDto = {
 			email,
 			password: sha512(password),
 		};

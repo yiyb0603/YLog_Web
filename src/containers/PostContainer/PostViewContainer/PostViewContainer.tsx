@@ -5,13 +5,13 @@ import IErrorTypes from 'interface/ErrorTypes';
 import { NextRouter, useRouter } from 'next/router';
 import PostView from 'components/Post/PostView';
 import { errorToast } from 'lib/Toast';
-import { ICategoryListTypes } from 'interface/CategoryTypes';
+import { ICategoryList } from 'interface/CategoryTypes';
 import PostLoading from 'components/Common/Loading/PostLoading';
-import { IPostListTypes } from 'interface/PostTypes';
 import isAdmin from 'lib/util/isAdmin';
+import { IPost } from 'interface/PostTypes';
 
 interface IPostViewContainerProps {
-	post: IPostListTypes;
+	post: IPost;
 }
 
 const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
@@ -22,8 +22,8 @@ const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
 	const router: NextRouter = useRouter();
 	const { idx } = router.query;
 
-	const categoryName: ICategoryListTypes = categoryList.find(
-		(category: ICategoryListTypes) => category.idx === postInfo.category_idx
+	const categoryName: ICategoryList = categoryList.find(
+		(category: ICategoryList) => category.idx === postInfo.category_idx
 	);
 
 	const requestPostView = useCallback(async (): Promise<void> => {
@@ -41,7 +41,7 @@ const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
 	}, [idx, post, handleCategoryList, handlePostView]);
 
 	useEffect(() => {
-		if (post.is_temp && (!isAdmin())) {
+		if (post.isTemp && (!isAdmin())) {
 			router.back();
 			return;
 		}

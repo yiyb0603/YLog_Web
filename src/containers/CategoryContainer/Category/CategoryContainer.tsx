@@ -4,12 +4,12 @@ import Category from 'components/Home/Category';
 import useStores from 'lib/hooks/useStores';
 import IErrorTypes from 'interface/ErrorTypes';
 import { errorToast, successToast } from 'lib/Toast';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { NextRouter, useRouter } from 'next/router';
-import { ICategoryListTypes } from 'interface/CategoryTypes';
+import { ICategoryList } from 'interface/CategoryTypes';
 
 interface ICategoryContainerProps {
-	categories: ICategoryListTypes[];
+	categories: ICategoryList[];
 }
 
 const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => {
@@ -37,7 +37,7 @@ const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => 
 	const requestDeleteCategory = useCallback(
 		async (idx: number) => {
 			await handleDeleteCategory(idx)
-				.then(async (response: ISuccessTypes) => {
+				.then(async (response: ISuccess) => {
 					if (response.status === 200) {
 						successToast('카테고리를 삭제하였습니다.');
 						await requestInitialData();

@@ -2,9 +2,9 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { NextRouter, useRouter } from 'next/router';
 import useStores from 'lib/hooks/useStores';
-import { IReleaseTypes } from 'interface/ReleaseTypes';
+import { IRelease } from 'interface/ReleaseTypes';
 import { validationReleaseWrite } from 'validation/Release/validationRelease';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
 import IErrorTypes from 'interface/ErrorTypes';
 import { errorToast } from 'lib/Toast';
@@ -22,7 +22,7 @@ const ReleaseFormContainer = observer(() => {
   const [contents, setContents] = useState<string>('');
 
   const requestWriteRelease = useCallback(async (): Promise<void> => {
-    const request: IReleaseTypes = {
+    const request: IRelease = {
       title,
       contents,
     };
@@ -32,7 +32,7 @@ const ReleaseFormContainer = observer(() => {
     }
 
     await handleCreateRelease(request)
-    .then(({ status }: ISuccessTypes) => {
+    .then(({ status }: ISuccess) => {
       if (status === 200) {
         showAlert('성공', '릴리즈 노트를 작성하였습니다.', 'success');
         router.push('/release');
@@ -47,7 +47,7 @@ const ReleaseFormContainer = observer(() => {
   }, [title, contents, handleCreateRelease, router]);
 
   const requestModifyRelease = useCallback(async (): Promise<void> => {
-    const request: IReleaseTypes = {
+    const request: IRelease = {
       idx: releaseIdx,
       title,
       contents
@@ -58,7 +58,7 @@ const ReleaseFormContainer = observer(() => {
     }
 
     await handleModifyRelease(request)
-    .then(({ status }: ISuccessTypes) => {
+    .then(({ status }: ISuccess) => {
       if (status === 200) {
         showAlert('성공', '릴리즈 노트를 수정하였습니다.', 'success');
         router.push(`/release/${releaseIdx}`);

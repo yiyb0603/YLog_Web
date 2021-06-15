@@ -1,6 +1,6 @@
-import ISuccessTypes from "./SuccessTypes";
+import ISuccess from "./SuccessTypes";
 
-export interface ILikeResponseTypes extends ISuccessTypes {
+export interface ILikeResponseTypes extends ISuccess {
   data: {
     likes: ILikeTypes[];
   }

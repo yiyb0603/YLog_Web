@@ -5,7 +5,7 @@ import { IPostListTypes } from 'interface/PostTypes';
 import CommentContainer from 'containers/CommentContainer';
 import CommentWriteContainer from 'containers/CommentContainer/CommentWrite';
 import parseTime from 'lib/TimeCounting';
-import { ICategoryListTypes } from 'interface/CategoryTypes';
+import { ICategoryList } from 'interface/CategoryTypes';
 import dynamic from 'next/dynamic';
 import LikeContainer from 'containers/LikeContainer';
 
@@ -17,7 +17,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface IPostViewProps {
 	postInfo: IPostListTypes;
 	commentLength: number;
-	categoryName: ICategoryListTypes;
+	categoryName: ICategoryList;
 }
 
 const PostView = ({ postInfo, commentLength, categoryName }: IPostViewProps) => {

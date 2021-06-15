@@ -5,10 +5,10 @@ import GroupingState from 'lib/util/GroupingState';
 import NoticeForm from 'components/Notice/NoticeForm';
 import { errorToast } from 'lib/Toast';
 import IErrorTypes from 'interface/ErrorTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
 import validationNoticeWrite from 'validation/Notice/validationNoticeWrite';
-import { INoticeRequestTypes, INoticeResponseTypes } from 'interface/NoticeTypes';
+import { INotice, INoticeResponseTypes } from 'interface/NoticeTypes';
 import { NextRouter, useRouter } from 'next/router';
 import NoticeTemplate from 'components/Notice/NoticeTemplate';
 
@@ -31,7 +31,7 @@ const NoticeFormContainer = observer(() => {
   }, [idx, handleNoticeView]);
   
   const requestCreateNotice = useCallback(async (): Promise<void> => {
-		const request: INoticeRequestTypes = {
+		const request: INotice = {
 			title,
 			contents,
 		};
@@ -41,7 +41,7 @@ const NoticeFormContainer = observer(() => {
 		}
 
 		await handleCreateNotice(request)
-			.then(({ status }: ISuccessTypes) => {
+			.then(({ status }: ISuccess) => {
 				if (status === 200) {
 					showAlert('성공', '공지사항 등록을 성공하였습니다.', 'success');
 					router.push(`/`);
@@ -56,7 +56,7 @@ const NoticeFormContainer = observer(() => {
 	}, [title, contents, handleCreateNotice, router]);
 
 	const requestModifyNotice = useCallback(async (): Promise<void> => {
-		const request: INoticeRequestTypes = {
+		const request: INotice = {
 			idx: Number(idx),
 			title,
 			contents,
@@ -67,7 +67,7 @@ const NoticeFormContainer = observer(() => {
 		}
 
 		await handleModifyNotice(request)
-			.then(({ status }: ISuccessTypes) => {
+			.then(({ status }: ISuccess) => {
 				if (status === 200) {
 					showAlert('성공', '공지사항을 수정하였습니다.', 'success');
 					router.push(`/`);

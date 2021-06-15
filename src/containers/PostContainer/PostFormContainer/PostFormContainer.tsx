@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useCallback, useEffect, useState, MouseEvent } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
-import { IPostRequestTypes, IPostResponseTypes } from 'interface/PostTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import { IPostDto, IPostResponseTypes } from 'interface/PostTypes';
+import ISuccess from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast } from 'lib/Toast';
@@ -49,7 +49,7 @@ const PostFormContainer = observer(() => {
 	);
 
 	const requestWritePost = useCallback(async (isTemp: boolean): Promise<void> => {
-		const request: IPostRequestTypes = {
+		const request: IPostDto = {
 			title,
 			introduction,
 			contents,
@@ -63,7 +63,7 @@ const PostFormContainer = observer(() => {
 		}
 
 		await handleWritePost(request)
-			.then((response: ISuccessTypes) => {
+			.then((response: ISuccess) => {
 				if (response.status === 200) {
 					showAlert('성공', '글 작성에 성공하였습니다.', 'success');
 					router.push('/');
@@ -98,7 +98,7 @@ const PostFormContainer = observer(() => {
 		console.log(isTemp);
 
 		await handleModifyPost(request)
-			.then((response: ISuccessTypes) => {
+			.then((response: ISuccess) => {
 				if (response.status === 200) {
 					showAlert('성공', '글 수정을 성공하였습니다.', 'success');
 					router.push('/');
@@ -157,7 +157,7 @@ const PostFormContainer = observer(() => {
 					setTitle(post.title!);
 					setIntroduction(post.introduction!);
 					setContents(post.contents!);
-					setCategoryIdx(post.category_idx!);
+					setCategoryIdx(post.category.idx);
 					setThumbnail(post.thumbnail!);
 				});
 		}

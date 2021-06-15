@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import ReleaseList from 'components/Release/ReleaseList';
-import { IReleaseTypes } from 'interface/ReleaseTypes';
+import { IRelease } from 'interface/ReleaseTypes';
 import ReleaseItem from 'components/Release/ReleaseList/ReleaseItem';
 
 const ReleaseContainer = observer(() => {
   const { store } = useStores();
   const { handleReleaseList, releaseList } = store.ReleaseStore;
 
-  const releaseLists: JSX.Element[] = releaseList.map((release: IReleaseTypes) => {
+  const releaseLists: JSX.Element[] = releaseList.map((release: IRelease) => {
     const { idx, title, writer, created_at, updated_at } = release;
     return (
       <ReleaseItem

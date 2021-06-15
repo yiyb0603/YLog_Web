@@ -1,22 +1,22 @@
-import ISuccessTypes from './SuccessTypes';
+import ISuccess from './SuccessTypes';
 
-export interface INoticeRequestTypes {
+export interface INotice {
 	idx?: number;
 	title?: string;
 	writer?: string;
 	contents?: string;
-	created_at?: Date | string;
-	updated_at?: Date | string;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 }
 
-export interface INotceResponseListTypes extends ISuccessTypes {
+export interface INotceResponseListTypes extends ISuccess {
 	data: {
-		notices: INoticeRequestTypes[];
+		notices: INotice[];
 	};
 }
 
-export interface INoticeResponseTypes extends ISuccessTypes {
+export interface INoticeResponseTypes extends ISuccess {
 	data: {
-		notice: INoticeRequestTypes;
+		notice: INotice;
 	};
 }

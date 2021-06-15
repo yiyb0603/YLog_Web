@@ -1,11 +1,11 @@
 import { autobind } from 'core-decorators';
 import {
 	IPostListTypes,
-	IPostRequestTypes,
+	IPostDto,
 	IPostResponseListTypes,
 	IPostResponseTypes,
 } from 'interface/PostTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import {
 	deleteRequest,
 	getResponse,
@@ -70,9 +70,9 @@ export default class PostStore {
 	};
 
 	@action
-	handleWritePost = async (request: IPostRequestTypes) => {
+	handleWritePost = async (request: IPostDto) => {
 		try {
-			const response: ISuccessTypes = await postRequest(
+			const response: ISuccess = await postRequest(
 				'/post',
 				request,
 				getUserToken()
@@ -84,9 +84,9 @@ export default class PostStore {
 	};
 
 	@action
-	handleModifyPost = async (request: IPostRequestTypes) => {
+	handleModifyPost = async (request: IPostDto) => {
 		try {
-			const response: ISuccessTypes = await modifyRequest(
+			const response: ISuccess = await modifyRequest(
 				'/post',
 				request,
 				getUserToken()
@@ -100,7 +100,7 @@ export default class PostStore {
 	@action
 	handleDeletePost = async (idx: number) => {
 		try {
-			const response: ISuccessTypes = await deleteRequest(
+			const response: ISuccess = await deleteRequest(
 				`/post?idx=${idx}`,
 				getUserToken()
 			);

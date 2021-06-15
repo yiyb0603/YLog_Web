@@ -1,8 +1,8 @@
-import { ISignInTypes } from "interface/AuthTypes";
+import { ISignInDto } from "interface/AuthTypes";
 import { errorToast } from "lib/Toast";
 import emailValidation from "validation/util/emailValidation";
 
-const validationSignIn = (request: ISignInTypes) => {
+const validationSignIn = (request: ISignInDto) => {
   const { email, password } = request;
 
   if (!email.trim() || !password.trim()) {

@@ -1,36 +1,36 @@
-import ISuccessTypes from './SuccessTypes';
+import ISuccess from './SuccessTypes';
 
-export interface ISignInResponseTypes extends ISuccessTypes {
+export interface ISignInResponseTypes extends ISuccess {
 	data: {
 		ylogToken: string;
-		userInfo: IUserInfoTypes;
+		userInfo: IUser;
 	};
 }
 
-export interface IUserInfoTypes {
+export interface IUser {
 	idx: number;
 	name: string;
 	password: string;
 	email: string;
-	joined_at: string;
-	proflile_image: string;
-	is_admin: boolean | string | null;
-	is_allow: boolean;
+	joinedAt: string;
+	profileImage: string;
+	isAdmin: boolean | string | null;
+	isAllow: boolean;
 }
 
-export interface ISignUpTypes {
+export interface ISignUpDto {
 	password?: string;
 	name?: string;
 	email?: string;
 	adminCode?: string | false | null;
 }
 
-export interface ISignInTypes {
+export interface ISignInDto {
 	email: string;
 	password: string;
 }
 
-export interface IEmailCodeTypes {
+export interface IEmailCodeDto {
 	email: string;
 	code: string;
 }

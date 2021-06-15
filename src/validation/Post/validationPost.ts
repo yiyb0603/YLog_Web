@@ -1,7 +1,7 @@
-import { IPostRequestTypes } from "interface/PostTypes";
+import { IPostDto } from "interface/PostTypes";
 import { errorToast } from "lib/Toast";
 
-export const validationPostWrite = (request: IPostRequestTypes) => {
+export const validationPostWrite = (request: IPostDto) => {
   const { title, introduction, contents, categoryIdx, thumbnail } = request;
 
   if (!title.trim() || !introduction.trim() || !contents.trim()) {

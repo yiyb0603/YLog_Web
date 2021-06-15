@@ -4,8 +4,8 @@ import useStores from 'lib/hooks/useStores';
 import Profile from 'components/Home/Profile';
 import getMyInfo from 'lib/util/getMyInfo';
 import IUploadTypes from 'interface/UploadTypes';
-import { IProfileModifyTypes } from 'interface/ProfileTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import { IProfileModifyDto } from 'interface/ProfileTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
 import IErrorTypes from 'interface/ErrorTypes';
 
@@ -41,13 +41,13 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
   }, [handleFileUpload]);
 
   const requestChangeProfile = useCallback(async () => {
-    const request: IProfileModifyTypes = {
+    const request: IProfileModifyDto = {
       userIdx,
       profileImage: selectImage ? selectImage : null,
     }
 
     await handleModifyProfile(request)
-    .then(({ status }: ISuccessTypes) => {
+    .then(({ status }: ISuccess) => {
       if (status === 200) {
         successToast('프로필 사진을 변경하였습니다.');
         handleGetProfile(userIdx);

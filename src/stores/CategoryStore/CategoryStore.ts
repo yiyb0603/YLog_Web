@@ -1,10 +1,10 @@
 import { autobind } from 'core-decorators';
 import {
-	ICategoryListTypes,
+	ICategoryList,
 	ICategoryResponseTypes,
-	IPostCategoryTypes,
+	ICategory,
 } from 'interface/CategoryTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import {
 	deleteRequest,
 	getResponse,
@@ -16,7 +16,7 @@ import { action, observable } from 'mobx';
 
 @autobind
 export default class CategoryStore {
-	@observable categoryList: ICategoryListTypes[] = [];
+	@observable categoryList: ICategoryList[] = [];
 
 	@action
 	handleCategoryList = async (keyword?: string) => {
@@ -31,9 +31,9 @@ export default class CategoryStore {
 	};
 
 	@action
-	handleCreateCategory = async (request: IPostCategoryTypes) => {
+	handleCreateCategory = async (request: ICategory) => {
 		try {
-			const response: ISuccessTypes = await postRequest(
+			const response: ISuccess = await postRequest(
 				'/category',
 				request,
 				getUserToken()
@@ -45,9 +45,9 @@ export default class CategoryStore {
 	};
 
 	@action
-	handleModifyCategory = async (request: IPostCategoryTypes) => {
+	handleModifyCategory = async (request: ICategory) => {
 		try {
-			const response: ISuccessTypes = await modifyRequest(
+			const response: ISuccess = await modifyRequest(
 				'/category',
 				request,
 				getUserToken()
@@ -61,7 +61,7 @@ export default class CategoryStore {
 	@action
 	handleDeleteCategory = async (idx: number) => {
 		try {
-			const response: ISuccessTypes = await deleteRequest(
+			const response: ISuccess = await deleteRequest(
 				`/category?idx=${idx}`,
 				getUserToken()
 			);

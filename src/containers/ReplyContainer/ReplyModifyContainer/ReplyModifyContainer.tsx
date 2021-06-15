@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
-import { IReplyModifyTypes } from 'interface/ReplyTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import { IReplyModify } from 'interface/ReplyTypes';
+import ISuccess from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import ReplyModify from 'components/Post/Reply/ReplyModify';
 import GroupingState from 'lib/util/GroupingState';
@@ -44,7 +44,7 @@ const ReplyModifyContainer = observer(
 		}, []);
 
 		const requestModifyReply = useCallback(async () => {
-			const data: IReplyModifyTypes = {
+			const data: IReplyModify = {
 				idx: replyIdx,
 				commentIdx,
 				postIdx,
@@ -57,7 +57,7 @@ const ReplyModifyContainer = observer(
 			}
 
 			await handleModifyReply(data)
-				.then((response: ISuccessTypes) => {
+				.then((response: ISuccess) => {
 					if (response.status === 200) {
 						onBlur();
 						successToast('답글 수정을 성공하였습니다.');

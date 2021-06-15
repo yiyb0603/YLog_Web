@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import { ICommentRequestTypes } from 'interface/CommentTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import CommentWrite from 'components/Post/Comment/CommentWrite';
 import GroupingState from 'lib/util/GroupingState';
@@ -37,7 +37,7 @@ const CommentWriteContainer = observer(() => {
 
 		if (Number.isInteger(postIdx)) {
 			await handleCommentWrite(request)
-				.then(({ status }: ISuccessTypes) => {
+				.then(({ status }: ISuccess) => {
 					if (status === 200) {
 						successToast('댓글 작성에 성공하였습니다.');
 						setContents('');

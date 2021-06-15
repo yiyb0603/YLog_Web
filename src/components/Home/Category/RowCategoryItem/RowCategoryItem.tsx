@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react";
 import classNames from 'classnames';
 import { ClassNamesFn } from "classnames/types";
-import { IPostCategoryTypes } from "interface/CategoryTypes";
+import { ICategory } from "interface/CategoryTypes";
 import { NextRouter, useRouter } from "next/router";
 import { BsPen, BsTrash } from "react-icons/bs";
 import stringEllipsis from "lib/util/StringEllipsis";
@@ -15,7 +15,7 @@ interface RowCategoryItemProps {
   idx: number;
 	categoryName: string;
 	postCount: number;
-	setCategoryInfo: Dispatch<SetStateAction<IPostCategoryTypes>>;
+	setCategoryInfo: Dispatch<SetStateAction<ICategory>>;
 	setIsModify: Dispatch<SetStateAction<boolean>>;
 	requestDeleteCategory: (idx: number) => void;
 }

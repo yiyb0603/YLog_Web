@@ -1,24 +1,24 @@
-import ISuccessTypes from "./SuccessTypes";
+import ISuccess from './SuccessTypes';
 
-export interface IReleaseListResponseTypes extends ISuccessTypes {
+export interface IReleaseListResponse extends ISuccess {
   data: {
-    releases: IReleaseTypes[];
+    releases: IRelease[];
   }
 }
 
-export interface IReleaseResponseTypes extends ISuccessTypes {
+export interface IReleaseResponse extends ISuccess {
   data: {
-    release: IReleaseTypes;
+    release: IRelease;
   }
 }
 
-export interface IReleaseRequestTypes {
+export interface IReleaseDto {
   idx?: number;
   title: string;
   contents: string;
 }
 
-export interface IReleaseTypes {
+export interface IRelease {
   idx?: number;
   title?: string;
   contents?: string;

@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { NextRouter, useRouter } from 'next/router';
 import { BsPen, BsTrash } from 'react-icons/bs';
-import { IPostCategoryTypes } from 'interface/CategoryTypes';
+import { ICategory } from 'interface/CategoryTypes';
 import stringEllipsis from 'lib/util/StringEllipsis';
 import getMyInfo from 'lib/util/getMyInfo';
 import { IMemberTypes } from 'interface/MemberTypes';
@@ -15,7 +15,7 @@ interface CategoryItemProps {
 	idx: number;
 	categoryName: string;
 	post_count: number;
-	setCategoryInfo: Dispatch<SetStateAction<IPostCategoryTypes>>;
+	setCategoryInfo: Dispatch<SetStateAction<ICategory>>;
 	setIsModify: Dispatch<SetStateAction<boolean>>;
 	requestDeleteCategory: (idx: number) => void;
 }

@@ -1,6 +1,8 @@
-import ISuccessTypes from './SuccessTypes';
+import { IUser } from './AuthTypes';
+import { ICategory } from './CategoryTypes';
+import ISuccess from './SuccessTypes';
 
-export interface IPostRequestTypes {
+export interface IPostDto {
 	idx?: number;
 	title: string;
 	introduction: string;
@@ -10,31 +12,30 @@ export interface IPostRequestTypes {
 	isTemp: boolean;
 }
 
-export interface IPostResponseListTypes extends ISuccessTypes {
+export interface IPostResponseListTypes extends ISuccess {
 	data: {
-		posts: IPostListTypes[];
+		posts: IPost[];
 	};
 }
 
-export interface IPostResponseTypes extends ISuccessTypes {
+export interface IPostResponseTypes extends ISuccess {
 	data: {
-		post: IPostListTypes;
+		post: IPost;
 	};
 }
 
-export interface IPostListTypes {
+export interface IPost {
 	idx?: number;
 	title?: string;
-	writer_idx?: number;
 	contents?: string;
 	introduction?: string;
 	thumbnail?: string | null | undefined;
-	writer?: string;
-	category_idx?: number;
-	like_count?: number;
-	comment_length?: number;
-	view_count?: number;
-	is_temp?: boolean;
-	created_at?: Date | string;
-	updated_at?: Date | string;
+	category: ICategory;
+	user?: IUser;
+	likeCount?: number;
+	commentLength?: number;
+	viewCount?: number;
+	isTemp?: boolean;
+	createdAt?: Date | string;
+	updatedAt?: Date | string;
 }

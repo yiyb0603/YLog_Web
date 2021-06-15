@@ -5,7 +5,7 @@ import { NextRouter, useRouter } from 'next/router';
 import PostLike from 'components/Post/PostView/PostLike';
 import IErrorTypes from 'interface/ErrorTypes';
 import { errorToast } from 'lib/Toast';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import getMyInfo from 'lib/util/getMyInfo';
 import { ILikeTypes } from 'interface/LikeTypes';
 
@@ -28,7 +28,7 @@ const LikeContainer = observer(() => {
 
   const requestPostCount = useCallback(async (): Promise<void> => {
     await handlePostLike(postIdx)
-    .then(({ status }: ISuccessTypes) => {
+    .then(({ status }: ISuccess) => {
       if (status === 200) {
         requestLikeList();
       }
@@ -46,7 +46,7 @@ const LikeContainer = observer(() => {
     const myLikeIndex: number = likeList.lastIndexOf(myLike);
 
     await handleDeleteLike(likeList[myLikeIndex].idx)
-    .then(({ status }: ISuccessTypes) => {
+    .then(({ status }: ISuccess) => {
       if (status === 200) {
         requestLikeList();
       }

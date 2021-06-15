@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { ICategoryListTypes } from 'interface/CategoryTypes';
+import { ICategoryList } from 'interface/CategoryTypes';
 import SelectBox from 'components/Common/SelectBox';
 import TitleInput from 'components/Common/Input/TitleInput';
 import Thumbnail from 'components/Common/Button/Thumbnail';
@@ -41,7 +41,7 @@ const PostForm = ({
 					}
 				>
 					<option value={-1}>카테고리 선택</option>
-					{categoryList.map((category: ICategoryListTypes) => {
+					{categoryList.map((category: ICategoryList) => {
 						const { idx, category_name } = category;
 						return (
 							<option value={idx} key={idx}>

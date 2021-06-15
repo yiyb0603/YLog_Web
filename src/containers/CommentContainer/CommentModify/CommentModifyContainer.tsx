@@ -6,7 +6,7 @@ import { NextRouter, useRouter } from 'next/router';
 import useStores from 'lib/hooks/useStores';
 import { ICommentRequestTypes } from 'interface/CommentTypes';
 import IErrorTypes from 'interface/ErrorTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
 import { validateCreateComment } from 'validation/Comment/validationComment';
 
@@ -49,7 +49,7 @@ const CommentModifyContainer = observer(
 			}
 
 			await handleCommentModify(request)
-				.then(async ({ status }: ISuccessTypes) => {
+				.then(async ({ status }: ISuccess) => {
 					if (status === 200) {
 						onBlur();
 						successToast('댓글을 수정하였습니다.');

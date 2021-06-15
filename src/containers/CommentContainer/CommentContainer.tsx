@@ -5,7 +5,7 @@ import { NextRouter, useRouter } from 'next/router';
 import IErrorTypes from 'interface/ErrorTypes';
 import Comment from 'components/Post/Comment';
 import { errorToast, successToast } from 'lib/Toast';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 
 const CommentContainer = observer(() => {
 	const { store } = useStores();
@@ -35,7 +35,7 @@ const CommentContainer = observer(() => {
 	const requestCommentDelete = useCallback(
 		async (idx: number) => {
 			await handleCommentDelete(idx)
-				.then(async ({ status }: ISuccessTypes) => {
+				.then(async ({ status }: ISuccess) => {
 					if (status === 200) {
 						successToast('댓글을 삭제하였습니다.');
 						await handlePostView(postIdx);
@@ -55,7 +55,7 @@ const CommentContainer = observer(() => {
 	const requestDeleteReply = useCallback(
 		async (idx: number) => {
 			await handleDeleteReply(idx)
-				.then(async (response: ISuccessTypes) => {
+				.then(async (response: ISuccess) => {
 					if (response.status === 200) {
 						successToast('답글 삭제를 성공하였습니다.');
 						await handlePostView(postIdx);

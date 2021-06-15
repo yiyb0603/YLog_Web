@@ -1,5 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
 import { SERVER } from 'config/config.json';
+import { getUserToken } from 'Token/Token';
+
+// const userAxios = axios.create({
+// 	baseURL: SERVER,
+// 	headers: {
+// 		'ylog-token': getUserToken(),
+// 		'Access-Control-Allow-Origin': '*',
+// 	},
+// });
 
 export const getResponse = async (
 	url: string,

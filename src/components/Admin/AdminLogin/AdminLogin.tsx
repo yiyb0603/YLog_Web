@@ -23,22 +23,22 @@ const AdminLogin = ({
 				<div className={cx('AdminLogin-Title')}>YLog 관리자 로그인</div>
 				<div className={cx('AdminLogin-Form')}>
 					<AdminInput
-						type="email"
+						type='email'
 						value={email}
 						setValue={setEmail}
-						label="이메일"
+						label='이메일'
 						requestFunction={requestAdminLogin}
 					/>
 					<AdminInput
-						type="password"
+						type='password'
 						value={password}
 						setValue={setPassword}
-						label="비밀번호"
+						label='비밀번호'
 						requestFunction={requestAdminLogin}
 					/>
 
 					<FormButton
-						buttonValue="로그인"
+						buttonValue='로그인'
 						requestFunction={requestAdminLogin}
 					/>
 				</div>

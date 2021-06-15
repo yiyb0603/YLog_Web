@@ -4,7 +4,7 @@ import {
 	ICommentResponseListTypes,
 	ICommentResponseTypes,
 } from 'interface/CommentTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import {
 	deleteRequest,
 	getResponse,
@@ -105,7 +105,7 @@ export default class CommentStore {
 	@action
 	handleCommentWrite = async (request: ICommentRequestTypes) => {
 		try {
-			const response: ISuccessTypes = await postRequest(
+			const response: ISuccess = await postRequest(
 				'/comment',
 				request,
 				getUserToken()
@@ -119,7 +119,7 @@ export default class CommentStore {
 	@action
 	handleCommentModify = async (request: ICommentRequestTypes) => {
 		try {
-			const response: ISuccessTypes = await modifyRequest(
+			const response: ISuccess = await modifyRequest(
 				'/comment',
 				request,
 				getUserToken()
@@ -133,7 +133,7 @@ export default class CommentStore {
 	@action
 	handleCommentDelete = async (idx: number) => {
 		try {
-			const response: ISuccessTypes = await deleteRequest(
+			const response: ISuccess = await deleteRequest(
 				`/comment?idx=${idx}`,
 				getUserToken()
 			);

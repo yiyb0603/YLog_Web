@@ -1,16 +1,16 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import HomePost from 'components/Home/HomePost';
 import IErrorTypes from 'interface/ErrorTypes';
 import { errorToast, successToast } from 'lib/Toast';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import HomeLoading from 'components/Common/Loading/HomeLoading';
-import { IPostListTypes } from 'interface/PostTypes';
 import { NextRouter, useRouter } from 'next/router';
+import { IPost } from 'interface/PostTypes';
 
 interface IPostContainerProps {
-	posts: IPostListTypes[];
+	posts: IPost[];
 }
 
 const PostContainer = observer(({ posts }: IPostContainerProps) => {
@@ -27,7 +27,16 @@ const PostContainer = observer(({ posts }: IPostContainerProps) => {
 	} = store.PostStore;
 	const { handleCategoryList, categoryList } = store.CategoryStore;
 
-	const requestInitialData = useCallback(async () => {
+	const filterPost: IPost[] = useMemo(() => {
+		return topic ?
+			postList.filter((post: IPost) => post.category.idx === Number(topic) && !post.isTemp):
+
+			isTemp ?
+			postList.filter((post: IPost) => post.isTemp) :
+			postList.filter((post: IPost) => !post.isTemp);
+	}, []);
+
+	const requestInitialData = useCallback(async (): Promise<void> => {
 		if (!keyword) {
 			await handlePostList(posts && posts).catch((error: IErrorTypes) => {
 				const { message } = error.response.data;
@@ -51,9 +60,9 @@ const PostContainer = observer(({ posts }: IPostContainerProps) => {
 	}, [handlePostList, handleCategoryList, handleSearchPosts, keyword, posts]);
 
 	const requestDeletePost = useCallback(
-		async (idx: number) => {
+		async (idx: number): Promise<void> => {
 			await handleDeletePost(idx)
-				.then((response: ISuccessTypes) => {
+				.then((response: ISuccess) => {
 					if (response.status === 200) {
 						successToast('글 삭제를 성공하였습니다.');
 						handleCategoryList(keyword && keyword);
@@ -68,13 +77,6 @@ const PostContainer = observer(({ posts }: IPostContainerProps) => {
 		},
 		[handleDeletePost, handleCategoryList, keyword, posts]
 	);
-
-	const filterPost: IPostListTypes[] = topic ? 
-		postList.filter((post: IPostListTypes) => post.category_idx === Number(topic) && !post.is_temp):
-
-		isTemp ?
-		postList.filter((post: IPostListTypes) => post.is_temp) :
-		postList.filter((post: IPostListTypes) => !post.is_temp);
 
 	useEffect(() => {
 		requestInitialData();

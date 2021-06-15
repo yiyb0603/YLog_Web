@@ -1,7 +1,7 @@
-import { INoticeRequestTypes } from "interface/NoticeTypes";
+import { INotice } from "interface/NoticeTypes";
 import { errorToast } from "lib/Toast";
 
-const validationNoticeWrite = (request: INoticeRequestTypes) => {
+const validationNoticeWrite = (request: INotice) => {
   const { title, contents } = request;
 
   if (!title!.trim() || !contents!.trim()) {

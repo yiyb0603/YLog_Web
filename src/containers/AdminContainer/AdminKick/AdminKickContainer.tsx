@@ -5,7 +5,7 @@ import useStores from 'lib/hooks/useStores';
 import { IMemberTypes } from 'interface/MemberTypes';
 import MemberRow from 'components/Admin/AdminKick/MemberRow';
 import IErrorTypes from 'interface/ErrorTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
 import GroupingState from 'lib/util/GroupingState';
 import { confirmAlert } from 'lib/SweetAlert';
@@ -28,7 +28,7 @@ const AdminKickContainer = observer(() => {
 				'warning',
 				async () => {
 					await handleDeleteMember(memberIdx)
-						.then((response: ISuccessTypes) => {
+						.then((response: ISuccess) => {
 							if (response.status === 200) {
 								successToast('멤버를 강퇴하였습니다.');
 								handleMemberList(true);

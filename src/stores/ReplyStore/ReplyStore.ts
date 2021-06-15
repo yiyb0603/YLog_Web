@@ -1,8 +1,8 @@
 import { autobind } from 'core-decorators';
 import {
-	IReplyModifyTypes,
-	IReplyResponseTypes,
-	IReplyTypes,
+	IReplyModify,
+	IReplyResponse,
+	IReply,
 } from 'interface/ReplyTypes';
 import {
 	deleteRequest,
@@ -15,13 +15,13 @@ import { action, observable } from 'mobx';
 
 @autobind
 export default class ReplyStore {
-	@observable replyList: IReplyTypes[] = [];
+	@observable replyList: IReply[] = [];
 
 	@action
 	handleReplyList = async (postIdx: number) => {
 		try {
 			this.replyList = [];
-			const response: IReplyResponseTypes = await getResponse(
+			const response: IReplyResponse = await getResponse(
 				`/reply?postIdx=${postIdx}`
 			);
 			this.replyList = response.data.replies;
@@ -33,7 +33,7 @@ export default class ReplyStore {
 	};
 
 	@action
-	handleCreateReply = async (request: IReplyModifyTypes) => {
+	handleCreateReply = async (request: IReplyModify) => {
 		try {
 			const response = await postRequest('/reply', request, getUserToken());
 			return response;
@@ -43,7 +43,7 @@ export default class ReplyStore {
 	};
 
 	@action
-	handleModifyReply = async (request: IReplyTypes) => {
+	handleModifyReply = async (request: IReply) => {
 		try {
 			const response = await modifyRequest('/reply', request, getUserToken());
 			return response;

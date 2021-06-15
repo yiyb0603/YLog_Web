@@ -1,6 +1,6 @@
-import ISuccessTypes from './SuccessTypes';
+import ISuccess from './SuccessTypes';
 
-export interface ICommentResponseListTypes extends ISuccessTypes {
+export interface ICommentResponseListTypes extends ISuccess {
 	data: {
 		comments: ICommentResponseTypes[];
 	};
@@ -9,8 +9,8 @@ export interface ICommentResponseListTypes extends ISuccessTypes {
 export interface ICommentResponseTypes {
 	idx?: number;
 	contents?: string;
-	created_at?: Date | string;
-	post_idx?: number;
+	createdAt?: Date | string;
+	post?: number;
 	updated_at?: Date | null;
 	writer?: string | null;
 	writer_idx?: number | null;

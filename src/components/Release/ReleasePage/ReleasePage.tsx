@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from 'classnames';
 import { ClassNamesFn } from "classnames/types";
-import { IReleaseTypes } from "interface/ReleaseTypes";
+import { IRelease } from "interface/ReleaseTypes";
 import parseTime from "lib/TimeCounting";
 import { NextRouter, useRouter } from "next/router";
 import isAdmin from "lib/util/isAdmin";
@@ -13,7 +13,7 @@ const style = require("./ReleasePage.scss");
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface ReleasePageProps {
-  releaseInfo: IReleaseTypes;
+  releaseInfo: IRelease;
   requestReleaseDelete: (idx: number) => Promise<void>;
 }
 

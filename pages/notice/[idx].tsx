@@ -1,11 +1,11 @@
 import PageTemplate from 'components/Template/PageTemplate';
 import NoticeViewContainer from 'containers/NoticeContainer/NoticeView';
-import { INoticeRequestTypes, INoticeResponseTypes } from 'interface/NoticeTypes';
+import { INotice, INoticeResponseTypes } from 'interface/NoticeTypes';
 import React, { Component } from 'react';
 import stores from 'stores';
 
 interface INoticeViewPageProps {
-	notice: INoticeRequestTypes;
+	notice: INotice;
 }
 
 class NoticeViewPage extends Component<INoticeViewPageProps> {

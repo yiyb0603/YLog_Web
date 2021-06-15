@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { INoticeRequestTypes } from 'interface/NoticeTypes';
+import { INotice } from 'interface/NoticeTypes';
 import parseTime from 'lib/TimeCounting';
 import { NextRouter, useRouter } from 'next/router';
 import getMyInfo from 'lib/util/getMyInfo';
@@ -13,7 +13,7 @@ const style = require('./NoticeView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface NoticeViewProps {
-	noticeInfo: INoticeRequestTypes;
+	noticeInfo: INotice;
 	requestDeleteNotice: (idx: number) => Promise<void>;
 }
 

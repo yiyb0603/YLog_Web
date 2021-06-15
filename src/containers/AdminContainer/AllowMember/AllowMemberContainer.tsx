@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import AllowMember from 'components/Admin/AllowMember';
 import { errorToast, successToast } from 'lib/Toast';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import { IMemberTypes } from 'interface/MemberTypes';
 import MemberCard from 'components/Admin/AllowMember/MemberCard';
@@ -20,7 +20,7 @@ const AllowMemberContainer = observer(() => {
 	const requestAllowMember = useCallback(
 		async (memberIdx: number) => {
 			await handleAllowMember(memberIdx)
-				.then((response: ISuccessTypes) => {
+				.then((response: ISuccess) => {
 					if (response.status === 200) {
 						successToast('회원가입을 승인하였습니다.');
 						handleMemberList(null);
@@ -39,7 +39,7 @@ const AllowMemberContainer = observer(() => {
 	const requestRefuseMember = useCallback(
 		async (memberIdx: number) => {
 			await handleRefuseMember(memberIdx)
-				.then((response: ISuccessTypes) => {
+				.then((response: ISuccess) => {
 					if (response.status === 200) {
 						successToast('회원가입을 거절하였습니다.');
 						handleMemberList(null);

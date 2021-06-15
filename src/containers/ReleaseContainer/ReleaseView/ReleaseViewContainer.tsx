@@ -4,7 +4,7 @@ import useStores from 'lib/hooks/useStores';
 import { observer } from 'mobx-react';
 import { NextRouter, useRouter } from 'next/router';
 import PostLoading from 'components/Common/Loading/PostLoading';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
 import IErrorTypes from 'interface/ErrorTypes';
 import { errorToast, successToast } from 'lib/Toast';
@@ -31,7 +31,7 @@ const ReleaseViewContainer = observer(() => {
 
   const requestReleaseDelete = useCallback(async (idx: number) => {
     await handleDeleteRelease(idx)
-    .then(({ status }: ISuccessTypes) => {
+    .then(({ status }: ISuccess) => {
       if (status === 200) {
         showAlert('성공', '릴리즈 노트를 삭제하였습니다.', 'success');
         router.push('/release');

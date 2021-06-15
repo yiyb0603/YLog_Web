@@ -1,8 +1,8 @@
 import React, { useState, useCallback, Dispatch, SetStateAction } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
-import { IEmailCodeTypes, ISignUpTypes } from 'interface/AuthTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import { IEmailCodeDto, ISignUpDto } from 'interface/AuthTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
 import IErrorTypes from 'interface/ErrorTypes';
 import { showAlert } from 'lib/SweetAlert';
@@ -10,7 +10,7 @@ import EmailAuth from 'components/Auth/EmailAuth';
 import GroupingState from 'lib/util/GroupingState';
 
 interface IEmailContainerProps {
-	registerInfo: ISignUpTypes;
+	registerInfo: ISignUpDto;
 	setPageType: Dispatch<SetStateAction<string>>;
 }
 
@@ -23,7 +23,7 @@ const EmailContainer = observer(
 		const [code, setCode] = useState<string>('');
 
 		const requestCheckCode = useCallback(async (): Promise<boolean | void> => {
-			const request: IEmailCodeTypes = {
+			const request: IEmailCodeDto = {
 				email: email!,
 				code,
 			};
@@ -34,7 +34,7 @@ const EmailContainer = observer(
 			}
 
 			await handleCheckCode(request)
-				.then((response: ISuccessTypes) => {
+				.then((response: ISuccess) => {
 					if (response.status === 200) {
 						return true;
 					}
@@ -50,7 +50,7 @@ const EmailContainer = observer(
 		const requestSignUp = useCallback(async () => {
 			await requestCheckCode().then(async () => {
 				await handleSignUp(registerInfo)
-					.then((response: ISuccessTypes) => {
+					.then((response: ISuccess) => {
 						if (response.status === 200) {
 							showAlert(
 								'회원가입 성공',

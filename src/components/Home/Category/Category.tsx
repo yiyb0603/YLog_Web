@@ -4,8 +4,8 @@ import { ClassNamesFn } from 'classnames/types';
 import { BsPencil } from 'react-icons/bs';
 import CreateCategoryContainer from 'containers/CategoryContainer/CreateCategory/CreateCategoryContainer';
 import {
-	ICategoryListTypes,
-	IPostCategoryTypes,
+	ICategoryList,
+	ICategory,
 } from 'interface/CategoryTypes';
 import { NextRouter, useRouter } from 'next/router';
 import ModifyCategoryContainer from 'containers/CategoryContainer/ModifyCategory/ModifyCategoryContainer';
@@ -17,7 +17,7 @@ const style = require('./Category.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface CategoryProps {
-	categoryList: ICategoryListTypes[];
+	categoryList: ICategoryList[];
 	requestDeleteCategory: (idx: number) => Promise<void>;
 	postLength: number;
 }
@@ -25,7 +25,7 @@ interface CategoryProps {
 const Category = ({ categoryList, requestDeleteCategory, postLength }: CategoryProps) => {
 	const [isCreate, setIsCreate] = useState<boolean>(false);
 	const [isModify, setIsModify] = useState<boolean>(false);
-	const [categoryInfo, setCategoryInfo] = useState<IPostCategoryTypes>({});
+	const [categoryInfo, setCategoryInfo] = useState<ICategory>({});
 
 	const router: NextRouter = useRouter();
 	const {
@@ -44,7 +44,7 @@ const Category = ({ categoryList, requestDeleteCategory, postLength }: CategoryP
     		})} onClick={() => router.push('/')}>전체보기</div>
 
 				{
-					categoryList.map((category: ICategoryListTypes) => {
+					categoryList.map((category: ICategoryList) => {
 						const { idx, category_name, post_count } = category;
 
 						return (
@@ -86,7 +86,7 @@ const Category = ({ categoryList, requestDeleteCategory, postLength }: CategoryP
 						</span>
 					</li>
 
-					{categoryList.map((category: ICategoryListTypes) => {
+					{categoryList.map((category: ICategoryList) => {
 						const { idx, category_name, post_count } = category;
 
 						return (

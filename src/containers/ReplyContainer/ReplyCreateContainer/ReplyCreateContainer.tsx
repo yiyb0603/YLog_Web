@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
-import { IReplyModifyTypes } from 'interface/ReplyTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import { IReplyModify } from 'interface/ReplyTypes';
+import ISuccess from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import ReplyWrite from 'components/Post/Reply/ReplyWrite';
 import { errorToast, successToast } from 'lib/Toast';
@@ -32,7 +32,7 @@ const ReplyCreateContainer = observer(
 		const [isPrivate, setIsPrivate] = useState<boolean>(false);
 
 		const requestCreateReply = useCallback(async () => {
-			const request: IReplyModifyTypes = {
+			const request: IReplyModify = {
 				postIdx,
 				commentIdx,
 				contents,
@@ -44,7 +44,7 @@ const ReplyCreateContainer = observer(
 			}
 
 			await handleCreateReply(request)
-				.then(async (response: ISuccessTypes) => {
+				.then(async (response: ISuccess) => {
 					if (response.status === 200) {
 						setIsReply(true);
 						setContents('');

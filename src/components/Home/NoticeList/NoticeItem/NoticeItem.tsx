@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { INoticeRequestTypes } from 'interface/NoticeTypes';
+import { INotice } from 'interface/NoticeTypes';
 import { NextRouter, useRouter } from 'next/router';
 import stringEllipsis from 'lib/util/StringEllipsis';
 
@@ -9,7 +9,7 @@ const style = require('./NoticeItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface NoticeItemProps {
-	itemInfo: INoticeRequestTypes;
+	itemInfo: INotice;
 	children?: ReactNode;
 }
 

@@ -1,11 +1,11 @@
 import { autobind } from 'core-decorators';
 import {
-	IEmailCodeTypes,
+	IEmailCodeDto,
 	ISignInResponseTypes,
-	ISignInTypes,
-	ISignUpTypes,
+	ISignInDto,
+	ISignUpDto,
 } from 'interface/AuthTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { postRequest } from 'lib/Axios';
 import { getUserToken } from 'Token/Token';
 import { action, observable } from 'mobx';
@@ -16,7 +16,7 @@ export default class AuthStore {
 
 	@action
 	// 로그인
-	handleSignIn = async (request: ISignInTypes) => {
+	handleSignIn = async (request: ISignInDto) => {
 		this.isLoading = true;
 		try {
 			const response: ISignInResponseTypes = await postRequest(
@@ -36,7 +36,7 @@ export default class AuthStore {
 	handleSendCode = async (email: string) => {
 		this.isLoading = true;
 		try {
-			const response: ISuccessTypes = await postRequest('/auth/send', {
+			const response: ISuccess = await postRequest('/auth/send', {
 				email,
 			});
 			return response;
@@ -49,10 +49,10 @@ export default class AuthStore {
 
 	@action
 	// 이메일 인증 코드 확인
-	handleCheckCode = async (request: IEmailCodeTypes) => {
+	handleCheckCode = async (request: IEmailCodeDto) => {
 		this.isLoading = true;
 		try {
-			const response: ISuccessTypes = await postRequest('/auth/check', request);
+			const response: ISuccess = await postRequest('/auth/check', request);
 			return response;
 		} catch (error) {
 			throw error;
@@ -66,7 +66,7 @@ export default class AuthStore {
 	handleAdminCheck = async (adminCode: string) => {
 		this.isLoading = true;
 		try {
-			const response: ISuccessTypes = await postRequest('/auth/check-admin', { adminCode });
+			const response: ISuccess = await postRequest('/auth/check-admin', { adminCode });
 			return response;
 		} catch (error) {
 			throw error;
@@ -80,7 +80,7 @@ export default class AuthStore {
 	handleEmailDuplicate = async (email: string) => {
 		this.isLoading = true;
 		try {
-			const response: ISuccessTypes = await postRequest('/auth/duplicate', { email });
+			const response: ISuccess = await postRequest('/auth/duplicate', { email });
 			return response;
 		} catch (error) {
 			throw error;
@@ -91,10 +91,10 @@ export default class AuthStore {
 
 	@action
 	// 회원가입
-	handleSignUp = async (request: ISignUpTypes) => {
+	handleSignUp = async (request: ISignUpDto) => {
 		this.isLoading = true;
 		try {
-			const response: ISuccessTypes = await postRequest(
+			const response: ISuccess = await postRequest(
 				'/auth/signup',
 				request
 			);

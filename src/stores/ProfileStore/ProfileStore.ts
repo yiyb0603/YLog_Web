@@ -1,6 +1,6 @@
 import { autobind } from 'core-decorators';
 import { IMemberTypes } from 'interface/MemberTypes';
-import { IProfileModifyTypes } from 'interface/ProfileTypes';
+import { IProfileModifyDto } from 'interface/ProfileTypes';
 import { getResponse, modifyRequest } from 'lib/Axios';
 import { action, observable } from 'mobx';
 import SecureLS from 'secure-ls';
@@ -30,7 +30,7 @@ export default class ProfileStore {
   }
 
   @action
-  handleModifyProfile = async (request: IProfileModifyTypes) => {
+  handleModifyProfile = async (request: IProfileModifyDto) => {
     try {
       const response = await modifyRequest('/profile', request, getUserToken());
       return response;

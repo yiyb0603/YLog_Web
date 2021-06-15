@@ -2,7 +2,7 @@ import React, { CSSProperties, useEffect } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-import { INoticeRequestTypes } from 'interface/NoticeTypes';
+import { INotice } from 'interface/NoticeTypes';
 import NoticeItem from './NoticeItem';
 import { NextRouter, useRouter } from 'next/router';
 import isAdmin from 'lib/util/isAdmin';
@@ -12,7 +12,7 @@ const style = require('./NoticeList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface NoticeListProps {
-	noticeList: INoticeRequestTypes[];
+	noticeList: INotice[];
 	count: number;
 	handleIncreaseCount: () => void;
 	handleDecreaseCount: () => void;

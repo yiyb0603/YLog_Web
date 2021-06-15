@@ -1,21 +1,19 @@
-import ISuccessTypes from './SuccessTypes';
+import ISuccess from './SuccessTypes';
 
-export interface IPostCategoryTypes {
-	idx?: number;
-	categoryName?: string;
+export interface ICategory {
+	idx: number;
+	categoryName: string;
 }
 
-export interface ICategoryResponseTypes extends ISuccessTypes {
-	data: ICategoryListTypes[];
+export interface ICategoryResponse extends ISuccess {
+	data: ICategoryList[];
 }
 
 export interface ICategorySearchTypes {
-	categories?: ICategoryListTypes[];
+	categories?: ICategoryList[];
 	keyword?: string;
 }
 
-export interface ICategoryListTypes {
-	idx: number;
-	category_name: string;
-	post_count: number;
+export interface ICategoryList extends ICategory {
+	postCount: number;
 }

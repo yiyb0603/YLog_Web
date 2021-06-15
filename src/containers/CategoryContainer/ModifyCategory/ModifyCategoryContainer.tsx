@@ -2,15 +2,15 @@ import React, { useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
 import ModifyCategory from 'components/Home/Category/ModifyCategory';
 import useStores from 'lib/hooks/useStores';
-import { IPostCategoryTypes } from 'interface/CategoryTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import { ICategory } from 'interface/CategoryTypes';
+import ISuccess from 'interface/SuccessTypes';
 import IErrorTypes from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast, successToast } from 'lib/Toast';
 
 interface ModifyCategoryContainerProps {
 	handleCloseModal: () => void;
-	categoryInfo: IPostCategoryTypes;
+	categoryInfo: ICategory;
 }
 
 const ModifyCategoryContainer = observer(
@@ -18,13 +18,13 @@ const ModifyCategoryContainer = observer(
 		const { store } = useStores();
 		const { handleModifyCategory, handleCategoryList } = store.CategoryStore;
 
-		const { idx }: IPostCategoryTypes = categoryInfo;
+		const { idx }: ICategory = categoryInfo;
 		const [categoryName, setCategoryName] = useState<string | undefined>(
 			categoryInfo.categoryName
 		);
 
 		const requestModifyCategory = useCallback(async () => {
-			const request: IPostCategoryTypes = {
+			const request: ICategory = {
 				idx,
 				categoryName,
 			};
@@ -35,7 +35,7 @@ const ModifyCategoryContainer = observer(
 			}
 
 			await handleModifyCategory(request)
-				.then(async (response: ISuccessTypes) => {
+				.then(async (response: ISuccess) => {
 					if (response.status === 200) {
 						successToast('카테고리를 수정하였습니다.');
 						await handleCategoryList();

@@ -33,13 +33,19 @@ const AdminKick = ({
 
 			<div className={cx('AdminKick-FilterSearch')}>
 				{
-					memberLists.length > 0 && <SearchInput keyword={keyword} setKeyword={setKeyword} />
+					memberLists.length > 0 &&
+					<SearchInput
+						keyword={keyword}
+						setKeyword={setKeyword}
+					/>
 				}
 			</div>
 
 			<div className={cx('AdminKick-Table')}>
 				{
-					memberLists.length <= 0 ? <NoTopics topic="회원이 존재하지 않습니다." /> :
+					memberLists.length <= 0 ?
+					<NoTopics topic="회원이 존재하지 않습니다." /> :
+
 					<Table hover style={{ width: '100%' }}>
 						<thead>
 							<tr>

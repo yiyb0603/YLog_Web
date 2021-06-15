@@ -1,12 +1,12 @@
-import ISuccessTypes from './SuccessTypes';
+import ISuccess from './SuccessTypes';
 
-export interface IReplyResponseTypes extends ISuccessTypes {
+export interface IReplyResponse extends ISuccess {
 	data: {
-		replies: IReplyTypes[];
+		replies: IReply[];
 	};
 }
 
-export interface IReplyModifyTypes {
+export interface IReplyModify {
 	idx?: number;
 	commentIdx: number;
 	postIdx: number;
@@ -14,7 +14,7 @@ export interface IReplyModifyTypes {
 	isPrivate: boolean;
 }
 
-export interface IReplyTypes {
+export interface IReply {
 	comment_idx: number;
 	contents: string;
 	idx: number;
@@ -25,25 +25,4 @@ export interface IReplyTypes {
 	replied_at: Date | null;
 	updated_at: Date | null;
 	is_private: boolean;
-}
-
-export interface ICommentReplyTypes {
-	idx: number;
-	writer: string | null;
-	contents: string;
-	createdAt: Date | null;
-	updatedAt: Date | null;
-	postIdx: number;
-
-	replies?: [
-		{
-			idx?: number;
-			writer?: string;
-			contents?: string;
-			repliedAt?: Date | null;
-			updatedAt?: Date | null;
-			commentIdx?: number;
-			postIdx?: number;
-		}
-	];
 }

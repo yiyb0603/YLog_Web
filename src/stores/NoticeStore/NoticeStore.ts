@@ -1,10 +1,10 @@
 import { autobind } from 'core-decorators';
 import {
 	INotceResponseListTypes,
-	INoticeRequestTypes,
+	INotice,
 	INoticeResponseTypes,
 } from 'interface/NoticeTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import {
 	deleteRequest,
 	getResponse,
@@ -16,8 +16,8 @@ import { observable, action } from 'mobx';
 
 @autobind
 export default class NoticeStore {
-	@observable noticeList: INoticeRequestTypes[] = [];
-	@observable noticeInfo: INoticeRequestTypes = {};
+	@observable noticeList: INotice[] = [];
+	@observable noticeInfo: INotice = {};
 	@observable isLoading: boolean = true;
 
 	@action
@@ -50,9 +50,9 @@ export default class NoticeStore {
 	};
 
 	@action
-	handleCreateNotice = async (request: INoticeRequestTypes) => {
+	handleCreateNotice = async (request: INotice) => {
 		try {
-			const response: ISuccessTypes = await postRequest(
+			const response: ISuccess = await postRequest(
 				'/notice',
 				request,
 				getUserToken()
@@ -64,9 +64,9 @@ export default class NoticeStore {
 	};
 
 	@action
-	handleModifyNotice = async (request: INoticeRequestTypes) => {
+	handleModifyNotice = async (request: INotice) => {
 		try {
-			const response: ISuccessTypes = await modifyRequest(
+			const response: ISuccess = await modifyRequest(
 				'/notice',
 				request,
 				getUserToken()
@@ -80,7 +80,7 @@ export default class NoticeStore {
 	@action
 	handleDeleteNotice = async (idx: number) => {
 		try {
-			const response: ISuccessTypes = await deleteRequest(
+			const response: ISuccess = await deleteRequest(
 				`/notice?idx=${idx}`,
 				getUserToken()
 			);

@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import SignUp from 'components/Auth/SignUp';
 import useStores from 'lib/hooks/useStores';
 import { sha512 } from 'js-sha512';
-import { ISignUpTypes } from 'interface/AuthTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import { ISignUpDto } from 'interface/AuthTypes';
+import ISuccess from 'interface/SuccessTypes';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast, successToast } from 'lib/Toast';
 import EmailContainer from '../Email';
@@ -20,7 +20,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 	const { handleSendCode, handleAdminCheck, handleEmailDuplicate, isLoading } = store.AuthStore;
 
 	const [isEntered, setIsEntered] = useState<boolean>(false);
-	const [registerInfo, setRegisterInfo] = useState<ISignUpTypes>({});
+	const [registerInfo, setRegisterInfo] = useState<ISignUpDto>({});
 
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
@@ -29,7 +29,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 	const [adminCode, setAdminCode] = useState<string>('');
 
 	const requestEmailAuth = useCallback(async () => {
-		const request: ISignUpTypes = {
+		const request: ISignUpDto = {
 			password: sha512(password),
 			name,
 			email: email.trim(),
@@ -58,7 +58,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 		await handleEmailDuplicate(email)
 		.then(async () => {
 			await handleSendCode(email)
-			.then((response: ISuccessTypes) => {
+			.then((response: ISuccess) => {
 				if (response.status === 200) {
 					successToast('인증코드를 발송하였습니다!');
 					setRegisterInfo(request);

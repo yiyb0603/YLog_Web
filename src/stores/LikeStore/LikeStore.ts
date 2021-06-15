@@ -1,6 +1,6 @@
 import { autobind } from 'core-decorators';
 import { ILikeResponseTypes, ILikeTypes } from 'interface/LikeTypes';
-import ISuccessTypes from 'interface/SuccessTypes';
+import ISuccess from 'interface/SuccessTypes';
 import { deleteRequest, getResponse, postRequest } from 'lib/Axios';
 import { observable, action } from 'mobx';
 import { getUserToken } from 'Token/Token';
@@ -25,7 +25,7 @@ export default class LikeStore {
   @action
   handlePostLike = async (postIdx: number) => {
     try {
-      const response: ISuccessTypes = await postRequest('/like', { postIdx }, getUserToken());
+      const response: ISuccess = await postRequest('/like', { postIdx }, getUserToken());
       return response;
     } catch (error) {
       throw error;
@@ -35,7 +35,7 @@ export default class LikeStore {
   @action
   handleDeleteLike = async (likeIdx: number) => {
     try {
-      const response: ISuccessTypes = await deleteRequest(`/like?likeIdx=${likeIdx}`, getUserToken());
+      const response: ISuccess = await deleteRequest(`/like?likeIdx=${likeIdx}`, getUserToken());
       return response;
     } catch (error) {
       throw error;
