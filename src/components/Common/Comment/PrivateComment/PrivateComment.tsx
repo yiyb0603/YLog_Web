@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import classNames from 'classnames';
-import { ClassNamesFn } from "classnames/types";
+import { ClassNamesFn } from 'classnames/types';
 import { AiFillLock } from 'react-icons/ai';
 
-const style = require("./PrivateComment.scss");
+const style = require('./PrivateComment.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface PrivateCommentProps {

@@ -29,7 +29,7 @@ const SignTemplate = () => {
 					<div className={cx('SignTemplate-FormBox-LeftPanel-Welcome')}>
 						<span
 							className ={cx('SignTemplate-FormBox-LeftPanel-Name')}
-							title ="블로그 이동"
+							title ='블로그 이동'
 							onClick={() => router.push('/')}
 						>
 							YLog
@@ -45,7 +45,7 @@ const SignTemplate = () => {
 				</div>
 
 				<div className={cx('SignTemplate-FormBox-RightPanel')}>
-					<img src="/assets/images/Login/Banner.svg" alt="banner" />
+					<img src='/assets/images/Login/Banner.svg' alt='banner' />
 				</div>
 			</div>
 		</div>

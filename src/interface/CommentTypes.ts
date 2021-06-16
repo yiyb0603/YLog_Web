@@ -20,7 +20,7 @@ export interface IComment {
 	replies: IReply[];
 }
 
-export interface ICommentRequestTypes {
+export interface ICommentDto {
 	idx?: number;
 	contents: string;
 	postIdx: number;

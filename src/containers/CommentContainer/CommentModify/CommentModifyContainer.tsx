@@ -4,7 +4,7 @@ import CommentModify from 'components/Post/Comment/CommentModify';
 import GroupingState from 'lib/util/GroupingState';
 import { NextRouter, useRouter } from 'next/router';
 import useStores from 'lib/hooks/useStores';
-import { ICommentRequestTypes } from 'interface/CommentTypes';
+import { ICommentDto } from 'interface/CommentTypes';
 import IError from 'interface/ErrorTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
@@ -36,8 +36,8 @@ const CommentModifyContainer = observer(
 		const [contents, setContents] = useState<string>(commentValue);
 		const [isPrivate, setIsPrivate] = useState<boolean>(defaultPrivate);
 
-		const requestCommentModify = useCallback(async () => {
-			const request: ICommentRequestTypes = {
+		const requestCommentModify = useCallback(async (): Promise<void> => {
+			const request: ICommentDto = {
 				idx: commentIdx,
 				postIdx,
 				contents,

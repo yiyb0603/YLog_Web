@@ -1,5 +1,5 @@
-import { INotice } from "interface/NoticeTypes";
-import { errorToast } from "lib/Toast";
+import { INotice } from 'interface/NoticeTypes';
+import { errorToast } from 'lib/Toast';
 
 const validationNoticeWrite = (request: INotice) => {
   const { title, contents } = request;

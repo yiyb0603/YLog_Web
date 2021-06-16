@@ -1,1 +1,1 @@
-export { default } from "./NoComments";
+export { default } from './NoComments';

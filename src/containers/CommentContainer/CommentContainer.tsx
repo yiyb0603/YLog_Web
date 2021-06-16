@@ -74,19 +74,17 @@ const CommentContainer = observer(() => {
 		requestCommentList();
 	}, [requestCommentList]);
 
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
 	return (
-		<>
-			{isLoading ? (
-				<div>Loading..</div>
-			) : (
-				<Comment
-					commentReplyList={commentReplyList}
-					requestCommentDelete={requestCommentDelete}
-					requestDeleteReply={requestDeleteReply}
-					requestCommentList={requestCommentList}
-				/>
-			)}
-		</>
+		<Comment
+			commentReplyList={commentReplyList}
+			requestCommentDelete={requestCommentDelete}
+			requestDeleteReply={requestDeleteReply}
+			requestCommentList={requestCommentList}
+		/>
 	);
 });
 

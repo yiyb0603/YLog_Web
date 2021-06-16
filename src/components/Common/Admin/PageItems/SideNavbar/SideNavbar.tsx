@@ -33,12 +33,12 @@ const SideNavbar = ({ isEnabled, setIsEnabled }: ISideNavbarProps) => {
 				<div className={cx('SideNavbar-Contents')}>
 					<img
 						className={cx('SideNavbar-Contents-Logo')}
-						src="/assets/icon/Logo.PNG"
-						alt="shortcut"
+						src='/assets/icon/Logo.PNG'
+						alt='shortcut'
 					/>
 
 					<div className={cx('SideNavbar-Contents-Profile')}>
-						<img src={'/assets/icon/profile_default.jpg'} alt="profile" />
+						<img src={'/assets/icon/profile_default.jpg'} alt='profile' />
 						<div className={cx('SideNavbar-Contents-Profile-Name')}>{name}</div>
 						<div>{email}</div>
 					</div>
@@ -46,12 +46,12 @@ const SideNavbar = ({ isEnabled, setIsEnabled }: ISideNavbarProps) => {
 					<div className={cx('SideNavbar-Contents-Items')}>
 						<NavItem
 							link={'/admin'}
-							name="가입 승인"
+							name='가입 승인'
 							icon={<BsPersonCheckFill style={iconStyle} />}
 						/>
 						<NavItem
 							link={'/admin/kick'}
-							name="멤버 강퇴"
+							name='멤버 강퇴'
 							icon={<MdClose style={iconStyle} />}
 						/>
 					</div>
@@ -59,7 +59,7 @@ const SideNavbar = ({ isEnabled, setIsEnabled }: ISideNavbarProps) => {
 
 				<NavItem
 					link={'/admin/login'}
-					name="로그아웃"
+					name='로그아웃'
 					icon={<BsBoxArrowInLeft style={iconStyle} />}
 				/>
 			</div>

@@ -1,4 +1,4 @@
-import IUploadTypes from "interface/UploadTypes";
+import IUploadTypes from 'interface/UploadTypes';
 import store from '../../stores';
 
 // react-markdown-editor-lite 이미지 업로드 로직

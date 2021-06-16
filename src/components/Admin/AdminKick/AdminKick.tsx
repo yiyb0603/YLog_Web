@@ -27,8 +27,8 @@ const AdminKick = ({
 	return (
 		<div className={cx('AdminKick')}>
 			<PageHeader
-				title="멤버 강제탈퇴"
-				description="멤버를 강제탈퇴 시킬 수 있습니다."
+				title='멤버 강제탈퇴'
+				description='멤버를 강제탈퇴 시킬 수 있습니다.'
 			/>
 
 			<div className={cx('AdminKick-FilterSearch')}>
@@ -44,7 +44,7 @@ const AdminKick = ({
 			<div className={cx('AdminKick-Table')}>
 				{
 					memberLists.length <= 0 ?
-					<NoTopics topic="회원이 존재하지 않습니다." /> :
+					<NoTopics topic='회원이 존재하지 않습니다.' /> :
 
 					<Table hover style={{ width: '100%' }}>
 						<thead>

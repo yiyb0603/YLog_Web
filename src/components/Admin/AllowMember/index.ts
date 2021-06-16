@@ -1,1 +1,1 @@
-export { default } from "./AllowMember";
+export { default } from './AllowMember';

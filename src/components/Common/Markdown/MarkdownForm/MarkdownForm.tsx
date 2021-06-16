@@ -53,7 +53,7 @@ const MarkdownForm = ({ contents, setContents, requestImageUpload }: MarkdownFor
 			onChange={({ text }) => setContents(text)}
 			style={{ height: '80vh' }}
 			renderHTML={(text) => mdParser.render(text)}
-			placeholder="내용을 입력하세요..."
+			placeholder='내용을 입력하세요...'
 			onImageUpload={handleImageUpload}
 		/>
 	);

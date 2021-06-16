@@ -1,1 +1,1 @@
-export { default } from "./EmailAuth";
+export { default } from './EmailAuth';

@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, KeyboardEvent } from "react";
+import { Dispatch, SetStateAction, KeyboardEvent } from 'react';
 
 export default interface AuthInputProps {
 	type: string;

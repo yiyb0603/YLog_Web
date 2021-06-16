@@ -1,6 +1,6 @@
-import { ISignUpDto } from "interface/AuthTypes";
-import { errorToast } from "lib/Toast";
-import emailValidation from "validation/util/emailValidation";
+import { ISignUpDto } from 'interface/AuthTypes';
+import { errorToast } from 'lib/Toast';
+import emailValidation from 'validation/util/emailValidation';
 
 const validationSignUp = (request: ISignUpDto, againPassword: string) => {
   const { email, password, name } = request;

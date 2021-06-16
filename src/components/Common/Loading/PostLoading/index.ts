@@ -1,1 +1,1 @@
-export { default } from "./PostLoading";
+export { default } from './PostLoading';

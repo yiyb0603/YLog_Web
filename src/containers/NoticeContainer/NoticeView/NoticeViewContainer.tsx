@@ -61,17 +61,15 @@ const NoticeViewContainer = observer(({
 		}
 	}, [idx, requestNoticeView]);
 
+	if (!notice.idx || isLoading) {
+		return <PostLoading />;
+	}
+
 	return (
-		<>
-		{
-			!notice.idx || isLoading ?
-			<PostLoading /> :
-			<NoticeView
-				noticeInfo={noticeInfo}
-				requestDeleteNotice={requestDeleteNotice}
-			/>
-		}
-		</>
+		<NoticeView
+			noticeInfo={noticeInfo}
+			requestDeleteNotice={requestDeleteNotice}
+		/>
 	);
 });
 

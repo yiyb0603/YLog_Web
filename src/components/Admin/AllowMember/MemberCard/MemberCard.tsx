@@ -26,7 +26,7 @@ const MemberCard = ({
 	return (
 		<div className={cx('MemberCard')}>
 			<div className={cx('MemberCard-Contents')}>
-				<img src="/assets/icon/profile_default.jpg" alt="profile" />
+				<img src='/assets/icon/profile_default.jpg' alt='profile' />
 				<div className={cx('MemberCard-Contents-Info')}>
 					<div>{stringEllipsis(email, 18)}</div>
 					<div>{name}</div>

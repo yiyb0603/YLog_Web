@@ -1,1 +1,1 @@
-export { default } from "./AdminInput";
+export { default } from './AdminInput';

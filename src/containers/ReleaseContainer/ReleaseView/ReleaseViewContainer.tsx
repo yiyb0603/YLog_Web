@@ -43,17 +43,16 @@ const ReleaseViewContainer = observer(() => {
     requestReleaseView();
   }, [requestReleaseView]);
 
+  if (isLoading) {
+    return <PostLoading />;
+  }
+
   return (
-    <>
-    {
-      isLoading ? <PostLoading /> :
-      <ReleasePage
-        releaseInfo ={releaseInfo}
-        requestReleaseDelete ={requestReleaseDelete}
-      />
-    }
-    </>
-  )
+    <ReleasePage
+      releaseInfo ={releaseInfo}
+      requestReleaseDelete ={requestReleaseDelete}
+    />
+  );
 });
 
 export default ReleaseViewContainer;

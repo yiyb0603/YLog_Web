@@ -25,8 +25,8 @@ const MemberRow = ({
 			<td>
 				<img
 					className={cx('MemberRow-Profile')}
-					src="/assets/icon/profile_default.jpg"
-					alt="profile"
+					src='/assets/icon/profile_default.jpg'
+					alt='profile'
 				/>
 			</td>
 			<td>{isAdmin ? '관리자' : '회원'}</td>

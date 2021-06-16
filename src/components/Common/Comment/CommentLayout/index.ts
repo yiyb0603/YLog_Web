@@ -1,1 +1,1 @@
-export { default } from "./CommentLayout";
+export { default } from './CommentLayout';

@@ -1,1 +1,1 @@
-export { default } from "./SignTemplate";
+export { default } from './SignTemplate';

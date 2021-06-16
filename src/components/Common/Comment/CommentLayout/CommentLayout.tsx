@@ -40,7 +40,7 @@ const CommentLayout = ({
 					<img
 						src={user.profileImage ? user.profileImage : PROFILE_DEFAULT}
 						onError={(e: SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = PROFILE_DEFAULT}
-						alt="profile"
+						alt='profile'
 						className={cx('CommentLayout-Contents-Left-Profile')}
 					/>
 

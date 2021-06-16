@@ -1,1 +1,1 @@
-export { default } from "./PrivateComment";
+export { default } from './PrivateComment';

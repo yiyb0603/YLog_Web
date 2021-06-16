@@ -46,13 +46,13 @@ const Home = ({
 						</button>
 
 						{
-							isAdmin() ?
+							isAdmin() &&
 							<WriteButton
 								nextFunction={() => router.push('/post/postwrite')}
 							>
 								<HiPencil />
 								<div>글 작성</div>
-							</WriteButton> : <></>
+							</WriteButton>
 						}
 						<CategoryContainer categories={categoryList} />
 					</div>

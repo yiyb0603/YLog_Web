@@ -1,5 +1,5 @@
-import { IPostDto } from "interface/PostTypes";
-import { errorToast } from "lib/Toast";
+import { IPostDto } from 'interface/PostTypes';
+import { errorToast } from 'lib/Toast';
 
 export const validationPostWrite = (request: IPostDto) => {
   const { title, introduction, contents, categoryIdx, thumbnail } = request;

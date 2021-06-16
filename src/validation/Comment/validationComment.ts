@@ -1,8 +1,8 @@
-import { ICommentRequestTypes } from "interface/CommentTypes";
-import { errorToast } from "lib/Toast";
-import getMyInfo from "lib/util/getMyInfo";
+import { ICommentDto } from 'interface/CommentTypes';
+import { errorToast } from 'lib/Toast';
+import getMyInfo from 'lib/util/getMyInfo';
 
-export const validateCreateComment = (request: ICommentRequestTypes) => {
+export const validateCreateComment = (request: ICommentDto) => {
   const { contents, isPrivate } = request;
   const myInfo = getMyInfo();
 

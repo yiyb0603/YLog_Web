@@ -81,17 +81,16 @@ const PostContainer = observer(({
 		requestInitialData();
 	}, [requestInitialData, topic, keyword]);
 
+	if (isLoading) {
+		return <HomeLoading />;
+	}
+
 	return (
-		<>
-			{
-				isLoading ? <HomeLoading /> :
-				<HomePost
-					filterPost={filterPost}
-					categoryList={categoryList}
-					requestDeletePost={requestDeletePost}
-				/>
-			}
-		</>
+		<HomePost
+			filterPost={filterPost}
+			categoryList={categoryList}
+			requestDeletePost={requestDeletePost}
+		/>
 	);
 });
 

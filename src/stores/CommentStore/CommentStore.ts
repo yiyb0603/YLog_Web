@@ -1,7 +1,7 @@
 import { autobind } from 'core-decorators';
 import {
 	IComment,
-	ICommentRequestTypes,
+	ICommentDto,
 	ICommentResponseListTypes,
 } from 'interface/CommentTypes';
 import ISuccess from 'interface/SuccessTypes';
@@ -86,7 +86,7 @@ export default class CommentStore {
 	};
 
 	@action
-	handleCommentWrite = async (request: ICommentRequestTypes) => {
+	handleCommentWrite = async (request: ICommentDto) => {
 		try {
 			const response: ISuccess = await postRequest(
 				'/comment',
@@ -100,7 +100,7 @@ export default class CommentStore {
 	};
 
 	@action
-	handleCommentModify = async (request: ICommentRequestTypes) => {
+	handleCommentModify = async (request: ICommentDto) => {
 		try {
 			const response: ISuccess = await modifyRequest(
 				'/comment',

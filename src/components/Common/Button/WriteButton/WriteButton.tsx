@@ -1,8 +1,8 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode } from 'react';
 import classNames from 'classnames';
-import { ClassNamesFn } from "classnames/types";
+import { ClassNamesFn } from 'classnames/types';
 
-const style = require("./WriteButton.scss");
+const style = require('./WriteButton.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface WriteButtonProps {

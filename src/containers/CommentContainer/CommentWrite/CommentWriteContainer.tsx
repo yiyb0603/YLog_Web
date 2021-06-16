@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
-import { ICommentRequestTypes } from 'interface/CommentTypes';
+import { ICommentDto } from 'interface/CommentTypes';
 import ISuccess from 'interface/SuccessTypes';
 import IError from 'interface/ErrorTypes';
 import CommentWrite from 'components/Post/Comment/CommentWrite';
@@ -25,7 +25,7 @@ const CommentWriteContainer = observer(() => {
 	const [isPrivate, setIsPrivate] = useState<boolean>(false);
 
 	const requestCommentWrite = useCallback(async () => {
-		const request: ICommentRequestTypes = {
+		const request: ICommentDto = {
 			postIdx,
 			contents,
 			isPrivate,

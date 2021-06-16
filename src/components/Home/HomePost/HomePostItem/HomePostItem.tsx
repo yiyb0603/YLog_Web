@@ -55,7 +55,7 @@ const HomePostItem = ({
 					<img
 						className={cx('HomePost-Item-Thumbnail')}
 						src={thumbnail ? thumbnail : '/assets/images/NO_IMAGES.PNG'}
-						alt="thumbnail"
+						alt='thumbnail'
 						onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
 							(e.currentTarget.src = '/assets/images/NO_IMAGES.PNG')
 						}

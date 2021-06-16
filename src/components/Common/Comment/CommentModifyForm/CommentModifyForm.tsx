@@ -31,7 +31,7 @@ const CommentModifyForm = ({
 	useEffect(() => {
 		if (isModify) {
 			document.addEventListener('click', (event: any) => {
-				if (String(event.target).includes("SVG")) {
+				if (String(event.target).includes('SVG')) {
 					return;
 				}
 
@@ -45,7 +45,7 @@ const CommentModifyForm = ({
 	return (
 		<div className={cx('CommentModifyForm')} ref={modifyRef}>
 			<input
-				type="text"
+				type='text'
 				value={contents}
 				className={cx('CommentModifyForm-Input')}
 				onChange={(e: ChangeEvent<HTMLInputElement>) =>

@@ -1,1 +1,1 @@
-export { default } from "./NoPosts";
+export { default } from './NoPosts';

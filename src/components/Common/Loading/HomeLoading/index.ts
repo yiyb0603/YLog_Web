@@ -1,1 +1,1 @@
-export { default } from "./HomeLoading";
+export { default } from './HomeLoading';

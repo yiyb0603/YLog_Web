@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties } from 'react';
 
 const Image = (props: any) => {
   const imageStyle: CSSProperties = {

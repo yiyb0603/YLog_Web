@@ -13,8 +13,8 @@ const redirectPage = async (ctx: any) => {
       const { url } = ctx.req;
       const { USER_TOKEN } = Constants;
 
-      const tokenKey: string = axios.defaults.headers.cookie.split("=")[0];
-      const tokenValue: string = axios.defaults.headers.cookie.split("=")[1];
+      const tokenKey: string = axios.defaults.headers.cookie.split('=')[0];
+      const tokenValue: string = axios.defaults.headers.cookie.split('=')[1];
 
       if (tokenKey === USER_TOKEN && url.indexOf('admin') > -1) {
         return false;

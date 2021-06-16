@@ -1,1 +1,1 @@
-export { default } from "./CommentWrite";
+export { default } from './CommentWrite';

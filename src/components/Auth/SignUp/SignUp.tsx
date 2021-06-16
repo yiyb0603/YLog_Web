@@ -42,37 +42,37 @@ const SignUp = ({
 
 				<div className={cx('SignUp-Form')}>
 					<AuthInput
-						type="text"
-						placeholder="이름을 입력하세요"
+						type='text'
+						placeholder='이름을 입력하세요'
 						value={name}
 						setValue={setName}
 					/>
 
 					<AuthInput
-						type="email"
-						placeholder="이메일을 입력하세요"
+						type='email'
+						placeholder='이메일을 입력하세요'
 						value={email}
 						setValue={setEmail}
 					/>
 
 					<AuthInput
-						type="password"
-						placeholder="비밀번호를 입력하세요"
+						type='password'
+						placeholder='비밀번호를 입력하세요'
 						value={password}
 						setValue={setPassword}
 					/>
 
 					<AuthInput
-						type="password"
-						placeholder ="비밀번호를 재입력 해주세요."
+						type='password'
+						placeholder ='비밀번호를 재입력 해주세요.'
 						value ={againPassword}
 						setValue={setAgainPassword}
 					/>
 
 					{checkAdmin && (
 						<AuthInput
-							type="text"
-							placeholder="어드민 코드를 입력해주세요"
+							type='text'
+							placeholder='어드민 코드를 입력해주세요'
 							value={adminCode}
 							setValue={setAdminCode}
 						/>
@@ -97,7 +97,7 @@ const SignUp = ({
 
 				<FormButton
 					buttonValue={
-						isLoading ? <Spinner size={20} color="white" /> : '다음으로'
+						isLoading ? <Spinner size={20} color='white' /> : '다음으로'
 					}
 					requestFunction={requestEmailAuth}
 				/>

@@ -24,7 +24,7 @@ const AdminInput = ({
 		<Input
 			className={cx('AdminInput')}
 			type={type}
-			size="md"
+			size='md'
 			value={value}
 			label={label}
 			onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}

@@ -1,1 +1,1 @@
-export { default } from "./NoTopics";
+export { default } from './NoTopics';

@@ -53,8 +53,8 @@ const SignIn = ({
 
 				<div className={cx('SignIn-Form')}>
 					<AuthInput
-						type="email"
-						placeholder="이메일을 입력하세요"
+						type='email'
+						placeholder='이메일을 입력하세요'
 						value={email}
 						setValue={setEmail}
 						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
@@ -63,8 +63,8 @@ const SignIn = ({
 					/>
 
 					<AuthInput
-						type="password"
-						placeholder="비밀번호를 입력하세요"
+						type='password'
+						placeholder='비밀번호를 입력하세요'
 						value={password}
 						setValue={setPassword}
 						onKeyDown={(e: KeyboardEvent<HTMLInputElement>) =>
@@ -85,7 +85,7 @@ const SignIn = ({
 
 				<FormButton
 					buttonValue={
-						isLoading ? <Spinner size={20} color="white" /> : '로그인'
+						isLoading ? <Spinner size={20} color='white' /> : '로그인'
 					}
 					requestFunction={requestSignIn}
 				/>
