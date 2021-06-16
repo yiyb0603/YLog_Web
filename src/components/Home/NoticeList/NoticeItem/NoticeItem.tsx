@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { INotice } from 'interface/NoticeTypes';
@@ -15,7 +15,7 @@ interface NoticeItemProps {
 
 const NoticeItem = ({ itemInfo, children }: NoticeItemProps) => {
 	const router: NextRouter = useRouter();
-	const { idx, title } = itemInfo;
+	const { idx, title } = useMemo(() => itemInfo, []);
 
 	return (
 		<div className={cx('NoticeItem')}>

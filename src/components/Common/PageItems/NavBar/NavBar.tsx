@@ -1,33 +1,24 @@
-import React, {
-	SyntheticEvent,
-	useCallback,
-	useState,
-} from 'react';
+import React, { SyntheticEvent, useCallback, useState, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { NextRouter, useRouter } from 'next/router';
 import Link from 'next/link';
-import { getUserToken } from 'Token/Token';
-import SearchInput from '../../Input/SearchInput';
+import { getUserToken } from 'Token';
 import ProfileContainer from 'containers/ProfileContainer';
 import getMyInfo from 'lib/util/getMyInfo';
+import SearchInput from '../../Input/SearchInput';
+import { IToken } from 'interface/AuthTypes';
 
 const style = require('./NavBar.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const NavBar = () => {
 	const router: NextRouter = useRouter();
-	const routerKeyword: string | string[] = router.query.keyword;
+	const routerKeyword: string = useMemo(() => String(router.query.keyword || ''), [router]);
+	const myInfo: IToken = useMemo(() => getMyInfo(), [getMyInfo]);
 
 	const [isMyInfo, setIsMyInfo] = useState<boolean>(false);
-	const [keyword, setKeyword] = useState<string>(routerKeyword ? routerKeyword.toString() : '');
-
-	const myInfo = getMyInfo();
-	let profileImage: null | string = null;
-	
-	if (myInfo) {
-		profileImage = myInfo.profile_image;
-	}
+	const [keyword, setKeyword] = useState<string>(routerKeyword);
 
 	const searchQuery = useCallback((): void => {
 		if (routerKeyword === keyword) {
@@ -40,7 +31,7 @@ const NavBar = () => {
 		}
 
 		router.push(`/?keyword=${keyword}`);
-	}, [keyword, router]);
+	}, [routerKeyword, keyword, router]);
 
 	return (
 		<div className={cx('NavBar')}>
@@ -48,8 +39,8 @@ const NavBar = () => {
 				<img
 					onClick={() => router.push('/')}
 					className={cx('NavBar-Contents-Logo')}
-					src="/assets/icon/Logo.PNG"
-					alt="logo"
+					src='/assets/icon/Logo.PNG'
+					alt='logo'
 				/>
 
 				<SearchInput
@@ -59,24 +50,27 @@ const NavBar = () => {
 				/>
 
 				<div className={cx('NavBar-Contents-Right')}>
-					<Link href="/sign">
+					<Link href='/sign'>
 						<div className={cx('NavBar-Contents-Right-LogText')}>
 							{getUserToken() ? '로그아웃' : '로그인'}
 						</div>
 					</Link>
-					{getUserToken() ? (
+					{getUserToken() && (
 						<img
-							src={profileImage ? profileImage : '/assets/icon/profile_default.jpg'}
-							alt="profile"
+							src={(myInfo && myInfo.profileImage) || '/assets/icon/profile_default.jpg'}
+							alt='profile'
 							onError={(e: SyntheticEvent<HTMLImageElement, Event>) => e.currentTarget.src = '/assets/icon/profile_default.jpg'}
 							onClick={() => setIsMyInfo(true)}
 						/>
-					) : (
-						<></>
 					)}
 				</div>
 			</div>
-			{isMyInfo && <ProfileContainer handleCloseModal={() => setIsMyInfo(false)} />}
+			{
+				isMyInfo &&
+				<ProfileContainer
+					handleCloseModal={() => setIsMyInfo(false)}
+				/>
+			}
 		</div>
 	);
 };

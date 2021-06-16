@@ -39,8 +39,8 @@ const EmailAuth = ({
 
 				<div className={cx('EmailAuth-Form')}>
 					<AuthInput
-						type="text"
-						placeholder="인증코드를 입력하세요"
+						type='text'
+						placeholder='인증코드를 입력하세요'
 						value={code}
 						setValue={setCode}
 					/>
@@ -48,7 +48,7 @@ const EmailAuth = ({
 
 				<FormButton
 					buttonValue={
-						isLoading ? <Spinner size={20} color="white" /> : '회원가입'
+						isLoading ? <Spinner size={20} color='white' /> : '회원가입'
 					}
 					requestFunction={requestSignUp}
 				/>

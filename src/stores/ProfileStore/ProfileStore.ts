@@ -1,19 +1,19 @@
 import { autobind } from 'core-decorators';
-import { IMemberTypes } from 'interface/MemberTypes';
+import { IToken, IUser } from 'interface/AuthTypes';
 import { IProfileModifyDto } from 'interface/ProfileTypes';
 import { getResponse, modifyRequest } from 'lib/Axios';
 import { action, observable } from 'mobx';
 import SecureLS from 'secure-ls';
-import { getUserToken } from 'Token/Token';
+import { getUserToken } from 'Token';
 
 @autobind
 export default class ProfileStore {
-  @observable userInfo: IMemberTypes = {
+  @observable userInfo: IToken = {
     idx: 0,
     name: '',
     email: '',
-    is_admin: false,
-    profile_image: '',
+    isAdmin: false,
+    profileImage: '',
   };
 
   @action

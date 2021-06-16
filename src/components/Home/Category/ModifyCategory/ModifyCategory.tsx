@@ -30,11 +30,15 @@ const ModifyCategory = ({
 
 	return (
 		<div className={cx('ModifyCategory')}>
-			<Modal width ="300px" title="카테고리 수정" handleCloseModal={handleCloseModal}>
+			<Modal
+				width='300px'
+				title='카테고리 수정'
+				handleCloseModal={handleCloseModal}
+			>
 				<div className={cx('ModifyCategory-Wrapper')}>
 					<input
-						type="text"
-						placeholder="카테고리를 입력하세요"
+						type='text'
+						placeholder='카테고리를 입력하세요'
 						value={categoryName}
 						onChange={(e: ChangeEvent<HTMLInputElement>) =>
 							setCategoryName(e.target.value)

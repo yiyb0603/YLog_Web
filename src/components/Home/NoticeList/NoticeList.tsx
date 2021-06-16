@@ -7,6 +7,7 @@ import NoticeItem from './NoticeItem';
 import { NextRouter, useRouter } from 'next/router';
 import isAdmin from 'lib/util/isAdmin';
 import WriteButton from 'components/Common/Button/WriteButton';
+import { useMemo } from 'react';
 
 const style = require('./NoticeList.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -26,13 +27,15 @@ const NoticeList = ({
 }: NoticeListProps) => {
 	const FIVE_SECONDS: number = 5000;
 	const router: NextRouter = useRouter();
-	const arrowStyle: CSSProperties = {
-		fontSize: 18,
-		cursor: 'pointer',
-	};
+	const arrowStyle: CSSProperties = useMemo(() => {
+		return {
+			fontSize: 18,
+			cursor: 'pointer',
+		};
+	}, []);
 
 	useEffect(() => {
-		const counter: any = setInterval(handleIncreaseCount, FIVE_SECONDS);
+		const counter: number = setInterval(handleIncreaseCount, FIVE_SECONDS);
 
 		return () => {
 			clearInterval(counter);

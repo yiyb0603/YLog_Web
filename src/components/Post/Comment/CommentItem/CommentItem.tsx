@@ -5,15 +5,14 @@ import CommentModifyContainer from 'containers/CommentContainer/CommentModify';
 import ReplyItem from 'components/Post/Reply/ReplyItem';
 import CommentLayout from 'components/Common/Comment/CommentLayout';
 import CommentItemProps from './CommentItem.types';
+import { IReply } from 'interface/ReplyTypes';
 
 const style = require('./CommentItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 const CommentItem = ({
 	idx,
-	writer,
-	writerIdx,
-	writerProfile,
+	user,
 	contents,
 	postIdx,
 	createdAt,
@@ -30,9 +29,7 @@ const CommentItem = ({
 		<div className={cx('CommentItem')}>
 			<CommentLayout
 				idx={idx}
-				writer={writer}
-				writerIdx={writerIdx}
-				writerProfile={writerProfile}
+				user={user}
 				contents={contents}
 				postIdx={postIdx}
 				createdAt={createdAt}
@@ -53,30 +50,28 @@ const CommentItem = ({
 			</CommentLayout>
 
 			<div className={cx('CommentItem-Replies')}>
-				{replies && replies.length > 0 ? (
-					replies.map((reply: any, index: number) => {
+				{
+					(replies && replies.length > 0) && (
+					replies.map((reply: IReply, index: number) => {
 						const {
 							contents,
 							repliedAt,
 							updatedAt,
-							writer,
-							writerIdx,
-							commentIdx,
+							user,
+							comment,
 							isPrivate,
 						} = reply;
 
 						return (
-							reply.commentIdx === idx && (
+							reply.comment.idx === idx && (
 								<ReplyItem
 									key={index}
 									idx={reply.idx}
 									contents={contents}
-									repliedAt={repliedAt}
-									updatedAt={updatedAt}
-									writer={writer}
-									writerIdx={writerIdx}
-									writerProfile={reply.writerProfile}
-									commentIdx={commentIdx}
+									repliedAt={repliedAt!}
+									updatedAt={updatedAt!}
+									user={user}
+									commentIdx={comment.idx}
 									requestDeleteReply={requestDeleteReply}
 									requestCommentList={requestCommentList}
 									isPrivate ={isPrivate}
@@ -84,8 +79,6 @@ const CommentItem = ({
 							)
 						);
 					})
-				) : (
-					<></>
 				)}
 			</div>
 		</div>

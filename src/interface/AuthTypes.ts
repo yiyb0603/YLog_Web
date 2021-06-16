@@ -1,20 +1,23 @@
 import ISuccess from './SuccessTypes';
 
-export interface ISignInResponseTypes extends ISuccess {
+export interface ISignInResponse extends ISuccess {
 	data: {
 		ylogToken: string;
 		userInfo: IUser;
 	};
 }
 
-export interface IUser {
+export interface IToken {
 	idx: number;
 	name: string;
-	password: string;
 	email: string;
-	joinedAt: string;
 	profileImage: string;
-	isAdmin: boolean | string | null;
+	isAdmin: boolean;
+}
+
+export interface IUser extends IToken {
+	password: string;
+	joinedAt: string;
 	isAllow: boolean;
 }
 

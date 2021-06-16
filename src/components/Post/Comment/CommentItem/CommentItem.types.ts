@@ -1,11 +1,10 @@
-import { IReply } from "interface/ReplyTypes";
+import { IUser } from 'interface/AuthTypes';
+import { IReply } from 'interface/ReplyTypes';
 
 export default interface CommentItemProps {
 	idx: number;
 	postIdx: number;
-	writer: string;
-	writerIdx: number;
-	writerProfile: string;
+	user: IUser;
 	contents: string;
 	createdAt: string | Date;
 	updatedAt: string | Date;

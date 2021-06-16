@@ -3,7 +3,7 @@ import HomeContainer from 'containers/HomeContainer';
 import PageTemplate from 'components/Template/PageTemplate';
 import stores from 'stores';
 import { IPostListTypes, IPostResponseListTypes } from 'interface/PostTypes';
-import { ICategoryList, ICategoryResponseTypes } from 'interface/CategoryTypes';
+import { ICategory, ICategoryResponseTypes } from 'interface/CategoryTypes';
 import { INotceResponseListTypes, INotice } from 'interface/NoticeTypes';
 import dynamic from 'next/dynamic';
 
@@ -12,7 +12,7 @@ import dynamic from 'next/dynamic';
 
 export interface IHomeProps {
 	postList: IPostListTypes[];
-	categoryList: ICategoryList[];
+	categoryList: ICategory[];
 	noticeList: INotice[];
 }
 
@@ -26,7 +26,7 @@ class IndexPage extends Component<IHomeProps> {
 		const postList: IPostListTypes[] = postResponse.data.posts;
 
 		const categoryResponse: ICategoryResponseTypes = await handleCategoryList();
-		const categoryList: ICategoryList[] = categoryResponse.data;
+		const categoryList: ICategory[] = categoryResponse.data;
 
 		const noticeResponse: INotceResponseListTypes = await handleNoticeList();
 		const noticeList: INotice[] = noticeResponse.data.notices;

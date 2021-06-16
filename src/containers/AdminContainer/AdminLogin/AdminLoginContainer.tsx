@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast, successToast } from 'lib/Toast';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import { clearStorage } from 'lib/Storage';
 import { NextRouter, useRouter } from 'next/router';
 import SecureLS from 'secure-ls';
@@ -53,7 +53,7 @@ const AdminLoginContainer = observer(() => {
 				}
 			})
 
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;

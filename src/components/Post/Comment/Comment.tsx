@@ -3,12 +3,13 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CommentItem from './CommentItem';
 import NoComments from './NoComments';
+import { IComment } from 'interface/CommentTypes';
 
 const style = require('./Comment.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface CommentProps {
-	commentReplyList: any[];
+	commentReplyList: IComment[];
 	requestCommentDelete: (idx: number) => Promise<void>;
 	requestDeleteReply: (idx: number) => Promise<void>;
 	requestCommentList: () => Promise<void>;
@@ -23,34 +24,31 @@ const Comment = ({
 
 	return (
 		<div className={cx('Comment')}>
-			{commentReplyList.length > 0 ? (
-				commentReplyList.map((comment: any, index: number) => {
+			{
+				commentReplyList.length > 0 ? (
+				commentReplyList.map((comment: IComment, index: number) => {
 					const {
 						idx,
-						writer,
 						contents,
-						created_at,
-						postIdx,
+						isPrivate,
+						createdAt,
 						updatedAt,
 						replies,
-						writer_idx,
-						writer_profile,
-						is_private
+						post,
+						user,
 					} = comment;
 
 					return (
 						<CommentItem
 							key={index}
 							idx={idx}
-							writer={writer}
-							writerIdx ={writer_idx}
-							writerProfile={writer_profile}
-							contents={contents}
-							createdAt={created_at}
-							postIdx={postIdx}
-							updatedAt={updatedAt}
+							user={user!}
+							contents={contents!}
+							createdAt={createdAt!}
+							postIdx={post?.idx!}
+							updatedAt={updatedAt!}
 							replies={replies ? replies : []}
-							isPrivate ={is_private}
+							isPrivate ={isPrivate!}
 							requestCommentDelete={requestCommentDelete}
 							requestDeleteReply={requestDeleteReply}
 							requestCommentList={requestCommentList}

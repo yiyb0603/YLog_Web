@@ -4,6 +4,7 @@ import MarkdownIt from 'markdown-it';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-light.css';
 import 'react-markdown-editor-lite/lib/index.css';
+import { useCallback } from 'react';
 
 interface MarkdownFormProps {
 	contents: string;
@@ -32,8 +33,7 @@ const mdParser: MarkdownIt = new MarkdownIt({
 });
 
 const MarkdownForm = ({ contents, setContents, requestImageUpload }: MarkdownFormProps) => {
-
-	const handleImageUpload = (file: File) => {
+	const handleImageUpload = useCallback((file: File) => {
 		return new Promise(resolve => {
 			const reader: FileReader = new FileReader();
 			reader.onload = async () => {
@@ -45,7 +45,7 @@ const MarkdownForm = ({ contents, setContents, requestImageUpload }: MarkdownFor
 			
 			reader.readAsDataURL(file);
 		});
-	}
+	}, []);
 
 	return (
 		<MdEditor

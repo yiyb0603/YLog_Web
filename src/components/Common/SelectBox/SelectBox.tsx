@@ -1,4 +1,4 @@
-import React, { ReactNode, ChangeEvent } from 'react';
+import React, { ReactNode, ChangeEvent, CSSProperties } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 
@@ -7,16 +7,18 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface ISelectBox {
 	children?: ReactNode;
-	className?: string;
-	style?: Object;
+	style?: CSSProperties;
 	onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const SelectBox = ({ children, className, style, onChange }: ISelectBox) => {
+const SelectBox = ({
+	children,
+	style,
+	onChange,
+}: ISelectBox) => {
 	return (
 		<select
 			onChange={onChange}
-			className={cx(`select-box ${className}`)}
 			style={style}
 		>
 			{children}

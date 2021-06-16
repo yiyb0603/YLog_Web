@@ -61,8 +61,14 @@ const CommentModifyForm = ({
 				<div className ={cx('CommentModifyForm-Right-Icon')}>
 				{
 					isPrivate ?
-						<AiFillLock style ={{ color: primary }} onClick ={() => setIsPrivate(false)} />
-						: <AiFillUnlock style ={{ color: gray }} onClick ={() => setIsPrivate(true)} />
+					<AiFillLock
+						style={{ color: primary }}
+						onClick={() => setIsPrivate(false)}
+					/>
+					: <AiFillUnlock
+							style={{ color: gray }}
+							onClick={() => setIsPrivate(true)}
+						/>
 				}
 				</div>
 				

@@ -1,7 +1,7 @@
-import { IRelease } from "interface/ReleaseTypes";
-import { errorToast } from "lib/Toast";
+import { IRelease, IReleaseDto } from 'interface/ReleaseTypes';
+import { errorToast } from 'lib/Toast';
 
-export const validationReleaseWrite = (request: IRelease) => {
+export const validationReleaseWrite = (request: IReleaseDto) => {
   const { title, contents } = request;
 
   if (!title!.trim() || !contents!.trim()) {

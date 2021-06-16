@@ -1,14 +1,14 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { useMemo, Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
-import { ClassNamesFn } from "classnames/types";
-import { ICategory } from "interface/CategoryTypes";
-import { NextRouter, useRouter } from "next/router";
-import { BsPen, BsTrash } from "react-icons/bs";
-import stringEllipsis from "lib/util/StringEllipsis";
-import getMyInfo from "lib/util/getMyInfo";
-import { IMemberTypes } from "interface/MemberTypes";
+import { ClassNamesFn } from 'classnames/types';
+import { ICategory } from 'interface/CategoryTypes';
+import { NextRouter, useRouter } from 'next/router';
+import { BsPen, BsTrash } from 'react-icons/bs';
+import stringEllipsis from 'lib/util/StringEllipsis';
+import getMyInfo from 'lib/util/getMyInfo';
+import { IToken } from 'interface/AuthTypes';
 
-const style = require("./RowCategoryItem.scss");
+const style = require('./RowCategoryItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface RowCategoryItemProps {
@@ -20,12 +20,18 @@ interface RowCategoryItemProps {
 	requestDeleteCategory: (idx: number) => void;
 }
 
-const RowCategoryItem = ({ idx, categoryName, postCount, setCategoryInfo, setIsModify, requestDeleteCategory }: RowCategoryItemProps) => {
+const RowCategoryItem = ({
+  idx,
+  categoryName,
+  postCount,
+  setCategoryInfo,
+  setIsModify,
+  requestDeleteCategory,
+}: RowCategoryItemProps) => {
   const router: NextRouter = useRouter();
 	const { topic, keyword } = router.query;
   
-  const myInfo: IMemberTypes = getMyInfo();
-	let isAdmin: null | boolean = myInfo ? myInfo.is_admin : null;
+  const myInfo: IToken = useMemo(() => getMyInfo(), [getMyInfo]);
 
   return (
     <div className ={cx('RowCategoryItem', {
@@ -41,7 +47,7 @@ const RowCategoryItem = ({ idx, categoryName, postCount, setCategoryInfo, setIsM
       </div>
       <div className ={cx('RowCategoryItem-Count')}>({postCount})</div>
       {
-        isAdmin &&
+        (myInfo && myInfo.isAdmin) &&
         <>
           <div className={cx('RowCategoryItem-Icon')}>
             <BsPen

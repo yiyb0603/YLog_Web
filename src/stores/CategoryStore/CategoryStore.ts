@@ -1,9 +1,6 @@
 import { autobind } from 'core-decorators';
-import {
-	ICategoryList,
-	ICategoryResponseTypes,
-	ICategory,
-} from 'interface/CategoryTypes';
+import { action, observable } from 'mobx';
+import { ICategory } from 'interface/CategoryTypes';
 import ISuccess from 'interface/SuccessTypes';
 import {
 	deleteRequest,
@@ -11,17 +8,16 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
-import { getUserToken } from 'Token/Token';
-import { action, observable } from 'mobx';
+import { getUserToken } from 'Token';
 
 @autobind
 export default class CategoryStore {
-	@observable categoryList: ICategoryList[] = [];
+	@observable categoryList: ICategory[] = [];
 
 	@action
 	handleCategoryList = async (keyword?: string) => {
 		try {
-			const response: ICategoryResponseTypes = await getResponse(`/category${keyword ? '?keyword=' + keyword.toLowerCase() : ''}`);
+			const response = await getResponse(`/category${keyword ? '?keyword=' + keyword.toLowerCase() : ''}`);
 			this.categoryList = response.data;
 
 			return response;

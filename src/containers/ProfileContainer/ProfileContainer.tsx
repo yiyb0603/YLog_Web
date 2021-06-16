@@ -7,19 +7,21 @@ import IUploadTypes from 'interface/UploadTypes';
 import { IProfileModifyDto } from 'interface/ProfileTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
+import { useMemo } from 'react';
 
 interface IProfileContainerProps {
   handleCloseModal: () => void;
 }
 
-const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps) => {
+const ProfileContainer = observer(({
+  handleCloseModal,
+}: IProfileContainerProps) => {
   const { store } = useStores();
   const { handleModifyProfile, handleGetProfile, userInfo } = store.ProfileStore;
   const { handleFileUpload } = store.UploadStore;
 
-  const { idx } = getMyInfo();
-  const userIdx: number = Number(idx);
+  const myInfo = useMemo(() => getMyInfo(), [getMyInfo]);
 
   const [selectImage, setSelectImage] = useState<string>('');
 
@@ -33,7 +35,7 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
       setSelectImage(response.data.files[0]);
     })
 
-    .catch((error: IErrorTypes) => {
+    .catch((error: IError) => {
       const { message } = error.response.data;
       errorToast(message);
       return;
@@ -42,7 +44,7 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
 
   const requestChangeProfile = useCallback(async () => {
     const request: IProfileModifyDto = {
-      userIdx,
+      userIdx: myInfo.idx,
       profileImage: selectImage ? selectImage : null,
     }
 
@@ -50,16 +52,16 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
     .then(({ status }: ISuccess) => {
       if (status === 200) {
         successToast('프로필 사진을 변경하였습니다.');
-        handleGetProfile(userIdx);
+        handleGetProfile(myInfo.idx);
       }
     })
 
-    .catch((error: IErrorTypes) => {
+    .catch((error: IError) => {
       const { message } = error.response.data;
       errorToast(message);
       return;
     })
-  }, [userIdx, selectImage, handleModifyProfile, handleGetProfile]);
+  }, [myInfo, selectImage, handleModifyProfile, handleGetProfile]);
 
   useEffect(() => {
     if (selectImage) {
@@ -68,19 +70,19 @@ const ProfileContainer = observer(({ handleCloseModal }: IProfileContainerProps)
   }, [requestChangeProfile, selectImage]);
 
   useEffect(() => {
-    if (Number.isInteger(userIdx)) {
-      handleGetProfile(userIdx);
+    if (Number.isInteger(myInfo.idx)) {
+      handleGetProfile(myInfo.idx);
     }
-  }, [handleGetProfile, userIdx]);
+  }, [handleGetProfile, myInfo]);
 
   return (
     <Profile
-      userInfo ={userInfo}
-      handleCloseModal ={handleCloseModal}
+      userInfo={userInfo}
+      handleCloseModal={handleCloseModal}
       requestChangeProfile={requestChangeProfile}
       requestImageUpload={requestImageUpload}
     />
-  )
+  );
 });
 
 export default ProfileContainer;

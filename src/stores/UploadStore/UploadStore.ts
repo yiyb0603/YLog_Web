@@ -1,6 +1,6 @@
+import { action } from 'mobx';
 import { autobind } from 'core-decorators';
 import { postRequest } from 'lib/Axios';
-import { action } from 'mobx';
 
 @autobind
 export default class UploadStore {

@@ -20,7 +20,7 @@ export default class MyApp extends Component {
 
 	static async getInitialProps(context: any) {
 		const { ctx, Component } = context;
-		const isServer = typeof window === "undefined";
+		const isServer: boolean = typeof window === 'undefined';
 		let pageProps = {};
 
 		if (isServer) {
@@ -45,10 +45,10 @@ export default class MyApp extends Component {
 			<Provider store={stores}>
 				<Head>
 					<meta
-						name="viewport"
-						content="width=device-width, initial-scale=1.0"
+						name='viewport'
+						content='width=device-width, initial-scale=1.0'
 					/>
-					<link rel="shortcut icon" href="/assets/icon/shortcut.PNG" />
+					<link rel='shortcut icon' href='/assets/icon/shortcut.PNG' />
 					<title>YLog</title>
 				</Head>
 				<Component {...pageProps} />

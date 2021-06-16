@@ -4,7 +4,7 @@ import ModifyCategory from 'components/Home/Category/ModifyCategory';
 import useStores from 'lib/hooks/useStores';
 import { ICategory } from 'interface/CategoryTypes';
 import ISuccess from 'interface/SuccessTypes';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast, successToast } from 'lib/Toast';
 
@@ -42,7 +42,7 @@ const ModifyCategoryContainer = observer(
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;

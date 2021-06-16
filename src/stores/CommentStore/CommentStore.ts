@@ -1,8 +1,8 @@
 import { autobind } from 'core-decorators';
 import {
+	IComment,
 	ICommentRequestTypes,
 	ICommentResponseListTypes,
-	ICommentResponseTypes,
 } from 'interface/CommentTypes';
 import ISuccess from 'interface/SuccessTypes';
 import {
@@ -11,7 +11,7 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
-import { getUserToken } from 'Token/Token';
+import { getUserToken } from 'Token';
 import { observable, action } from 'mobx';
 import ReplyStore from 'stores/ReplyStore';
 
@@ -33,31 +33,12 @@ export default class CommentStore {
 				`/comment?postIdx=${postIdx}`
 			);
 
-			const commentList: ICommentResponseTypes[] = response.data.comments;
+			const commentList: IComment[] = response.data.comments;
 			for (let i = 0; i < commentList.length; i++) {
-				const {
-					idx,
-					writer,
-					writer_idx,
-					writer_profile,
-					contents,
-					post_idx,
-					created_at,
-					updated_at,
-					is_private,
-				} = commentList[i];
 				this.commentReplyList = [
 					...this.commentReplyList,
 					{
-						idx,
-						writer,
-						writer_idx,
-						writer_profile,
-						contents,
-						post_idx,
-						created_at,
-						updated_at,
-						is_private,
+						...commentList[i],
 						replies: [],
 					},
 				];
@@ -72,20 +53,18 @@ export default class CommentStore {
 							idx
 						} = this.commentReplyList[i];
 
-						const { comment_idx } = replyStore.replyList[j];
+						const { comment } = replyStore.replyList[j];
 
-						if (idx === comment_idx) {
+						if (idx === comment.idx) {
 							replies.push({
 								idx: replyStore.replyList[j].idx,
-								writer: replyStore.replyList[j].writer,
-								writerIdx: replyStore.replyList[j].writer_idx,
-								writerProfile: replyStore.replyList[j].writer_profile,
+								user: replyStore.replyList[j].user,
 								contents: replyStore.replyList[j].contents,
-								repliedAt: replyStore.replyList[j].replied_at,
-								updatedAt: replyStore.replyList[j].updated_at,
-								commentIdx: replyStore.replyList[j].comment_idx,
-								postIdx: replyStore.replyList[j].post_idx,
-								isPrivate: replyStore.replyList[j].is_private,
+								repliedAt: replyStore.replyList[j].repliedAt,
+								updatedAt: replyStore.replyList[j].updatedAt,
+								commentIdx: replyStore.replyList[j].comment.idx,
+								postIdx: replyStore.replyList[j].post.idx,
+								isPrivate: replyStore.replyList[j].isPrivate,
 							});
 
 							this.commentReplyList[i].replies = replies;

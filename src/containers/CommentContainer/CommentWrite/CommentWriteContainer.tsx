@@ -4,7 +4,7 @@ import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import { ICommentRequestTypes } from 'interface/CommentTypes';
 import ISuccess from 'interface/SuccessTypes';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import CommentWrite from 'components/Post/Comment/CommentWrite';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast, successToast } from 'lib/Toast';
@@ -46,7 +46,7 @@ const CommentWriteContainer = observer(() => {
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;

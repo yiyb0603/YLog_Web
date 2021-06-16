@@ -30,7 +30,7 @@ export interface IPost {
 	contents?: string;
 	introduction?: string;
 	thumbnail?: string | null | undefined;
-	category: ICategory;
+	category?: ICategory;
 	user?: IUser;
 	likeCount?: number;
 	commentLength?: number;

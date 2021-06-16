@@ -10,7 +10,7 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
-import { getUserToken } from 'Token/Token';
+import { getUserToken } from 'Token';
 import { action, observable } from 'mobx';
 
 @autobind

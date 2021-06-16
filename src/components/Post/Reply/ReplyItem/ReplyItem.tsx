@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import CommentLayout from 'components/Common/Comment/CommentLayout';
 import ReplyModifyContainer from 'containers/ReplyContainer/ReplyModifyContainer';
+import { IUser } from 'interface/AuthTypes';
 
 const style = require('./ReplyItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -10,9 +11,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 interface ReplyItemProps {
 	idx: number;
 	contents: string;
-	writer: string | null;
-	writerIdx: number;
-	writerProfile: string;
+	user: IUser;
 	repliedAt: string | Date;
 	updatedAt: string | Date;
 	commentIdx: number;
@@ -24,9 +23,7 @@ interface ReplyItemProps {
 const ReplyItem = ({
 	idx,
 	contents,
-	writer,
-	writerIdx,
-	writerProfile,
+	user,
 	repliedAt,
 	updatedAt,
 	isPrivate,
@@ -41,11 +38,9 @@ const ReplyItem = ({
 			<CommentLayout
 				idx={idx}
 				contents={contents}
-				writer={writer}
-				writerIdx ={writerIdx}
+				user={user}
 				createdAt={repliedAt}
 				updatedAt={updatedAt}
-				writerProfile={writerProfile}
 				deleteFunction={() => requestDeleteReply(idx)}
 				requestCommentList={requestCommentList}
 				commentType={1}

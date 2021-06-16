@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import Comment from 'components/Post/Comment';
 import { errorToast, successToast } from 'lib/Toast';
 import ISuccess from 'interface/SuccessTypes';
@@ -24,7 +24,7 @@ const CommentContainer = observer(() => {
 	const requestCommentList = useCallback(async () => {
 		if (Number.isInteger(postIdx)) {
 			await handleCommentList(postIdx)
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;
@@ -43,7 +43,7 @@ const CommentContainer = observer(() => {
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;
@@ -63,7 +63,7 @@ const CommentContainer = observer(() => {
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;

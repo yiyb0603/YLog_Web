@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { IPostDto, IPostResponseTypes } from 'interface/PostTypes';
 import ISuccess from 'interface/SuccessTypes';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast } from 'lib/Toast';
 import { showAlert } from 'lib/SweetAlert';
@@ -39,7 +39,7 @@ const PostFormContainer = observer(() => {
 					setThumbnail(response.data.files[0]);
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;
@@ -70,7 +70,7 @@ const PostFormContainer = observer(() => {
 				}
 			})
 
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;
@@ -105,7 +105,7 @@ const PostFormContainer = observer(() => {
 				}
 			})
 
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;

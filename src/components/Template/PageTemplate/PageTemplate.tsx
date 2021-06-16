@@ -4,12 +4,14 @@ import Footer from '../../Common/PageItems/Footer';
 import ScrollTop from '../../Common/PageItems/ScrollTop';
 
 interface IPageTemplateProps {
-	children?: ReactNode;
+	children: ReactNode;
 }
 
-const PageTemplate = ({ children }: IPageTemplateProps) => {
+const PageTemplate = ({
+	children,
+}: IPageTemplateProps) => {
 	return (
-		<div style ={{ width: '100%', height: '100%' }}>
+		<div style={{ width: '100%', height: '100%' }}>
 			<NavBar />
 			{children}
 			<Footer />

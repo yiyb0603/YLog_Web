@@ -1,11 +1,11 @@
 import React, { SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { IPostListTypes } from 'interface/PostTypes';
 import CommentContainer from 'containers/CommentContainer';
 import CommentWriteContainer from 'containers/CommentContainer/CommentWrite';
 import parseTime from 'lib/TimeCounting';
-import { ICategoryList } from 'interface/CategoryTypes';
+import { ICategory } from 'interface/CategoryTypes';
+import { IPost } from 'interface/PostTypes';
 import dynamic from 'next/dynamic';
 import LikeContainer from 'containers/LikeContainer';
 
@@ -15,18 +15,18 @@ const style = require('./PostView.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface IPostViewProps {
-	postInfo: IPostListTypes;
+	postInfo: IPost;
 	commentLength: number;
-	categoryName: ICategoryList;
+	categoryName: ICategory;
 }
 
 const PostView = ({ postInfo, commentLength, categoryName }: IPostViewProps) => {
 	const {
 		title,
 		introduction,
-		writer,
-		created_at,
-		updated_at,
+		user,
+		createdAt,
+		updatedAt,
 		contents,
 		thumbnail,
 	} = postInfo;
@@ -46,22 +46,22 @@ const PostView = ({ postInfo, commentLength, categoryName }: IPostViewProps) => 
 								<LikeContainer />
 							</div>
 							<div className={cx('PostView-Contents-Info-Left-Category')}>
-								{categoryName && categoryName.category_name}
+								{categoryName && categoryName.categoryName}
 							</div>
 						</div>
 						<div className={cx('PostView-Contents-Info-Personal')}>
 							<div className={cx('PostView-Contents-Info-Personal-Time')}>
-								{parseTime(created_at!)}
-								{updated_at && ' (수정됨)'}
+								{parseTime(createdAt!)}
+								{updatedAt && ' (수정됨)'}
 							</div>
 							<div className={cx('PostView-Contents-Info-Personal-Writer')}>
-								{writer}
+								{user?.name}
 							</div>
 						</div>
 					</div>
 					<img
 						src={thumbnail ? thumbnail : '/assets/icon/Logo.PNG'}
-						alt="thumbnail"
+						alt='thumbnail'
 						className={cx('PostView-Contents-Thumbnail')}
 						onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
 							(e.currentTarget.src = '/assets/icon/Logo.PNG')

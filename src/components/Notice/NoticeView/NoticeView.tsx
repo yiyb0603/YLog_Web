@@ -6,6 +6,7 @@ import parseTime from 'lib/TimeCounting';
 import { NextRouter, useRouter } from 'next/router';
 import getMyInfo from 'lib/util/getMyInfo';
 import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
 
 const MarkdownRender = dynamic(() => import('components/Common/Markdown/MarkdownRender'));
 
@@ -17,10 +18,13 @@ interface NoticeViewProps {
 	requestDeleteNotice: (idx: number) => Promise<void>;
 }
 
-const NoticeView = ({ noticeInfo, requestDeleteNotice }: NoticeViewProps) => {
+const NoticeView = ({
+	noticeInfo,
+	requestDeleteNotice,
+}: NoticeViewProps) => {
 	const router: NextRouter = useRouter();
-	const { idx, writer, title, contents, created_at, updated_at } = noticeInfo;
-	const { is_admin } = getMyInfo();
+	const { idx, writer, title, contents, createdAt, updatedAt } = useMemo(() => noticeInfo, [noticeInfo]);
+	const myInfo = useMemo(() => getMyInfo(), [getMyInfo]);
 
 	return (
 		<div className={cx('NoticeView')}>
@@ -29,7 +33,7 @@ const NoticeView = ({ noticeInfo, requestDeleteNotice }: NoticeViewProps) => {
 				<div className={cx('NoticeView-Contents-Info')}>
 					<div className={cx('NoticeView-Contents-Info-Option')}>
 						{
-							is_admin &&
+							(myInfo && myInfo.isAdmin) &&
 							<>
 								<div
 									className={cx('NoticeView-Contents-Info-Option-Modify')}
@@ -49,8 +53,8 @@ const NoticeView = ({ noticeInfo, requestDeleteNotice }: NoticeViewProps) => {
 
 					<div className={cx('NoticeView-Contents-Info-Personal')}>
 						<div>
-							{parseTime(created_at!)}
-							{updated_at && ' (수정됨)'}
+							{parseTime(createdAt!)}
+							{updatedAt && ' (수정됨)'}
 						</div>
 						<div className={cx('NoticeView-Contents-Info-Personal-Writer')}>
 							{writer}

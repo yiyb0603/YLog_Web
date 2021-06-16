@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import TitleInput from 'components/Common/Input/TitleInput';
@@ -22,10 +22,14 @@ const NoticeForm = ({
 	return (
 		<div className={cx('NoticeForm')}>
 			<div className={cx('NoticeForm-Top')}>
-				<TitleInput title ={title} setTitle ={setTitle} />
+				<TitleInput title={title} setTitle={setTitle} />
 			</div>
 
-			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={ImageUpload} />
+			<MarkdownForm
+				contents={contents}
+				setContents={setContents}
+				requestImageUpload={ImageUpload}
+			/>
 
 			<div className={cx('NoticeForm-Button')}>
 				<button
@@ -39,4 +43,4 @@ const NoticeForm = ({
 	);
 };
 
-export default NoticeForm;
+export default memo(NoticeForm);

@@ -1,21 +1,23 @@
+import { IUser } from './AuthTypes';
+import { IPost } from './PostTypes';
+import { IReply } from './ReplyTypes';
 import ISuccess from './SuccessTypes';
 
 export interface ICommentResponseListTypes extends ISuccess {
 	data: {
-		comments: ICommentResponseTypes[];
+		comments: IComment[];
 	};
 }
 
-export interface ICommentResponseTypes {
-	idx?: number;
+export interface IComment {
+	idx: number;
 	contents?: string;
 	createdAt?: Date | string;
-	post?: number;
-	updated_at?: Date | null;
-	writer?: string | null;
-	writer_idx?: number | null;
-	writer_profile?: string | null;
-	is_private?: boolean;
+	post?: IPost;
+	updatedAt?: Date | null;
+	user?: IUser;
+	isPrivate?: boolean;
+	replies: IReply[];
 }
 
 export interface ICommentRequestTypes {

@@ -11,14 +11,14 @@ const PostLoading = () => {
 		<div className={cx('PostLoading')}>
 			<ContentLoader
 				speed={2}
-				viewBox="0 0 400 300"
-				backgroundColor="#f3f3f3"
-				foregroundColor="#ecebeb"
+				viewBox='0 0 400 300'
+				backgroundColor='#f3f3f3'
+				foregroundColor='#ecebeb'
 			>
-				<rect x="0" y="18" rx="2" ry="2" width="140" height="20" />
-				<rect x="0" y="45" rx="2" ry="2" width="900" height="10" />
-				<rect x="0" y="60" rx="2" ry="2" width="900" height="150" />
-				<rect x="0" y="220" rx="2" ry="2" width="900" height="10" />
+				<rect x='0' y='18' rx='2' ry='2' width='140' height='20' />
+				<rect x='0' y='45' rx='2' ry='2' width='900' height='10' />
+				<rect x='0' y='60' rx='2' ry='2' width='900' height='150' />
+				<rect x='0' y='220' rx='2' ry='2' width='900' height='10' />
 			</ContentLoader>
 		</div>
 	);

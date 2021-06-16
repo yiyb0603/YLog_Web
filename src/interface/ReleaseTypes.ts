@@ -1,3 +1,4 @@
+import { IUser } from './AuthTypes';
 import ISuccess from './SuccessTypes';
 
 export interface IReleaseListResponse extends ISuccess {
@@ -22,7 +23,7 @@ export interface IRelease {
   idx?: number;
   title?: string;
   contents?: string;
-  created_at?: Date | string;
-  updated_at?: Date | null;
-  writer?: string;
+  createdAt?: Date | string;
+  updatedAt?: Date | string | null;
+  user?: IUser;
 }

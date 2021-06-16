@@ -1,6 +1,6 @@
 import { autobind } from 'core-decorators';
 import {
-	IPostListTypes,
+	IPost,
 	IPostDto,
 	IPostResponseListTypes,
 	IPostResponseTypes,
@@ -12,17 +12,17 @@ import {
 	modifyRequest,
 	postRequest,
 } from 'lib/Axios';
-import { getUserToken } from 'Token/Token';
+import { getUserToken } from 'Token';
 import { observable, action } from 'mobx';
 
 @autobind
 export default class PostStore {
-	@observable postList: IPostListTypes[] = [];
-	@observable postInfo: IPostListTypes = {};
+	@observable postList: IPost[] = [];
+	@observable postInfo: IPost = {};
 	@observable isLoading: boolean = true;
 
 	@action
-	handlePostList = async (postList?: IPostListTypes[]) => {
+	handlePostList = async (postList?: IPost[]) => {
 		this.isLoading = true;
 		try {
 			const response: IPostResponseListTypes = await getResponse('/post');
@@ -38,7 +38,7 @@ export default class PostStore {
 	};
 
 	@action
-	handlePostView = async (idx: number, postInfo?: IPostListTypes) => {
+	handlePostView = async (idx: number, postInfo?: IPost) => {
 		try {
 			this.isLoading = true;
 			const response: IPostResponseTypes = await getResponse(`/post/${idx}`);
@@ -106,7 +106,7 @@ export default class PostStore {
 			);
 			if (response.status === 200) {
 				this.postList = this.postList.filter(
-					(post: IPostListTypes) => post.idx !== idx
+					(post: IPost) => post.idx !== idx
 				);
 			}
 

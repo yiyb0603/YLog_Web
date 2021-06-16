@@ -1,8 +1,8 @@
-import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
+import React, { ChangeEvent, Dispatch, memo, SetStateAction } from 'react';
 import classNames from 'classnames';
-import { ClassNamesFn } from "classnames/types";
+import { ClassNamesFn } from 'classnames/types';
 
-const style = require("./TitleInput.scss");
+const style = require('./TitleInput.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface TitleInputProps {
@@ -11,13 +11,17 @@ interface TitleInputProps {
   width?: string;
 }
 
-const TitleInput = ({ title, setTitle, width }: TitleInputProps) => {
+const TitleInput = ({
+  title,
+  setTitle,
+  width,
+}: TitleInputProps) => {
   return (
     <input
-      style ={{ width }}
+      style={{ width }}
       className={cx('TitleInput')}
-      type="text"
-      placeholder="제목을 입력하세요..."
+      type='text'
+      placeholder='제목을 입력하세요...'
       value={title}
       onChange={(e: ChangeEvent<HTMLInputElement>) =>
         setTitle(e.target.value)
@@ -26,4 +30,4 @@ const TitleInput = ({ title, setTitle, width }: TitleInputProps) => {
   );
 };
 
-export default TitleInput;
+export default memo(TitleInput);

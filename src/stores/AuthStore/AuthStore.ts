@@ -1,4 +1,5 @@
 import { autobind } from 'core-decorators';
+import { action, observable } from 'mobx';
 import {
 	IEmailCodeDto,
 	ISignInResponseTypes,
@@ -7,8 +8,7 @@ import {
 } from 'interface/AuthTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { postRequest } from 'lib/Axios';
-import { getUserToken } from 'Token/Token';
-import { action, observable } from 'mobx';
+import { getUserToken } from 'Token';
 
 @autobind
 export default class AuthStore {

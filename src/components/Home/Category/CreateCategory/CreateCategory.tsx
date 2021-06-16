@@ -30,11 +30,15 @@ const CreateCategory = ({
 
 	return (
 		<div className={cx('CreateCategory')}>
-			<Modal width ="300px" title="카테고리 생성" handleCloseModal={handleCloseModal}>
+			<Modal
+				width='300px'
+				title='카테고리 생성'
+				handleCloseModal={handleCloseModal}
+			>
 				<div className={cx('CreateCategory-Wrapper')}>
 					<input
-						type="text"
-						placeholder="카테고리를 입력하세요"
+						type='text'
+						placeholder='카테고리를 입력하세요'
 						value={categoryName}
 						onChange={(e: ChangeEvent<HTMLInputElement>) =>
 							setCategoryName(e.target.value)

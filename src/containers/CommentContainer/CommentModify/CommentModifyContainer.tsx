@@ -5,7 +5,7 @@ import GroupingState from 'lib/util/GroupingState';
 import { NextRouter, useRouter } from 'next/router';
 import useStores from 'lib/hooks/useStores';
 import { ICommentRequestTypes } from 'interface/CommentTypes';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
 import { validateCreateComment } from 'validation/Comment/validationComment';
@@ -57,7 +57,7 @@ const CommentModifyContainer = observer(
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;

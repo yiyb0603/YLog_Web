@@ -4,7 +4,7 @@ import useStores from 'lib/hooks/useStores';
 import { IEmailCodeDto, ISignUpDto } from 'interface/AuthTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import { showAlert } from 'lib/SweetAlert';
 import EmailAuth from 'components/Auth/EmailAuth';
 import GroupingState from 'lib/util/GroupingState';
@@ -40,7 +40,7 @@ const EmailContainer = observer(
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;
@@ -61,14 +61,14 @@ const EmailContainer = observer(
 						}
 					})
 
-					.catch((error: IErrorTypes) => {
+					.catch((error: IError) => {
 						const { message } = error.response.data;
 						errorToast(message);
 						return;
 					});
 			})
 
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;

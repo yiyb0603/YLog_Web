@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
-import { ICategoryList } from 'interface/CategoryTypes';
+import { ICategory } from 'interface/CategoryTypes';
 import SelectBox from 'components/Common/SelectBox';
 import TitleInput from 'components/Common/Input/TitleInput';
 import Thumbnail from 'components/Common/Button/Thumbnail';
@@ -28,12 +28,12 @@ const PostForm = ({
 	const { introduction, setIntroduction } = introductionObject;
 	const { contents, setContents } = contentsObject;
 	const { setCategoryIdx } = categoryIdxObject;
-	const { thumbnail, setThumbnail } = thumbnailObject;
+	const { thumbnail } = thumbnailObject;
 
 	return (
 		<div className={cx('PostForm')}>
 			<div className={cx('PostForm-Top')}>
-				<TitleInput title ={title} setTitle ={setTitle} width ="400px" />
+				<TitleInput title ={title} setTitle ={setTitle} width ='400px' />
 
 				<SelectBox
 					onChange={(e: ChangeEvent<HTMLSelectElement>) =>
@@ -41,11 +41,14 @@ const PostForm = ({
 					}
 				>
 					<option value={-1}>카테고리 선택</option>
-					{categoryList.map((category: ICategoryList) => {
-						const { idx, category_name } = category;
+					{categoryList.map((category: ICategory) => {
+						const { idx, categoryName } = category;
 						return (
-							<option value={idx} key={idx}>
-								{category_name}
+							<option
+								value={idx}
+								key={idx}
+							>
+								{categoryName}
 							</option>
 						);
 					})}
@@ -54,8 +57,8 @@ const PostForm = ({
 
 			<div className={cx('PostForm-Introduction')}>
 				<input
-					type="text"
-					placeholder="소개를 입력하세요..."
+					type='text'
+					placeholder='소개를 입력하세요...'
 					value={introduction}
 					onChange={(e: ChangeEvent<HTMLInputElement>) =>
 						setIntroduction(e.target.value)
@@ -63,8 +66,15 @@ const PostForm = ({
 				/>
 			</div>
 
-			<Thumbnail thumbnail ={thumbnail} requestThumbnailUpload ={requestThumbnailUpload} />
-			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={requestImageUpload} />
+			<Thumbnail
+				thumbnail={thumbnail}
+				requestThumbnailUpload={requestThumbnailUpload}
+			/>
+			<MarkdownForm
+				contents={contents}
+				setContents={setContents}
+				requestImageUpload={requestImageUpload}
+			/>
 
 			<div className={cx('PostForm-Button')}>
 				<button

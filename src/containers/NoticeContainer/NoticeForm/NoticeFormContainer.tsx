@@ -4,7 +4,7 @@ import useStores from 'lib/hooks/useStores';
 import GroupingState from 'lib/util/GroupingState';
 import NoticeForm from 'components/Notice/NoticeForm';
 import { errorToast } from 'lib/Toast';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
 import validationNoticeWrite from 'validation/Notice/validationNoticeWrite';
@@ -48,7 +48,7 @@ const NoticeFormContainer = observer(() => {
 				}
 			})
 
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;
@@ -74,7 +74,7 @@ const NoticeFormContainer = observer(() => {
 				}
 			})
 
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;

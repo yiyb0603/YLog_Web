@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import PostLike from 'components/Post/PostView/PostLike';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import { errorToast } from 'lib/Toast';
 import ISuccess from 'interface/SuccessTypes';
 import getMyInfo from 'lib/util/getMyInfo';
@@ -19,7 +19,7 @@ const LikeContainer = observer(() => {
 
   const requestLikeList = useCallback(async () => {
     await handleLikeList(postIdx)
-    .catch((error: IErrorTypes) => {
+    .catch((error: IError) => {
       const { message } = error.response.data;
       errorToast(message);
       return;
@@ -34,7 +34,7 @@ const LikeContainer = observer(() => {
       }
     })
 
-    .catch((error: IErrorTypes) => {
+    .catch((error: IError) => {
       const { message } = error.response.data;
       errorToast(message);
       return;
@@ -51,7 +51,7 @@ const LikeContainer = observer(() => {
         requestLikeList();
       }
     })
-    .catch((error: IErrorTypes) => {
+    .catch((error: IError) => {
       const { message } = error.response.data;
       errorToast(message);
       return;

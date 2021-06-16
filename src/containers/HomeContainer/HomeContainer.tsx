@@ -4,7 +4,7 @@ import { removeCookie } from 'lib/Cookie';
 import Constants from 'Constants';
 import { NextRouter, useRouter } from 'next/router';
 import isAdmin from 'lib/util/isAdmin';
-import { getUserToken } from 'Token/Token';
+import { getUserToken } from 'Token';
 import { clearStorage } from 'lib/Storage';
 import { IHomeProps } from '../../../pages';
 

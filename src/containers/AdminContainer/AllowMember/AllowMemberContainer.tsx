@@ -4,9 +4,9 @@ import useStores from 'lib/hooks/useStores';
 import AllowMember from 'components/Admin/AllowMember';
 import { errorToast, successToast } from 'lib/Toast';
 import ISuccess from 'interface/SuccessTypes';
-import IErrorTypes from 'interface/ErrorTypes';
-import { IMemberTypes } from 'interface/MemberTypes';
+import IError from 'interface/ErrorTypes';
 import MemberCard from 'components/Admin/AllowMember/MemberCard';
+import { IUser } from 'interface/AuthTypes';
 
 const AllowMemberContainer = observer(() => {
 	const { store } = useStores();
@@ -27,7 +27,7 @@ const AllowMemberContainer = observer(() => {
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;
@@ -46,7 +46,7 @@ const AllowMemberContainer = observer(() => {
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;
@@ -55,15 +55,15 @@ const AllowMemberContainer = observer(() => {
 		[handleRefuseMember, handleMemberList]
 	);
 
-	const memberLists: JSX.Element[] = memberList.map((member: IMemberTypes) => {
-		const { idx, name, email, is_admin } = member;
+	const memberLists: JSX.Element[] = memberList.map((member: IUser) => {
+		const { idx, name, email, isAdmin } = member;
 		return (
 			<MemberCard
 				key={idx}
 				idx={idx}
 				name={name}
 				email={email}
-				is_admin={is_admin}
+				isAdmin={isAdmin}
 				requestAllowMember={requestAllowMember}
 				requestRefuseMember={requestRefuseMember}
 			/>

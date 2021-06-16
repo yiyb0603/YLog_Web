@@ -6,10 +6,12 @@ const style = require('./BlockQuote.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface BlockQuoteProps {
-	children?: ReactNode;
+	children: ReactNode;
 }
 
-const BlockQuote = ({ children }: BlockQuoteProps) => {
+const BlockQuote = ({
+	children,
+}: BlockQuoteProps) => {
 	return <div className={cx('BlockQuote')}>{children}</div>;
 };
 

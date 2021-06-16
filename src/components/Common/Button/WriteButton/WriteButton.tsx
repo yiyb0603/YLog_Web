@@ -11,9 +11,19 @@ interface WriteButtonProps {
   children?: ReactNode;
 }
 
-const WriteButton = ({ width, nextFunction, children }: WriteButtonProps) => {
+const WriteButton = ({
+  width,
+  nextFunction,
+  children,
+}: WriteButtonProps) => {
   return (
-    <button style ={{ width: width && width }} className ={cx('WriteButton')} onClick ={nextFunction}>{children}</button>
+    <button
+      style={{ width: width && width }}
+      className={cx('WriteButton')}
+      onClick={nextFunction}
+    >
+      {children}
+    </button>
   );
 };
 

@@ -14,16 +14,16 @@ const ReleaseTemplate = () => {
   const router: NextRouter = useRouter();
 
   return (
-    <div className ={cx('ReleaseTemplate')}>
-      <div className ={cx('ReleaseTemplate-TopWrapper')}>
-        <div className ={cx('ReleaseTemplate-TopWrapper-Top')}>
-          <div className ={cx('ReleaseTemplate-TopWrapper-Top-Title')}>YLog 릴리즈 노트</div>
+    <div className={cx('ReleaseTemplate')}>
+      <div className={cx('ReleaseTemplate-TopWrapper')}>
+        <div className={cx('ReleaseTemplate-TopWrapper-Top')}>
+          <div className={cx('ReleaseTemplate-TopWrapper-Top-Title')}>YLog 릴리즈 노트</div>
           
           {
             isAdmin() &&
             <WriteButton
-              width ="180px"
-              nextFunction ={() => router.push(`/release/write`)}
+              width='180px'
+              nextFunction={() => router.push(`/release/write`)}
             >
               <HiPencil />
               <div>릴리즈 작성</div>
@@ -31,11 +31,13 @@ const ReleaseTemplate = () => {
           }
         </div>
 
-        <div className ={cx('ReleaseTemplate-TopWrapper-Subtitle')}>릴리즈 노트는 관리자만 작성 가능합니다.</div>
+        <div className={cx('ReleaseTemplate-TopWrapper-Subtitle')}>
+          릴리즈 노트는 관리자만 작성 가능합니다.
+        </div>
       </div>
       <ReleaseContainer />
     </div>
-  )
+  );
 };
 
 export default ReleaseTemplate;

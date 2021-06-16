@@ -1,4 +1,4 @@
-export default interface IErrorTypes {
+export default interface IError {
 	response: {
 		data: {
 			status: number;

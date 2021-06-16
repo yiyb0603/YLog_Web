@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
 import { IPostListTypes } from 'interface/PostTypes';
-import { ICategoryList } from 'interface/CategoryTypes';
+import { ICategory } from 'interface/CategoryTypes';
 import HomePostItem from './HomePostItem';
 import NoPosts from '../NoPosts';
 
@@ -12,7 +12,7 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 export interface HomePostProps {
 	filterPost: IPostListTypes[];
-	categoryList: ICategoryList[];
+	categoryList: ICategory[];
 	requestDeletePost: (idx: number) => Promise<void>;
 }
 

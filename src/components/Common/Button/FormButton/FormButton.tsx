@@ -10,9 +10,15 @@ interface FormButtonProps {
 	requestFunction?: () => Promise<void>;
 }
 
-const FormButton = ({ buttonValue, requestFunction }: FormButtonProps) => {
+const FormButton = ({
+	buttonValue,
+	requestFunction,
+}: FormButtonProps) => {
 	return (
-		<button className={cx('FormButton')} onClick={requestFunction}>
+		<button
+			className={cx('FormButton')}
+			onClick={requestFunction}
+		>
 			{buttonValue}
 		</button>
 	);

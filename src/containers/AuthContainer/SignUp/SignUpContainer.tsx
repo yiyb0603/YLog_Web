@@ -7,7 +7,7 @@ import ISuccess from 'interface/SuccessTypes';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast, successToast } from 'lib/Toast';
 import EmailContainer from '../Email';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import { observer } from 'mobx-react';
 import validationSignUp from 'validation/Auth/validationSignUp';
 
@@ -43,7 +43,7 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 		let isError: boolean = false;
 		if (adminCode) {
 			await handleAdminCheck(adminCode)
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				isError = true;
 				
 				const { message } = error.response.data;
@@ -66,14 +66,14 @@ const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
 				}
 			})
 	
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;
 			});
 		})
 			
-		.catch((error: IErrorTypes) => {
+		.catch((error: IError) => {
 			const { message } = error.response.data;
 			errorToast(message);
 			return;

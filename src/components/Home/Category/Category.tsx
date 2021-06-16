@@ -3,34 +3,34 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { BsPencil } from 'react-icons/bs';
 import CreateCategoryContainer from 'containers/CategoryContainer/CreateCategory/CreateCategoryContainer';
-import {
-	ICategoryList,
-	ICategory,
-} from 'interface/CategoryTypes';
+import { ICategory } from 'interface/CategoryTypes';
 import { NextRouter, useRouter } from 'next/router';
 import ModifyCategoryContainer from 'containers/CategoryContainer/ModifyCategory/ModifyCategoryContainer';
 import CategoryItem from './CategoryItem';
 import RowCategoryItem from './RowCategoryItem';
 import isAdmin from 'lib/util/isAdmin';
+import { useMemo } from 'react';
 
 const style = require('./Category.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface CategoryProps {
-	categoryList: ICategoryList[];
+	categoryList: ICategory[];
 	requestDeleteCategory: (idx: number) => Promise<void>;
 	postLength: number;
 }
 
-const Category = ({ categoryList, requestDeleteCategory, postLength }: CategoryProps) => {
+const Category = ({
+	categoryList,
+	requestDeleteCategory,
+	postLength,
+}: CategoryProps) => {
 	const [isCreate, setIsCreate] = useState<boolean>(false);
 	const [isModify, setIsModify] = useState<boolean>(false);
 	const [categoryInfo, setCategoryInfo] = useState<ICategory>({});
 
 	const router: NextRouter = useRouter();
-	const {
-		query: { topic, keyword, isTemp },
-	}: NextRouter = router;
+	const { query: { topic, keyword, isTemp } }: NextRouter = useMemo(() => router, [router]);
 
 	const fixStyle: CSSProperties = {
 		position: postLength > 0 ? 'fixed' : 'relative',
@@ -39,20 +39,25 @@ const Category = ({ categoryList, requestDeleteCategory, postLength }: CategoryP
 	return (
 		<div className={cx('Category')} style={fixStyle}>
 			<div className ={cx('Category-RowWrapper')}>
-				<div className ={cx('RowCategoryItem', {
-      		'RowCategoryItem-Current': !topic
-    		})} onClick={() => router.push('/')}>전체보기</div>
+				<div
+					className ={cx('RowCategoryItem', {
+      			'RowCategoryItem-Current': !topic
+    			})}
+					onClick={() => router.push('/')}
+				>
+					전체보기
+				</div>
 
 				{
-					categoryList.map((category: ICategoryList) => {
-						const { idx, category_name, post_count } = category;
+					categoryList.map((category: ICategory) => {
+						const { idx, categoryName, postCount } = category;
 
 						return (
 							<RowCategoryItem
 								key={idx}
-								idx={idx}
-								categoryName={category_name}
-								postCount={post_count}
+								idx={idx!}
+								categoryName={categoryName!}
+								postCount={postCount!}
 								setCategoryInfo={setCategoryInfo}
 								setIsModify={setIsModify}
 								requestDeleteCategory={requestDeleteCategory}
@@ -86,15 +91,15 @@ const Category = ({ categoryList, requestDeleteCategory, postLength }: CategoryP
 						</span>
 					</li>
 
-					{categoryList.map((category: ICategoryList) => {
-						const { idx, category_name, post_count } = category;
+					{categoryList.map((category: ICategory) => {
+						const { idx, categoryName, postCount } = category;
 
 						return (
 							<CategoryItem
 								key={idx}
-								idx={idx}
-								categoryName={category_name}
-								post_count={post_count}
+								idx={idx!}
+								categoryName={categoryName!}
+								post_count={postCount!}
 								setCategoryInfo={setCategoryInfo}
 								setIsModify={setIsModify}
 								requestDeleteCategory={requestDeleteCategory}

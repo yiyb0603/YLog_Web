@@ -13,9 +13,9 @@ interface PrivateCommentProps {
 // type = 0: 댓글, 1: 답글
 const PrivateComment = ({ type }: PrivateCommentProps) => {
   return (
-    <div className ={cx('PrivateComment')}>
-      <AiFillLock className ={cx('PrivateComment-Icon')} />
-      <div className ={cx('PrivateComment-Text')}>비공개 {type === 0 ? '댓글' : '답글'}입니다.</div>
+    <div className={cx('PrivateComment')}>
+      <AiFillLock className={cx('PrivateComment-Icon')} />
+      <div className={cx('PrivateComment-Text')}>비공개 {type === 0 ? '댓글' : '답글'}입니다.</div>
     </div>
   );
 };

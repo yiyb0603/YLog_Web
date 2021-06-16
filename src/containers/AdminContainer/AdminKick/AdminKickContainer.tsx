@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useMemo } from 'react';
 import { observer } from 'mobx-react';
 import AdminKick from 'components/Admin/AdminKick';
 import useStores from 'lib/hooks/useStores';
-import { IMemberTypes } from 'interface/MemberTypes';
 import MemberRow from 'components/Admin/AdminKick/MemberRow';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { errorToast, successToast } from 'lib/Toast';
 import GroupingState from 'lib/util/GroupingState';
 import { confirmAlert } from 'lib/SweetAlert';
+import { IUser } from 'interface/AuthTypes';
 
 const AdminKickContainer = observer(() => {
 	const { store } = useStores();
@@ -19,6 +19,20 @@ const AdminKickContainer = observer(() => {
 	} = store.MemberStore;
 
 	const [keyword, setKeyword] = useState<string>('');
+
+	const filterMember: IUser[] = useMemo(() => {
+		return memberList.filter(
+			(member: IUser) => {
+				const { isAdmin, name, email } = member;
+	
+				const keywordFilter: boolean =
+					name.toLowerCase().includes(keyword.toLowerCase()) ||
+					email.toLowerCase().includes(keyword.toLowerCase());
+	
+				return keywordFilter && !isAdmin;
+			}
+		);
+	}, [memberList, keyword]);
 
 	const requestDeleteMember = useCallback(
 		async (memberIdx: number) => {
@@ -35,7 +49,7 @@ const AdminKickContainer = observer(() => {
 							}
 						})
 
-						.catch((error: IErrorTypes) => {
+						.catch((error: IError) => {
 							const { message } = error.response.data;
 							errorToast(message);
 							return;
@@ -46,34 +60,23 @@ const AdminKickContainer = observer(() => {
 		[handleDeleteMember, handleMemberList, confirmAlert]
 	);
 
-	const filterMember: IMemberTypes[] = memberList.filter(
-		(member: IMemberTypes) => {
-			const { is_admin, name, email } = member;
-
-			const keywordFilter: boolean =
-				name.toLowerCase().includes(keyword.toLowerCase()) ||
-				email.toLowerCase().includes(keyword.toLowerCase());
-
-			return keywordFilter && !is_admin;
-		}
-	);
-
-	const memberLists: JSX.Element[] = filterMember.map(
-		(member: IMemberTypes) => {
-			const { idx, name, email, is_admin } = member;
-
-			return (
-				<MemberRow
-					idx={idx}
-					name={name}
-					email={email}
-					key={idx}
-					isAdmin={is_admin}
-					requestDeleteMember={requestDeleteMember}
-				/>
-			);
-		}
-	);
+	const memberLists: JSX.Element[] = useMemo(() => {
+		return filterMember.map((member: IUser) => {
+				const { idx, name, email, isAdmin } = member;
+	
+				return (
+					<MemberRow
+						idx={idx}
+						name={name}
+						email={email}
+						key={idx}
+						isAdmin={isAdmin}
+						requestDeleteMember={requestDeleteMember}
+					/>
+				);
+			}
+		);
+	}, [filterMember, requestDeleteMember]);
 
 	useEffect(() => {
 		handleMemberList(true);

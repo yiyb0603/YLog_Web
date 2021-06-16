@@ -1,13 +1,14 @@
 import { autobind } from 'core-decorators';
-import { IMemberResponse, IMemberTypes } from 'interface/MemberTypes';
+import { IUser } from 'interface/AuthTypes';
+import { IMemberResponse } from 'interface/MemberTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { deleteRequest, getResponse, postRequest } from 'lib/Axios';
 import { action, observable } from 'mobx';
-import { getAdminToken } from 'Token/Token';
+import { getAdminToken } from 'Token';
 
 @autobind
 export default class MemberStore {
-	@observable memberList: IMemberTypes[] = [];
+	@observable memberList: IUser[] = [];
 
 	@action
 	handleMemberList = async (isAllow: boolean | null) => {

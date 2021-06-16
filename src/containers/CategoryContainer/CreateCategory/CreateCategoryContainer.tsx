@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import CreateCategory from 'components/Home/Category/CreateCategory';
 import useStores from 'lib/hooks/useStores';
 import ISuccess from 'interface/SuccessTypes';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast, successToast } from 'lib/Toast';
 import { ICategory } from 'interface/CategoryTypes';
@@ -37,7 +37,7 @@ const CreateCategoryContainer = observer(
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { status, message } = error.response.data;
 					errorToast(message);
 				});

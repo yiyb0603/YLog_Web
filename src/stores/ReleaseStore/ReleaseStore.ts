@@ -3,7 +3,7 @@ import { IReleaseListResponse, IReleaseDto, IReleaseResponse, IRelease } from 'i
 import ISuccess from 'interface/SuccessTypes';
 import { deleteRequest, getResponse, modifyRequest, postRequest } from 'lib/Axios';
 import { action, observable } from 'mobx';
-import { getUserToken } from 'Token/Token';
+import { getUserToken } from 'Token';
 
 @autobind
 export default class ReleaseStore {
@@ -18,7 +18,7 @@ export default class ReleaseStore {
       const { releases } = response.data;
 
       this.releaseList = releases.sort((a: IRelease, b: IRelease) => {
-        if (a.created_at! > b.created_at!) {
+        if (a.createdAt! > b.createdAt!) {
           return -1;
         }
 

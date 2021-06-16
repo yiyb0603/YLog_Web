@@ -1,6 +1,4 @@
-import React, {
-	ChangeEvent,
-} from 'react';
+import React, { memo, ChangeEvent } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import AuthInputProps from './AuthInput.types';
@@ -21,11 +19,11 @@ const AuthInput = ({
 			type={type}
 			placeholder={placeholder}
 			value={value}
-			autoComplete="off"
+			autoComplete='off'
 			onChange={(e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)}
 			onKeyDown={onKeyDown}
 		/>
 	);
 };
 
-export default AuthInput;
+export default memo(AuthInput);

@@ -2,11 +2,11 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { NextRouter, useRouter } from 'next/router';
 import useStores from 'lib/hooks/useStores';
-import { IRelease } from 'interface/ReleaseTypes';
+import { IReleaseDto } from 'interface/ReleaseTypes';
 import { validationReleaseWrite } from 'validation/Release/validationRelease';
 import ISuccess from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import { errorToast } from 'lib/Toast';
 import GroupingState from 'lib/util/GroupingState';
 import ReleaseForm from 'components/Release/ReleaseForm';
@@ -22,7 +22,7 @@ const ReleaseFormContainer = observer(() => {
   const [contents, setContents] = useState<string>('');
 
   const requestWriteRelease = useCallback(async (): Promise<void> => {
-    const request: IRelease = {
+    const request: IReleaseDto = {
       title,
       contents,
     };
@@ -39,7 +39,7 @@ const ReleaseFormContainer = observer(() => {
       }
     })
 
-    .catch((error: IErrorTypes) => {
+    .catch((error: IError) => {
       const { message } = error.response.data;
       errorToast(message);
       return;
@@ -47,7 +47,7 @@ const ReleaseFormContainer = observer(() => {
   }, [title, contents, handleCreateRelease, router]);
 
   const requestModifyRelease = useCallback(async (): Promise<void> => {
-    const request: IRelease = {
+    const request: IReleaseDto = {
       idx: releaseIdx,
       title,
       contents
@@ -65,21 +65,12 @@ const ReleaseFormContainer = observer(() => {
       }
     })
 
-    .catch((error: IErrorTypes) => {
+    .catch((error: IError) => {
       const { message } = error.response.data;
       errorToast(message);
       return;
     });
   }, [releaseIdx, title, contents, handleModifyRelease, router]);
-
-  const clickButton = useCallback((): void => {
-    if (releaseIdx) {
-      requestModifyRelease();
-      return;
-    }
-
-    requestWriteRelease();
-  }, [releaseIdx, requestModifyRelease, requestWriteRelease]);
 
   useEffect(() => {
     if (Number.isInteger(releaseIdx)) {

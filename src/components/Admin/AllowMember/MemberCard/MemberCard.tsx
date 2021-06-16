@@ -10,7 +10,7 @@ interface MemberCardProps {
 	idx: number;
 	name: string;
 	email: string;
-	is_admin: boolean;
+	isAdmin: boolean;
 	requestAllowMember: (memberIdx: number) => Promise<void>;
 	requestRefuseMember: (memberIdx: number) => Promise<void>;
 }
@@ -19,7 +19,7 @@ const MemberCard = ({
 	idx,
 	name,
 	email,
-	is_admin,
+	isAdmin,
 	requestAllowMember,
 	requestRefuseMember,
 }: MemberCardProps) => {
@@ -30,7 +30,7 @@ const MemberCard = ({
 				<div className={cx('MemberCard-Contents-Info')}>
 					<div>{stringEllipsis(email, 18)}</div>
 					<div>{name}</div>
-					<div>{is_admin && '관리자'}</div>
+					<div>{isAdmin && '관리자'}</div>
 				</div>
 			</div>
 

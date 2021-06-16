@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useMemo } from 'react';
 import classNames from 'classnames';
-import { ClassNamesFn } from "classnames/types";
-import { IRelease } from "interface/ReleaseTypes";
-import parseTime from "lib/TimeCounting";
-import { NextRouter, useRouter } from "next/router";
-import isAdmin from "lib/util/isAdmin";
-import dynamic from "next/dynamic";
+import { ClassNamesFn } from 'classnames/types';
+import { IRelease } from 'interface/ReleaseTypes';
+import parseTime from 'lib/TimeCounting';
+import { NextRouter, useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+import isAdmin from 'lib/util/isAdmin';
 
-const MarkdownRender = dynamic(() => import("components/Common/Markdown/MarkdownRender"));
+const MarkdownRender = dynamic(() => import('components/Common/Markdown/MarkdownRender'));
 
-const style = require("./ReleasePage.scss");
+const style = require('./ReleasePage.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface ReleasePageProps {
@@ -17,9 +17,19 @@ interface ReleasePageProps {
   requestReleaseDelete: (idx: number) => Promise<void>;
 }
 
-const ReleasePage = ({ releaseInfo, requestReleaseDelete }: ReleasePageProps) => {
+const ReleasePage = ({
+  releaseInfo,
+  requestReleaseDelete,
+}: ReleasePageProps) => {
   const router: NextRouter = useRouter();
-  const { idx, title, contents, writer, created_at, updated_at } = releaseInfo;
+  const {
+    idx,
+    title,
+    contents,
+    user,
+    createdAt,
+    updatedAt,
+  } = useMemo(() => releaseInfo, [releaseInfo]);
 
   return (
     <div className={cx('ReleasePage')}>
@@ -31,23 +41,31 @@ const ReleasePage = ({ releaseInfo, requestReleaseDelete }: ReleasePageProps) =>
               {
                 isAdmin() &&
                 <>
-                  <div className={cx('ReleasePage-Contents-Info-Personal-Option-Modify')} onClick ={() => router.push(`/release/modify/${idx}`)}>수정</div>
-                  <div className={cx('ReleasePage-Contents-Info-Personal-Option-Delete')} onClick ={() => requestReleaseDelete(idx!)}>삭제</div>
+                  <div
+                    className={cx('ReleasePage-Contents-Info-Personal-Option-Modify')}
+                    onClick={() => router.push(`/release/modify/${idx}`)}
+                  >
+                    수정
+                  </div>
+                  <div
+                    className={cx('ReleasePage-Contents-Info-Personal-Option-Delete')}
+                    onClick={() => requestReleaseDelete(idx!)}
+                  >
+                    삭제
+                  </div>
                 </>
               }
             </div>
 
             <div className={cx('ReleasePage-Contents-Info-Personal-Wrapper')}>
               <div className={cx('ReleasePage-Contents-Info-Personal-Time')}>
-                {parseTime(created_at!)}
-                {updated_at && ' (수정됨)'}
+                {parseTime(createdAt!)}
+                {updatedAt && ' (수정됨)'}
               </div>
               <div className={cx('ReleasePage-Contents-Info-Personal-Writer')}>
-                {writer}
+                {user!.name}
               </div>
             </div>
-
-            
 					</div>
 				</div>
 

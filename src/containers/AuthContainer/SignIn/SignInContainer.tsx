@@ -3,8 +3,8 @@ import { observer } from 'mobx-react';
 import { sha512 } from 'js-sha512';
 import useStores from 'lib/hooks/useStores';
 import SignIn from 'components/Auth/SignIn';
-import { ISignInResponseTypes, ISignInDto } from 'interface/AuthTypes';
-import IErrorTypes from 'interface/ErrorTypes';
+import { ISignInResponse, ISignInDto } from 'interface/AuthTypes';
+import IError from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
 import { errorToast, successToast } from 'lib/Toast';
 import Router from 'next/router';
@@ -59,19 +59,20 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 		}
 
 		await handleSignIn(request)
-			.then((response: ISignInResponseTypes) => {
+			.then((response: ISignInResponse) => {
+				console.log(response);
 				const { status, data } = response;
 
 				if (status === 200) {
-					if (data.userInfo.is_allow) {
+					if (data.userInfo.isAllow) {
 						successToast('로그인에 성공하였습니다.');
 						Router.push('/');
 						requestNotificationAllow();
 
 						if (localStorage) {
-							setCookie(USER_TOKEN, response.data.ylogToken);
+							setCookie(USER_TOKEN, data.ylogToken);
 							const ls: SecureLS = new SecureLS({ encodingType: 'aes' });
-							ls.set('userInfo', response.data.userInfo);
+							ls.set('userInfo', data.userInfo);
 						}
 						return;
 					}
@@ -81,7 +82,7 @@ const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
 				}
 			})
 
-			.catch((error: IErrorTypes) => {
+			.catch((error: IError) => {
 				const { message } = error.response.data;
 				errorToast(message);
 				return;

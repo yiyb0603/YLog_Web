@@ -4,7 +4,7 @@ import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
 import { IReplyModify } from 'interface/ReplyTypes';
 import ISuccess from 'interface/SuccessTypes';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import ReplyWrite from 'components/Post/Reply/ReplyWrite';
 import { errorToast, successToast } from 'lib/Toast';
 import { validateCreateReply } from 'validation/Reply/validationReply';
@@ -54,7 +54,7 @@ const ReplyCreateContainer = observer(
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;

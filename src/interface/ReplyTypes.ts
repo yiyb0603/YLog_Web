@@ -1,3 +1,6 @@
+import { IUser } from './AuthTypes';
+import { IComment } from './CommentTypes';
+import { IPost } from './PostTypes';
 import ISuccess from './SuccessTypes';
 
 export interface IReplyResponse extends ISuccess {
@@ -15,14 +18,12 @@ export interface IReplyModify {
 }
 
 export interface IReply {
-	comment_idx: number;
 	contents: string;
 	idx: number;
-	writer: string | null;
-	writer_idx: number | null;
-	writer_profile: string | null;
-	post_idx: number;
-	replied_at: Date | null;
-	updated_at: Date | null;
-	is_private: boolean;
+	user: IUser;
+	post: IPost;
+	comment: IComment;
+	repliedAt: Date | null;
+	updatedAt: Date | null;
+	isPrivate: boolean;
 }

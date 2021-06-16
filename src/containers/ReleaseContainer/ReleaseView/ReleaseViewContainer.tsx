@@ -6,7 +6,7 @@ import { NextRouter, useRouter } from 'next/router';
 import PostLoading from 'components/Common/Loading/PostLoading';
 import ISuccess from 'interface/SuccessTypes';
 import { showAlert } from 'lib/SweetAlert';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import { errorToast, successToast } from 'lib/Toast';
 
 const ReleaseViewContainer = observer(() => {
@@ -19,7 +19,7 @@ const ReleaseViewContainer = observer(() => {
   const requestReleaseView = useCallback(async () => {
     if (releaseIdx) {
       await handleReleaseView(releaseIdx)
-      .catch((error: IErrorTypes) => {
+      .catch((error: IError) => {
         router.back();
 
         const { message } = error.response.data;

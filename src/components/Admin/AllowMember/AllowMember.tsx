@@ -11,17 +11,19 @@ interface AllowMemberProps {
 	memberLists: JSX.Element[];
 }
 
-const AllowMember = ({ memberLists }: AllowMemberProps) => {
+const AllowMember = ({
+	memberLists,
+}: AllowMemberProps) => {
 	return (
 		<div className={cx('AllowMember')}>
 			<PageHeader
-				title="멤버 가입승인"
-				description="멤버 가입을 수락/거절 할 수 있습니다."
+				title='멤버 가입승인'
+				description='멤버 가입을 수락/거절 할 수 있습니다.'
 			/>
 
 			<div className={cx('AllowMember-MemberList')}>
 				{memberLists.length <= 0 ? (
-					<NoTopics topic="현재 가입신청한 회원이 없습니다." />
+					<NoTopics topic='현재 가입신청한 회원이 없습니다.' />
 				) : (
 					memberLists
 				)}

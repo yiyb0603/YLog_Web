@@ -1,7 +1,7 @@
-import { decodeToken } from 'Token/Token';
-import isAdmin from './isAdmin';
 import axios from 'axios';
 import Constants from 'Constants';
+import { decodeToken } from 'Token';
+import isAdmin from './isAdmin';
 
 const redirectPage = async (ctx: any) => {
   const isServer: boolean = typeof window === 'undefined';

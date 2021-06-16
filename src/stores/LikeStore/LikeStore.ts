@@ -3,7 +3,7 @@ import { ILikeResponseTypes, ILikeTypes } from 'interface/LikeTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { deleteRequest, getResponse, postRequest } from 'lib/Axios';
 import { observable, action } from 'mobx';
-import { getUserToken } from 'Token/Token';
+import { getUserToken } from 'Token';
 
 @autobind
 export default class LikeStore {

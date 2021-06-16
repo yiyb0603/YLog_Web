@@ -10,7 +10,9 @@ interface AdminTemplateProps {
 	children?: ReactNode;
 }
 
-const AdminTemplate = ({ children }: AdminTemplateProps) => {
+const AdminTemplate = ({
+	children,
+}: AdminTemplateProps) => {
 	const [isEnabled, setIsEnabled] = useState<boolean>(true);
 
 	return (
@@ -20,8 +22,10 @@ const AdminTemplate = ({ children }: AdminTemplateProps) => {
 				'AdminTemplate-hidden': !isEnabled,
 			})}
 		>
-			<SideNavbar isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
-
+			<SideNavbar
+				isEnabled={isEnabled}
+				setIsEnabled={setIsEnabled}
+			/>
 			<div className={cx('AdminTemplate-Children')}>{children && children}</div>
 		</div>
 	);

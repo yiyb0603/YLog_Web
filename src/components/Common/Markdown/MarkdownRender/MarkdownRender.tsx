@@ -8,7 +8,9 @@ export interface MarkdownRenderProps {
 	contents: string;
 }
 
-const MarkdownRender = ({ contents }: MarkdownRenderProps) => {
+const MarkdownRender = ({
+	contents,
+}: MarkdownRenderProps) => {
 	return (
 		<ReactMarkdown
 			source={contents}

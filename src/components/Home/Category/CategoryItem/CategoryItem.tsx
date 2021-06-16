@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useMemo } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { NextRouter, useRouter } from 'next/router';
@@ -6,7 +6,7 @@ import { BsPen, BsTrash } from 'react-icons/bs';
 import { ICategory } from 'interface/CategoryTypes';
 import stringEllipsis from 'lib/util/StringEllipsis';
 import getMyInfo from 'lib/util/getMyInfo';
-import { IMemberTypes } from 'interface/MemberTypes';
+import { IToken } from 'interface/AuthTypes';
 
 const style = require('./CategoryItem.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -29,10 +29,9 @@ const CategoryItem = ({
 	requestDeleteCategory,
 }: CategoryItemProps) => {
 	const router: NextRouter = useRouter();
-	const { topic, keyword } = router.query;
+	const { topic, keyword } = useMemo(() => router.query, [router]);
 
-	const myInfo: IMemberTypes = getMyInfo();
-	let isAdmin: null | boolean = myInfo ? myInfo.is_admin : null;
+	const myInfo: IToken = useMemo(() => getMyInfo(), [getMyInfo]);
 
 	return (
 		<li className={cx('CategoryItem')}>
@@ -52,7 +51,7 @@ const CategoryItem = ({
 				<div className={cx('CategoryItem-Left-Count')}>({post_count})</div>
 			</div>
 
-			{isAdmin && (
+			{(myInfo && myInfo.isAdmin) && (
 				<div className={cx('Category-List-Item-Icon')}>
 					<BsPen
 						className={cx('Category-List-Item-Icon-Modify')}

@@ -1,13 +1,13 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, memo } from 'react';
 import classNames from 'classnames';
-import { ClassNamesFn } from "classnames/types";
-import TitleInput from "components/Common/Input/TitleInput";
-import ImageUpload from "lib/util/ImageUpload";
-import dynamic from "next/dynamic";
+import { ClassNamesFn } from 'classnames/types';
+import dynamic from 'next/dynamic';
+import ImageUpload from 'lib/util/ImageUpload';
+import TitleInput from 'components/Common/Input/TitleInput';
 
-const MarkdownForm = dynamic(() => import("components/Common/Markdown/MarkdownForm"));
+const MarkdownForm = dynamic(() => import('components/Common/Markdown/MarkdownForm'));
 
-const style = require("./ReleaseForm.scss");
+const style = require('./ReleaseForm.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface ReleaseWriteFormProps {
@@ -24,7 +24,11 @@ interface ReleaseWriteFormProps {
   requestFunction: () => void;
 }
 
-const ReleaseForm = ({ titleObject, contentsObject, requestFunction }: ReleaseWriteFormProps) => {
+const ReleaseForm = ({
+  titleObject,
+  contentsObject,
+  requestFunction,
+}: ReleaseWriteFormProps) => {
   const { title, setTitle } = titleObject;
   const { contents, setContents } = contentsObject;
 
@@ -37,7 +41,6 @@ const ReleaseForm = ({ titleObject, contentsObject, requestFunction }: ReleaseWr
 			<MarkdownForm contents={contents} setContents={setContents} requestImageUpload ={ImageUpload} />
 
 			<div className={cx('ReleaseWriteForm-Button')}>
-				{/* <button className={cx('CreateNotice-Button-Save')}>임시 저장</button> */}
 				<button
 					className={cx('ReleaseWriteForm-Button-Write')}
 					onClick={requestFunction}
@@ -49,4 +52,4 @@ const ReleaseForm = ({ titleObject, contentsObject, requestFunction }: ReleaseWr
   );
 };
 
-export default ReleaseForm;
+export default memo(ReleaseForm);

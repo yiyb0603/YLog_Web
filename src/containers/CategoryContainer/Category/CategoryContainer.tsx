@@ -2,14 +2,14 @@ import React, { useCallback, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import Category from 'components/Home/Category';
 import useStores from 'lib/hooks/useStores';
-import IErrorTypes from 'interface/ErrorTypes';
+import IError from 'interface/ErrorTypes';
 import { errorToast, successToast } from 'lib/Toast';
 import ISuccess from 'interface/SuccessTypes';
 import { NextRouter, useRouter } from 'next/router';
-import { ICategoryList } from 'interface/CategoryTypes';
+import { ICategory } from 'interface/CategoryTypes';
 
 interface ICategoryContainerProps {
-	categories: ICategoryList[];
+	categories: ICategory[];
 }
 
 const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => {
@@ -27,7 +27,7 @@ const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => 
 
 	const requestInitialData = useCallback(async () => {
 		await handleCategoryList(keyword && keyword)
-		.catch((error: IErrorTypes) => {
+		.catch((error: IError) => {
 			const { message } = error.response.data;
 			errorToast(message);
 			return;
@@ -44,7 +44,7 @@ const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => 
 					}
 				})
 
-				.catch((error: IErrorTypes) => {
+				.catch((error: IError) => {
 					const { message } = error.response.data;
 					errorToast(message);
 					return;

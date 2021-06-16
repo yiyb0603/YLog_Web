@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { VscComment } from 'react-icons/vsc';
 import { AiOutlineEye, AiOutlineLike } from 'react-icons/ai';
 import { ClassNamesFn } from 'classnames/types';
-import { ICategoryList } from 'interface/CategoryTypes';
+import { ICategory } from 'interface/CategoryTypes';
 import { IUserInfoTypes } from 'interface/AuthTypes';
 import { NextRouter, useRouter } from 'next/router';
 import parseTime from 'lib/TimeCounting';
@@ -26,7 +26,7 @@ interface HomePostItemProps {
 	commentLength: number;
 	viewCount: number;
 	likeCount: number;
-	categoryList: ICategoryList[];
+	categoryList: ICategory[];
 	requestDeletePost: (idx: number) => Promise<void>;
 }
 
@@ -71,7 +71,7 @@ const HomePostItem = ({
 							<div className={cx('HomePost-Item-Contents-Category')}>
 								{
 									categoryList.find(
-										(category: ICategoryList) =>
+										(category: ICategory) =>
 											category.idx === category_idx
 									)?.category_name
 								}

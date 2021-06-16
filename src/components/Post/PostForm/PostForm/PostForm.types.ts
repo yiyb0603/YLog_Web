@@ -1,5 +1,5 @@
-import { ICategoryList } from "interface/CategoryTypes";
-import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from 'react';
+import { ICategory } from 'interface/CategoryTypes';
 
 export default interface PostWriteFormProps {
 	titleObject: {
@@ -27,7 +27,7 @@ export default interface PostWriteFormProps {
 		setCategoryIdx: Dispatch<SetStateAction<number>>;
 	};
 
-	categoryList: ICategoryList[];
+	categoryList: ICategory[];
 	requestThumbnailUpload: (e: ChangeEvent<HTMLInputElement>) => void;
 	requestImageUpload: (file: File) => Promise<string>;
 	requestWritePost: (e: MouseEvent<HTMLButtonElement>) => void;
