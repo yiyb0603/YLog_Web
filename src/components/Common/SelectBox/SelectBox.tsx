@@ -18,6 +18,7 @@ const SelectBox = ({
 }: ISelectBox) => {
 	return (
 		<select
+			className={cx('SelectBox')}
 			onChange={onChange}
 			style={style}
 		>

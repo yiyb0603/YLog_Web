@@ -1,53 +1,53 @@
-@import '../styles/Palette/Palette.scss';
+@import '../styles/palette/palette.scss';
 
 @font-face {
-	font-family: 'NanumSquareRound';
-	src: url('/assets/fonts/NanumSquare_Round/NanumSquareRoundOTFB.otf')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'NanumSquareRound';
+  src: url('/assets/fonts/NanumSquare_Round/NanumSquareRoundOTFB.otf')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: 'NanumSquareRound';
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'NanumSquareRound';
 }
 
 html,
 body {
-	width: 100%;
-	height: 100vh;
-	background-color: rgba($rgbaBackground, 0.02);
+  width: 100%;
+  height: 100vh;
+  background-color: rgba($rgbaBackground, 0.02);
 }
 
 body {
-	line-height: 1.34;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  line-height: 1.34;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 
-	&::-webkit-scrollbar {
-		width: 14px;
-	}
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
 
-	&::-webkit-scrollbar-track {
-		background-color: #f1f1f1;
-	}
+  &::-webkit-scrollbar-track {
+    background-color: #f1f1f1;
+  }
 
-	&::-webkit-scrollbar-thumb {
-		background-color: $primary;
-		border-radius: 5px;
-	}
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 5px;
+  }
 
-	&::-webkit-scrollbar-button:start:decrement,
-	::-webkit-scrollbar-button:end:increment {
-		width: 14px;
-		height: 14px;
-		background-color: $primary;
-	}
+  &::-webkit-scrollbar-button:start:decrement,
+  ::-webkit-scrollbar-button:end:increment {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+  }
 }
 
 td {
-	vertical-align: middle;
+  vertical-align: middle;
 }

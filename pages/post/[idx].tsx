@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import PageTemplate from 'components/Template/PageTemplate';
-import PostViewContainer from 'containers/PostContainer/PostViewContainer';
 import stores from 'stores';
-import { IPostListTypes, IPostResponseTypes } from 'interface/PostTypes';
+import { IPost, IPostResponse } from 'interface/PostTypes';
+import PostViewContainer from 'containers/PostContainer/PostViewContainer';
+import PageTemplate from 'components/Template/PageTemplate';
+import ScrollProgress from 'components/Common/ScrollProgress';
 
 interface PostViewPageProps {
-	post: IPostListTypes;
+	post: IPost;
 }
 
 class PostViewPage extends Component<PostViewPageProps> {
 	static async getInitialProps(ctx: any) {
 		const { handlePostView } = stores.PostStore;
 
-		const response: IPostResponseTypes = await handlePostView(ctx.query.idx);
+		const response: IPostResponse = await handlePostView(ctx.query.idx);
 		const { post } = response.data;
 
 		return {
@@ -25,6 +26,7 @@ class PostViewPage extends Component<PostViewPageProps> {
 
 		return (
 			<PageTemplate>
+				<ScrollProgress />
 				<PostViewContainer post ={post} />
 			</PageTemplate>
 		);

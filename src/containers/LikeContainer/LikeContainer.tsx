@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
 import { NextRouter, useRouter } from 'next/router';
@@ -7,15 +7,20 @@ import IError from 'interface/ErrorTypes';
 import { errorToast } from 'lib/Toast';
 import ISuccess from 'interface/SuccessTypes';
 import getMyInfo from 'lib/util/getMyInfo';
-import { ILikeTypes } from 'interface/LikeTypes';
+import { ILike } from 'interface/LikeTypes';
+import { IToken } from 'interface/AuthTypes';
 
 const LikeContainer = observer(() => {
   const { store } = useStores();
   const { likeList, handleLikeList, handlePostLike, handleDeleteLike } = store.LikeStore;
 
   const router: NextRouter = useRouter();
-  const postIdx: number = Number(router.query.idx);
-  const myInfo = getMyInfo();
+  const postIdx: number = useMemo(() => Number(router.query.idx), [router]);
+  const myInfo: IToken = useMemo(() => getMyInfo(), [getMyInfo]);
+
+  const pressedLike: ILike = useMemo(() => {
+    return likeList.find((like: ILike) => like.user.idx === myInfo.idx);
+  }, [likeList, myInfo]);
 
   const requestLikeList = useCallback(async () => {
     await handleLikeList(postIdx)
@@ -42,8 +47,7 @@ const LikeContainer = observer(() => {
   }, [requestLikeList, handlePostLike]);
 
   const requestDeleteCount = useCallback(async (): Promise<void> => {
-    const myLike: ILikeTypes = likeList.find((like: ILikeTypes) => like.user_idx === myInfo.idx);
-    const myLikeIndex: number = likeList.lastIndexOf(myLike);
+    const myLikeIndex: number = likeList.lastIndexOf(pressedLike);
 
     await handleDeleteLike(likeList[myLikeIndex].idx)
     .then(({ status }: ISuccess) => {
@@ -65,8 +69,14 @@ const LikeContainer = observer(() => {
   }, [postIdx, requestLikeList]);
 
   return (
-    <PostLike likeList={likeList} requestPostCount={requestPostCount} requestDeleteCount={requestDeleteCount} />
-  )
+    <PostLike
+      likeList={likeList}
+      myInfo={myInfo}
+      pressedLike={pressedLike}
+      requestPostCount={requestPostCount}
+      requestDeleteCount={requestDeleteCount}
+    />
+  );
 });
 
 export default LikeContainer;

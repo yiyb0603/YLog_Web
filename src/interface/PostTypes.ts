@@ -18,7 +18,7 @@ export interface IPostResponseListTypes extends ISuccess {
 	};
 }
 
-export interface IPostResponseTypes extends ISuccess {
+export interface IPostResponse extends ISuccess {
 	data: {
 		post: IPost;
 	};
@@ -33,7 +33,7 @@ export interface IPost {
 	category?: ICategory;
 	user?: IUser;
 	likeCount?: number;
-	commentLength?: number;
+	commentCount?: number;
 	viewCount?: number;
 	isTemp?: boolean;
 	createdAt?: Date | string;

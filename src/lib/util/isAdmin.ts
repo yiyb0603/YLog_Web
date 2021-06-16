@@ -1,13 +1,13 @@
-import getMyInfo from "./getMyInfo";
+import getMyInfo from './getMyInfo';
 
-const isAdmin = () => {
+const isAdmin = (): boolean => {
 	const myInfo = getMyInfo();
 
-	if (!myInfo) {
+	if (!(myInfo || myInfo.isAdmin)) {
 		return false;
 	}
 
-	return myInfo.is_admin;
+	return true;
 };
 
 export default isAdmin;

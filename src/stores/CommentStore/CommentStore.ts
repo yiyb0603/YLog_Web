@@ -46,25 +46,27 @@ export default class CommentStore {
 
 			const replies = [];
 
+			console.log(this.commentReplyList);
+			console.log(replyStore.replyList);
+
 			if (replyStore.replyList.length > 0 && this.commentReplyList.length > 0) {
 				for (let i: number = 0; i < this.commentReplyList.length; i++) {
 					for (let j: number = 0; j < replyStore.replyList.length; j++) {
-						const {
-							idx
-						} = this.commentReplyList[i];
+						const { idx } = this.commentReplyList[i];
 
 						const { comment } = replyStore.replyList[j];
 
 						if (idx === comment.idx) {
 							replies.push({
-								idx: replyStore.replyList[j].idx,
-								user: replyStore.replyList[j].user,
-								contents: replyStore.replyList[j].contents,
-								repliedAt: replyStore.replyList[j].repliedAt,
-								updatedAt: replyStore.replyList[j].updatedAt,
-								commentIdx: replyStore.replyList[j].comment.idx,
-								postIdx: replyStore.replyList[j].post.idx,
-								isPrivate: replyStore.replyList[j].isPrivate,
+								...replyStore.replyList[j],
+								// idx: replyStore.replyList[j].idx,
+								// user: replyStore.replyList[j].user,
+								// contents: replyStore.replyList[j].contents,
+								// repliedAt: replyStore.replyList[j].repliedAt,
+								// updatedAt: replyStore.replyList[j].updatedAt,
+								// commentIdx: replyStore.replyList[j].comment.idx,
+								// postIdx: replyStore.replyList[j].post.idx,
+								// isPrivate: replyStore.replyList[j].isPrivate,
 							});
 
 							this.commentReplyList[i].replies = replies;
@@ -74,10 +76,12 @@ export default class CommentStore {
 			} else {
 				this.commentReplyList = commentList;
 			}
-			this.isLoading = false;
+
 			return response;
 		} catch (error) {
 			throw error;
+		} finally {
+			this.isLoading = false;
 		}
 	};
 

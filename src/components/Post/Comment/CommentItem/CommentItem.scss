@@ -1,13 +1,10 @@
-@import '../../../../styles/Palette/Palette.scss';
-@import '../../../../styles/Fonts/FontScheme.scss';
-
 .CommentItem {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	display: -webkit-flex;
-	flex-direction: column;
-	-ms-flex-direction: column;
-	border-bottom: 2px solid $lighterGray;
-	padding-top: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  border-bottom: 2px solid var(--lighterGray);
+  padding-top: 10px;
 }

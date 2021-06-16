@@ -1,13 +1,15 @@
-import ISuccess from "./SuccessTypes";
+import { IUser } from './AuthTypes';
+import { IPost } from './PostTypes';
+import ISuccess from './SuccessTypes';
 
-export interface ILikeResponseTypes extends ISuccess {
+export interface ILikeResponse extends ISuccess {
   data: {
-    likes: ILikeTypes[];
+    likes: ILike[];
   }
 }
 
-export interface ILikeTypes {
+export interface ILike {
   idx: number;
-  user_idx: number;
-  post_idx: number;
+  user: IUser;
+  post: IPost;
 }

@@ -25,9 +25,7 @@ const CommentContainer = observer(() => {
 		if (Number.isInteger(postIdx)) {
 			await handleCommentList(postIdx)
 			.catch((error: IError) => {
-				const { message } = error.response.data;
-				errorToast(message);
-				return;
+				console.log(error);
 			});
 		}
 	}, [handleCommentList, postIdx]);

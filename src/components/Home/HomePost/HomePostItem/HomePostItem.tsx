@@ -1,11 +1,11 @@
-import React, { SyntheticEvent } from 'react';
+import React, { useMemo, SyntheticEvent } from 'react';
 import classNames from 'classnames';
 import Link from 'next/link';
 import { VscComment } from 'react-icons/vsc';
 import { AiOutlineEye, AiOutlineLike } from 'react-icons/ai';
 import { ClassNamesFn } from 'classnames/types';
+import { IToken, IUser } from 'interface/AuthTypes';
 import { ICategory } from 'interface/CategoryTypes';
-import { IUserInfoTypes } from 'interface/AuthTypes';
 import { NextRouter, useRouter } from 'next/router';
 import parseTime from 'lib/TimeCounting';
 import stringEllipsis from 'lib/util/StringEllipsis';
@@ -18,12 +18,12 @@ interface HomePostItemProps {
 	idx: number;
 	title: string;
 	introduction: string;
-	category_idx: number;
-	created_at: string | Date;
-	updated_at: string | Date;
+	categoryIdx: number;
+	createdAt: string | Date;
+	updatedAt: string | Date;
 	thumbnail: string;
-	writer: string;
-	commentLength: number;
+	user: IUser;
+	commentCount: number;
 	viewCount: number;
 	likeCount: number;
 	categoryList: ICategory[];
@@ -34,19 +34,19 @@ const HomePostItem = ({
 	idx,
 	title,
 	introduction,
-	category_idx,
-	created_at,
-	updated_at,
+	categoryIdx,
+	createdAt,
+	updatedAt,
 	thumbnail,
-	writer,
-	commentLength,
+	user,
+	commentCount,
 	viewCount,
 	likeCount,
 	categoryList,
 	requestDeletePost,
 }: HomePostItemProps) => {
-	const myInfo: IUserInfoTypes = getMyInfo();
 	const router: NextRouter = useRouter();
+	const myInfo: IToken = useMemo(() => getMyInfo(), [getMyInfo]);
 
 	return (
 		<div className={cx('HomePost-Item')} key={idx}>
@@ -72,14 +72,14 @@ const HomePostItem = ({
 								{
 									categoryList.find(
 										(category: ICategory) =>
-											category.idx === category_idx
-									)?.category_name
+											category.idx === categoryIdx
+									)?.categoryName
 								}
 							</div>
 
 							<div className={cx('HomePost-Item-Contents-TimeWrapper-Time')}>
-								{parseTime(created_at)}
-								{updated_at && '(수정됨)'}
+								{parseTime(createdAt)}
+								{updatedAt && '(수정됨)'}
 							</div>
 						</div>
 					</div>
@@ -88,7 +88,7 @@ const HomePostItem = ({
 
 			<div className={cx('HomePost-Item-Bottom')}>
 				<div className={cx('HomePost-Item-Bottom-Option')}>
-					{myInfo && (myInfo.name === writer || myInfo.is_admin) ? (
+					{(myInfo && (myInfo.idx === user.idx || myInfo.isAdmin)) && (
 						<>
 							<div
 								className={cx('HomePost-Item-Bottom-Option-Modify')}
@@ -103,8 +103,6 @@ const HomePostItem = ({
 								삭제
 							</div>
 						</>
-					) : (
-						<></>
 					)}
 				</div>
 
@@ -117,11 +115,13 @@ const HomePostItem = ({
 						<AiOutlineLike />
 						<div>{likeCount}</div>
 					</div>
-					<div className ={cx('HomePost-Item-Bottom-RightWrapper-CommentLength')}>
+					<div className ={cx('HomePost-Item-Bottom-RightWrapper-commentCount')}>
 						<VscComment />
-						<div>{commentLength}</div>
+						<div>{commentCount}</div>
 					</div>
-					<div className={cx('HomePost-Item-Bottom-RightWrapper-Writer')}>{writer}</div>
+					<div className={cx('HomePost-Item-Bottom-RightWrapper-Writer')}>
+						{user.name}
+					</div>
 				</div>
 			</div>
 		</div>

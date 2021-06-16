@@ -1,5 +1,5 @@
 import { autobind } from 'core-decorators';
-import { ILikeResponseTypes, ILikeTypes } from 'interface/LikeTypes';
+import { ILikeResponse, ILike } from 'interface/LikeTypes';
 import ISuccess from 'interface/SuccessTypes';
 import { deleteRequest, getResponse, postRequest } from 'lib/Axios';
 import { observable, action } from 'mobx';
@@ -7,13 +7,13 @@ import { getUserToken } from 'Token';
 
 @autobind
 export default class LikeStore {
-  @observable likeList: ILikeTypes[] = [];
+  @observable likeList: ILike[] = [];
 
   @action
   handleLikeList = async (postIdx: number) => {
     try {
       this.likeList = [];
-      const response: ILikeResponseTypes = await getResponse(`/like/${postIdx}`);
+      const response: ILikeResponse = await getResponse(`/like/${postIdx}`);
       this.likeList = response.data.likes;
 
       return response;

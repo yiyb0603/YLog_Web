@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import HomeContainer from 'containers/HomeContainer';
 import PageTemplate from 'components/Template/PageTemplate';
 import stores from 'stores';
-import { IPostListTypes, IPostResponseListTypes } from 'interface/PostTypes';
-import { ICategory, ICategoryResponseTypes } from 'interface/CategoryTypes';
+import { IPost, IPostResponseListTypes } from 'interface/PostTypes';
+import { ICategory } from 'interface/CategoryTypes';
 import { INotceResponseListTypes, INotice } from 'interface/NoticeTypes';
 import dynamic from 'next/dynamic';
 
@@ -11,7 +11,7 @@ import dynamic from 'next/dynamic';
 // const HomeContainer = dynamic(() => import('containers/HomeContainer'));
 
 export interface IHomeProps {
-	postList: IPostListTypes[];
+	postList: IPost[];
 	categoryList: ICategory[];
 	noticeList: INotice[];
 }
@@ -23,9 +23,9 @@ class IndexPage extends Component<IHomeProps> {
 		const { handleNoticeList } = stores.NoticeStore;
 
 		const postResponse: IPostResponseListTypes = await handlePostList();
-		const postList: IPostListTypes[] = postResponse.data.posts;
+		const postList: IPost[] = postResponse.data.posts;
 
-		const categoryResponse: ICategoryResponseTypes = await handleCategoryList();
+		const categoryResponse = await handleCategoryList();
 		const categoryList: ICategory[] = categoryResponse.data;
 
 		const noticeResponse: INotceResponseListTypes = await handleNoticeList();
@@ -43,7 +43,11 @@ class IndexPage extends Component<IHomeProps> {
 
 		return (
 			<PageTemplate>
-				<HomeContainer postList={postList} categoryList={categoryList} noticeList={noticeList} />
+				<HomeContainer
+					postList={postList}
+					categoryList={categoryList}
+					noticeList={noticeList}
+				/>
 			</PageTemplate>
 		);
 	}

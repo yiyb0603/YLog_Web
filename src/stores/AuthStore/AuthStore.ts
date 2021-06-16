@@ -2,7 +2,7 @@ import { autobind } from 'core-decorators';
 import { action, observable } from 'mobx';
 import {
 	IEmailCodeDto,
-	ISignInResponseTypes,
+	ISignInResponse,
 	ISignInDto,
 	ISignUpDto,
 } from 'interface/AuthTypes';
@@ -19,7 +19,7 @@ export default class AuthStore {
 	handleSignIn = async (request: ISignInDto) => {
 		this.isLoading = true;
 		try {
-			const response: ISignInResponseTypes = await postRequest(
+			const response: ISignInResponse = await postRequest(
 				'/auth/signin',
 				request
 			);

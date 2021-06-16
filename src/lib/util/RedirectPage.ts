@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Constants from 'Constants';
+import { IToken } from 'interface/AuthTypes';
 import { decodeToken } from 'Token';
 import isAdmin from './isAdmin';
 
@@ -19,12 +20,14 @@ const redirectPage = async (ctx: any) => {
         return false;
       }
 
-      const userInfo: any = await decodeToken(tokenValue);
+      const userInfo: IToken = await decodeToken(tokenValue) as IToken;
       if (userInfo) {
         return userInfo.isAdmin;
       }
     
       return false;
+    } else {
+      return true;
     }
     
   } else {

@@ -3,7 +3,7 @@ import {
 	IPost,
 	IPostDto,
 	IPostResponseListTypes,
-	IPostResponseTypes,
+	IPostResponse,
 } from 'interface/PostTypes';
 import ISuccess from 'interface/SuccessTypes';
 import {
@@ -41,7 +41,7 @@ export default class PostStore {
 	handlePostView = async (idx: number, postInfo?: IPost) => {
 		try {
 			this.isLoading = true;
-			const response: IPostResponseTypes = await getResponse(`/post/${idx}`);
+			const response: IPostResponse = await getResponse(`/post/${idx}`);
 			const { post } = response.data;
 			this.postInfo = postInfo && Object.keys(this.postInfo).length <= 0 ? postInfo! : post;
 

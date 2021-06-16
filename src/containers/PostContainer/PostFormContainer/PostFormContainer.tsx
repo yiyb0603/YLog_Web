@@ -1,7 +1,7 @@
-import React, { ChangeEvent, useCallback, useEffect, useState, MouseEvent } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useState, useMemo, MouseEvent } from 'react';
 import { observer } from 'mobx-react';
 import useStores from 'lib/hooks/useStores';
-import { IPostDto, IPostResponseTypes } from 'interface/PostTypes';
+import { IPostDto, IPostResponse } from 'interface/PostTypes';
 import ISuccess from 'interface/SuccessTypes';
 import IError from 'interface/ErrorTypes';
 import GroupingState from 'lib/util/GroupingState';
@@ -19,8 +19,9 @@ const PostFormContainer = observer(() => {
 	const { handleWritePost, handleModifyPost, handlePostView } = store.PostStore;
 	const { categoryList, handleCategoryList } = store.CategoryStore;
 	const { handleFileUpload } = store.UploadStore;
+
 	const router: NextRouter = useRouter();
-	const idx: number = Number(router.query.idx);
+	const idx: number = useMemo(() => Number(router.query.idx), [router.query]);
 
 	const [title, setTitle] = useState<string>('');
 	const [introduction, setIntroduction] = useState<string>('');
@@ -28,25 +29,26 @@ const PostFormContainer = observer(() => {
 	const [categoryIdx, setCategoryIdx] = useState<number>(0);
 	const [thumbnail, setThumbnail] = useState<string>('');
 
-	const requestThumbnailUpload = useCallback(
-		async (e: ChangeEvent<HTMLInputElement>) => {
-			const { files } = e.target;
-			const formData: FormData = new FormData();
-			formData.append('files', files![0]);
+	const requestThumbnailUpload = useCallback(async (e: ChangeEvent<HTMLInputElement>) => {
+		const { files } = e.target;
+		const formData: FormData = new FormData();
+		formData.append('files', files![0]);
 
-			await handleFileUpload(formData)
-				.then((response: IUploadTypes) => {
-					setThumbnail(response.data.files[0]);
-				})
+		await handleFileUpload(formData)
+			.then((response: IUploadTypes) => {
+				const file: string = response.data.files[0];
+				setThumbnail(file);
+				setContents((prevContents: string) => (
+					`![Thumbnail](${file})` + '\n' + prevContents
+				));
+			})
 
-				.catch((error: IError) => {
-					const { message } = error.response.data;
-					errorToast(message);
-					return;
-				});
-		},
-		[handleFileUpload]
-	);
+			.catch((error: IError) => {
+				const { message } = error.response.data;
+				errorToast(message);
+				return;
+			});
+	}, [handleFileUpload]);
 
 	const requestWritePost = useCallback(async (isTemp: boolean): Promise<void> => {
 		const request: IPostDto = {
@@ -114,7 +116,7 @@ const PostFormContainer = observer(() => {
 
 	const clickButton = useCallback((e: MouseEvent<HTMLButtonElement>) => {
 		const { innerText } = e.currentTarget;
-		const TEMP_TEXT: string = "임시 저장";
+		const TEMP_TEXT: string = '임시 저장';
 		let isTemp: boolean = innerText === TEMP_TEXT ? true : false
 
 		if (idx) {
@@ -125,45 +127,55 @@ const PostFormContainer = observer(() => {
 		requestWritePost(isTemp);
 	}, [idx, requestModifyPost, requestWritePost]);
 
-	const postWriteForm: JSX.Element = (
-		<PostForm
-			titleObject={GroupingState('title', title, setTitle)}
-			thumbnailObject={GroupingState('thumbnail', thumbnail, setThumbnail)}
-			introductionObject={GroupingState(
-				'introduction',
-				introduction,
-				setIntroduction
-			)}
-			contentsObject={GroupingState('contents', contents, setContents)}
-			categoryIdxObject={GroupingState(
-				'categoryIdx',
-				categoryIdx,
-				setCategoryIdx
-			)}
-			categoryList={categoryList}
-			requestThumbnailUpload={requestThumbnailUpload}
-			requestImageUpload={ImageUpload}
-			requestWritePost={clickButton}
-		/>
-	);
+	const postWriteForm: JSX.Element = useMemo(() => {
+		return (
+			<PostForm
+				titleObject={GroupingState('title', title, setTitle)}
+				thumbnailObject={GroupingState('thumbnail', thumbnail, setThumbnail)}
+				introductionObject={GroupingState(
+					'introduction',
+					introduction,
+					setIntroduction
+				)}
+				contentsObject={GroupingState('contents', contents, setContents)}
+				categoryIdxObject={GroupingState(
+					'categoryIdx',
+					categoryIdx,
+					setCategoryIdx
+				)}
+				categoryList={categoryList}
+				requestThumbnailUpload={requestThumbnailUpload}
+				requestImageUpload={ImageUpload}
+				requestWritePost={clickButton}
+			/>
+		);
+	}, [title, thumbnail, introduction, categoryIdx, categoryList, requestThumbnailUpload, ImageUpload, clickButton]);
 
-	useEffect(() => {
+	const handleSetProperties = useCallback(async () => {
 		handleCategoryList();
 
-		if (idx) {
-			handlePostView(idx)
-				.then((response: IPostResponseTypes) => {
+		if (Number.isInteger(idx)) {
+			await handlePostView(idx)
+				.then((response: IPostResponse) => {
 					const { post } = response.data;
 					setTitle(post.title!);
 					setIntroduction(post.introduction!);
 					setContents(post.contents!);
-					setCategoryIdx(post.category.idx);
+					setCategoryIdx(post.category!.idx!);
 					setThumbnail(post.thumbnail!);
 				});
 		}
 	}, [idx, handlePostView, handleCategoryList]);
 
-	return <PostFormTemplate postWriteForm={postWriteForm} />;
+	useEffect(() => {
+		handleSetProperties();
+	}, [handleSetProperties]);
+
+	return (
+		<PostFormTemplate
+			postWriteForm={postWriteForm}
+		/>
+	);
 });
 
 export default PostFormContainer;

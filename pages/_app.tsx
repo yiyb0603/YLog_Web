@@ -6,7 +6,9 @@ import axios from 'axios';
 import { getCookie } from 'lib/Cookie';
 import Constants from 'Constants';
 import { clearStorage } from 'lib/Storage';
+
 import 'styles/AllStyles.scss';
+import 'styles/palette/palette.scss';
 
 export default class MyApp extends Component {
 	componentDidMount() {
