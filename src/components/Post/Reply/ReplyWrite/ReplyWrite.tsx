@@ -6,10 +6,10 @@ import React, {
 } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
+import { AiFillLock, AiFillUnlock } from 'react-icons/ai';
 import { BiSend } from 'react-icons/bi';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
-import { AiFillLock, AiFillUnlock } from 'react-icons/ai';
-import { Palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 
 const style = require('./ReplyWrite.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -33,15 +33,15 @@ const ReplyWrite = ({
 	isPrivateObject,
 	requestCreateReply,
 }: ReplyWriteProps) => {
-	const { primary } = Palette;
+	const { var(--primary) } = palette;
 	const { contents, setContents } = contentsObject;
 	const { isPrivate, setIsPrivate } = isPrivateObject;
 
 	return (
 		<div className={cx('ReplyWrite')}>
 			<input
-				type="text"
-				placeholder="답글을 입력하세요..."
+				type='text'
+				placeholder='답글을 입력하세요...'
 				className={cx('ReplyWrite-Write')}
 				value={contents}
 				onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -55,7 +55,7 @@ const ReplyWrite = ({
 			<div className ={cx('ReplyWrite-IconWrapper')}>
 				{
 					isPrivate ?
-						<AiFillLock style ={{ color: primary }} onClick ={() => setIsPrivate(false)} />
+						<AiFillLock style ={{ color: var(--primary) }} onClick ={() => setIsPrivate(false)} />
 						: <AiFillUnlock onClick ={() => setIsPrivate(true)} />
 				}
 				<BiSend

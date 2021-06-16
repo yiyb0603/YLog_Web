@@ -1,26 +1,23 @@
-@import '../../../../../../styles/Palette/Palette.scss';
-@import '../../../../../../styles/Fonts/FontScheme.scss';
-
 .NavItem {
-	display: flex;
-	display: -webkit-flex;
-	justify-content: center;
-	margin: 10px 0;
-	padding: $font_1rem 0;
-	z-index: 2;
-	cursor: pointer;
-	-webkit-transition: 0.2s ease-in-out;
-	transition: 0.2s ease-in-out;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  margin: 10px 0;
+  padding: 1rem 0;
+  z-index: 2;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
 
-	&-Current {
-		background-color: $white;
-	}
+  &-Current {
+    background-color: var(--white);
+  }
 
-	&:hover {
-		background-color: $white;
-	}
+  &:hover {
+    background-color: var(--white);
+  }
 
-	&-Name {
-		font-size: 20px;
-	}
+  &-Name {
+    font-size: 20px;
+  }
 }

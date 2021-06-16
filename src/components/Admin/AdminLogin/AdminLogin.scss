@@ -1,37 +1,36 @@
-@import '../../../styles/Palette/Palette.scss';
 @import '../../../styles/Fonts/FontScheme.scss';
 
 .AdminLogin {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	background-color: $white;
-	box-shadow: -5px -5px 10px $gray, 5px 5px 10px $gray;
-	padding: 25px;
-	min-width: 300px;
-	max-width: 450px;
-	max-height: 450px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: var(--white);
+  box-shadow: -5px -5px 10px var(--gray), 5px 5px 10px var(--gray);
+  padding: 25px;
+  min-width: 300px;
+  max-width: 450px;
+  max-height: 450px;
 
-	&-Wrapper {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: $lighterGray;
-	}
+  &-Wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--lighterGray);
+  }
 
-	&-Title {
-		text-align: center;
-		font-size: $font_22;
-		margin-bottom: 1rem;
-	}
+  &-Title {
+    text-align: center;
+    font-size: $font_22;
+    margin-bottom: 1rem;
+  }
 
-	&-Form {
-		& > * + * {
-			width: 100%;
-		}
-	}
+  &-Form {
+    & > * + * {
+      width: 100%;
+    }
+  }
 }

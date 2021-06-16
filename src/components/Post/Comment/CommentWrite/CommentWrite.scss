@@ -1,49 +1,48 @@
 @import '../../../../styles/Fonts/FontScheme.scss';
-@import '../../../../styles/Palette/Palette.scss';
 
 .CommentWrite {
-	width: 100%;
-	height: 100%;
-	outline: 2px solid $lighterGray;
-	display: flex;
-	display: -webkit-flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 3px;
-	margin-bottom: 10px;
+  width: 100%;
+  height: 100%;
+  outline: 2px solid var(--lighterGray);
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px;
+  margin-bottom: 10px;
 
-	&:focus-within {
-		outline: 2px solid $primary;
-	}
+  &:focus-within {
+    outline: 2px solid var(--primary);
+  }
 
-	&-ProfileImage {
-		width: 45px;
-		height: 45px;
-		border-radius: 50%;
-		margin-right: 8px;
-		object-fit: cover;
-	}
+  &-ProfileImage {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 8px;
+    object-fit: cover;
+  }
 
-	&-IconWrapper {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
+  &-IconWrapper {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
 
-		& > * {
-			cursor: pointer;
-			font-size: $font_25;
-			color: $gray;
-		}
+    & > * {
+      cursor: pointer;
+      font-size: $font_25;
+      color: var(--gray);
+    }
 
-		&-Send {
-			margin-left: 5px;
-		}
-	}
+    &-Send {
+      margin-left: 5px;
+    }
+  }
 
-	&-Form {
-		width: 100%;
-		font-size: $font_18;
-		border: none;
-		outline: none;
-	}
+  &-Form {
+    width: 100%;
+    font-size: $font_18;
+    border: none;
+    outline: none;
+  }
 }

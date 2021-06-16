@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import FadeIn from 'react-fade-in';
-import { IPostListTypes } from 'interface/PostTypes';
+import { IPost } from 'interface/PostTypes';
 import { ICategory } from 'interface/CategoryTypes';
 import HomePostItem from './HomePostItem';
 import NoPosts from '../NoPosts';
@@ -11,7 +11,7 @@ const style = require('./HomePost.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 export interface HomePostProps {
-	filterPost: IPostListTypes[];
+	filterPost: IPost[];
 	categoryList: ICategory[];
 	requestDeletePost: (idx: number) => Promise<void>;
 }
@@ -24,20 +24,20 @@ const HomePost = ({
 	return (
 		<FadeIn>
 			<div className={cx('HomePost')}>
-				{filterPost.length > 0 ? (
-					filterPost.map((post: IPostListTypes) => {
+				{filterPost && filterPost.length > 0 ? (
+					filterPost.map((post: IPost) => {
 						const {
 							idx,
 							title,
 							introduction,
-							category_idx,
-							created_at,
-							writer,
+							category,
+							user,
 							thumbnail,
-							updated_at,
-							comment_length,
-							view_count,
-							like_count,
+							createdAt,
+							updatedAt,
+							commentCount,
+							viewCount,
+							likeCount,
 						} = post;
 
 						return (
@@ -46,14 +46,14 @@ const HomePost = ({
 								idx={idx!}
 								title={title!}
 								introduction={introduction!}
-								category_idx={category_idx!}
-								created_at={created_at!}
-								updated_at={updated_at!}
-								writer={writer!}
+								categoryIdx={category?.idx!}
+								createdAt={createdAt!}
+								updatedAt={updatedAt!}
+								user={user!}
 								thumbnail={thumbnail!}
-								viewCount ={view_count!}
-								likeCount={like_count!}
-								commentLength ={comment_length!}
+								viewCount ={viewCount!}
+								likeCount={likeCount!}
+								commentCount ={commentCount!}
 								categoryList={categoryList}
 								requestDeletePost={requestDeletePost}
 							/>

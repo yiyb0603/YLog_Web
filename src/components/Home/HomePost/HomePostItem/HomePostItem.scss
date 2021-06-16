@@ -1,148 +1,147 @@
-@import '../../../../styles/Palette/Palette.scss';
 @import '../../../../styles/Fonts/FontScheme.scss';
 
 @mixin optionStyle($color) {
-	color: $color;
-	font-weight: 200;
-	margin-right: 5px;
-	cursor: pointer;
-	z-index: 3;
+  color: $color;
+  font-weight: 200;
+  margin-right: 5px;
+  cursor: pointer;
+  z-index: 3;
 
-	&:hover {
-		opacity: 0.7;
-	}
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 @mixin iconStyle($color) {
-	display: flex;
-	display: -webkit-flex;
-	align-items: center;
-	margin-right: 5px;
-	color: $color;
-	font-weight: bold;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  margin-right: 5px;
+  color: $color;
+  font-weight: bold;
 
-	& > div {
-		margin-top: 2px;
-	}
+  & > div {
+    margin-top: 2px;
+  }
 }
 
 .HomePost {
-	&-Item {
-		position: relative;
-		min-width: 330px;
-		max-width: 330px;
-		min-height: 380px;
-		max-height: 380px;
-		margin: 15px 15px 15px 0;
-		box-shadow: 5px 5px 10px $gray, -5px -5px 10px $lighterGray;
+  &-Item {
+    position: relative;
+    min-width: 330px;
+    max-width: 330px;
+    min-height: 380px;
+    max-height: 380px;
+    margin: 15px 15px 15px 0;
+    box-shadow: 5px 5px 10px var(--gray), -5px -5px 10px var(--lighterGray);
 
-		@media screen and (max-width: 650px) {
-			margin: 10px auto;
-		}
+    @media screen and (max-width: 650px) {
+      margin: 10px auto;
+    }
 
-		& > * {
-			word-break: break-all;
-			text-overflow: ellipsis;
-		}
+    & > * {
+      word-break: break-all;
+      text-overflow: ellipsis;
+    }
 
-		&-Introduction {
-			margin-bottom: $font_1rem;
-		}
+    &-Introduction {
+      margin-bottom: $font_1rem;
+    }
 
-		&-Thumbnail {
-			min-width: 330px;
-			max-width: 330px;
-			min-height: 180px;
-			max-height: 180px;
-			cursor: pointer;
-			object-fit: fill;
-			margin: auto;
-		}
+    &-Thumbnail {
+      min-width: 330px;
+      max-width: 330px;
+      min-height: 180px;
+      max-height: 180px;
+      cursor: pointer;
+      object-fit: fill;
+      margin: auto;
+    }
 
-		&-Contents {
-			display: flex;
-			display: -webkit-flex;
-			flex-direction: column;
-			justify-content: space-around;
-			padding: 0 5px 5px 10px;
-			height: calc(340px - 180px);
-			cursor: pointer;
+    &-Contents {
+      display: flex;
+      display: -webkit-flex;
+      flex-direction: column;
+      justify-content: space-around;
+      padding: 0 5px 5px 10px;
+      height: calc(340px - 180px);
+      cursor: pointer;
 
-			&-Title {
-				border-bottom: 2px solid $lighterGray;
-				padding-bottom: 5px;
-				margin-bottom: 5px;
-				text-overflow: ellipsis;
-			}
+      &-Title {
+        border-bottom: 2px solid var(--lighterGray);
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        text-overflow: ellipsis;
+      }
 
-			&-Category {
-				color: $primary;
-			}
+      &-Category {
+        color: var(--primary);
+      }
 
-			&-TimeWrapper {
-				display: flex;
-				display: -webkit-flex;
-				justify-content: space-between;
-				align-items: center;
-				border-bottom: 1px solid $primary;
-				padding-bottom: 5px;
+      &-TimeWrapper {
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--primary);
+        padding-bottom: 5px;
 
-				&-Time {
-					font-size: $font_14;
-					font-weight: 200;
-					color: $primary;
-				}
-			}
-		}
+        &-Time {
+          font-size: $font_14;
+          font-weight: 200;
+          color: var(--primary);
+        }
+      }
+    }
 
-		&-Bottom {
-			display: flex;
-			display: -webkit-flex;
-			justify-content: space-between;
-			align-items: center;
-			padding: 0 5px 5px 10px;
-			margin-top: 2px;
+    &-Bottom {
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 5px 5px 10px;
+      margin-top: 2px;
 
-			&-Option {
-				display: flex;
-				display: -webkit-flex;
-				align-items: center;
+      &-Option {
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
 
-				&-Modify {
-					@include optionStyle($gray);
-				}
+        &-Modify {
+          @include optionStyle(var(--gray));
+        }
 
-				&-Remove {
-					@include optionStyle($red);
-				}
-			}
+        &-Remove {
+          @include optionStyle(var(--red));
+        }
+      }
 
-			&-RightWrapper {
-				display: flex;
-				display: -webkit-flex;
-				align-items: center;
-				height: 100%;
+      &-RightWrapper {
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
+        height: 100%;
 
-				&-ViewCount {
-					@include iconStyle($black);
-				}
+        &-ViewCount {
+          @include iconStyle(var(--black));
+        }
 
-				&-LikeCount {
-					@include iconStyle($primary);
-				}
+        &-LikeCount {
+          @include iconStyle(var(--black));
+        }
 
-				&-CommentLength {
-					@include iconStyle($primary);
+        &-commentCount {
+          @include iconStyle(var(--black));
 
-					& > div {
-						margin-left: 2px;
-					}
-				}
+          & > div {
+            margin-left: 2px;
+          }
+        }
 
-				&-Writer {
-					color: $primary;
-				}
-			}
-		}
-	}
+        &-Writer {
+          color: var(--primary);
+        }
+      }
+    }
+  }
 }

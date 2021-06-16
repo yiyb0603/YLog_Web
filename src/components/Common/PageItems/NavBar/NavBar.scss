@@ -1,69 +1,68 @@
-@import '../../../../styles/Palette/Palette.scss';
 @import '../../../../styles/Fonts/FontScheme.scss';
 
 .NavBar {
-	width: 100%;
-	min-height: 70px;
-	background-color: $primary;
-	box-shadow: 2px 2px 5px $lighterGray;
-	display: flex;
-	display: -webkit-flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
+  width: 100%;
+  min-height: 70px;
+  background-color: var(--primary);
+  box-shadow: 2px 2px 5px var(--lighterGray);
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 
-	&-Contents {
-		width: 100%;
-		max-width: 1400px;
-		margin: auto;
-		padding: 0 2rem;
-		display: flex;
-		display: -webkit-flex;
-		justify-content: space-between;
-		align-items: center;
-		flex-wrap: wrap;
+  &-Contents {
+    width: 100%;
+    max-width: 1400px;
+    margin: auto;
+    padding: 0 2rem;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 
-		&-Logo {
-			width: 140px;
-			object-fit: cover;
-			cursor: pointer;
+    &-Logo {
+      width: 140px;
+      object-fit: cover;
+      cursor: pointer;
 
-			@media screen and (max-width: 550px) {
-				width: 80px;
-			}
-		}
+      @media screen and (max-width: 550px) {
+        width: 80px;
+      }
+    }
 
-		&-Right {
-			display: flex;
-			display: -webkit-flex;
-			align-items: center;
+    &-Right {
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
 
-			& > * {
-				cursor: pointer;
-			}
+      & > * {
+        cursor: pointer;
+      }
 
-			&-LogText {
-				font-size: $font_20;
-				color: $white;
-				margin-top: 5px;
+      &-LogText {
+        font-size: $font_20;
+        color: var(--white);
+        margin-top: 5px;
 
-				@media screen and (max-width: 550px) {
-					font-size: $font_14;
-				}
-			}
+        @media screen and (max-width: 550px) {
+          font-size: $font_14;
+        }
+      }
 
-			& > img {
-				width: 50px;
-				height: 50px;
-				border-radius: 50%;
-				margin-left: 12px;
-				object-fit: cover;
+      & > img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-left: 12px;
+        object-fit: cover;
 
-				@media screen and (max-width: 550px) {
-					width: 30px;
-					height: 30px;
-				}
-			}
-		}
-	}
+        @media screen and (max-width: 550px) {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
 }

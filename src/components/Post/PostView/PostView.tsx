@@ -16,11 +16,15 @@ const cx: ClassNamesFn = classNames.bind(style);
 
 interface IPostViewProps {
 	postInfo: IPost;
-	commentLength: number;
+	commentCount: number;
 	categoryName: ICategory;
 }
 
-const PostView = ({ postInfo, commentLength, categoryName }: IPostViewProps) => {
+const PostView = ({
+	postInfo,
+	commentCount,
+	categoryName,
+}: IPostViewProps) => {
 	const {
 		title,
 		introduction,
@@ -59,14 +63,6 @@ const PostView = ({ postInfo, commentLength, categoryName }: IPostViewProps) => 
 							</div>
 						</div>
 					</div>
-					<img
-						src={thumbnail ? thumbnail : '/assets/icon/Logo.PNG'}
-						alt='thumbnail'
-						className={cx('PostView-Contents-Thumbnail')}
-						onError={(e: SyntheticEvent<HTMLImageElement, Event>) =>
-							(e.currentTarget.src = '/assets/icon/Logo.PNG')
-						}
-					/>
 					<div className={cx('PostView-Contents-Introduction')}>
 						{introduction}
 					</div>
@@ -79,7 +75,7 @@ const PostView = ({ postInfo, commentLength, categoryName }: IPostViewProps) => 
 
 				<div className={cx('PostView-Comments')}>
 					<div className={cx('PostView-Comments-Title')}>
-						댓글 {commentLength}개
+						댓글 {commentCount}개
 					</div>
 
 					<CommentWriteContainer />

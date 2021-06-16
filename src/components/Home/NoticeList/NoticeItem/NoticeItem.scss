@@ -1,18 +1,17 @@
-@import '../../../../styles/Palette/Palette.scss';
 @import '../../../../styles/Fonts/FontScheme.scss';
 
 .NoticeItem {
-	&-Contents {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
-		@media screen and (max-width: 424px) {
-			font-size: $font_14;
-		}
+  &-Contents {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    @media screen and (max-width: 424px) {
+      font-size: $font_14;
+    }
 
-		&-Title {
-			cursor: pointer;
-			text-overflow: ellipsis;
-		}
-	}
+    &-Title {
+      cursor: pointer;
+      text-overflow: ellipsis;
+    }
+  }
 }

@@ -1,73 +1,72 @@
-@import '../../styles/Palette/Palette.scss';
 @import '../../styles/Fonts/FontScheme.scss';
 
 .Home {
-	width: 100%;
-	max-width: 1400px;
-	display: flex;
-	display: -webkit-flex;
-	justify-content: space-between;
-	flex-direction: column;
-	-ms-flex-direction: column;
-	margin: 1rem auto;
-	padding: 0 2rem;
-	overflow: hidden;
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  margin: 1rem auto;
+  padding: 0 2rem;
+  overflow: hidden;
 
-	@media screen and (max-width: 400px) {
-		padding: 0 1rem;
-	}
+  @media screen and (max-width: 400px) {
+    padding: 0 1rem;
+  }
 
-	&-Middle {
-		display: flex;
-		display: -webkit-flex;
-		flex-wrap: wrap;
+  &-Middle {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
 
-		@media screen and (max-width: 650px) {
-			flex-direction: column-reverse;
-		}
+    @media screen and (max-width: 650px) {
+      flex-direction: column-reverse;
+    }
 
-		&-Contents {
-			display: flex;
-			display: -webkit-flex;
-			flex-wrap: wrap;
-			justify-content: space-between;
-			flex: 1;
+    &-Contents {
+      display: flex;
+      display: -webkit-flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      flex: 1;
 
-			&-Post {
-				flex: 1;
-			}
-		}
-	}
+      &-Post {
+        flex: 1;
+      }
+    }
+  }
 
-	&-Right {
-		display: flex;
-		display: -webkit-flex;
-		flex-flow: column wrap;
-		position: relative;
+  &-Right {
+    display: flex;
+    display: -webkit-flex;
+    flex-flow: column wrap;
+    position: relative;
 
-		&-Github {
-			width: 200px;
-			border: none;
-			outline: none;
-			color: $white;
-			font-size: $font_25;
-			background-color: $black;
-			margin-bottom: 5px;
-			display: flex;
-			display: -webkit-flex;
-			justify-content: center;
-			border-radius: 5px;
-			padding: 10px 0;
-			cursor: pointer;
+    &-Github {
+      width: 200px;
+      border: none;
+      outline: none;
+      color: var(--white);
+      font-size: $font_25;
+      background-color: var(--black);
+      margin-bottom: 5px;
+      display: flex;
+      display: -webkit-flex;
+      justify-content: center;
+      border-radius: 5px;
+      padding: 10px 0;
+      cursor: pointer;
 
-			& > div {
-				margin-left: 5px;
-			}
+      & > div {
+        margin-left: 5px;
+      }
 
-			@media screen and (max-width: 650px) {
-				width: 100%;
-				margin-top: 5px;
-			}
-		}
-	}
+      @media screen and (max-width: 650px) {
+        width: 100%;
+        margin-top: 5px;
+      }
+    }
+  }
 }

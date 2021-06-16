@@ -1,19 +1,18 @@
-@import '../../../../../styles/Palette/Palette.scss';
 @import '../../../../../styles/Fonts/FontScheme.scss';
 
 .PageHeader {
-	width: 100%;
-	min-width: 100%;
-	border-bottom: 1.5px solid $primary;
-	padding-bottom: 10px;
-	margin: 1rem 0;
+  width: 100%;
+  min-width: 100%;
+  border-bottom: 1.5px solid var(--primary);
+  padding-bottom: 10px;
+  margin: 1rem 0;
 
-	&-Title {
-		font-size: $font_30;
-		margin-bottom: 5px;
-	}
+  &-Title {
+    font-size: $font_30;
+    margin-bottom: 5px;
+  }
 
-	&-Description {
-		color: $gray;
-	}
+  &-Description {
+    color: var(--gray);
+  }
 }

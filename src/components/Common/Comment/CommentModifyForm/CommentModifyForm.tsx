@@ -8,7 +8,7 @@ import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { AiFillUnlock, AiFillLock } from 'react-icons/ai';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
-import { Palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import CommentModifyFormProps from './CommentModifyForm.types';
 
 const style = require('./CommentModifyForm.scss');
@@ -26,7 +26,7 @@ const CommentModifyForm = ({
 	const { contents, setContents } = contentsObject;
 	const { isPrivate, setIsPrivate } = isPrivateObject;
 
-	const { primary, gray } = Palette;
+	const { primary, gray } = palette;
 
 	useEffect(() => {
 		if (isModify) {

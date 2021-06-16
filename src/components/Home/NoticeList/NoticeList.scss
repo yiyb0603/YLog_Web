@@ -1,42 +1,42 @@
-@import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/palette/palette.scss';
 @import '../../../styles/Fonts/FontScheme.scss';
 
 .NoticeList {
-	width: 100%;
-	display: flex;
-	display: -webkit-flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	align-items: center;
-	margin-bottom: 10px;
-	border: none;
-	border-bottom: 2px solid rgba($rgbaPrimary, 0.6);
-	padding-bottom: 4px;
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 10px;
+  border: none;
+  border-bottom: 2px solid rgba($rgbaPrimary, 0.6);
+  padding-bottom: 4px;
 
-	&-CountWrapper {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
-		margin-right: 5px;
-	}
+  &-CountWrapper {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    margin-right: 5px;
+  }
 
-	&-Contents {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
-		flex-wrap: wrap;
+  &-Contents {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    flex-wrap: wrap;
 
-		&-Tag {
-			background-color: rgba($rgbaPrimary, 0.8);
-			color: $white;
-			border-radius: 25px;
-			padding: 7px 10px;
-			margin-right: 5px;
+    &-Tag {
+      background-color: rgba($rgbaPrimary, 0.8);
+      color: var(--white);
+      border-radius: 25px;
+      padding: 7px 10px;
+      margin-right: 5px;
 
-			@media screen and (max-width: 424px) {
-				padding: 5px;
-				font-size: $font_14;
-			}
-		}
-	}
+      @media screen and (max-width: 424px) {
+        padding: 5px;
+        font-size: $font_14;
+      }
+    }
+  }
 }

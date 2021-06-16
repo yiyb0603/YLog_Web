@@ -1,5 +1,5 @@
 import React, {
-	useState,
+	useMemo,
 	ChangeEvent,
 	Dispatch,
 	SetStateAction,
@@ -11,9 +11,8 @@ import { ClassNamesFn } from 'classnames/types';
 import { BiSend } from 'react-icons/bi';
 import { AiFillUnlock, AiFillLock } from 'react-icons/ai';
 import { useKeyDown } from 'lib/hooks/useKeyDown';
-import { Palette } from 'styles/Palette/Palette';
+import palette from 'styles/palette';
 import getMyInfo from 'lib/util/getMyInfo';
-import { useMemo } from 'react';
 
 const style = require('./CommentWrite.scss');
 const cx: ClassNamesFn = classNames.bind(style);
@@ -40,7 +39,7 @@ const CommentWrite = ({
 	const { contents, setContents } = contentsObject;
 	const { isPrivate, setIsPrivate } = isPrivateObject;
 
-	const { primary } = Palette;
+	const { var(--primary) } = palette;
 	const profileImage: string | null = useMemo(() => {
 		return !getMyInfo() ? null : getMyInfo().profile_image;
 	}, []);
@@ -72,7 +71,7 @@ const CommentWrite = ({
 				{
 					isPrivate ?
 						<AiFillLock
-							style={{ color: primary }}
+							style={{ color: var(--primary) }}
 							onClick={() => setIsPrivate(false)}
 						/>
 						: <AiFillUnlock onClick={() => setIsPrivate(true)} />

@@ -1,38 +1,37 @@
-@import '../../../../styles/Palette/Palette.scss';
 @import '../../../../styles/Fonts/FontScheme.scss';
 
 .SearchInput {
-	width: 210px;
-	max-width: 210px;
-	display: flex;
-	display: -webkit-flex;
-	align-items: center;
-	border: none;
-	outline: none;
-	border-bottom: 2px solid $black;
-	color: $white;
+  width: 210px;
+  max-width: 210px;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid var(--black);
+  color: var(--white);
 
-	@media screen and (max-width: 450px) {
-		width: 150px;
-		max-width: 150px;
-	}
+  @media screen and (max-width: 450px) {
+    width: 150px;
+    max-width: 150px;
+  }
 
-	& > input {
-		width: 100%;
-		border: none;
-		outline: none;
-		background: none;
-		padding: 5px 0;
-		font-size: $font_1rem;
-		color: $black;
+  & > input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: none;
+    padding: 5px 0;
+    font-size: $font_1rem;
+    color: var(--black);
 
-		@media screen and (max-width: 450px) {
-			font-size: $font_12;
-		}
+    @media screen and (max-width: 450px) {
+      font-size: $font_12;
+    }
 
-		&::placeholder {
-			color: $black;
-			vertical-align: middle;
-		}
-	}
+    &::placeholder {
+      color: var(--black);
+      vertical-align: middle;
+    }
+  }
 }

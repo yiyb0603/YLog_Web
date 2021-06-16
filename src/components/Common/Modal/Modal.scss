@@ -1,54 +1,53 @@
-@import '../../../styles/Palette/Palette.scss';
 @import '../../../styles/Fonts/FontScheme.scss';
 
 .Modal {
-	background-color: $white;
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
-	padding: $font_2rem;
-	overflow-x: hidden;
-	overflow-y: auto;
-	z-index: 5;
+  background-color: var(--white);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: $font_2rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 5;
 
-	@media screen and (max-width: 450px) {
-		max-width: 300px !important;
-		max-height: 400px !important;
-	}
+  @media screen and (max-width: 450px) {
+    max-width: 300px !important;
+    max-height: 400px !important;
+  }
 
-	&-Wrapper {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: rgba(0, 0, 0, 0.4);
-		z-index: 4;
-	}
+  &-Wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 4;
+  }
 
-	&-Top {
-		width: 100%;
+  &-Top {
+    width: 100%;
 
-		&-Contents {
-			width: 100%;
-			display: flex;
-			display: -webkit-flex;
-			align-items: center;
-			justify-content: space-between;
-			border-bottom: 2px solid $lighterGray;
-			padding-bottom: 10px;
+    &-Contents {
+      width: 100%;
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--lighterGray);
+      padding-bottom: 10px;
 
-			&-Title {
-				font-size: $font_22;
-				text-align: center;
-			}
+      &-Title {
+        font-size: $font_22;
+        text-align: center;
+      }
 
-			&-Icon {
-				font-size: $font_25;
-				cursor: pointer;
-			}
-		}
-	}
+      &-Icon {
+        font-size: $font_25;
+        cursor: pointer;
+      }
+    }
+  }
 }

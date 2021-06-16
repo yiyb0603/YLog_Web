@@ -1,37 +1,36 @@
 @import '../../../../styles/Fonts/FontScheme.scss';
-@import '../../../../styles/Palette/Palette.scss';
 
 .ReplyWrite {
-	display: flex;
-	display: -webkit-flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-top: 5px;
-	margin-left: 60px;
-	padding: 0 5px;
-	background-color: $lighterGray;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-left: 60px;
+  padding: 0 5px;
+  background-color: var(--lighterGray);
 
-	&-Write {
-		width: 100%;
-		border: none;
-		outline: none;
-		background-color: $lighterGray;
-		padding: 10px 5px;
-	}
+  &-Write {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: var(--lighterGray);
+    padding: 10px 5px;
+  }
 
-	&-IconWrapper {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
+  &-IconWrapper {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
 
-		& > * {
-			cursor: pointer;
-			font-size: $font_25;
-			color: $gray;
-		}
+    & > * {
+      cursor: pointer;
+      font-size: $font_25;
+      color: var(--gray);
+    }
 
-		&-Send {
-			margin-left: 10px;
-		}
-	}
+    &-Send {
+      margin-left: 10px;
+    }
+  }
 }

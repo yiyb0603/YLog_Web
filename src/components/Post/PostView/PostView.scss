@@ -1,96 +1,95 @@
-@import '../../../styles/Palette/Palette.scss';
 @import '../../../styles/Fonts/FontScheme.scss';
 
 .PostView {
-	width: 100%;
-	max-width: 1100px;
-	margin: 2rem auto;
-	padding: 0 2rem;
-	display: flex;
-	display: -webkit-flex;
-	justify-content: center;
-	align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
 
-	&-Like {
-		@media screen and (max-width: 1000px) {
-			display: none;
-		}
-	}
+  &-Like {
+    @media screen and (max-width: 1000px) {
+      display: none;
+    }
+  }
 
-	&-Contents {
-		display: flex;
-		display: -webkit-flex;
-		flex-direction: column;
-		-ms-flex-direction: column;
-		border-bottom: 2px solid $lighterGray;
-		padding-bottom: 10px;
+  &-Contents {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    border-bottom: 2px solid var(--lighterGray);
+    padding-bottom: 10px;
 
-		&-Introduction {
-			margin-bottom: $font_1rem;
-		}
+    &-Introduction {
+      margin-bottom: $font_1rem;
+    }
 
-		&-Info {
-			display: flex;
-			display: -webkit-flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-top: 10px;
+    &-Info {
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
 
-			&-Left {
-				display: flex;
-				display: -webkit-flex;
-				align-items: center;
-				position: relative;
+      &-Left {
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
+        position: relative;
 
-				&-Like {
-					display: none;
+        &-Like {
+          display: none;
 
-					@media screen and (max-width: 1000px) {
-						display: block;
-					}
-				}
+          @media screen and (max-width: 1000px) {
+            display: block;
+          }
+        }
 
-				&-Category {
-					color: $primary;
-					font-size: $font_22;
-				}
-			}
+        &-Category {
+          color: var(--primary);
+          font-size: $font_22;
+        }
+      }
 
-			&-Personal {
-				display: flex;
-				display: -webkit-flex;
-				font-size: $font_22;
+      &-Personal {
+        display: flex;
+        display: -webkit-flex;
+        font-size: $font_22;
 
-				&-Time {
-					margin-right: 10px;
-					color: $gray;
-				}
+        &-Time {
+          margin-right: 10px;
+          color: var(--gray);
+        }
 
-				&-Writer {
-					color: $primary;
-				}
-			}
-		}
+        &-Writer {
+          color: var(--primary);
+        }
+      }
+    }
 
-		&-Thumbnail {
-			max-width: 100%;
-			min-height: 200px;
-			max-height: 550px;
-			margin: $font_2rem auto;
-		}
+    &-Thumbnail {
+      max-width: 100%;
+      min-height: 400px;
+      max-height: 550px;
+      margin: $font_2rem auto;
+    }
 
-		&-Title {
-			font-size: 2.5rem;
-			font-weight: bold;
-		}
-	}
+    &-Title {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
+  }
 
-	&-Comments {
-		margin: 10px 0;
+  &-Comments {
+    margin: 10px 0;
 
-		&-Title {
-			margin-bottom: 10px;
-			font-size: $font_22;
-		}
-	}
+    &-Title {
+      margin-bottom: 10px;
+      font-size: $font_22;
+    }
+  }
 }

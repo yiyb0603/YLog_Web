@@ -1,21 +1,21 @@
-@import '../../../../styles/Palette/Palette.scss';
+@import '../../../../styles/palette/palette.scss';
 @import '../../../../styles/Fonts/FontScheme.scss';
 
 .Footer {
-	width: 100%;
-	height: 100px;
-	background-color: rgba($rgbaBackground, 0.02);
-	display: flex;
-	display: -webkit-flex;
-	flex-direction: column;
-	-ms-flex-direction: column;
-	justify-content: center;
-	align-items: center;
+  width: 100%;
+  height: 100px;
+  background-color: rgba($rgbaBackground, 0.02);
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-	&-Version {
-		cursor: pointer;
-		color: $primary;
-		font-size: $font_20;
-		margin-top: 10px;
-	}
+  &-Version {
+    cursor: pointer;
+    color: var(--primary);
+    font-size: $font_20;
+    margin-top: 10px;
+  }
 }

@@ -1,8 +1,7 @@
 @import '../../../../styles/Fonts/FontScheme.scss';
-@import '../../../../styles/Palette/Palette.scss';
 
 .NoComments {
-	color: $gray;
-	font-size: $font_14;
-	padding: 5px 0;
+  color: var(--gray);
+  font-size: $font_14;
+  padding: 5px 0;
 }

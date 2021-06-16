@@ -1,111 +1,110 @@
-@import '../../../../styles/Palette/Palette.scss';
 @import '../../../../styles/Fonts/FontScheme.scss';
 
 .CommentLayout {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	display: -webkit-flex;
-	flex-direction: column;
-	-ms-flex-direction: column;
-	margin-bottom: 10px;
-	justify-content: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  margin-bottom: 10px;
+  justify-content: center;
 
-	&-Contents {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
+  &-Contents {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
 
-		&-Left {
-			width: 100%;
-			display: flex;
-			display: -webkit-flex;
+    &-Left {
+      width: 100%;
+      display: flex;
+      display: -webkit-flex;
 
-			&-Profile {
-				width: 50px;
-				height: 50px;
-				border-radius: 50%;
-				object-fit: cover;
-				margin-top: 4px;
-			}
+      &-Profile {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-top: 4px;
+      }
 
-			&-InfoWrapper {
-				width: 100%;
-				display: flex;
-				display: -webkit-flex;
-				flex-direction: column;
-				-ms-flex-direction: column;
-				justify-content: space-around;
-				margin-left: 7px;
-				margin-top: 3px;
+      &-InfoWrapper {
+        width: 100%;
+        display: flex;
+        display: -webkit-flex;
+        flex-direction: column;
+        -ms-flex-direction: column;
+        justify-content: space-around;
+        margin-left: 7px;
+        margin-top: 3px;
 
-				&-Top {
-					display: flex;
-					display: -webkit-flex;
-					align-items: center;
+        &-Top {
+          display: flex;
+          display: -webkit-flex;
+          align-items: center;
 
-					&-Writer {
-						color: $blue;
-						margin-right: 4px;
-					}
+          &-Writer {
+            color: $blue;
+            margin-right: 4px;
+          }
 
-					&-Time {
-						color: $gray;
-						font-weight: bold;
-					}
-				}
-			}
-		}
+          &-Time {
+            color: var(--gray);
+            font-weight: bold;
+          }
+        }
+      }
+    }
 
-		&-ReplyButton {
-			font-size: $font_12;
-			color: $gray;
-			cursor: pointer;
-		}
+    &-ReplyButton {
+      font-size: $font_12;
+      color: var(--gray);
+      cursor: pointer;
+    }
 
-		&-Right {
-			width: 80px;
-			display: flex;
-			display: -webkit-flex;
-			align-items: center;
-			justify-content: center;
+    &-Right {
+      width: 80px;
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
+      justify-content: center;
 
-			& > * {
-				margin-right: 5px;
-				cursor: pointer;
-			}
+      & > * {
+        margin-right: 5px;
+        cursor: pointer;
+      }
 
-			&-Modify {
-				color: $primary;
-			}
+      &-Modify {
+        color: var(--primary);
+      }
 
-			&-Delete {
-				color: $red;
-			}
-		}
-	}
+      &-Delete {
+        color: var(--red);
+      }
+    }
+  }
 
-	&-WriteReply {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
-		justify-content: space-between;
-		margin-top: 5px;
-		margin-left: 60px;
-		padding: 0 5px;
-		background-color: $lighterGray;
+  &-WriteReply {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    margin-left: 60px;
+    padding: 0 5px;
+    background-color: var(--lighterGray);
 
-		&-Write {
-			width: 100%;
-			border: none;
-			outline: none;
-			background-color: $lighterGray;
-			padding: 10px 5px;
-		}
+    &-Write {
+      width: 100%;
+      border: none;
+      outline: none;
+      background-color: var(--lighterGray);
+      padding: 10px 5px;
+    }
 
-		&-Send {
-			cursor: pointer;
-			font-size: $font_22;
-		}
-	}
+    &-Send {
+      cursor: pointer;
+      font-size: $font_22;
+    }
+  }
 }

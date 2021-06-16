@@ -1,45 +1,42 @@
-@import '../../../../styles/Palette/Palette.scss';
-@import '../../../../styles/Fonts/FontScheme.scss';
-
 .RowCategoryItem {
-	border: 2px solid $primary;
-	border-radius: 25px;
-	padding: 5px 10px;
-	display: flex;
-	display: -webkit-flex;
-	align-items: center;
-	margin-right: 5px;
-	margin-bottom: 5px;
-	cursor: pointer;
+  border: 2px solid var(--primary);
+  border-radius: 25px;
+  padding: 5px 10px;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  cursor: pointer;
 
-	&-Current {
-		background-color: $primary;
-		color: $white;
-	}
+  &-Current {
+    background-color: var(--primary);
+    color: var(--white);
+  }
 
-	&-Count {
-		color: $gray;
-		margin-left: 3px;
-	}
+  &-Count {
+    color: var(--gray);
+    margin-left: 3px;
+  }
 
-	&-Icon {
-		display: flex;
-		display: -webkit-flex;
-		align-items: center;
+  &-Icon {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
 
-		& > * {
-			cursor: pointer;
-			-webkit-transition: 0.2s ease-out;
-			transition: 0.2s ease-out;
-			margin-right: 5px;
-		}
+    & > * {
+      cursor: pointer;
+      -webkit-transition: 0.2s ease-out;
+      transition: 0.2s ease-out;
+      margin-right: 5px;
+    }
 
-		&-Modify:hover {
-			color: $primary;
-		}
+    &-Modify:hover {
+      color: var(--primary);
+    }
 
-		&-Delete:hover {
-			color: $red;
-		}
-	}
+    &-Delete:hover {
+      color: var(--red);
+    }
+  }
 }

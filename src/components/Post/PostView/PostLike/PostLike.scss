@@ -1,68 +1,66 @@
-@import '../../../../styles/Palette/Palette.scss';
 @import '../../../../styles/Fonts/FontScheme.scss';
 
 .PostLike {
-	position: fixed;
-	top: 50%;
-	// transform: translateY(-50%);
-	display: flex;
-	display: -webkit-flex;
-	flex-direction: column;
-	-ms-flex-direction: column;
-	align-items: center;
-	margin-left: -5rem;
+  position: fixed;
+  top: 50%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  align-items: center;
+  margin-left: -5rem;
 
-	@media screen and (max-width: 1000px) {
-		margin-left: 0;
-		position: relative;
-	}
+  @media screen and (max-width: 1000px) {
+    margin-left: 0;
+    position: relative;
+  }
 
-	&-Button {
-		display: flex;
-		display: -webkit-flex;
-		flex-direction: column;
-		-ms-flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		background-color: $white;
-		border: 3px solid $primary;
-		border-radius: 50%;
-		padding: 5px 10px;
-		transition: 0.2s ease;
-		cursor: pointer;
+  &-Button {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    padding: 5px 10px;
+    transition: 0.2s ease;
+    cursor: pointer;
 
-		@media screen and (max-width: 1000px) {
-			flex-direction: row;
-			-ms-flex-direction: row;
-			margin-right: 4px;
-		}
+    @media screen and (max-width: 1000px) {
+      flex-direction: row;
+      -ms-flex-direction: row;
+      margin-right: 4px;
+    }
 
-		&-Pressed {
-			background-color: $primary;
-			color: $white;
+    &-Pressed {
+      background-color: var(--primary);
+      color: var(--white);
 
-			& > * {
-				color: $white !important;
-			}
-		}
+      & > * {
+        color: var(--white) !important;
+      }
+    }
 
-		&:hover {
-			background-color: $primary;
-			color: $white;
+    &:hover {
+      background-color: var(--primary);
+      color: var(--white);
 
-			& > * {
-				color: $white;
-			}
-		}
+      & > * {
+        color: var(--white);
+      }
+    }
 
-		&-Icon {
-			color: $primary;
-			font-size: 35px;
-		}
+    &-Icon {
+      color: var(--primary);
+      font-size: 35px;
+    }
 
-		&-Count {
-			color: $black;
-			font-size: 18px;
-		}
-	}
+    &-Count {
+      color: var(--black);
+      font-size: 18px;
+    }
+  }
 }

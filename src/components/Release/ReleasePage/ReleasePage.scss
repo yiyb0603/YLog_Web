@@ -1,87 +1,86 @@
-@import '../../../styles/Palette/Palette.scss';
 @import '../../../styles/Fonts/FontScheme.scss';
 
 @mixin optionStyle($color) {
-	color: $color;
-	font-weight: 200;
-	margin-right: 5px;
-	cursor: pointer;
-	z-index: 3;
+  color: $color;
+  font-weight: 200;
+  margin-right: 5px;
+  cursor: pointer;
+  z-index: 3;
 
-	&:hover {
-		opacity: 0.7;
-	}
+  &:hover {
+    opacity: 0.7;
+  }
 }
 
 .ReleasePage {
-	max-width: 1000px;
-	margin: 2rem auto;
+  max-width: 1000px;
+  margin: 2rem auto;
 
-	&-Contents {
-		display: flex;
-		display: -webkit-flex;
-		flex-direction: column;
-		-ms-flex-direction: column;
-		border-bottom: 2px solid $lighterGray;
+  &-Contents {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
+    border-bottom: 2px solid var(--lighterGray);
 
-		&-Info {
-			width: 100%;
-			display: flex;
-			display: -webkit-flex;
-			align-items: center;
-			margin: 10px 0;
+    &-Info {
+      width: 100%;
+      display: flex;
+      display: -webkit-flex;
+      align-items: center;
+      margin: 10px 0;
 
-			&-Personal {
-				flex: 1;
-				display: flex;
-				display: -webkit-flex;
-				justify-content: space-between;
-				font-size: $font_22;
+      &-Personal {
+        flex: 1;
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
+        font-size: $font_22;
 
-				&-Wrapper {
-					display: flex;
-					display: -webkit-flex;
-					align-items: center;
-				}
+        &-Wrapper {
+          display: flex;
+          display: -webkit-flex;
+          align-items: center;
+        }
 
-				&-Option {
-					display: flex;
-					display: -webkit-flex;
-					align-items: flex-end;
+        &-Option {
+          display: flex;
+          display: -webkit-flex;
+          align-items: flex-end;
 
-					& > * {
-						margin-right: 5px;
-						font-size: $font_1rem;
-						cursor: pointer;
-					}
+          & > * {
+            margin-right: 5px;
+            font-size: $font_1rem;
+            cursor: pointer;
+          }
 
-					&-Modify {
-						@include optionStyle($gray);
-					}
+          &-Modify {
+            @include optionStyle(var(--gray));
+          }
 
-					&-Delete {
-						@include optionStyle($red);
-					}
-				}
+          &-Delete {
+            @include optionStyle(var(--red));
+          }
+        }
 
-				&-Time {
-					margin-right: 10px;
-					color: $gray;
-				}
+        &-Time {
+          margin-right: 10px;
+          color: var(--gray);
+        }
 
-				&-Writer {
-					color: $primary;
-				}
-			}
-		}
+        &-Writer {
+          color: var(--primary);
+        }
+      }
+    }
 
-		&-Title {
-			font-size: 2.5rem;
-			font-weight: bold;
-		}
+    &-Title {
+      font-size: 2.5rem;
+      font-weight: bold;
+    }
 
-		&-Contents {
-			margin-bottom: 12px;
-		}
-	}
+    &-Contents {
+      margin-bottom: 12px;
+    }
+  }
 }

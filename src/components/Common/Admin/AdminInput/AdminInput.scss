@@ -1,11 +1,9 @@
-@import '../../../../styles/Palette/Palette.scss';
-
 .AdminInput {
-	margin-bottom: 10px;
-	border-radius: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 
-	&:focus {
-		border: 1px solid $primary !important;
-		outline: none !important;
-	}
+  &:focus {
+    border: 1px solid var(--primary) !important;
+    outline: none !important;
+  }
 }

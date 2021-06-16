@@ -1,21 +1,21 @@
 @import '../../../styles/Fonts/FontScheme.scss';
-@import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/palette/palette.scss';
 
 .AuthInput {
-	width: 100%;
-	border: none;
-	outline: none;
-	margin-bottom: $font_2rem;
-	border-bottom: 2px solid rgba($rgbaPrimary, 0.7);
-	padding: 10px 0;
-	font-size: $font_20;
-	color: $black;
+  width: 100%;
+  border: none;
+  outline: none;
+  margin-bottom: $font_2rem;
+  border-bottom: 2px solid rgba($rgbaPrimary, 0.7);
+  padding: 10px 0;
+  font-size: $font_20;
+  color: var(--black);
 
-	&:focus {
-		border-bottom: 2px solid $primary;
-	}
+  &:focus {
+    border-bottom: 2px solid var(--primary);
+  }
 
-	&:last-child {
-		margin-bottom: $font_1rem;
-	}
+  &:last-child {
+    margin-bottom: $font_1rem;
+  }
 }

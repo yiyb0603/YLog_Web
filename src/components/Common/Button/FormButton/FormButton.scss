@@ -1,19 +1,16 @@
-@import '../../../../styles/Fonts/FontScheme.scss';
-@import '../../../../styles/Palette/Palette.scss';
-
 .FormButton {
-	border: none;
-	outline: none;
-	background-color: $primary;
-	width: 100%;
-	display: flex;
-	display: -webkit-flex;
-	align-items: center;
-	justify-content: center;
-	padding: $font_1rem 0;
-	font-size: $font_20;
-	color: $white;
-	cursor: pointer;
-	margin-top: 1rem;
-	vertical-align: middle;
+  border: none;
+  outline: none;
+  background-color: var(--primary);
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+  font-size: $font_20;
+  color: var(--white);
+  cursor: pointer;
+  margin-top: 1rem;
+  vertical-align: middle;
 }

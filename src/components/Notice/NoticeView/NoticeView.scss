@@ -1,65 +1,65 @@
-@import '../../../styles/Palette/Palette.scss';
+@import '../../../styles/palette/palette.scss';
 @import '../../../styles/Fonts/FontScheme.scss';
 
 .NoticeView {
-	max-width: 1000px;
-	margin: 2rem auto;
+  max-width: 1000px;
+  margin: 2rem auto;
 
-	&-Contents {
-		display: flex;
-		display: -webkit-flex;
-		flex-direction: column;
-		-ms-flex-direction: column;
+  &-Contents {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -ms-flex-direction: column;
 
-		&-Info {
-			display: flex;
-			display: -webkit-flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-top: 10px;
-			font-size: $font_18;
-			padding-bottom: 5px;
-			margin-bottom: 5px;
-			border-bottom: 2px solid rgba($rgbaPrimary, 0.5);
+    &-Info {
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      font-size: $font_18;
+      padding-bottom: 5px;
+      margin-bottom: 5px;
+      border-bottom: 2px solid rgba($rgbaPrimary, 0.5);
 
-			&-Personal {
-				display: flex;
-				display: -webkit-flex;
-				align-items: center;
+      &-Personal {
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
 
-				& > div:first-child {
-					margin-right: 5px;
-				}
+        & > div:first-child {
+          margin-right: 5px;
+        }
 
-				&-Writer {
-					color: $primary;
-					font-size: $font_18;
-				}
-			}
+        &-Writer {
+          color: var(--primary);
+          font-size: $font_18;
+        }
+      }
 
-			&-Option {
-				display: flex;
-				display: -webkit-flex;
-				align-items: center;
+      &-Option {
+        display: flex;
+        display: -webkit-flex;
+        align-items: center;
 
-				& > * {
-					cursor: pointer;
-				}
+        & > * {
+          cursor: pointer;
+        }
 
-				&-Modify {
-					margin-right: 5px;
-					color: $gray;
-				}
+        &-Modify {
+          margin-right: 5px;
+          color: var(--gray);
+        }
 
-				&-Delete {
-					color: $red;
-				}
-			}
-		}
+        &-Delete {
+          color: var(--red);
+        }
+      }
+    }
 
-		&-Title {
-			text-align: center;
-			font-size: $font_2rem;
-		}
-	}
+    &-Title {
+      text-align: center;
+      font-size: $font_2rem;
+    }
+  }
 }

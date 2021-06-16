@@ -1,18 +1,17 @@
-@import '../../../../../../styles/Palette/Palette.scss';
 @import '../../../../../../styles/Fonts/FontScheme.scss';
 
 .NavToggle {
-	width: 50px;
-	height: 50px;
-	display: flex;
-	display: -webkit-flex;
-	justify-content: center;
-	align-items: center;
-	background-color: $primary;
-	cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary);
+  cursor: pointer;
 
-	&-Icon {
-		font-size: $font_22;
-		color: $white;
-	}
+  &-Icon {
+    font-size: $font_22;
+    color: var(--white);
+  }
 }

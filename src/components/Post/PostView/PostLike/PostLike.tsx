@@ -1,37 +1,42 @@
-import React, { useCallback } from "react";
+import React, { useCallback } from 'react';
 import classNames from 'classnames';
-import { ClassNamesFn } from "classnames/types";
+import { ClassNamesFn } from 'classnames/types';
 import { AiOutlineLike } from 'react-icons/ai';
-import { ILikeTypes } from "interface/LikeTypes";
-import getMyInfo from "lib/util/getMyInfo";
-import { warningToast } from "lib/Toast";
+import { ILike } from 'interface/LikeTypes';
+import { warningToast } from 'lib/Toast';
+import { IToken } from 'interface/AuthTypes';
 
-const style = require("./PostLike.scss");
+const style = require('./PostLike.scss');
 const cx: ClassNamesFn = classNames.bind(style);
 
 interface PostLikeProps {
-  likeList: ILikeTypes[];
+  likeList: ILike[];
+  myInfo: IToken;
+  pressedLike: ILike;
   requestPostCount: () => Promise<void>;
   requestDeleteCount: () => Promise<void>;
 }
 
-const PostLike = ({ likeList, requestPostCount, requestDeleteCount }: PostLikeProps) => {
-  const myInfo = getMyInfo();
-  const isPressed: number = likeList && likeList.findIndex((like: ILikeTypes) => like.user_idx === myInfo.idx);
-
+const PostLike = ({
+  likeList,
+  myInfo,
+  pressedLike,
+  requestPostCount,
+  requestDeleteCount,
+}: PostLikeProps) => {
   const requestFunction = useCallback((): void => {
     if (myInfo) {
-      isPressed > -1 ? requestDeleteCount() : requestPostCount();
+      pressedLike ? requestDeleteCount() : requestPostCount();
       return;
     }
 
-    warningToast("로그인 후 좋아요가 가능합니다.");
-  }, [requestPostCount, requestDeleteCount, isPressed]);
+    warningToast('로그인 후 좋아요가 가능합니다.');
+  }, [requestPostCount, requestDeleteCount, pressedLike]);
 
   return (
     <div className={cx('PostLike')}>
       <div className={cx('PostLike-Button', {
-        'PostLike-Button-Pressed': isPressed > -1
+        'PostLike-Button-Pressed': pressedLike,
       })} onClick={requestFunction}>
         <AiOutlineLike className={cx('PostLike-Button-Icon')} />
         <div className={cx('PostLike-Button-Count')}>{likeList.length}</div>

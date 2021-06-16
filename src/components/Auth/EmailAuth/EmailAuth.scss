@@ -1,32 +1,29 @@
-@import '../../../styles/Fonts/FontScheme.scss';
-@import '../../../styles/Palette/Palette.scss';
-
 .EmailAuth {
-	display: flex;
-	display: -webkit-flex;
-	flex-direction: column;
-	justify-content: space-around;
-	height: 90%;
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 90%;
 
-	&-Top {
-		display: flex;
-		display: -webkit-flex;
-		flex-direction: column;
-		margin: 10px 0;
+  &-Top {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    margin: 10px 0;
 
-		&-Title {
-			font-size: $font_2rem;
-			margin-bottom: 5px;
-		}
+    &-Title {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
 
-		&-SubTitle {
-			color: $gray;
-		}
-	}
+    &-SubTitle {
+      color: var(--gray);
+    }
+  }
 
-	&-Form {
-		display: flex;
-		display: -webkit-flex;
-		flex-direction: column;
-	}
+  &-Form {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+  }
 }
