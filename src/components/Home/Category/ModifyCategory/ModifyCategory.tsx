@@ -25,7 +25,7 @@ const ModifyCategory = ({
 	handleCloseModal,
 	categoryNameObj,
 	requestModifyCategory,
-}: ModifyCategoryProps) => {
+}: ModifyCategoryProps): JSX.Element => {
 	const { categoryName, setCategoryName } = categoryNameObj;
 
 	return (

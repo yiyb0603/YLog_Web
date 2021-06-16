@@ -11,7 +11,7 @@ import { errorToast } from 'lib/Toast';
 import GroupingState from 'lib/util/GroupingState';
 import ReleaseForm from 'components/Release/ReleaseForm';
 
-const ReleaseFormContainer = observer(() => {
+const ReleaseFormContainer = observer((): JSX.Element => {
   const router: NextRouter = useRouter();
   const releaseIdx: number = Number(router.query.idx);
 

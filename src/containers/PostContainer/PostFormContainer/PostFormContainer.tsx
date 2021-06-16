@@ -14,7 +14,7 @@ import { validationPostWrite } from 'validation/Post/validationPost';
 import PostForm from 'components/Post/PostForm/PostForm';
 import PostFormTemplate from 'components/Post/PostForm';
 
-const PostFormContainer = observer(() => {
+const PostFormContainer = observer((): JSX.Element => {
 	const { store } = useStores();
 	const { handleWritePost, handleModifyPost, handlePostView } = store.PostStore;
 	const { categoryList, handleCategoryList } = store.CategoryStore;

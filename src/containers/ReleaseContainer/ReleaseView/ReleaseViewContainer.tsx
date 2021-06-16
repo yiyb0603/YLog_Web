@@ -9,7 +9,7 @@ import { showAlert } from 'lib/SweetAlert';
 import IError from 'interface/ErrorTypes';
 import { errorToast, successToast } from 'lib/Toast';
 
-const ReleaseViewContainer = observer(() => {
+const ReleaseViewContainer = observer((): JSX.Element => {
   const router: NextRouter = useRouter();
   const releaseIdx: number = Number(router.query.idx);
 

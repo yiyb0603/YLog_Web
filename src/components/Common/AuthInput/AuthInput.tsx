@@ -12,7 +12,7 @@ const AuthInput = ({
 	value,
 	setValue,
 	onKeyDown,
-}: AuthInputProps) => {
+}: AuthInputProps): JSX.Element => {
 	return (
 		<input
 			className={cx('AuthInput')}

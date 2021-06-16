@@ -10,7 +10,7 @@ import getMyInfo from 'lib/util/getMyInfo';
 import { ILike } from 'interface/LikeTypes';
 import { IToken } from 'interface/AuthTypes';
 
-const LikeContainer = observer(() => {
+const LikeContainer = observer((): JSX.Element => {
   const { store } = useStores();
   const { likeList, handleLikeList, handlePostLike, handleDeleteLike } = store.LikeStore;
 

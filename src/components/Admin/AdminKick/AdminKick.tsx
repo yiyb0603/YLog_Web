@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
 import { ClassNamesFn } from 'classnames/types';
 import { Table } from 'react-bootstrap';
@@ -21,7 +21,7 @@ interface AdminKickProps {
 const AdminKick = ({
 	memberLists,
 	keywordObject,
-}: AdminKickProps) => {
+}: AdminKickProps): JSX.Element => {
 	const { keyword, setKeyword } = keywordObject;
 
 	return (

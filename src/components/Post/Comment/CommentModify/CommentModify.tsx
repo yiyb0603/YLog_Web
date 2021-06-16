@@ -23,7 +23,7 @@ const CommentModify = ({
 	isModify,
 	onBlur,
 	requestCommentModify,
-}: CommentModifyProps) => {
+}: CommentModifyProps): JSX.Element => {
 	
 
 	return (

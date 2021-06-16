@@ -21,7 +21,7 @@ const SignUp = ({
 	againPasswordObject,
 	adminCodeObject,
 	requestEmailAuth,
-}: SignUpProps) => {
+}: SignUpProps): JSX.Element => {
 	const { name, setName } = nameObject;
 	const { email, setEmail } = emailObject;
 	const { password, setPassword } = passwordObject;

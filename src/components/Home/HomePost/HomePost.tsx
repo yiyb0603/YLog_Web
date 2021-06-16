@@ -20,7 +20,7 @@ const HomePost = ({
 	filterPost,
 	categoryList,
 	requestDeletePost,
-}: HomePostProps) => {
+}: HomePostProps): JSX.Element => {
 	return (
 		<FadeIn>
 			<div className={cx('HomePost')}>

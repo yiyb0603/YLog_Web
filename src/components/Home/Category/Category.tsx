@@ -24,7 +24,7 @@ const Category = ({
 	categoryList,
 	requestDeleteCategory,
 	postLength,
-}: CategoryProps) => {
+}: CategoryProps): JSX.Element => {
 	const [isCreate, setIsCreate] = useState<boolean>(false);
 	const [isModify, setIsModify] = useState<boolean>(false);
 	const [categoryInfo, setCategoryInfo] = useState<ICategory>({});

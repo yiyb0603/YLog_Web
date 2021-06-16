@@ -19,7 +19,7 @@ const Home = ({
 	postList,
 	noticeList,
 	categoryList,
-}: IHomeProps) => {
+}: IHomeProps): JSX.Element => {
 	const router: NextRouter = useRouter();
 	const { GITHUB_ADDRESS } = Constants;
 

@@ -23,7 +23,7 @@ const PostLike = ({
   pressedLike,
   requestPostCount,
   requestDeleteCount,
-}: PostLikeProps) => {
+}: PostLikeProps): JSX.Element => {
   const requestFunction = useCallback((): void => {
     if (myInfo) {
       pressedLike ? requestDeleteCount() : requestPostCount();

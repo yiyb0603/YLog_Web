@@ -15,7 +15,7 @@ const WriteButton = ({
   width,
   nextFunction,
   children,
-}: WriteButtonProps) => {
+}: WriteButtonProps): JSX.Element => {
   return (
     <button
       style={{ width: width && width }}

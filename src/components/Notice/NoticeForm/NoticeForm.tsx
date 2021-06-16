@@ -15,7 +15,7 @@ const NoticeForm = ({
 	titleObject,
 	contentsObject,
 	requestFunction,
-}: NoticeFormProps) => {
+}: NoticeFormProps): JSX.Element => {
 	const { title, setTitle } = titleObject;
 	const { contents, setContents } = contentsObject;
 

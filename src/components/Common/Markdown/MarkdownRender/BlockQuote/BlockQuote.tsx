@@ -11,7 +11,7 @@ interface BlockQuoteProps {
 
 const BlockQuote = ({
 	children,
-}: BlockQuoteProps) => {
+}: BlockQuoteProps): JSX.Element => {
 	return <div className={cx('BlockQuote')}>{children}</div>;
 };
 

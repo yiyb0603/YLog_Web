@@ -13,7 +13,7 @@ interface FormButtonProps {
 const FormButton = ({
 	buttonValue,
 	requestFunction,
-}: FormButtonProps) => {
+}: FormButtonProps): JSX.Element => {
 	return (
 		<button
 			className={cx('FormButton')}

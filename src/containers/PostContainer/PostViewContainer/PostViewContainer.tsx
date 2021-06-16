@@ -14,7 +14,7 @@ interface IPostViewContainerProps {
 	post: IPost;
 }
 
-const PostViewContainer = observer(({ post }: IPostViewContainerProps) => {
+const PostViewContainer = observer(({ post }: IPostViewContainerProps): JSX.Element => {
 	const { store } = useStores();
 	const { handlePostView, postInfo, isLoading } = store.PostStore;
 	const { handleCategoryList, categoryList } = store.CategoryStore;

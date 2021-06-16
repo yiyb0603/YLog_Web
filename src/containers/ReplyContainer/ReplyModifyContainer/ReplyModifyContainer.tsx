@@ -29,7 +29,7 @@ const ReplyModifyContainer = observer(
 		isModify,
 		setIsModify,
 		requestCommentList,
-	}: IReplyModifyContainerProps) => {
+	}: IReplyModifyContainerProps): JSX.Element => {
 		const { store } = useStores();
 		const { handleModifyReply } = store.ReplyStore;
 

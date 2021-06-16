@@ -28,7 +28,7 @@ const ReleaseForm = ({
   titleObject,
   contentsObject,
   requestFunction,
-}: ReleaseWriteFormProps) => {
+}: ReleaseWriteFormProps): JSX.Element => {
   const { title, setTitle } = titleObject;
   const { contents, setContents } = contentsObject;
 

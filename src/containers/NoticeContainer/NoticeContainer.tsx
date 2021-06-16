@@ -8,7 +8,7 @@ interface INoticeContainerProps {
 	notices: INotice[];
 }
 
-const NoticeContainer = observer(({ notices }: INoticeContainerProps) => {
+const NoticeContainer = observer(({ notices }: INoticeContainerProps): JSX.Element => {
 	const { store } = useStores();
 	const { handleNoticeList, noticeList } = store.NoticeStore;
 

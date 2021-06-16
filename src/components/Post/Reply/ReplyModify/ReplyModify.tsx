@@ -26,7 +26,7 @@ const ReplyModify = ({
 	requestModifyReply,
 	isModify,
 	onBlur,
-}: ReplyModifyProps) => {
+}: ReplyModifyProps): JSX.Element => {
 	return (
 		<CommentModifyForm
 			contentsObject ={contentsObject}

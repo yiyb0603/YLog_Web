@@ -10,7 +10,7 @@ interface PageHeaderProps {
 	description: string;
 }
 
-const PageHeader = ({ title, description }: PageHeaderProps) => {
+const PageHeader = ({ title, description }: PageHeaderProps): JSX.Element => {
 	return (
 		<div className={cx('PageHeader')}>
 			<div className={cx('PageHeader-Title')}>{title}</div>

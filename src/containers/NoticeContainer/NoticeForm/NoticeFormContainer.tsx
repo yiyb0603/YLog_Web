@@ -12,7 +12,7 @@ import { INotice, INoticeResponseTypes } from 'interface/NoticeTypes';
 import { NextRouter, useRouter } from 'next/router';
 import NoticeTemplate from 'components/Notice/NoticeTemplate';
 
-const NoticeFormContainer = observer(() => {
+const NoticeFormContainer = observer((): JSX.Element => {
   const { store } = useStores();
 	const { handleCreateNotice, handleModifyNotice, handleNoticeView } = store.NoticeStore;
 

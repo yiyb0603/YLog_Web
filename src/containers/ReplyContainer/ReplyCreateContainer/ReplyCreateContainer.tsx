@@ -19,7 +19,7 @@ const ReplyCreateContainer = observer(
 	({
 		commentIdx,
 		setIsReply,
-	}: IReplyCreateContainerProps) => {
+	}: IReplyCreateContainerProps): JSX.Element => {
 		const { store } = useStores();
 		const { handleCreateReply } = store.ReplyStore;
 		const { handlePostView } = store.PostStore;

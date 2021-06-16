@@ -10,7 +10,7 @@ import GroupingState from 'lib/util/GroupingState';
 import { confirmAlert } from 'lib/SweetAlert';
 import { IUser } from 'interface/AuthTypes';
 
-const AdminKickContainer = observer(() => {
+const AdminKickContainer = observer((): JSX.Element => {
 	const { store } = useStores();
 	const {
 		handleMemberList,

@@ -24,7 +24,7 @@ const NoticeList = ({
 	count,
 	handleIncreaseCount,
 	handleDecreaseCount,
-}: NoticeListProps) => {
+}: NoticeListProps): JSX.Element => {
 	const FIVE_SECONDS: number = 5000;
 	const router: NextRouter = useRouter();
 	const arrowStyle: CSSProperties = useMemo(() => {

@@ -8,7 +8,7 @@ import IError from 'interface/ErrorTypes';
 import MemberCard from 'components/Admin/AllowMember/MemberCard';
 import { IUser } from 'interface/AuthTypes';
 
-const AllowMemberContainer = observer(() => {
+const AllowMemberContainer = observer((): JSX.Element => {
 	const { store } = useStores();
 	const {
 		memberList,

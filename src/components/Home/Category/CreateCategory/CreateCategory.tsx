@@ -25,7 +25,7 @@ const CreateCategory = ({
 	handleCloseModal,
 	categoryNameObj,
 	requestCreateCategory,
-}: CreateCategoryProps) => {
+}: CreateCategoryProps): JSX.Element => {
 	const { categoryName, setCategoryName } = categoryNameObj;
 
 	return (

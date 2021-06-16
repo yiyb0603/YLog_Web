@@ -15,7 +15,7 @@ interface ISignUpContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;
 }
 
-const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps) => {
+const SignUpContainer = observer(({ setPageType }: ISignUpContainerProps): JSX.Element => {
 	const { store } = useStores();
 	const { handleSendCode, handleAdminCheck, handleEmailDuplicate, isLoading } = store.AuthStore;
 

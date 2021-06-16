@@ -4,7 +4,7 @@ interface ReleaseListProps {
   releaseLists: JSX.Element[];
 }
 
-const ReleaseList = ({ releaseLists }: ReleaseListProps) => {
+const ReleaseList = ({ releaseLists }: ReleaseListProps): JSX.Element => {
   return (
     <div>
       {releaseLists}

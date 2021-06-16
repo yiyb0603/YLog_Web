@@ -35,7 +35,7 @@ const CommentWrite = ({
 	contentsObject,
 	isPrivateObject,
 	requestCommentWrite,
-}: CommentWriteProps) => {
+}: CommentWriteProps): JSX.Element => {
 	const { contents, setContents } = contentsObject;
 	const { isPrivate, setIsPrivate } = isPrivateObject;
 

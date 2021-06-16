@@ -20,7 +20,7 @@ interface ISignInContainerProps {
 	setPageType: Dispatch<SetStateAction<string>>;
 }
 
-const SignInContainer = observer(({ setPageType }: ISignInContainerProps) => {
+const SignInContainer = observer(({ setPageType }: ISignInContainerProps): JSX.Element => {
 	const { store } = useStores();
 	const { handleFCMToken, handleSignIn, isLoading } = store.AuthStore;
 	const { USER_TOKEN } = Constants;

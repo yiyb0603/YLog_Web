@@ -30,7 +30,7 @@ const ReplyItem = ({
 	commentIdx,
 	requestDeleteReply,
 	requestCommentList,
-}: ReplyItemProps) => {
+}: ReplyItemProps): JSX.Element => {
 	const [isModify, setIsModify] = useState<boolean>(false);
 
 	return (

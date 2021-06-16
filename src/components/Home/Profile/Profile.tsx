@@ -20,7 +20,7 @@ const Profile = ({
 	handleCloseModal,
 	requestChangeProfile,
 	requestImageUpload,
-}: ProfileProps) => {
+}: ProfileProps): JSX.Element => {
 	const { email, name, joinedAt, profileImage } = useMemo(() => userInfo, [userInfo]);
 
 	return (

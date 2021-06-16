@@ -12,7 +12,7 @@ interface ICheckBoxProps {
 	children?: ReactNode;
 }
 
-const CheckBox = ({ checked, setChecked, children }: ICheckBoxProps) => {
+const CheckBox = ({ checked, setChecked, children }: ICheckBoxProps): JSX.Element => {
 	const handleChecked = useCallback(() => {
 		setChecked(!checked);
 	}, [checked]);

@@ -20,7 +20,7 @@ const Comment = ({
 	commentReplyList,
 	requestDeleteReply,
 	requestCommentList,
-}: CommentProps) => {
+}: CommentProps): JSX.Element => {
 
 	return (
 		<div className={cx('Comment')}>

@@ -10,7 +10,7 @@ import GroupingState from 'lib/util/GroupingState';
 import { errorToast, successToast } from 'lib/Toast';
 import { validateCreateComment } from 'validation/Comment/validationComment';
 
-const CommentWriteContainer = observer(() => {
+const CommentWriteContainer = observer((): JSX.Element => {
 	const { store } = useStores();
 	const {
 		handleCommentWrite,

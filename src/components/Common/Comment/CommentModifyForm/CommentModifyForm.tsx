@@ -20,7 +20,7 @@ const CommentModifyForm = ({
 	modifyFunction,
 	onBlur,
 	isModify,
-}: CommentModifyFormProps) => {
+}: CommentModifyFormProps): JSX.Element => {
 	const modifyRef = useRef<HTMLInputElement | null>(null);
 
 	const { contents, setContents } = contentsObject;

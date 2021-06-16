@@ -20,7 +20,7 @@ interface ReleasePageProps {
 const ReleasePage = ({
   releaseInfo,
   requestReleaseDelete,
-}: ReleasePageProps) => {
+}: ReleasePageProps): JSX.Element => {
   const router: NextRouter = useRouter();
   const {
     idx,

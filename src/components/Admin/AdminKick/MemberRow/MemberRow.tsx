@@ -19,7 +19,7 @@ const MemberRow = ({
 	email,
 	isAdmin,
 	requestDeleteMember,
-}: MemberRowProps) => {
+}: MemberRowProps): JSX.Element => {
 	return (
 		<tr className={cx('MemberRow')}>
 			<td>

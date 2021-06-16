@@ -24,7 +24,7 @@ const EmailAuth = ({
 	isLoading,
 	codeObject,
 	requestSignUp,
-}: EmailAuthProps) => {
+}: EmailAuthProps): JSX.Element => {
 	const { code, setCode } = codeObject;
 
 	return (

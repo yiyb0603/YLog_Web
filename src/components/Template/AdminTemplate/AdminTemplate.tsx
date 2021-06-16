@@ -12,7 +12,7 @@ interface AdminTemplateProps {
 
 const AdminTemplate = ({
 	children,
-}: AdminTemplateProps) => {
+}: AdminTemplateProps): JSX.Element => {
 	const [isEnabled, setIsEnabled] = useState<boolean>(true);
 
 	return (

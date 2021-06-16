@@ -12,7 +12,7 @@ const AdminLogin = ({
 	emailObject,
 	passwordObject,
 	requestAdminLogin,
-}: AdminLoginProps) => {
+}: AdminLoginProps): JSX.Element => {
 	const { email, setEmail } = emailObject;
 	const { password, setPassword } = passwordObject;
 

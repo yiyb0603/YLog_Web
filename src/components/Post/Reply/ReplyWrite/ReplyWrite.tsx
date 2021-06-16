@@ -32,7 +32,7 @@ const ReplyWrite = ({
 	contentsObject,
 	isPrivateObject,
 	requestCreateReply,
-}: ReplyWriteProps) => {
+}: ReplyWriteProps): JSX.Element => {
 	const { var(--primary) } = palette;
 	const { contents, setContents } = contentsObject;
 	const { isPrivate, setIsPrivate } = isPrivateObject;

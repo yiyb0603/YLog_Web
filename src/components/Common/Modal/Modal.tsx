@@ -20,7 +20,7 @@ const Modal = ({
 	title,
 	handleCloseModal,
 	children,
-}: ModalProps) => {
+}: ModalProps): JSX.Element => {
 	return (
 		<>
 			<div className={cx('Modal-Wrapper')} onClick={handleCloseModal}></div>

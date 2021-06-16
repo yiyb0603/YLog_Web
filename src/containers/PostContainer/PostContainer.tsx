@@ -15,7 +15,7 @@ interface IPostContainerProps {
 
 const PostContainer = observer(({
 	posts,
-}: IPostContainerProps) => {
+}: IPostContainerProps): JSX.Element => {
 	const router: NextRouter = useRouter();
 	const { keyword, topic, isTemp } = router.query;
 

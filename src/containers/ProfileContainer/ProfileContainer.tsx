@@ -16,7 +16,7 @@ interface IProfileContainerProps {
 
 const ProfileContainer = observer(({
   handleCloseModal,
-}: IProfileContainerProps) => {
+}: IProfileContainerProps): JSX.Element => {
   const { store } = useStores();
   const { handleModifyProfile, handleGetProfile, userInfo } = store.ProfileStore;
   const { handleFileUpload } = store.UploadStore;

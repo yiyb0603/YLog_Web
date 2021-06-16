@@ -7,7 +7,7 @@ import Comment from 'components/Post/Comment';
 import { errorToast, successToast } from 'lib/Toast';
 import ISuccess from 'interface/SuccessTypes';
 
-const CommentContainer = observer(() => {
+const CommentContainer = observer((): JSX.Element => {
 	const { store } = useStores();
 	const {
 		handleCommentList,

@@ -9,7 +9,7 @@ interface NoTopicsProps {
 	topic: string;
 }
 
-const NoTopics = ({ topic }: NoTopicsProps) => {
+const NoTopics = ({ topic }: NoTopicsProps): JSX.Element => {
 	return (
 		<div className={cx('NoTopics')}>
 			<div>{topic}</div>

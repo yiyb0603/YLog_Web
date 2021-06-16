@@ -5,7 +5,7 @@ import { IRelease } from 'interface/ReleaseTypes';
 import ReleaseList from 'components/Release/ReleaseList';
 import ReleaseItem from 'components/Release/ReleaseList/ReleaseItem';
 
-const ReleaseContainer = observer(() => {
+const ReleaseContainer = observer((): JSX.Element => {
   const { store } = useStores();
   const { handleReleaseList, releaseList } = store.ReleaseStore;
 

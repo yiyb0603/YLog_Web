@@ -26,7 +26,7 @@ const CommentModifyContainer = observer(
 		onBlur,
 		isModify,
 		defaultPrivate
-	}: ICommentModifyContainerProps) => {
+	}: ICommentModifyContainerProps): JSX.Element => {
 		const { store } = useStores();
 		const { handleCommentModify, handleCommentList } = store.CommentStore;
 

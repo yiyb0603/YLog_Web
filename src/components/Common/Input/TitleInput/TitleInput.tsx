@@ -15,7 +15,7 @@ const TitleInput = ({
   title,
   setTitle,
   width,
-}: TitleInputProps) => {
+}: TitleInputProps): JSX.Element => {
   return (
     <input
       style={{ width }}

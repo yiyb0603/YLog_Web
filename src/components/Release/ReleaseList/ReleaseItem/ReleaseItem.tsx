@@ -21,7 +21,7 @@ const ReleaseItem = ({
   title,
   user,
   createdAt,
-}: ReleaseItemProps) => {
+}: ReleaseItemProps): JSX.Element => {
   const router: NextRouter = useRouter();
 
   return (

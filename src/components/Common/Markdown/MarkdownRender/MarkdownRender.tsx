@@ -10,7 +10,7 @@ export interface MarkdownRenderProps {
 
 const MarkdownRender = ({
 	contents,
-}: MarkdownRenderProps) => {
+}: MarkdownRenderProps): JSX.Element => {
 	return (
 		<ReactMarkdown
 			source={contents}

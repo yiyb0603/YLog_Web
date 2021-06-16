@@ -12,7 +12,9 @@ interface ICategoryContainerProps {
 	categories: ICategory[];
 }
 
-const CategoryContainer = observer(({ categories }: ICategoryContainerProps) => {
+const CategoryContainer = observer(({
+	categories,
+}: ICategoryContainerProps): JSX.Element => {
 	const { store } = useStores();
 	const router: NextRouter = useRouter();
 	const { keyword } = router.query;

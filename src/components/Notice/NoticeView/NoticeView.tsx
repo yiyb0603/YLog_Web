@@ -21,7 +21,7 @@ interface NoticeViewProps {
 const NoticeView = ({
 	noticeInfo,
 	requestDeleteNotice,
-}: NoticeViewProps) => {
+}: NoticeViewProps): JSX.Element => {
 	const router: NextRouter = useRouter();
 	const { idx, writer, title, contents, createdAt, updatedAt } = useMemo(() => noticeInfo, [noticeInfo]);
 	const myInfo = useMemo(() => getMyInfo(), [getMyInfo]);

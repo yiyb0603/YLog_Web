@@ -23,7 +23,7 @@ const PostForm = ({
 	requestThumbnailUpload,
 	requestImageUpload,
 	requestWritePost,
-}: PostWriteFormProps) => {
+}: PostWriteFormProps): JSX.Element => {
 	const { title, setTitle } = titleObject;
 	const { introduction, setIntroduction } = introductionObject;
 	const { contents, setContents } = contentsObject;

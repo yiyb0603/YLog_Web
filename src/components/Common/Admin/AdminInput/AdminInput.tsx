@@ -19,7 +19,7 @@ const AdminInput = ({
 	value,
 	setValue,
 	requestFunction,
-}: AdminInputProps) => {
+}: AdminInputProps): JSX.Element => {
 	return (
 		<Input
 			className={cx('AdminInput')}

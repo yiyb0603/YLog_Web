@@ -17,7 +17,7 @@ interface INoticeViewContainerProps {
 
 const NoticeViewContainer = observer(({
 	notice,
-}: INoticeViewContainerProps) => {
+}: INoticeViewContainerProps): JSX.Element => {
 	const { store } = useStores();
 	const {
 		handleNoticeView,

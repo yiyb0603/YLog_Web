@@ -27,7 +27,7 @@ const CategoryItem = ({
 	setCategoryInfo,
 	setIsModify,
 	requestDeleteCategory,
-}: CategoryItemProps) => {
+}: CategoryItemProps): JSX.Element => {
 	const router: NextRouter = useRouter();
 	const { topic, keyword } = useMemo(() => router.query, [router]);
 

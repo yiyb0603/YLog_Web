@@ -9,7 +9,7 @@ interface IPageTemplateProps {
 
 const PageTemplate = ({
 	children,
-}: IPageTemplateProps) => {
+}: IPageTemplateProps): JSX.Element => {
 	return (
 		<div style={{ width: '100%', height: '100%' }}>
 			<NavBar />

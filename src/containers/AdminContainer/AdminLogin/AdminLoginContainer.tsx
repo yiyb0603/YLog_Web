@@ -15,7 +15,7 @@ import { removeCookie, setCookie } from 'lib/Cookie';
 import Constants from 'Constants';
 import AdminLogin from 'components/Admin/AdminLogin';
 
-const AdminLoginContainer = observer(() => {
+const AdminLoginContainer = observer((): JSX.Element => {
 	const router: NextRouter = useRouter();
 	const { USER_TOKEN, ADMIN_TOKEN } = Constants;
 

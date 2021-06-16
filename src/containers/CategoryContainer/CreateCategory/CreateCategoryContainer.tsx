@@ -13,7 +13,7 @@ interface CreateCategoryContainerProps {
 }
 
 const CreateCategoryContainer = observer(
-	({ handleCloseModal }: CreateCategoryContainerProps) => {
+	({ handleCloseModal }: CreateCategoryContainerProps): JSX.Element => {
 		const { store } = useStores();
 		const { handleCreateCategory, handleCategoryList } = store.CategoryStore;
 

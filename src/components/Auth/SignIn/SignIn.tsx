@@ -37,7 +37,7 @@ const SignIn = ({
 	isLoading,
 	emailObject,
 	passwordObject,
-}: SignInProps) => {
+}: SignInProps): JSX.Element => {
 	const { email, setEmail } = emailObject;
 	const { password, setPassword } = passwordObject;
 

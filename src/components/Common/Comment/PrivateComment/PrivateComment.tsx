@@ -11,7 +11,7 @@ interface PrivateCommentProps {
 }
 
 // type = 0: 댓글, 1: 답글
-const PrivateComment = ({ type }: PrivateCommentProps) => {
+const PrivateComment = ({ type }: PrivateCommentProps): JSX.Element => {
   return (
     <div className={cx('PrivateComment')}>
       <AiFillLock className={cx('PrivateComment-Icon')} />

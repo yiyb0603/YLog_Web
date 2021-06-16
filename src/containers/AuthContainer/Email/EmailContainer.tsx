@@ -15,7 +15,7 @@ interface IEmailContainerProps {
 }
 
 const EmailContainer = observer(
-	({ registerInfo, setPageType }: IEmailContainerProps) => {
+	({ registerInfo, setPageType }: IEmailContainerProps): JSX.Element => {
 		const { store } = useStores();
 		const { handleCheckCode, handleSignUp, isLoading } = store.AuthStore;
 

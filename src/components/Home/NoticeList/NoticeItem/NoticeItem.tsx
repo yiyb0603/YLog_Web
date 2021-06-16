@@ -13,7 +13,7 @@ interface NoticeItemProps {
 	children?: ReactNode;
 }
 
-const NoticeItem = ({ itemInfo, children }: NoticeItemProps) => {
+const NoticeItem = ({ itemInfo, children }: NoticeItemProps): JSX.Element => {
 	const router: NextRouter = useRouter();
 	const { idx, title } = useMemo(() => itemInfo, []);
 

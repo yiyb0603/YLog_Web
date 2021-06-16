@@ -14,7 +14,7 @@ interface ModifyCategoryContainerProps {
 }
 
 const ModifyCategoryContainer = observer(
-	({ handleCloseModal, categoryInfo }: ModifyCategoryContainerProps) => {
+	({ handleCloseModal, categoryInfo }: ModifyCategoryContainerProps): JSX.Element => {
 		const { store } = useStores();
 		const { handleModifyCategory, handleCategoryList } = store.CategoryStore;
 

@@ -12,7 +12,7 @@ const HomeContainer = ({
 	postList,
 	noticeList,
 	categoryList,
-}: IHomeProps) => {
+}: IHomeProps): JSX.Element => {
 	const router: NextRouter = useRouter();
 	const { isTemp } = router.query;
 	const { ADMIN_TOKEN } = Constants;

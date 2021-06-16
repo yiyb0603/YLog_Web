@@ -22,7 +22,7 @@ const CommentItem = ({
 	isPrivate,
 	requestDeleteReply,
 	requestCommentList,
-}: CommentItemProps) => {
+}: CommentItemProps): JSX.Element => {
 	const [isModify, setIsModify] = useState<boolean>(false);
 
 	return (

@@ -27,7 +27,7 @@ const RowCategoryItem = ({
   setCategoryInfo,
   setIsModify,
   requestDeleteCategory,
-}: RowCategoryItemProps) => {
+}: RowCategoryItemProps): JSX.Element => {
   const router: NextRouter = useRouter();
 	const { topic, keyword } = router.query;
   

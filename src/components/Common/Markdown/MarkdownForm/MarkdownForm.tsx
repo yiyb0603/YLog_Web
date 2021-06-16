@@ -32,7 +32,7 @@ const mdParser: MarkdownIt = new MarkdownIt({
 	},
 });
 
-const MarkdownForm = ({ contents, setContents, requestImageUpload }: MarkdownFormProps) => {
+const MarkdownForm = ({ contents, setContents, requestImageUpload }: MarkdownFormProps): JSX.Element => {
 	const handleImageUpload = useCallback((file: File) => {
 		return new Promise(resolve => {
 			const reader: FileReader = new FileReader();

@@ -2,7 +2,7 @@ interface IPostWriteProps {
 	postWriteForm: JSX.Element;
 }
 
-const PostFormTemplate = ({ postWriteForm }: IPostWriteProps) => {
+const PostFormTemplate = ({ postWriteForm }: IPostWriteProps): JSX.Element => {
 	return postWriteForm;
 };
 

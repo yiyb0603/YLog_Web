@@ -25,7 +25,7 @@ const SearchInput = ({
 	keyword,
 	setKeyword,
 	requestFunction,
-}: SearchInputProps) => {
+}: SearchInputProps): JSX.Element => {
 	const iconStyle: CSSProperties = useMemo(() => {
 		return {
 			marginRight: 5,

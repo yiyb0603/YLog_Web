@@ -10,7 +10,7 @@ interface ICodeBlockProps {
 const CodeBlock = ({
 	language,
 	value,
-}: ICodeBlockProps) => {
+}: ICodeBlockProps): JSX.Element => {
 	return (
 		<SyntaxHighlighter
 			language={language}

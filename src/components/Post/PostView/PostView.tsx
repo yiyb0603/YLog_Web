@@ -24,7 +24,7 @@ const PostView = ({
 	postInfo,
 	commentCount,
 	categoryName,
-}: IPostViewProps) => {
+}: IPostViewProps): JSX.Element => {
 	const {
 		title,
 		introduction,

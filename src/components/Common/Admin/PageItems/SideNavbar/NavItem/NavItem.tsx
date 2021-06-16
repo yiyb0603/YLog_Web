@@ -12,7 +12,7 @@ interface NavItemProps {
 	link: string;
 }
 
-const NavItem = ({ icon, name, link }: NavItemProps) => {
+const NavItem = ({ icon, name, link }: NavItemProps): JSX.Element => {
 	const router: NextRouter = useRouter();
 
 	return (

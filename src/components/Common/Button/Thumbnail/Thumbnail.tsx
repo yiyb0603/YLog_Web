@@ -14,7 +14,7 @@ interface ThumbnailProps {
 const Thumbnail = ({
   thumbnail,
   requestThumbnailUpload,
-}: ThumbnailProps) => {
+}: ThumbnailProps): JSX.Element => {
   return (
     <div className ={cx('Thumbnail')}>
 			<input

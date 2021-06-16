@@ -44,7 +44,7 @@ const HomePostItem = ({
 	likeCount,
 	categoryList,
 	requestDeletePost,
-}: HomePostItemProps) => {
+}: HomePostItemProps): JSX.Element => {
 	const router: NextRouter = useRouter();
 	const myInfo: IToken = useMemo(() => getMyInfo(), [getMyInfo]);
 

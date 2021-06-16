@@ -13,7 +13,7 @@ interface AllowMemberProps {
 
 const AllowMember = ({
 	memberLists,
-}: AllowMemberProps) => {
+}: AllowMemberProps): JSX.Element => {
 	return (
 		<div className={cx('AllowMember')}>
 			<PageHeader

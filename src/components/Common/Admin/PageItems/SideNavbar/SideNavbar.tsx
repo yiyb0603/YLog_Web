@@ -19,7 +19,7 @@ interface ISideNavbarProps {
 	setIsEnabled: Dispatch<SetStateAction<boolean>>;
 }
 
-const SideNavbar = ({ isEnabled, setIsEnabled }: ISideNavbarProps) => {
+const SideNavbar = ({ isEnabled, setIsEnabled }: ISideNavbarProps): JSX.Element => {
 	const { name, email } = getMyInfo();
 
 	const iconStyle: CSSProperties = {

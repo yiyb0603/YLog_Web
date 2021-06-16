@@ -22,7 +22,7 @@ const MemberCard = ({
 	isAdmin,
 	requestAllowMember,
 	requestRefuseMember,
-}: MemberCardProps) => {
+}: MemberCardProps): JSX.Element => {
 	return (
 		<div className={cx('MemberCard')}>
 			<div className={cx('MemberCard-Contents')}>

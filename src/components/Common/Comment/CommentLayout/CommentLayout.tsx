@@ -21,7 +21,7 @@ const CommentLayout = ({
 	children,
 	deleteFunction,
 	commentType,
-}: CommentLayoutProps) => {
+}: CommentLayoutProps): JSX.Element => {
 	const [isReply, setIsReply] = useState<boolean>(false);
 	const [commentIdx, setCommentIdx] = useState<number>(0);
 
