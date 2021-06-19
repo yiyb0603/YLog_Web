@@ -39,7 +39,7 @@ const CommentWrite = ({
 	const { contents, setContents } = contentsObject;
 	const { isPrivate, setIsPrivate } = isPrivateObject;
 
-	const { var(--primary) } = palette;
+	const { primary } = palette;
 	const profileImage: string | null = useMemo(() => {
 		return !getMyInfo() ? null : getMyInfo().profile_image;
 	}, []);
@@ -71,7 +71,7 @@ const CommentWrite = ({
 				{
 					isPrivate ?
 						<AiFillLock
-							style={{ color: var(--primary) }}
+							style={{ color: primary }}
 							onClick={() => setIsPrivate(false)}
 						/>
 						: <AiFillUnlock onClick={() => setIsPrivate(true)} />

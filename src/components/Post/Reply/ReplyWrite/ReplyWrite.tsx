@@ -33,7 +33,7 @@ const ReplyWrite = ({
 	isPrivateObject,
 	requestCreateReply,
 }: ReplyWriteProps): JSX.Element => {
-	const { var(--primary) } = palette;
+	const { primary } = palette;
 	const { contents, setContents } = contentsObject;
 	const { isPrivate, setIsPrivate } = isPrivateObject;
 
@@ -55,7 +55,7 @@ const ReplyWrite = ({
 			<div className ={cx('ReplyWrite-IconWrapper')}>
 				{
 					isPrivate ?
-						<AiFillLock style ={{ color: var(--primary) }} onClick ={() => setIsPrivate(false)} />
+						<AiFillLock style={{ color: primary }} onClick ={() => setIsPrivate(false)} />
 						: <AiFillUnlock onClick ={() => setIsPrivate(true)} />
 				}
 				<BiSend
